@@ -4,3 +4,24 @@
     -webkit-app-region: drag;
     -webkit-user-select: none;
 }
+
+.main-structure {
+    align-items: stretch;
+    display: flex;
+    min-height: 100%;
+    width: 100%;
+
+    .sidebar {
+        background-color: $sidebarBg;
+        min-width: 150px;
+        padding: 10px;
+    }
+
+    .middle-column {
+        padding: 10px;
+    }
+
+    .right-column {
+        padding: 10px;
+    }
+}
