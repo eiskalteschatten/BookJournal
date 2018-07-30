@@ -7,5 +7,5 @@ const os = require('os');
 
 
 if (os.type() !== 'Darwin') {
-    jquery('.title-bar').hide();
+    jquery('.js-title-bar').hide();
 }

@@ -1,8 +1,14 @@
+$titleBarHeight: 38px;
+
 .title-bar {
-    height: 38px;
+    height: $titleBarHeight;
+    left: 0;
+    position: absolute;
+    top: 0;
     width: 100%;
     -webkit-app-region: drag;
     -webkit-user-select: none;
+    z-index: 1000;
 }
 
 .main-structure {
@@ -11,17 +17,20 @@
     min-height: 100%;
     width: 100%;
 
+    .column {
+        padding: $titleBarHeight 10px 10px 10px;
+    }
+
     .sidebar {
         background-color: $sidebarBg;
         min-width: 150px;
-        padding: 10px;
     }
 
     .middle-column {
-        padding: 10px;
+
     }
 
     .right-column {
-        padding: 10px;
+
     }
 }
