@@ -4,8 +4,11 @@
 
 const jquery = require('jquery');
 const os = require('os');
+const osType = os.type();
 
 
-if (os.type() !== 'Darwin') {
+jquery('body').addClass(osType.toLowerCase());
+
+if (osType !== 'Darwin') {
     jquery('.js-title-bar').hide();
 }
