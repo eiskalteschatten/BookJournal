@@ -12,22 +12,25 @@ $titleBarHeight: 38px;
 }
 
 .main-structure {
+    $columnPadding: 10px;
+
     align-items: stretch;
     display: flex;
     min-height: 100%;
     width: 100%;
 
     .column {
-        padding: $titleBarHeight 10px 10px 10px;
+        padding: $titleBarHeight $columnPadding $columnPadding $columnPadding;
     }
 
     .sidebar {
         background-color: $sidebarBg;
-        min-width: 150px;
+        min-width: 200px;
     }
 
     .middle-column {
-
+        background-color: $middleColumnBg;
+        min-width: 300px;
     }
 
     .right-column {
