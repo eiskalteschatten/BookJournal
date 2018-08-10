@@ -1,0 +1,22 @@
+.list-container {
+    overflow: auto;
+
+    .list {
+        padding: 0;
+
+        .list-element {
+            cursor: pointer;
+            font-size: .8em;
+            list-style: none;
+            padding: 8px 10px;
+
+            &:hover {
+                background: $listHoverBg;
+            }
+
+            &.selected {
+                background: $listSelectedBg;
+            }
+        }
+    }
+}

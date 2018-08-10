@@ -3,3 +3,6 @@ $darkFontColor: #e0e0e0;
 
 $sidebarBg: #000000;
 $middleColumnBg: lighten($darkBg, 1%);
+
+$listHoverBg: lighten($sidebarBg, 5%);
+$listSelectedBg: lighten($sidebarBg, 15%);

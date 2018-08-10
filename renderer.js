@@ -2,13 +2,34 @@
 // be executed in the renderer process for that window.
 // All of the Node.js APIs are available in this process.
 
-const jquery = require('jquery');
+const $ = require('jquery');
+
 const os = require('os');
 const osType = os.type();
 
+const SidebarList = require('./src/elements/list/sidebar');
 
-jquery('body').addClass(osType.toLowerCase());
 
-if (osType !== 'Darwin') {
-    jquery('.js-title-bar').hide();
+function render() {
+    $('body').addClass(osType.toLowerCase());
+
+    if (osType !== 'Darwin') {
+        $('.js-title-bar').hide();
+    }
+
+    renderSidebar();
+    renderBookList();
 }
+
+function renderSidebar() {
+    const list = new SidebarList($('#sidebar'));
+    list.addElement('All Books', '', '');
+    list.addElement('Future Reading', '', '');
+    list.render();
+}
+
+function renderBookList() {
+    // const list = new List($('#bookList'));
+}
+
+render();
