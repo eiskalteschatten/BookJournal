@@ -2,4 +2,4 @@ $darkBg: #222222;
 $darkFontColor: #e0e0e0;
 
 $sidebarBg: #000000;
-$middleColumnBg: darken($darkBg, 1%);
+$middleColumnBg: lighten($darkBg, 1%);
