@@ -1,14 +1,7 @@
 $titleBarHeight: 22px;
 
 .title-bar {
-    height: $titleBarHeight;
-    left: 0;
-    position: absolute;
-    top: 0;
-    width: 100%;
-    -webkit-app-region: drag;
-    -webkit-user-select: none;
-    z-index: 1000;
+    display: none;
 }
 
 .main-structure {
@@ -25,18 +18,11 @@ $titleBarHeight: 22px;
         background-color: $sidebarBg;
         flex: 0 0 auto;
         min-width: 200px;
-        padding-top: $titleBarHeight;
         position: relative;
         width: 200px;
 
         .stop-light-background {
-            background: $sidebarBg;
-            box-shadow: 0 0 22px 9px $sidebarBg;
-            height: calc(#{$titleBarHeight} - 2px);
-            left: 0;
-            position: fixed;
-            top: 0;
-            width: 61px;
+            display: none;
         }
     }
 
@@ -51,5 +37,36 @@ $titleBarHeight: 22px;
         $columnPadding: 10px;
         flex: 1 1 auto;
         padding: $titleBarHeight $columnPadding $columnPadding $columnPadding;
+    }
+}
+
+.darwin {
+    .title-bar {
+        display: block;
+        height: $titleBarHeight;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        -webkit-app-region: drag;
+        -webkit-user-select: none;
+        z-index: 1000;
+    }
+
+    .main-structure {
+        .sidebar {
+            padding-top: $titleBarHeight;
+
+            .stop-light-background {
+                background: $sidebarBg;
+                box-shadow: 0 0 22px 9px $sidebarBg;
+                display: block;
+                height: calc(#{$titleBarHeight} - 2px);
+                left: 0;
+                position: fixed;
+                top: 0;
+                width: 61px;
+            }
+        }
     }
 }

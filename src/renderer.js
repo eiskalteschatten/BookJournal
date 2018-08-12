@@ -10,11 +10,6 @@ const SidebarList = require('./elements/list/sidebar');
 async function render() {
     $('body').addClass(process.platform);
 
-    if (process.platform !== 'darwin') {
-        $('.js-title-bar').hide();
-        $('.js-stop-light-background').hide();
-    }
-
     await renderSidebar();
     await renderBookList();
 
