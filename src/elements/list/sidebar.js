@@ -7,8 +7,8 @@ const ListElement = require('../listElement/sidebar');
 
 
 class Sidebar extends List {
-    addElement(displayName, iconPath = '', query) {
-        const element = new ListElement(displayName, iconPath, query);
+    addElement(displayName, iconPath = '', queryType) {
+        const element = new ListElement(displayName, iconPath, queryType);
         this.elements.push(element);
     }
 }
