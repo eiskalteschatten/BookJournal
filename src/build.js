@@ -3,9 +3,9 @@
 const path = require('path');
 const compileSass = require('compile-sass');
 
-const cssConfig = require('./src/config/css');
+const cssConfig = require('./config/css');
 
-const pathToAssets = './src/assets/';
+const pathToAssets = './assets/';
 
 
 module.exports = async () => {

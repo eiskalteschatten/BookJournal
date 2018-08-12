@@ -2,9 +2,9 @@
   "name": "book-journal",
   "version": "0.1.0",
   "description": "A digital book journal",
-  "main": "main.js",
+  "main": "./src/main.js",
   "scripts": {
-    "prestart": "node -e 'require(\"./build\")()'",
+    "prestart": "node -e 'require(\"./src/build\")()'",
     "start": "electron .",
     "test": "npm run lint",
     "lint": "./node_modules/.bin/eslint .",

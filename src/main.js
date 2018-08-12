@@ -13,7 +13,7 @@ function createWindow() {
     mainWindow = new BrowserWindow({width: 1200, height: 800, titleBarStyle: 'hiddenInset'});
 
     // and load the index.html of the app.
-    mainWindow.loadFile('index.html');
+    mainWindow.loadFile('./src/html/index.html');
 
     // Open the DevTools.
     mainWindow.webContents.openDevTools();

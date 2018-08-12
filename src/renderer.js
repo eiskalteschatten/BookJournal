@@ -7,7 +7,7 @@ const $ = require('jquery');
 const os = require('os');
 const osType = os.type();
 
-const SidebarList = require('./src/elements/list/sidebar');
+const SidebarList = require('./elements/list/sidebar');
 
 
 function render() {
