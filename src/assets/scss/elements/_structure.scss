@@ -32,11 +32,11 @@ $titleBarHeight: 22px;
         .stop-light-background {
             background: $sidebarBg;
             box-shadow: 0 0 22px 9px $sidebarBg;
-            height: $titleBarHeight;
+            height: calc(#{$titleBarHeight} - 2px);
             left: 0;
             position: fixed;
             top: 0;
-            width: 66px;
+            width: 61px;
         }
     }
 
