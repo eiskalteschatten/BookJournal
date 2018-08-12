@@ -18,12 +18,12 @@ $titleBarHeight: 22px;
     width: 100%;
 
     .column {
-        flex: 1 1 auto;
         overflow: auto;
     }
 
     .sidebar {
         background-color: $sidebarBg;
+        flex: 0 0 auto;
         min-width: 200px;
         padding-top: $titleBarHeight;
         position: relative;
@@ -42,12 +42,14 @@ $titleBarHeight: 22px;
 
     .middle-column {
         background-color: $middleColumnBg;
+        flex: 0 0 auto;
         min-width: 300px;
         padding-top: $titleBarHeight;
     }
 
     .right-column {
         $columnPadding: 10px;
+        flex: 1 1 auto;
         padding: $titleBarHeight $columnPadding $columnPadding $columnPadding;
     }
 }
