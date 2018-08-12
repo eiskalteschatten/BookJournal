@@ -1,0 +1,27 @@
+.form-group {
+    margin-bottom: 20px;
+
+    label {
+        display: block;
+        font-size: .8em;
+        margin-bottom: 10px;
+        opacity: .7;
+        -webkit-user-select: none;
+    }
+}
+
+.form-control {
+    background: $formBg;
+    border: none;
+    color: $formColor;
+    font-size: 1em;
+    padding: 8px;
+
+    &.full-width {
+        width: 100%;
+    }
+
+    &.book-textarea {
+        min-height: 200px;
+    }
+}

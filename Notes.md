@@ -2,24 +2,24 @@
 
 ## Fields
 
-- Title
-- Author
-- ISBN
-- Publisher
-- Date published
-- Number of pages
-- Cover
-- Original language
-- Language read in
-- Nationality
-- Review (stars)
-- Summary
-- Impression of book
-- Date read / "Not read yet" checkbox
-- Tags
-- Categories
-- Genre
-- Color (also shown in the book view)
+- [x] Title
+- [x] Author
+- [x] ISBN
+- [x] Publisher
+- [x] Date published
+- [x] Number of pages
+- [x] Cover
+- [x] Original language
+- [x] Language read in
+- [x] Nationality
+- [x] Review (stars)
+- [x] Summary
+- [x] Impression of book (commentary)
+- [x] Date read / "Not read yet" checkbox
+- [x] Tags
+- [x] Categories
+- [x] Genre
+- [x] Color (also shown in the book view)
 
 
 ## Useful features

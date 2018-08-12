@@ -19,11 +19,148 @@
             </div>
             <div class="middle-column column list-container" id="bookList"></div>
             <div class="right-column column" id="mainColumn">
-                <h1>Hello World!</h1>
-                <!-- All of the Node.js APIs are available in this renderer process. -->
-                We are using Node.js <script>document.write(process.versions.node)</script>,
-                Chromium <script>document.write(process.versions.chrome)</script>,
-                and Electron <script>document.write(process.versions.electron)</script>.
+                <div class="book-form">
+                    <h1>Book Details</h1>
+
+                    <form>
+
+                        <div class="group">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    Book cover... or something
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="form-group">
+                                        <label for="bookTitle">Title</label>
+                                        <input type="text" class="form-control full-width" id="bookTitle">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="bookAuthor">Author</label>
+                                        <input type="text" class="form-control full-width" id="bookAuthor">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="bookGenre">Genre</label>
+                                        <input type="text" class="form-control full-width" id="bookGenre">
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-9">
+                                            <div class="form-group">
+                                                <label for="bookColor">Color</label>
+                                                <input type="hidden" id="bookColor">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label for="bookNumberOfPages">Page Count</label>
+                                                <input type="number" class="form-control full-width" id="bookNumberOfPages">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="group">
+                            <div class="group-title">Publication Details</div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="bookPublisher">Publisher</label>
+                                            <input type="text" class="form-control full-width" id="bookPublisher">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="bookDatePublished">Date Published</label>
+                                            <input type="datetime-local" class="form-control full-width" id="bookDatePublished">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="bookIsbn">ISBN</label>
+                                            <input type="text" class="form-control full-width" id="bookIsbn">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="group">
+                            <div class="group-title">Language &amp; Origin</div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="bookOriginalLanguage">Original Language</label>
+                                        <input type="text" class="form-control full-width" id="bookOriginalLanguage">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="bookLanguageReadIn">Language Read In</label>
+                                        <input type="text" class="form-control full-width" id="bookLanguageReadIn">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="bookNationality">Nationality</label>
+                                        <input type="text" class="form-control full-width" id="bookNationality">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="group">
+                            <div class="group-title">Classification</div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="bookTags">Tags</label>
+                                        <input type="text" class="form-control full-width" id="bookTags">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="bookCategories">Categories</label>
+                                        <select class="form-control full-width" id="bookCategories">
+                                            <option>test</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="bookNationality">Nationality</label>
+                                        <input type="text" class="form-control full-width" id="bookNationality">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="group">
+                            <div class="group-title">Comments &amp; Review</div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    Star review here
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="bookDateRead">Date Read</label>
+                                        <input type="datetime-local" class="form-control full-width" id="bookDateRead">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="bookSummary">Summary</label>
+                                <textarea class="form-control full-width book-textarea" id="bookSummary"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="bookCommentary">Commentary</label>
+                                <textarea class="form-control full-width book-textarea" id="bookCommentary"></textarea>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
             </div>
         </main>
 

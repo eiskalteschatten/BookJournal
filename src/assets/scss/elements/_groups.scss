@@ -1,0 +1,13 @@
+.group {
+    margin-bottom: 50px;
+
+    .group-title {
+        background: $darkBg;
+        display: inline-block;
+        font-size: .8em;
+        margin-bottom: 30px;
+        padding-right: 5px;
+        text-transform: uppercase;
+        -webkit-user-select: none;
+    }
+}
