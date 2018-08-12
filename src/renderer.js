@@ -4,16 +4,13 @@
 
 const $ = require('jquery');
 
-const os = require('os');
-const osType = os.type();
-
 const SidebarList = require('./elements/list/sidebar');
 
 
 async function render() {
-    $('body').addClass(osType.toLowerCase());
+    $('body').addClass(process.platform);
 
-    if (osType !== 'Darwin') {
+    if (process.platform !== 'darwin') {
         $('.js-title-bar').hide();
         $('.js-stop-light-background').hide();
     }
