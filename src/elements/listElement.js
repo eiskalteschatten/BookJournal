@@ -9,17 +9,13 @@ class ListElement {
         this.displayName = displayName;
         this.iconPath = iconPath;
         this.id = uuidv4();
-        this.$html = $(`<li id="${this.id}" class="list-element"></li>`);
+        this.classes = 'list-element js-list-element';
+        this.$html = $(`<li id="${this.id}" class="${this.classes}"></li>`);
     }
 
     render() {
         this.$html.html(this.displayName);
-        this.$html.click(this.onClick);
         return this.$html;
-    }
-
-    onClick() {
-
     }
 }
 
