@@ -1,6 +1,9 @@
 'use strict';
 
 const $ = require('jquery');
+const path = require('path');
+const fs = require('fs');
+const nunjucks = require('nunjucks');
 
 const ListElement = require('./listElement');
 
@@ -9,17 +12,31 @@ class List {
     constructor($anchor) {
         this.$anchor = $anchor;
         this.elements = [];
-        this.$listHtml = $('<ul class="list"></ul>');
     }
 
-    render() {
+    async render() {
         const $anchor = this.$anchor;
+        const listElements = [];
+        const template = path.join(__dirname, '../templates/list.njk');
+
         $anchor.html('');
+
         for(const element of this.elements) {
-            this.$listHtml.append(element.render());
+            const html = await element.render();
+            listElements.push(html);
         }
 
-        $anchor.html(this.$listHtml);
+        fs.readFile(template, 'utf8', (error, templateString) => {
+            if (error) throw new Error(error);
+
+            nunjucks.renderString(templateString, {
+                listElements
+            }, (error, rendered) => {
+                if (error) throw new Error(error);
+
+                $anchor.html(rendered);
+            });
+        });
     }
 
     addElement(displayName, iconPath = '') {

@@ -1,7 +1,9 @@
 'use strict';
 
-const $ = require('jquery');
 const uuidv4 = require('uuid/v4');
+const path = require('path');
+const fs = require('fs');
+const nunjucks = require('nunjucks');
 
 
 class ListElement {
@@ -10,12 +12,25 @@ class ListElement {
         this.iconPath = iconPath;
         this.id = uuidv4();
         this.classes = 'list-element js-list-element';
-        this.$html = $(`<li id="${this.id}" class="${this.classes}"></li>`);
     }
 
     render() {
-        this.$html.html(this.displayName);
-        return this.$html;
+        return new Promise((resolve, reject) => {
+            const template = path.join(__dirname, '../templates/listElement.njk');
+            fs.readFile(template, 'utf8', (error, string) => {
+                if (error) reject(error);
+                resolve(string);
+            });
+        }).then(templateString => {
+            return nunjucks.renderString(templateString, {
+                id: this.id,
+                classes: this.classes,
+                iconPath: this.iconPath,
+                displayName: this.displayName
+            });
+        }).catch(error => {
+            console.error(error);
+        });
     }
 }
 
