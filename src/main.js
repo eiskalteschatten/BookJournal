@@ -1,7 +1,9 @@
 'use strict';
 
 // Modules to control application life and create native browser window
-const {app, BrowserWindow} = require('electron');
+const {app, BrowserWindow, Menu} = require('electron');
+
+const menuTemplate = require('./config/menu');
 
 
 app.setName('Book Journal');
@@ -27,6 +29,9 @@ function createWindow() {
         // when you should delete the corresponding element.
         mainWindow = null;
     });
+
+    const menu = Menu.buildFromTemplate(menuTemplate);
+    Menu.setApplicationMenu(menu);
 }
 
 // This method will be called when Electron has finished
