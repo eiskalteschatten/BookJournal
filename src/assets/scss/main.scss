@@ -2,9 +2,9 @@
 @import "light-variables";
 @import "dark-variables";
 
-body, html {
+
+html, body {
     height: 100%;
-    overflow: hidden;
     padding: 0;
     margin: 0;
     width: 100%;
@@ -13,6 +13,7 @@ body, html {
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Helvetica Neue', Arial, sans-serif;
     font-size: 15px;
+    overflow: hidden;
 
     &.dark-theme {
         background: $darkBg;
@@ -28,6 +29,7 @@ body {
 .float-left {
     float: left;
 }
+
 
 @import "elements/structure";
 @import "elements/list";

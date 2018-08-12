@@ -12,10 +12,15 @@ $titleBarHeight: 22px;
 }
 
 .main-structure {
-    align-items: stretch;
     display: flex;
-    min-height: 100%;
+    flex-direction: row;
+    height: 100%;
     width: 100%;
+
+    .column {
+        flex: 1 1 auto;
+        overflow: auto;
+    }
 
     .sidebar {
         background-color: $sidebarBg;
@@ -31,8 +36,6 @@ $titleBarHeight: 22px;
 
     .right-column {
         $columnPadding: 10px;
-
-        overflow: auto;
         padding: $titleBarHeight $columnPadding $columnPadding $columnPadding;
     }
 }
