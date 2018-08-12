@@ -21,11 +21,13 @@ function render() {
     renderBookList();
 }
 
-function renderSidebar() {
-    const list = new SidebarList($('#sidebar'));
+async function renderSidebar() {
+    const list = new SidebarList();
     list.addElement('All Books', '', '');
     list.addElement('Future Reading', '', '');
-    list.render();
+
+    const rendered = await list.render();
+    $('#sidebar').html(rendered);
 }
 
 function renderBookList() {

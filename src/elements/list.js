@@ -1,6 +1,5 @@
 'use strict';
 
-const $ = require('jquery');
 const path = require('path');
 const fs = require('fs');
 const nunjucks = require('nunjucks');
@@ -9,32 +8,28 @@ const ListElement = require('./listElement');
 
 
 class List {
-    constructor($anchor) {
-        this.$anchor = $anchor;
+    constructor() {
         this.elements = [];
     }
 
     async render() {
-        const $anchor = this.$anchor;
         const listElements = [];
-        const template = path.join(__dirname, '../templates/list.njk');
 
-        $anchor.html('');
+        return new Promise((resolve, reject) => {
+            for (const element of this.elements) {
+                listElements.push(element.getNunjucksRenderObject());
+            }
 
-        for(const element of this.elements) {
-            listElements.push(element.getNunjucksRenderObject());
-        }
+            const template = path.join(__dirname, '../templates/list.njk');
 
-        fs.readFile(template, 'utf8', (error, templateString) => {
-            if (error) throw new Error(error);
-
-            nunjucks.renderString(templateString, {
-                listElements
-            }, (error, rendered) => {
-                if (error) throw new Error(error);
-
-                $anchor.html(rendered);
+            fs.readFile(template, 'utf8', (error, string) => {
+                if (error) reject(error);
+                resolve(string);
             });
+        }).then(templateString => {
+            return nunjucks.renderString(templateString, {listElements});
+        }).catch(error => {
+            console.error(error);
         });
     }
 
