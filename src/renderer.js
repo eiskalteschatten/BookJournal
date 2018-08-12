@@ -10,7 +10,7 @@ const osType = os.type();
 const SidebarList = require('./elements/list/sidebar');
 
 
-function render() {
+async function render() {
     $('body').addClass(osType.toLowerCase());
 
     if (osType !== 'Darwin') {
@@ -18,8 +18,10 @@ function render() {
         $('.js-stop-light-background').hide();
     }
 
-    renderSidebar();
-    renderBookList();
+    await renderSidebar();
+    await renderBookList();
+
+    $('.js-sidebar-list-element').first().trigger('click');
 }
 
 async function renderSidebar() {

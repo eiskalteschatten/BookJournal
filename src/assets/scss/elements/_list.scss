@@ -10,6 +10,7 @@
             font-size: .9em;
             list-style: none;
             padding: 8px 10px;
+            -webkit-user-select: none;
 
             &:hover {
                 background: $listHoverBg;
@@ -38,6 +39,7 @@
             opacity: .7;
             padding-left: 10px;
             text-transform: uppercase;
+            -webkit-user-select: none;
         }
     }
 }

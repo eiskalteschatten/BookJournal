@@ -1,5 +1,7 @@
 'use strict';
 
+const $ = require('jquery');
+
 const ListElement = require('../listElement');
 
 
@@ -21,7 +23,8 @@ class SidebarListElement extends ListElement {
     }
 
     static onClick($element) {
-        console.log("clicked!");
+        $('.js-sidebar-list-element').removeClass('selected');
+        $element.addClass('selected');
     }
 }
 
