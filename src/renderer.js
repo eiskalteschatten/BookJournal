@@ -23,8 +23,8 @@ function render() {
 
 async function renderSidebar() {
     const list = new SidebarList();
-    list.addElement('All Books', '', '');
-    list.addElement('Future Reading', '', '');
+    list.addElement('All Books', '../assets/images/tmp.svg', '');
+    list.addElement('Future Reading', '../assets/images/tmp.svg', '');
 
     const rendered = await list.render();
     $('#sidebar').html(rendered);

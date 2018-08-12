@@ -25,5 +25,9 @@ body {
     }
 }
 
+.float-left {
+    float: left;
+}
+
 @import "elements/structure";
 @import "elements/list";

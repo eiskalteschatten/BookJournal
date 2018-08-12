@@ -5,8 +5,9 @@
         padding: 0;
 
         .list-element {
+            clear: both;
             cursor: pointer;
-            font-size: .8em;
+            font-size: .9em;
             list-style: none;
             padding: 8px 10px;
 
@@ -16,6 +17,17 @@
 
             &.selected {
                 background: $listSelectedBg;
+            }
+
+            .list-element-icon {
+                display: inline-block;
+                margin-right: 3px;
+                width: 16px;
+
+                img {
+                    vertical-align: text-bottom;
+                    width: 100%;
+                }
             }
         }
     }
