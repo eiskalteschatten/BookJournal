@@ -1,7 +1,5 @@
 'use strict';
 
-const $ = require('jquery');
-
 const List = require('../list');
 const ListElement = require('../listElement/sidebar');
 

@@ -10,12 +10,12 @@ const template = [
             {
                 label: 'New Book',
                 accelerator: 'CmdOrCtrl+N',
-                click: () => { console.log("new book"); }
+                click: () => { console.log('new book'); }
             },
             {
                 label: 'New Category',
                 accelerator: 'CmdOrCtrl+Shift+N',
-                click: () => { console.log("new category"); }
+                click: () => { console.log('new category'); }
             },
             {type: 'separator'},
             {role: 'close'}
@@ -60,7 +60,7 @@ const template = [
         submenu: [
             {
                 label: 'About Alex Seifert',
-                click: () => { require('electron').shell.openExternal('https://www.alexseifert.com') }
+                click: () => { require('electron').shell.openExternal('https://www.alexseifert.com'); }
             }
         ]
     }
@@ -104,7 +104,7 @@ if (process.platform === 'darwin') {
 }
 else {
     // Help menu
-    template[5].submenu.push(
+    template[4].submenu.push(
         {role: 'about'}
     );
 }
