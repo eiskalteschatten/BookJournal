@@ -12,13 +12,14 @@ class ListElement {
         this.iconPath = iconPath;
         this.id = uuidv4();
         this.classes = 'list-element js-list-element';
+        this.type = 'clickable';
     }
 
     render() {
         const self = this;
 
         return new Promise((resolve, reject) => {
-            const template = path.join(__dirname, '../templates/listElement.njk');
+            const template = path.join(__dirname, '../templates/elements/listElement.njk');
             fs.readFile(template, 'utf8', (error, string) => {
                 if (error) reject(error);
                 resolve(string);
@@ -35,7 +36,8 @@ class ListElement {
             id: this.id,
             classes: this.classes,
             iconPath: this.iconPath,
-            displayName: this.displayName
+            displayName: this.displayName,
+            type: this.type
         };
     }
 }

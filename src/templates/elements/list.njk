@@ -4,8 +4,9 @@
         {% set classes = element.classes %}
         {% set iconPath = element.iconPath %}
         {% set displayName = element.displayName %}
+        {% set type = element.type %}
         {% set dataFields = element.dataFields %}
 
-        {% include "src/templates/listElement.njk" %}
+        {% include "src/templates/elements/listElement.njk" %}
     {% endfor %}
 </ul>

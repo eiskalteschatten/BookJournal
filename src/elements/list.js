@@ -5,6 +5,7 @@ const fs = require('fs');
 const nunjucks = require('nunjucks');
 
 const ListElement = require('./listElement');
+const TitleListElement = require('./listElement/title');
 
 
 class List {
@@ -20,7 +21,7 @@ class List {
                 listElements.push(element.getNunjucksRenderObject());
             }
 
-            const template = path.join(__dirname, '../templates/list.njk');
+            const template = path.join(__dirname, '../templates/elements/list.njk');
 
             fs.readFile(template, 'utf8', (error, string) => {
                 if (error) reject(error);
@@ -42,6 +43,11 @@ class List {
         for(const element of elements) {
             this.addElements(element.displayName, element.iconPath);
         }
+    }
+
+    addTitleElement(displayName) {
+        const element = new TitleListElement(displayName);
+        this.elements.push(element);
     }
 }
 

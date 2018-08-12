@@ -5,8 +5,11 @@
 {% endfor %}
 
 <li id="{{ id }}" class="{{ classes }}"{{ data | safe }}>
-    <div class="list-element-icon">
-        <img src="{{ iconPath }}">
-    </div>
+    {% if type != 'title' %}
+        <div class="list-element-icon">
+            <img src="{{ iconPath }}">
+        </div>
+    {% endif %}
+
     <span class="list-element-name">{{ displayName }}</span>
 </li>

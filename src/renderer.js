@@ -26,6 +26,8 @@ async function renderSidebar() {
     list.addElement('All Books', '../assets/images/tmp.svg', 'all-books');
     list.addElement('Future Reading', '../assets/images/tmp.svg', 'future-reading');
 
+    list.addTitleElement('Categories');
+
     const rendered = await list.render();
     $('#sidebar').html(rendered);
 }
