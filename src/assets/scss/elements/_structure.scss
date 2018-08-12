@@ -24,6 +24,10 @@ $titleBarHeight: 22px;
         .stop-light-background {
             display: none;
         }
+
+        .list {
+            margin-top: 0;
+        }
     }
 
     .middle-column {
@@ -66,6 +70,10 @@ $titleBarHeight: 22px;
                 position: fixed;
                 top: 0;
                 width: 61px;
+            }
+
+            .list {
+                margin-top: 15px;
             }
         }
     }
