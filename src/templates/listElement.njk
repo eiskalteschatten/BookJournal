@@ -1,4 +1,10 @@
-<li id="{{ id }}" class="{{ classes }}">
+{% set data = '' %}
+
+{% for field, value in dataFields %}
+    {% set data = data + 'data-' + field + '="' + value + '"' %}
+{% endfor %}
+
+<li id="{{ id }}" class="{{ classes }}"{{ data | safe }}>
     <div class="list-element-icon">
         <img src="{{ iconPath }}">
     </div>
