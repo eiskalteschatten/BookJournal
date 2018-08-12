@@ -102,5 +102,11 @@ if (process.platform === 'darwin') {
         {role: 'front'}
     ];
 }
+else {
+    // Help menu
+    template[5].submenu.push(
+        {role: 'about'}
+    );
+}
 
 module.exports = template;
