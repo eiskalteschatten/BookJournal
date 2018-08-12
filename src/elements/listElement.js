@@ -15,6 +15,8 @@ class ListElement {
     }
 
     render() {
+        const self = this;
+
         return new Promise((resolve, reject) => {
             const template = path.join(__dirname, '../templates/listElement.njk');
             fs.readFile(template, 'utf8', (error, string) => {
@@ -22,15 +24,19 @@ class ListElement {
                 resolve(string);
             });
         }).then(templateString => {
-            return nunjucks.renderString(templateString, {
-                id: this.id,
-                classes: this.classes,
-                iconPath: this.iconPath,
-                displayName: this.displayName
-            });
+            return nunjucks.renderString(templateString, self.getNunjucksRenderObject());
         }).catch(error => {
             console.error(error);
         });
+    }
+
+    getNunjucksRenderObject() {
+        return {
+            id: this.id,
+            classes: this.classes,
+            iconPath: this.iconPath,
+            displayName: this.displayName
+        };
     }
 }
 

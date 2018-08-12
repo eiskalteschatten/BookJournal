@@ -1,5 +1,10 @@
 <ul class="list">
     {% for element in listElements %}
-        {{ element | safe }}
+        {% set id = element.id %}
+        {% set classes = element.classes %}
+        {% set iconPath = element.iconPath %}
+        {% set displayName = element.displayName %}
+
+        {% include "src/templates/listElement.njk" %}
     {% endfor %}
 </ul>

@@ -22,8 +22,7 @@ class List {
         $anchor.html('');
 
         for(const element of this.elements) {
-            const html = await element.render();
-            listElements.push(html);
+            listElements.push(element.getNunjucksRenderObject());
         }
 
         fs.readFile(template, 'utf8', (error, templateString) => {
