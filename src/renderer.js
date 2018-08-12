@@ -15,6 +15,7 @@ function render() {
 
     if (osType !== 'Darwin') {
         $('.js-title-bar').hide();
+        $('.js-stop-light-background').hide();
     }
 
     renderSidebar();

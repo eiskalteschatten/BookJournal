@@ -26,6 +26,18 @@ $titleBarHeight: 22px;
         background-color: $sidebarBg;
         min-width: 200px;
         padding-top: $titleBarHeight;
+        position: relative;
+        width: 200px;
+
+        .stop-light-background {
+            background: $sidebarBg;
+            box-shadow: 0 0 22px 9px $sidebarBg;
+            height: $titleBarHeight;
+            left: 0;
+            position: fixed;
+            top: 0;
+            width: 66px;
+        }
     }
 
     .middle-column {
