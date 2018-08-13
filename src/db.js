@@ -1,6 +1,5 @@
 'use strict';
 
-const sqlite3 = require('sqlite3');
 const Sequelize = require('sequelize');
 const mkdirp = require('mkdirp');
 const fs = require('fs');
@@ -13,8 +12,6 @@ const dbFile = path.join(dbPath, config.fileName);
 if (!fs.existsSync(dbPath)) {
     mkdirp(dbPath);
 }
-
-new sqlite3.Database(dbFile);
 
 
 const sequelize = new Sequelize({
