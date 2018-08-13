@@ -4,7 +4,7 @@
 const {app, BrowserWindow, Menu} = require('electron');
 
 const menuTemplate = require('./config/menu');
-
+// const db = require('./db');
 
 app.setName('Book Journal');
 
