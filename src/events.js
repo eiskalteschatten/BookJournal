@@ -30,6 +30,17 @@ ipcRenderer.on('createNew', async (event, data) => {
     }
 });
 
+$(document).on('blur', '.js-list-element-edit-name', function() { // eslint-disable-line
+    const field = $(this);
+
+    if (field.val() === '') {
+        field.remove();
+    }
+    else {
+        // save new category, remove edit list item and create a proper list item
+    }
+});
+
 
 // macOS
 
