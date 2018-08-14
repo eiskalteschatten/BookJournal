@@ -7,6 +7,16 @@ const CategoryListElement = require('../elements/listElement/category');
 const SidebarList = require('../elements/list/sidebar');
 
 
+let $elementWithContextMenu;
+
+$(document).on('contextmenu', '.js-category-list-element', function() { // eslint-disable-line
+    $elementWithContextMenu = $(this);
+    ipcRenderer.send('show-category-list-element-context-menu');
+});
+
+
+// New Category
+
 async function createNewCategory() {
     const newCategory = new CategoryListElement();
     await newCategory.showListEditor();
@@ -49,13 +59,17 @@ $(document).on('keyup', '.js-list-element-edit-name', async function(e) { // esl
     SidebarList.sortCategories();
 });
 
-$(document).on('contextmenu', '.js-category-list-element', function() { // eslint-disable-line
-    ipcRenderer.send('show-category-list-element-context-menu');
-});
+
+// Category Colors
 
 $(document).on('click', '.js-list-element-color', function() { // eslint-disable-line
     $(this).siblings('.js-list-element-color-form').trigger('click');
 });
+
+ipcRenderer.on('change-category-color', () => {
+    $elementWithContextMenu.find('.js-list-element-color').trigger('click');
+});
+
 
 let saveColorTimer;
 
