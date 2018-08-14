@@ -15,8 +15,6 @@ class CategoryListElement extends SidebarListElement {
     }
 
     renderListEditor() {
-        const self = this;
-
         return new Promise((resolve, reject) => {
             const template = path.join(__dirname, '../../templates/elements/listElementEdit.njk');
             fs.readFile(template, 'utf8', (error, string) => {
@@ -24,21 +22,25 @@ class CategoryListElement extends SidebarListElement {
                 resolve(string);
             });
         }).then(templateString => {
-            return nunjucks.renderString(templateString, self.getNunjucksRenderObject());
+            return nunjucks.renderString(templateString, {
+                id: this.id,
+                displayName: this.displayName
+            });
         }).catch(error => {
             console.error(error);
         });
     }
 
     async showListEditor() {
-        const rendered = await this.renderListEditor();
-        $('#sidebar').find('.js-list').append(rendered);
-        $('.js-list-element-edit-name').last().focus();
+        try {
+            const rendered = await this.renderListEditor();
+            $('#sidebar').find('.js-list').append(rendered);
+            $('.js-list-element-edit-name').last().focus();
+        }
+        catch(error) {
+            console.error(error);
+        }
     }
-
-    // static onClick($element) {
-
-    // }
 }
 
 module.exports = CategoryListElement;
