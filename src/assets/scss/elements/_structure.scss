@@ -12,13 +12,15 @@ $titleBarHeight: 22px;
 
     .left-column {
         background-color: $sidebarBg;
+        display: flex;
         flex: 0 0 auto;
+        flex-direction: column;
         min-width: 200px;
         overflow: hidden;
         width: 200px;
 
         .sidebar {
-            height: 100%;
+            flex: 1 1 auto;
             overflow: auto;
 
             .list {

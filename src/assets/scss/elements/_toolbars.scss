@@ -1,0 +1,15 @@
+.bottom-toolbar {
+    background: inherit;
+    flex: 0 0 auto;
+    padding: 10px;
+
+    a {
+        color: $toolbarButtonColor;
+        font-size: .8em;
+        text-decoration: none;
+
+        &:hover {
+            opacity: .8;
+        }
+    }
+}
