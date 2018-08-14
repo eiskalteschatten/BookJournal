@@ -57,6 +57,10 @@ $(document).on('keyup', '.js-list-element-edit-name', async function(e) { // esl
     SidebarList.sortCategories();
 });
 
+$(document).on('contextmenu', '.js-category-list-element', function() { // eslint-disable-line
+    ipcRenderer.send('show-category-list-element-context-menu');
+});
+
 $(document).on('click', '.js-list-element-color', function() { // eslint-disable-line
     $(this).siblings('.js-list-element-color-form').trigger('click');
 });

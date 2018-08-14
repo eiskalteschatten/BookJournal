@@ -1,9 +1,10 @@
 'use strict';
 
 // Modules to control application life and create native browser window
-const {app, BrowserWindow, Menu} = require('electron');
+const {app, BrowserWindow, Menu, ipcMain} = require('electron');
 
-const menuTemplate = require('./config/menu');
+const appMenuTemplate = require('./config/menus/app');
+const categoryListElementMenuTemplate = require('./config/menus/categoryListElement');
 
 // Database
 require('./db');
@@ -85,7 +86,7 @@ async function createWindow() {
         mainWindow = null;
     });
 
-    const menu = Menu.buildFromTemplate(menuTemplate);
+    const menu = Menu.buildFromTemplate(appMenuTemplate);
     Menu.setApplicationMenu(menu);
 }
 
@@ -113,5 +114,8 @@ app.on('activate', function () {
     }
 });
 
-// In this file you can include the rest of your app's specific main process
-// code. You can also put them in separate files and require them here.
+ipcMain.on('show-category-list-element-context-menu', event => {
+    const window = BrowserWindow.fromWebContents(event.sender);
+    const menu = Menu.buildFromTemplate(categoryListElementMenuTemplate);
+    menu.popup(window)
+});
