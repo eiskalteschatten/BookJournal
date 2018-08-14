@@ -13,8 +13,14 @@
 
     {% if type == 'category' %}
         <div class="list-element-color-wrapper">
-            <input type="color" value="{{ color }}" class="hidden js-list-element-color-form">
             <div class="list-element-color js-list-element-color" style="background-color: {{ color }};"></div>
+
+            {% if color == 'transparent' %}
+                <input type="color" class="hidden js-list-element-color-form">
+            {% else %}
+                <input type="color" value="{{ color }}" class="hidden js-list-element-color-form">
+            {% endif %}
+
         </div>
     {% endif %}
 
