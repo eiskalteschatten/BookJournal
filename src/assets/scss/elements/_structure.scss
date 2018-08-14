@@ -10,23 +10,20 @@ $titleBarHeight: 22px;
     height: 100%;
     width: 100%;
 
-    .column {
-        overflow: auto;
-    }
-
-    .sidebar {
+    .left-column {
         background-color: $sidebarBg;
         flex: 0 0 auto;
         min-width: 200px;
-        position: relative;
+        overflow: hidden;
         width: 200px;
 
-        .stop-light-background {
-            display: none;
-        }
+        .sidebar {
+            height: 100%;
+            overflow: auto;
 
-        .list {
-            margin-top: 0;
+            .list {
+                margin-top: 0;
+            }
         }
     }
 
@@ -34,12 +31,14 @@ $titleBarHeight: 22px;
         background-color: $middleColumnBg;
         flex: 0 0 auto;
         min-width: 300px;
+        overflow: auto;
         padding-top: $titleBarHeight;
     }
 
     .right-column {
         $columnPadding: 10px;
         flex: 1 1 auto;
+        overflow: auto;
         padding: $titleBarHeight $columnPadding $columnPadding $columnPadding;
     }
 }
@@ -58,22 +57,13 @@ $titleBarHeight: 22px;
     }
 
     .main-structure {
-        .sidebar {
+        .left-column {
             padding-top: $titleBarHeight;
 
-            .stop-light-background {
-                background: $sidebarBg;
-                box-shadow: 0 0 22px 9px $sidebarBg;
-                display: block;
-                height: calc(#{$titleBarHeight} - 2px);
-                left: 0;
-                position: fixed;
-                top: 0;
-                width: 61px;
-            }
-
-            .list {
-                margin-top: 15px;
+            .sidebar {
+                .list {
+                    margin-top: 15px;
+                }
             }
         }
     }
