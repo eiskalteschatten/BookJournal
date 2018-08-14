@@ -11,5 +11,14 @@
         &:hover {
             opacity: .8;
         }
+
+        &.has-icon {
+            padding-left: 20px;
+
+            &.plus {
+                background: url($toolbarIconPlus) no-repeat left center;
+                background-size: 15px;
+            }
+        }
     }
 }
