@@ -25,20 +25,33 @@ $('.js-new-category').click(async e => {
 });
 
 ipcRenderer.on('createNew', async (event, data) => {
-    if (data === 'category') {
+    if (data === 'category')
         createNewCategory();
-    }
 });
 
 $(document).on('blur', '.js-list-element-edit-name', function() { // eslint-disable-line
     const field = $(this);
 
-    if (field.val() === '') {
+    if (field && field.val() === '')
         field.remove();
+});
+
+$(document).on('keyup', '.js-list-element-edit-name', async function(e) { // eslint-disable-line
+    const field = $(this);
+
+    if (e.keyCode === 27) { // esc should cancel the field
+        field.remove();
+        return;
     }
-    else {
-        // save new category, remove edit list item and create a proper list item
-    }
+
+    if (e.keyCode !== 13) return;
+
+    const newCategory = new CategoryListElement(field.val());
+    await newCategory.save();
+
+    const rendered = await newCategory.render();
+    field.remove();
+    $('#sidebar').find('.js-list').append(rendered);
 });
 
 

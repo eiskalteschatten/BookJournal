@@ -6,12 +6,15 @@ const fs = require('fs');
 const nunjucks = require('nunjucks');
 
 const SidebarListElement = require('../listElement/sidebar');
+const Category = require('../../models/category');
 
 
 class CategoryListElement extends SidebarListElement {
-    constructor(displayName, iconPath = '', queryType) {
-        super(displayName, iconPath, queryType);
-        this.classes = 'list-element js-sidebar-list-element';
+    constructor(displayName, id = '', color = 'transparent') {
+        super(displayName, '', 'category');
+        this.id = id;
+        this.color = color;
+        this.type = 'category';
     }
 
     renderListEditor() {
@@ -39,6 +42,36 @@ class CategoryListElement extends SidebarListElement {
         }
         catch(error) {
             console.error(error);
+        }
+    }
+
+    getNunjucksRenderObject() {
+        const object = super.getNunjucksRenderObject();
+
+        object.dataFields = {
+            'color': this.color
+        };
+
+        return object;
+    }
+
+    async save() {
+        const values = {
+            name: this.displayName,
+            color: this.color
+        };
+
+        console.log(values);
+
+        if (this.id === '') {
+            const category = await Category.create(values);
+            const id = category.id;
+            this.id = id;
+            return id;
+        }
+        else {
+            await Category.update(values, {where: {id: this.id}});
+            return this.id;
         }
     }
 }

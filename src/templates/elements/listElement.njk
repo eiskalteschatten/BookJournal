@@ -11,5 +11,9 @@
         </div>
     {% endif %}
 
+    {% if type == 'category' %}
+        <div class="list-element-color" style="background-color: {{ color }};"></div>
+    {% endif %}
+
     <span class="list-element-name">{{ displayName }}</span>
 </li>
