@@ -1,5 +1,7 @@
 'use strict';
 
+const {dialog} = require('electron');
+
 
 const template = [
     {
@@ -18,7 +20,16 @@ const template = [
     {
         label: 'Delete',
         click: async (item, focusedWindow) => {
-            focusedWindow.webContents.send('delete-category');
+            dialog.showMessageBox({
+                message: 'Are you sure you want to delete this category?',
+                buttons: ['No', 'Yes'],
+                type: 'question',
+                defaultId: 0,
+                cancelId: 0
+            }, response => {
+                if (response === 1)
+                    focusedWindow.webContents.send('delete-category');
+            });
         }
     }
 ];

@@ -87,3 +87,13 @@ $(document).on('change', '.js-list-element-color-form', async function() { // es
         await category.saveColor();
     }, 500);
 });
+
+
+// Rename and delete Category
+
+ipcRenderer.on('delete-category', async () => {
+    const id = $elementWithContextMenu.data('id');
+    const category = new CategoryListElement('', id, '');
+    await category.delete();
+    $elementWithContextMenu.remove();
+});

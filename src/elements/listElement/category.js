@@ -82,6 +82,10 @@ class CategoryListElement extends SidebarListElement {
 
         await Category.update(values, {where: {id: this.id}});
     }
+
+    async delete() {
+        await Category.destroy({where: {id: this.id}});
+    }
 }
 
 module.exports = CategoryListElement;
