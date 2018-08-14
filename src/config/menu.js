@@ -1,9 +1,6 @@
 'use strict';
 
-const {app} = require('electron');
-
-const CategoryListElement = require('../elements/listElement/category');
-
+const {app, shell} = require('electron');
 
 const template = [
     {
@@ -12,14 +9,15 @@ const template = [
             {
                 label: 'New Book',
                 accelerator: 'CmdOrCtrl+N',
-                click: () => { console.log('new book'); }
+                click: async (item, focusedWindow) => {
+                    focusedWindow.webContents.send('createNew', 'book');
+                }
             },
             {
                 label: 'New Category',
                 accelerator: 'CmdOrCtrl+Shift+N',
-                click: async () => {
-                    const newCategory = new CategoryListElement();
-                    await newCategory.showListEditor();
+                click: async (item, focusedWindow) => {
+                    focusedWindow.webContents.send('createNew', 'category');
                 }
             },
             {type: 'separator'},
@@ -65,7 +63,7 @@ const template = [
         submenu: [
             {
                 label: 'About Alex Seifert',
-                click: () => { require('electron').shell.openExternal('https://www.alexseifert.com'); }
+                click: () => { shell.openExternal('https://www.alexseifert.com'); }
             }
         ]
     }
