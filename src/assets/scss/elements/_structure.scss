@@ -16,7 +16,6 @@ $titleBarHeight: 22px;
         flex: 0 0 auto;
         flex-direction: column;
         min-width: 200px;
-        overflow: hidden;
         width: 200px;
 
         .sidebar {
@@ -31,10 +30,15 @@ $titleBarHeight: 22px;
 
     .middle-column {
         background-color: $middleColumnBg;
+        display: flex;
         flex: 0 0 auto;
+        flex-direction: column;
         min-width: 300px;
-        overflow: auto;
-        padding-top: $titleBarHeight;
+
+        .booklist {
+            flex: 1 1 auto;
+            overflow: auto;
+        }
     }
 
     .right-column {
@@ -67,6 +71,10 @@ $titleBarHeight: 22px;
                     margin-top: 15px;
                 }
             }
+        }
+
+        .middle-column {
+            padding-top: $titleBarHeight;
         }
     }
 }
