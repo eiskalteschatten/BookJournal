@@ -30,6 +30,10 @@ body {
     float: left;
 }
 
+.hidden {
+    display: none;
+}
+
 .loading {
     background: url('../images/loader.svg') no-repeat center center;
     background-size: 32px;

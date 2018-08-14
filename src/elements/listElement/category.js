@@ -48,9 +48,7 @@ class CategoryListElement extends SidebarListElement {
 
     getNunjucksRenderObject() {
         const object = super.getNunjucksRenderObject();
-
         object.color = this.color;
-
         return object;
     }
 
@@ -59,8 +57,6 @@ class CategoryListElement extends SidebarListElement {
             name: this.displayName,
             color: this.color
         };
-
-        console.log(values);
 
         if (this.id === '') {
             const category = await Category.create(values);
@@ -72,6 +68,19 @@ class CategoryListElement extends SidebarListElement {
             await Category.update(values, {where: {id: this.id}});
             return this.id;
         }
+    }
+
+    async saveColor() {
+        const values = {
+            color: this.color
+        };
+
+        if (this.id === '') {
+            console.error('An ID is required when just saving a category color');
+            return;
+        }
+
+        await Category.update(values, {where: {id: this.id}});
     }
 }
 

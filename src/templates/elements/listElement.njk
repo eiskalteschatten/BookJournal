@@ -4,7 +4,7 @@
     {% set data = data + 'data-' + field + '="' + value + '"' %}
 {% endfor %}
 
-<li id="{{ id }}" class="{{ classes }}"{{ data | safe }}>
+<li data-id="{{ id }}" class="{{ classes }}"{{ data | safe }}>
     {% if type != 'title' and type != 'category' %}
         <div class="list-element-icon">
             <img src="{{ iconPath }}">
@@ -13,7 +13,8 @@
 
     {% if type == 'category' %}
         <div class="list-element-color-wrapper">
-            <div class="list-element-color" style="background-color: {{ color }};"></div>
+            <input type="color" value="{{ color }}" class="hidden js-list-element-color-form">
+            <div class="list-element-color js-list-element-color" style="background-color: {{ color }};"></div>
         </div>
     {% endif %}
 

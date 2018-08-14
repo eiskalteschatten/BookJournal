@@ -13,7 +13,7 @@ $(document).on('click', '.js-sidebar-list-element', function() { // eslint-disab
 });
 
 
-// Create New Category
+// Categories
 
 async function createNewCategory() {
     const newCategory = new CategoryListElement();
@@ -55,6 +55,27 @@ $(document).on('keyup', '.js-list-element-edit-name', async function(e) { // esl
     $('#sidebar').find('.js-list').append(rendered);
 
     SidebarList.sortCategories();
+});
+
+$(document).on('click', '.js-list-element-color', function() { // eslint-disable-line
+    $(this).siblings('.js-list-element-color-form').trigger('click');
+});
+
+let saveColorTimer;
+
+$(document).on('change', '.js-list-element-color-form', async function() { // eslint-disable-line
+    saveColorTimer = null;
+
+    const $colorForm = $(this);
+    const color = $colorForm.val();
+    $colorForm.siblings('.js-list-element-color').attr('style', `background-color: ${color}`);
+
+    saveColorTimer = setTimeout(async function() {
+        const $listElement = $colorForm.closest('.js-category-list-element');
+        const id = $listElement.data('id');
+        const category = new CategoryListElement('', id, color);
+        await category.saveColor();
+    }, 500);
 });
 
 
