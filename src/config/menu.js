@@ -2,6 +2,8 @@
 
 const {app} = require('electron');
 
+const CategoryListElement = require('../elements/listElement/category');
+
 
 const template = [
     {
@@ -15,7 +17,10 @@ const template = [
             {
                 label: 'New Category',
                 accelerator: 'CmdOrCtrl+Shift+N',
-                click: () => { console.log('new category'); }
+                click: async () => {
+                    const newCategory = new CategoryListElement();
+                    await newCategory.showListEditor();
+                }
             },
             {type: 'separator'},
             {role: 'close'}

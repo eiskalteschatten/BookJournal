@@ -32,6 +32,21 @@
             }
         }
 
+        .list-element-edit {
+            clear: both;
+            list-style: none;
+            padding: 5px 10px;
+
+            .list-element-edit-name {
+                background: $formBg;
+                border: none;
+                color: $formColor;
+                font-size: .8em;
+                padding: 4px;
+                width: 100%;
+            }
+        }
+
         .list-element-title {
             font-size: .7em;
             margin-bottom: 15px;
