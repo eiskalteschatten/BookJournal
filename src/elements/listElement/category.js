@@ -15,6 +15,7 @@ class CategoryListElement extends SidebarListElement {
         this.id = id;
         this.color = color;
         this.type = 'category';
+        this.classes = 'list-element js-sidebar-list-element js-category-list-element';
     }
 
     renderListEditor() {

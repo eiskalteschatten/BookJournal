@@ -12,8 +12,10 @@
     {% endif %}
 
     {% if type == 'category' %}
-        <div class="list-element-color" style="background-color: {{ color }};"></div>
+        <div class="list-element-color-wrapper">
+            <div class="list-element-color" style="background-color: {{ color }};"></div>
+        </div>
     {% endif %}
 
-    <span class="list-element-name">{{ displayName }}</span>
+    <span class="list-element-name js-list-element-name">{{ displayName }}</span>
 </li>

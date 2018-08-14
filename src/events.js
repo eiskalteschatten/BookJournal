@@ -5,6 +5,7 @@ const $ = require('jquery');
 
 const SidebarListElement = require('./elements/listElement/sidebar');
 const CategoryListElement = require('./elements/listElement/category');
+const SidebarList = require('./elements/list/sidebar');
 
 
 $(document).on('click', '.js-sidebar-list-element', function() { // eslint-disable-line
@@ -33,14 +34,14 @@ $(document).on('blur', '.js-list-element-edit-name', function() { // eslint-disa
     const $field = $(this);
 
     if ($field && $field.val() === '')
-        $field.remove();
+        $field.closest('.js-list-element-edit').remove();
 });
 
 $(document).on('keyup', '.js-list-element-edit-name', async function(e) { // eslint-disable-line
     const $field = $(this);
 
     if (e.keyCode === 27) { // esc should close the field
-        $field.remove();
+        $field.closest('.js-list-element-edit').remove();
         return;
     }
 
@@ -50,8 +51,10 @@ $(document).on('keyup', '.js-list-element-edit-name', async function(e) { // esl
     await newCategory.save();
 
     const rendered = await newCategory.render();
-    $field.remove();
+    $field.closest('.js-list-element-edit').remove();
     $('#sidebar').find('.js-list').append(rendered);
+
+    SidebarList.sortCategories();
 });
 
 

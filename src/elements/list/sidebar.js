@@ -1,5 +1,7 @@
 'use strict';
 
+const $ = require('jquery');
+
 const List = require('../list');
 const ListElement = require('../listElement/sidebar');
 const Category = require('../../models/category');
@@ -11,7 +13,6 @@ class Sidebar extends List {
         super();
         this.addElement('All Books', '../assets/images/tmp.svg', 'all-books');
         this.addElement('Future Reading', '../assets/images/tmp.svg', 'future-reading');
-
         this.addTitleElement('Categories');
     }
 
@@ -26,11 +27,20 @@ class Sidebar extends List {
     }
 
     async loadCategories() {
-        const categories = await Category.findAll();
+        const categories = await Category.findAll({order: [['name', 'ASC']]});
 
         for(const category of categories) {
             this.addCategoryElement(category.name, category.id, category.color);
         }
+    }
+
+    static sortCategories() {
+        const list = $('#sidebar').find('.js-list');
+        const sort = (a, b) => {
+            return ($(b).find('.js-list-element-name').text()) < ($(a).find('.js-list-element-name').text()) ? 1 : -1;
+        };
+
+        $('.js-category-list-element').sort(sort).appendTo(list);
     }
 }
 
