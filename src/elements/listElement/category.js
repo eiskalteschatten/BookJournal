@@ -48,9 +48,7 @@ class CategoryListElement extends SidebarListElement {
     getNunjucksRenderObject() {
         const object = super.getNunjucksRenderObject();
 
-        object.dataFields = {
-            'color': this.color
-        };
+        object.color = this.color;
 
         return object;
     }

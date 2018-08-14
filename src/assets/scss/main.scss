@@ -30,6 +30,11 @@ body {
     float: left;
 }
 
+.loading {
+    background: url('../images/loader.svg') no-repeat center center;
+    background-size: 32px;
+}
+
 
 @import "elements/structure";
 @import "elements/text";

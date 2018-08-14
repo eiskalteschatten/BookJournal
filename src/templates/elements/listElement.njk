@@ -5,7 +5,7 @@
 {% endfor %}
 
 <li id="{{ id }}" class="{{ classes }}"{{ data | safe }}>
-    {% if type != 'title' %}
+    {% if type != 'title' and type != 'category' %}
         <div class="list-element-icon">
             <img src="{{ iconPath }}">
         </div>

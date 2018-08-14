@@ -18,13 +18,12 @@ async function render() {
 
 async function renderSidebar() {
     const list = new SidebarList();
-    list.addElement('All Books', '../assets/images/tmp.svg', 'all-books');
-    list.addElement('Future Reading', '../assets/images/tmp.svg', 'future-reading');
-
-    list.addTitleElement('Categories');
+    await list.loadCategories();
 
     const rendered = await list.render();
-    $('#sidebar').html(rendered);
+    const $sidebar = $('#sidebar');
+    $sidebar.html(rendered);
+    $sidebar.removeClass('loading');
 }
 
 function renderBookList() {

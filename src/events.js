@@ -30,27 +30,27 @@ ipcRenderer.on('createNew', async (event, data) => {
 });
 
 $(document).on('blur', '.js-list-element-edit-name', function() { // eslint-disable-line
-    const field = $(this);
+    const $field = $(this);
 
-    if (field && field.val() === '')
-        field.remove();
+    if ($field && $field.val() === '')
+        $field.remove();
 });
 
 $(document).on('keyup', '.js-list-element-edit-name', async function(e) { // eslint-disable-line
-    const field = $(this);
+    const $field = $(this);
 
-    if (e.keyCode === 27) { // esc should cancel the field
-        field.remove();
+    if (e.keyCode === 27) { // esc should close the field
+        $field.remove();
         return;
     }
 
     if (e.keyCode !== 13) return;
 
-    const newCategory = new CategoryListElement(field.val());
+    const newCategory = new CategoryListElement($field.val());
     await newCategory.save();
 
     const rendered = await newCategory.render();
-    field.remove();
+    $field.remove();
     $('#sidebar').find('.js-list').append(rendered);
 });
 
