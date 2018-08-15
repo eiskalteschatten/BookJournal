@@ -1,0 +1,139 @@
+<form>
+
+    <div class="group">
+        <div class="row">
+            <div class="col-md-4">
+                Book cover... or something
+            </div>
+            <div class="col-md-8">
+                <div class="form-group">
+                    <label for="bookTitle">Title</label>
+                    <input type="text" class="form-control full-width" id="bookTitle">
+                </div>
+                <div class="form-group">
+                    <label for="bookAuthor">Author</label>
+                    <input type="text" class="form-control full-width" id="bookAuthor">
+                </div>
+                <div class="form-group">
+                    <label for="bookGenre">Genre</label>
+                    <input type="text" class="form-control full-width" id="bookGenre">
+                </div>
+
+                <div class="row">
+                    <div class="col-md-9">
+                        <div class="form-group">
+                            <label for="bookColor">Color</label>
+                            <input type="hidden" id="bookColor">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="bookNumberOfPages">Page Count</label>
+                            <input type="number" class="form-control full-width" id="bookNumberOfPages">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="group">
+        <div class="group-title">Publication Details</div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="bookPublisher">Publisher</label>
+                    <input type="text" class="form-control full-width" id="bookPublisher">
+                </div>
+                <div class="form-group">
+                    <label for="bookDatePublished">Date Published</label>
+                    <input type="date" class="form-control full-width" id="bookDatePublished">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="bookIsbn">ISBN</label>
+                    <input type="text" class="form-control full-width" id="bookIsbn">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="group">
+        <div class="group-title">Language &amp; Origin</div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="bookNationality">Nationality</label>
+                    <input type="text" class="form-control full-width" id="bookNationality">
+                </div>
+                <div class="form-group">
+                    <label for="bookOriginalLanguage">Original Language</label>
+                    <input type="text" class="form-control full-width" id="bookOriginalLanguage">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="bookLanguageReadIn">Language Read In</label>
+                    <input type="text" class="form-control full-width" id="bookLanguageReadIn">
+                </div>
+                <div class="form-group">
+                    <label for="bookTranslator">Translator</label>
+                    <input type="text" class="form-control full-width" id="bookTranslator">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="group">
+        <div class="group-title">Classification</div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="bookTags">Tags</label>
+                    <input type="text" class="form-control full-width" id="bookTags">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="bookCategories">Categories</label>
+                    <select class="form-control full-width" id="bookCategories">
+                        {% for category in categories %}
+                            <option value="{{ category.id }}">{{ category.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="group">
+        <div class="group-title">Comments &amp; Review</div>
+
+        <div class="row">
+            <div class="col-md-6">
+                Star review here
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="bookDateRead">Date Read</label>
+                    <input type="date" class="form-control full-width" id="bookDateRead">
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="bookSummary">Summary</label>
+            <textarea class="form-control full-width book-textarea" id="bookSummary"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="bookCommentary">Commentary</label>
+            <textarea class="form-control full-width book-textarea" id="bookCommentary"></textarea>
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>

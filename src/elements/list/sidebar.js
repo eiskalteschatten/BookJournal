@@ -1,7 +1,6 @@
 'use strict';
 
 const $ = require('jquery');
-const Sequelize = require('sequelize');
 
 const List = require('../list');
 const ListElement = require('../listElement/sidebar');

@@ -18,7 +18,7 @@ Category.getAllSorted = async function() {
             ]
         ]
     });
-}
+};
 
 Category.sync();
 
