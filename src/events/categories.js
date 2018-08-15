@@ -63,11 +63,11 @@ $(document).on('keyup', '.js-list-element-edit-name', async function(e) { // esl
 // Category Colors
 
 $(document).on('click', '.js-list-element-color', function() { // eslint-disable-line
-    $(this).siblings('.js-list-element-color-form').trigger('click');
+    $(this).siblings('.js-list-element-color-form').click();
 });
 
 ipcRenderer.on('change-category-color', () => {
-    $elementWithContextMenu.find('.js-list-element-color').trigger('click');
+    $elementWithContextMenu.find('.js-list-element-color-form').click();
 });
 
 
@@ -91,12 +91,20 @@ $(document).on('change', '.js-list-element-color-form', async function() { // es
 
 // Rename and delete Category
 
-ipcRenderer.on('rename-category', () => {
-    $elementWithContextMenu.find('.js-list-element-name').addClass('hidden');
+function openCategoryRenameMode($element) {
+    $element.find('.js-list-element-name').addClass('hidden');
 
-    const $edit = $elementWithContextMenu.find('.js-list-element-edit');
+    const $edit = $element.find('.js-list-element-edit');
     $edit.removeClass('hidden');
     $edit.find('.js-list-element-edit-rename').focus();
+}
+
+ipcRenderer.on('rename-category', () => {
+    openCategoryRenameMode($elementWithContextMenu);
+});
+
+$(document).on('dblclick', '.js-category-list-element', function() { // eslint-disable-line
+    openCategoryRenameMode($(this));
 });
 
 $(document).on('blur', '.js-list-element-edit-rename', function() { // eslint-disable-line
