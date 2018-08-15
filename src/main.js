@@ -27,8 +27,8 @@ async function createWindow() {
 
     // Create the browser window.
     const browserWindow = {
-        width: preferences.windowWidth || 1200,
-        height: preferences.windowHeight || 800
+        width: preferences.windowWidth,
+        height: preferences.windowHeight
     };
 
     if (process.platform === 'darwin')
