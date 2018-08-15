@@ -47,6 +47,12 @@ $titleBarHeight: 22px;
         overflow: auto;
         padding: $titleBarHeight $columnPadding $columnPadding $columnPadding;
     }
+
+    .dragbar {
+        cursor: col-resize;
+        flex: 0 0 auto;
+        width: 2px;
+    }
 }
 
 .darwin {
