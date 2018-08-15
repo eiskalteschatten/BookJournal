@@ -10,9 +10,9 @@ async function loadPreferences() {
 
         if (!preferences) {
             preferences = await Preferences.create();
+            console.log('Created the preferences table');
         }
 
-        console.log(JSON.stringify(preferences));
         return preferences;
     }
     catch(error) {
