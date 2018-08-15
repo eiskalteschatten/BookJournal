@@ -6,8 +6,13 @@ let preferences;
 
 async function loadPreferences() {
     try {
-        preferences = await Preferences.findOrCreate({where: {id: 1}});
-        preferences = preferences[0];
+        preferences = await Preferences.findById(1);
+
+        if (!preferences) {
+            preferences = await Preferences.create();
+        }
+
+        console.log(JSON.stringify(preferences));
         return preferences;
     }
     catch(error) {
