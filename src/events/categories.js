@@ -74,7 +74,7 @@ ipcRenderer.on('change-category-color', () => {
 let saveColorTimer;
 
 $(document).on('change', '.js-list-element-color-form', async function() { // eslint-disable-line
-    saveColorTimer = null;
+    clearTimeout(saveColorTimer);
 
     const $colorForm = $(this);
     const color = $colorForm.val();
