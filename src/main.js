@@ -14,9 +14,8 @@ const categoryListElementCm = require('./config/menus/categoryListElementCm');
 const inputCm = require('./config/menus/inputCm');
 
 
-// Database
-require('./db');
-const Preferences = require('./models/preferences');
+// Preferences
+const {loadPreferences} = require('./initialPreferences');
 
 
 // Keep a global reference of the window object, if you don't, the window will
@@ -24,16 +23,7 @@ const Preferences = require('./models/preferences');
 let mainWindow;
 
 async function createWindow() {
-    let preferences;
-
-    try {
-        preferences = await Preferences.findOrCreate({where: {id: 1}});
-        preferences = preferences[0];
-    }
-    catch(error) {
-        console.error('An error occurred while loading preferences:', error);
-        return;
-    }
+    const preferences = await loadPreferences();
 
     // Create the browser window.
     const browserWindow = {

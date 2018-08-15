@@ -4,11 +4,16 @@
 
 const $ = require('jquery');
 
+const {loadPreferences} = require('./initialPreferences');
 const SidebarList = require('./elements/list/sidebar');
+
+let preferences;
 
 
 async function render() {
     $('body').addClass(process.platform);
+
+    preferences = await loadPreferences();
 
     await renderSidebar();
     await renderBookList();
@@ -24,10 +29,13 @@ async function renderSidebar() {
     const $sidebar = $('#sidebar');
     $sidebar.html(rendered);
     $sidebar.removeClass('loading');
+
+    console.log("@@@@",preferences);
+    $('#sidebarWrapper').css('width', preferences.sidebarWidth);
 }
 
 function renderBookList() {
-    // const list = new List($('#bookList'));
+    $('#bookListWrapper').css('width', preferences.middleColumnWidth);
 }
 
 render();
