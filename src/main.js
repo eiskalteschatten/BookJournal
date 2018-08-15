@@ -6,6 +6,9 @@ const {app, BrowserWindow, Menu, ipcMain} = require('electron');
 const appMenuTemplate = require('./config/menus/app');
 const categoryListElementMenuTemplate = require('./config/menus/categoryListElement');
 
+const config = require('./config/config');
+const appConfig = config.app;
+
 // Database
 require('./db');
 const Preferences = require('./models/preferences');
@@ -90,7 +93,7 @@ async function createWindow() {
     Menu.setApplicationMenu(menu);
 }
 
-app.setName('Book Journal');
+app.setName(appConfig.name);
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
