@@ -1,6 +1,7 @@
 'use strict';
 
 const $ = require('jquery');
+const Sequelize = require('sequelize');
 
 const List = require('../list');
 const ListElement = require('../listElement/sidebar');
@@ -27,7 +28,14 @@ class Sidebar extends List {
     }
 
     async loadCategories() {
-        const categories = await Category.findAll({order: [['name', 'ASC']]});
+        const categories = await Category.findAll({
+            order: [
+                [
+                    Sequelize.fn('lower',Sequelize.col('name')),
+                    'ASC'
+                ]
+            ]
+        });
 
         for(const category of categories) {
             this.addCategoryElement(category.name, category.id, category.color);
@@ -37,7 +45,7 @@ class Sidebar extends List {
     static sortCategories() {
         const list = $('#sidebar').find('.js-list');
         const sort = (a, b) => {
-            return ($(b).find('.js-list-element-name').text()) < ($(a).find('.js-list-element-name').text()) ? 1 : -1;
+            return ($(b).find('.js-list-element-name').text().toLowerCase()) < ($(a).find('.js-list-element-name').text().toLowerCase()) ? 1 : -1;
         };
 
         $('.js-category-list-element').sort(sort).appendTo(list);
