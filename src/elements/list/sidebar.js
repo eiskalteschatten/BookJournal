@@ -28,14 +28,7 @@ class Sidebar extends List {
     }
 
     async loadCategories() {
-        const categories = await Category.findAll({
-            order: [
-                [
-                    Sequelize.fn('lower',Sequelize.col('name')),
-                    'ASC'
-                ]
-            ]
-        });
+        const categories = await Category.getAllSorted();
 
         for(const category of categories) {
             this.addCategoryElement(category.name, category.id, category.color);

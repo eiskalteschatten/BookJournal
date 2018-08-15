@@ -31,7 +31,6 @@ async function renderSidebar() {
     const $sidebar = $('#sidebar');
     $sidebar.html(rendered);
     $sidebar.removeClass('loading');
-
 }
 
 function renderBookList() {
