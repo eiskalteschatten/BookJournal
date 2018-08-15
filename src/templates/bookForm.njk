@@ -103,6 +103,8 @@
                     <select class="form-control full-width" id="bookCategories">
                         {% for category in categories %}
                             <option value="{{ category.id }}">{{ category.name }}</option>
+                        {% else %}
+                            <option disabled>No categories available</option>
                         {% endfor %}
                     </select>
                 </div>
