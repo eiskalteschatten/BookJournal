@@ -10,7 +10,9 @@ const Preferences = db.define('preferences', {
     windowX: Sequelize.INTEGER,
     windowY: Sequelize.INTEGER,
     windowIsMaximized: Sequelize.BOOLEAN,
-    windowIsFullScreen: Sequelize.BOOLEAN
+    windowIsFullScreen: Sequelize.BOOLEAN,
+    sidebarWidth: Sequelize.INTEGER,
+    middleColumnWidth: Sequelize.INTEGER
 });
 
 Preferences.sync({alter: true});

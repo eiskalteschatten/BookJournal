@@ -2,6 +2,8 @@
 
 const $ = require('jquery');
 
+const Preferences = require('../models/preferences');
+
 
 let dragging = false;
 
@@ -19,9 +21,17 @@ $('.js-dragbar').mousedown(function(e) {
     });
 });
 
-$(document).mouseup(function(e) { // eslint-disable-line
+$(document).mouseup(async function(e) { // eslint-disable-line
     if (dragging) {
         $(document).unbind('mousemove'); // eslint-disable-line
         dragging = false;
+
+        const values = {
+            sidebarWidth: $('#sidebarWrapper').css('width'),
+            middleColumnWidth: $('#bookListWrapper').css('width')
+        };
+
+        const preferences = await Preferences.findById(1);
+        await preferences.updateAttributes(values);
     }
 });
