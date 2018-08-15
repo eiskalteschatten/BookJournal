@@ -91,6 +91,55 @@ $(document).on('change', '.js-list-element-color-form', async function() { // es
 
 // Rename and delete Category
 
+ipcRenderer.on('rename-category', () => {
+    $elementWithContextMenu.find('.js-list-element-name').addClass('hidden');
+
+    const $edit = $elementWithContextMenu.find('.js-list-element-edit');
+    $edit.removeClass('hidden');
+    $edit.find('.js-list-element-edit-rename').focus();
+});
+
+$(document).on('blur', '.js-list-element-edit-rename', function() { // eslint-disable-line
+    const $field = $(this);
+    const $li = $field.closest('.js-category-list-element');
+    const $edit = $li.find('.js-list-element-edit');
+    const $name = $li.find('.js-list-element-name');
+
+    $field.val($name.text());
+
+    $edit.addClass('hidden');
+    $name.removeClass('hidden');
+});
+
+$(document).on('keyup', '.js-list-element-edit-rename', async function(e) { // eslint-disable-line
+    const $field = $(this);
+    const $li = $field.closest('.js-category-list-element');
+    const $edit = $li.find('.js-list-element-edit');
+    const $name = $li.find('.js-list-element-name');
+
+    const restore = () => {
+        $edit.addClass('hidden');
+        $name.removeClass('hidden');
+    };
+
+    if (e.keyCode === 27) { // esc should close the field
+        $field.val($name.text());
+        restore();
+        return;
+    }
+
+    if (e.keyCode !== 13) return;
+
+    const name = $field.val();
+    const id = $li.data('id');
+    const category = new CategoryListElement(name, id, '');
+    await category.saveName();
+
+    $name.text(name);
+    restore();
+    SidebarList.sortCategories();
+});
+
 ipcRenderer.on('delete-category', async () => {
     const id = $elementWithContextMenu.data('id');
     const category = new CategoryListElement('', id, '');

@@ -25,4 +25,10 @@
     {% endif %}
 
     <span class="list-element-name js-list-element-name">{{ displayName }}</span>
+
+    {% if type == 'category' %}
+        <div class="js-list-element-edit list-element-edit-inline hidden">
+            <input type="text" class="list-element-edit-name js-list-element-edit-rename" value="{{ displayName }}">
+        </div>
+    {% endif %}
 </li>

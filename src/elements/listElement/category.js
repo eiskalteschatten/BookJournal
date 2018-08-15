@@ -20,7 +20,7 @@ class CategoryListElement extends SidebarListElement {
 
     renderListEditor() {
         return new Promise((resolve, reject) => {
-            const template = path.join(__dirname, '../../templates/elements/listElementEdit.njk');
+            const template = path.join(__dirname, '../../templates/elements/listElement/edit.njk');
             fs.readFile(template, 'utf8', (error, string) => {
                 if (error) reject(error);
                 resolve(string);
@@ -58,6 +58,10 @@ class CategoryListElement extends SidebarListElement {
             color: this.color
         };
 
+        await this.saveValues(values);
+    }
+
+    async saveValues(values) {
         if (this.id === '') {
             const category = await Category.create(values);
             const id = category.id;
@@ -70,6 +74,19 @@ class CategoryListElement extends SidebarListElement {
         }
     }
 
+    async saveName() {
+        const values = {
+            name: this.displayName
+        };
+
+        if (this.id === '') {
+            console.error('An ID is required when just saving a category name');
+            return;
+        }
+
+        await this.saveValues(values);
+    }
+
     async saveColor() {
         const values = {
             color: this.color
@@ -80,7 +97,7 @@ class CategoryListElement extends SidebarListElement {
             return;
         }
 
-        await Category.update(values, {where: {id: this.id}});
+        await this.saveValues(values);
     }
 
     async delete() {
