@@ -1,13 +1,18 @@
 'use strict';
 
+const config = require('./config/config');
+const appConfig = config.app;
+
+
 // Modules to control application life and create native browser window
 const {app, BrowserWindow, Menu, ipcMain} = require('electron');
 
-const appMenuTemplate = require('./config/menus/app');
-const categoryListElementMenuTemplate = require('./config/menus/categoryListElement');
 
-const config = require('./config/config');
-const appConfig = config.app;
+// Menus
+const appMenu = require('./config/menus/app');
+const categoryListElementCm = require('./config/menus/categoryListElementCm');
+const inputCm = require('./config/menus/inputCm');
+
 
 // Database
 require('./db');
@@ -57,7 +62,7 @@ async function createWindow() {
 
 
     // Open the DevTools.
-    // mainWindow.webContents.openDevTools();
+    mainWindow.webContents.openDevTools();
 
 
     mainWindow.on('close', async () => {
@@ -89,7 +94,7 @@ async function createWindow() {
         mainWindow = null;
     });
 
-    const menu = Menu.buildFromTemplate(appMenuTemplate);
+    const menu = Menu.buildFromTemplate(appMenu);
     Menu.setApplicationMenu(menu);
 }
 
@@ -117,8 +122,17 @@ app.on('activate', function () {
     }
 });
 
+
+// Menus
+
 ipcMain.on('show-category-list-element-context-menu', event => {
     const window = BrowserWindow.fromWebContents(event.sender);
-    const menu = Menu.buildFromTemplate(categoryListElementMenuTemplate);
-    menu.popup(window)
+    const menu = Menu.buildFromTemplate(categoryListElementCm);
+    menu.popup(window);
+});
+
+ipcMain.on('show-input-context-menu', event => {
+    const window = BrowserWindow.fromWebContents(event.sender);
+    const menu = Menu.buildFromTemplate(inputCm);
+    menu.popup(window);
 });
