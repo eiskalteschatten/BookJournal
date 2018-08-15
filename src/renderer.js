@@ -30,7 +30,6 @@ async function renderSidebar() {
     $sidebar.html(rendered);
     $sidebar.removeClass('loading');
 
-    console.log("@@@@",preferences);
     $('#sidebarWrapper').css('width', preferences.sidebarWidth);
 }
 
