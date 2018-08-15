@@ -66,10 +66,6 @@ $(document).on('click', '.js-list-element-color', function() { // eslint-disable
     $(this).siblings('.js-list-element-color-form').click();
 });
 
-ipcRenderer.on('change-category-color', () => {
-    $elementWithContextMenu.find('.js-list-element-color-form').click();
-});
-
 
 let saveColorTimer;
 

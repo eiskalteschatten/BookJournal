@@ -5,13 +5,6 @@ const {dialog} = require('electron');
 
 const template = [
     {
-        label: 'Change Color',
-        click: async (item, focusedWindow) => {
-            focusedWindow.webContents.send('change-category-color');
-        }
-    },
-    {type: 'separator'},
-    {
         label: 'Rename',
         click: async (item, focusedWindow) => {
             focusedWindow.webContents.send('rename-category');
