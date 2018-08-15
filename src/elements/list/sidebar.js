@@ -11,7 +11,7 @@ const CategoryListElement = require('../../elements/listElement/category');
 class Sidebar extends List {
     constructor() {
         super();
-        this.addElement('All Books', '../assets/images/tmp.svg', 'all-books');
+        this.addElement('All Books', '../assets/images/all-books-dark.svg', 'all-books');
         this.addElement('Future Reading', '../assets/images/tmp.svg', 'future-reading');
         this.addTitleElement('Categories');
     }
