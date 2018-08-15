@@ -1,18 +1,13 @@
 'use strict';
 
-const $ = require('jquery');
 const path = require('path');
 const fs = require('fs');
-const nunjucks = require('nunjucks')
+const nunjucks = require('nunjucks');
 
 const Category = require('../models/category');
 
 
 class BookForm {
-    constructor() {
-
-    }
-
     async render() {
         const categories = await Category.getAllSorted();
 
