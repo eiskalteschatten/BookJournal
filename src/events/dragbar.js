@@ -27,8 +27,8 @@ $(document).mouseup(async function(e) { // eslint-disable-line
         dragging = false;
 
         const values = {
-            sidebarWidth: $('#sidebarWrapper').css('width'),
-            middleColumnWidth: $('#bookListWrapper').css('width')
+            sidebarWidth: parseInt($('#sidebarWrapper').css('width')),
+            middleColumnWidth: parseInt($('#bookListWrapper').css('width'))
         };
 
         const preferences = await Preferences.findById(1);

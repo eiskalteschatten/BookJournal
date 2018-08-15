@@ -30,11 +30,11 @@ async function renderSidebar() {
     $sidebar.html(rendered);
     $sidebar.removeClass('loading');
 
-    $('#sidebarWrapper').css('width', preferences.sidebarWidth);
+    $('#sidebarWrapper').css('width', preferences.sidebarWidth + 'px');
 }
 
 function renderBookList() {
-    $('#bookListWrapper').css('width', preferences.middleColumnWidth);
+    $('#bookListWrapper').css('width', preferences.middleColumnWidth + 'px');
 }
 
 render();
