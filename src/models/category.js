@@ -9,6 +9,6 @@ const Category = db.define('category', {
     color: Sequelize.STRING
 });
 
-Category.sync({alter: true});
+Category.sync();
 
 module.exports = Category;

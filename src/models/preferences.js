@@ -33,6 +33,6 @@ const Preferences = db.define('preferences', {
     }
 });
 
-Preferences.sync({alter: true});
+Preferences.sync();
 
 module.exports = Preferences;
