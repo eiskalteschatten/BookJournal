@@ -15,13 +15,15 @@ async function render() {
 
     preferences = await loadPreferences();
 
+    renderBookList();
     await renderSidebar();
-    await renderBookList();
 
     $('.js-sidebar-list-element').first().trigger('click');
 }
 
 async function renderSidebar() {
+    $('#sidebarWrapper').css('width', preferences.sidebarWidth + 'px');
+
     const list = new SidebarList();
     await list.loadCategories();
 
@@ -30,7 +32,6 @@ async function renderSidebar() {
     $sidebar.html(rendered);
     $sidebar.removeClass('loading');
 
-    $('#sidebarWrapper').css('width', preferences.sidebarWidth + 'px');
 }
 
 function renderBookList() {
