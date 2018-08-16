@@ -26,6 +26,25 @@ class BookForm {
             console.error(error);
         });
     }
+
+    static async renderCategories() {
+        const categories = await Category.getAllSorted();
+
+        return new Promise((resolve, reject) => {
+            const template = path.join(__dirname, '../templates/bookForm/categories.njk');
+
+            fs.readFile(template, 'utf8', (error, string) => {
+                if (error) reject(error);
+                resolve(string);
+            });
+        }).then(templateString => {
+            return nunjucks.renderString(templateString, {
+                categories
+            });
+        }).catch(error => {
+            console.error(error);
+        });
+    }
 }
 
 module.exports = BookForm;

@@ -5,6 +5,7 @@ const $ = require('jquery');
 
 const CategoryListElement = require('../elements/listElement/category');
 const SidebarList = require('../elements/list/sidebar');
+const BookForm = require('../elements/bookForm');
 
 
 let $elementWithContextMenu;
@@ -13,6 +14,12 @@ $(document).on('contextmenu', '.js-category-list-element', function() { // eslin
     $elementWithContextMenu = $(this);
     ipcRenderer.send('show-category-list-element-context-menu');
 });
+
+
+async function doneEditingCategories() {
+    const rendered = await BookForm.renderCategories();
+    $('#bookCategoriesWrapper').html(rendered);
+}
 
 
 // New Category
@@ -57,6 +64,7 @@ $(document).on('keyup', '.js-list-element-edit-name', async function(e) { // esl
     $('#sidebar').find('.js-list').append(rendered);
 
     SidebarList.sortCategories();
+    doneEditingCategories();
 });
 
 
@@ -142,6 +150,7 @@ $(document).on('keyup', '.js-list-element-edit-rename', async function(e) { // e
     $name.text(name);
     restore();
     SidebarList.sortCategories();
+    doneEditingCategories();
 });
 
 ipcRenderer.on('delete-category', async () => {
@@ -149,4 +158,5 @@ ipcRenderer.on('delete-category', async () => {
     const category = new CategoryListElement('', id, '');
     await category.delete();
     $elementWithContextMenu.remove();
+    doneEditingCategories();
 });

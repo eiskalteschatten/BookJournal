@@ -1,0 +1,9 @@
+<select class="form-control full-width" id="bookCategories">
+    <option value="-1" selected>No category</option>
+    <option disabled>──────────</option>
+    {% for category in categories %}
+        <option value="{{ category.id }}">{{ category.name }}</option>
+    {% else %}
+        <option disabled>No categories available</option>
+    {% endfor %}
+</select>
