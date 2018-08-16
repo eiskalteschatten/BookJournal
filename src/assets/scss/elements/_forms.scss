@@ -25,3 +25,24 @@
         min-height: 200px;
     }
 }
+
+.button {
+    background-color: $buttonBg;
+    border: none;
+    border-radius: 5px;
+    color: $buttonColor;
+    font-size: 1em;
+    padding: 5px 10px;
+
+    &:hover {
+        background-color: $buttonHoverBg;
+    }
+
+    &:active {
+        background-color: $buttonActiveBg;
+    }
+
+    &:disabled {
+        opacity: 0.5;
+    }
+}
