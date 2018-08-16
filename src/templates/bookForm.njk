@@ -1,4 +1,4 @@
-<form>
+<form class="book-form">
 
     <div class="group">
         <div class="row">
@@ -20,13 +20,14 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-md-9">
+                    <div class="col-md-2">
                         <div class="form-group">
                             <label for="bookColor">Color</label>
-                            <input type="hidden" id="bookColor">
+                            <input type="color" id="bookColor" class="hidden js-book-form-color-form">
+                            <div class="color-stripe js-book-form-color-stripe" style="background-color: blue;"></div>
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-10">
                         <div class="form-group">
                             <label for="bookNumberOfPages">Page Count</label>
                             <input type="number" class="form-control full-width" id="bookNumberOfPages">

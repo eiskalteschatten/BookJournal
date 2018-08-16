@@ -1,0 +1,10 @@
+.book-form {
+    .color-stripe {
+        $size: 30px;
+        border: 1px solid $colorCircleBorderColor;
+        border-radius: 50%;
+        cursor: pointer;
+        height: $size;
+        width: $size;
+    }
+}
