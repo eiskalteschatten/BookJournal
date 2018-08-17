@@ -9,14 +9,15 @@ The project is currently in its infancy.
 - Organize them in categories
 - Update mechanism
 - Dark and light themes
+- Automatically fetch book information based on the ISBN - https://openlibrary.org/dev/docs/api/books
 
 ### 1.1
 - Search
 - Reading stats
-- Automatically fetch book information based on the ISBN
+- Sort books by field in the book form
 
 ### 1.2
-- Print book
+- Print a book
 - Export book as PDF
 
 ### Future
