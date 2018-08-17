@@ -11,8 +11,8 @@ $formBg: lighten($darkBg, 7%);
 $formColor: $darkFontColor;
 $buttonBg: lighten($darkBg, 7%);
 $buttonColor: $darkFontColor;
-$buttonHoverBg: darken($buttonBg, 10%);
-$buttonActiveBg: darken($buttonBg, 14%);
+$buttonHoverBg: darken($buttonBg, 2%);
+$buttonActiveBg: darken($buttonBg, 10%);
 
 $toolbarButtonColor: $darkFontColor;
 $toolbarIconPlus: '../images/toolbar-icons/plus-dark.svg';
