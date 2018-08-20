@@ -7,3 +7,5 @@ test-results
 jasmine-runner-api.js
 
 src/public/
+
+*.min.js
