@@ -12,46 +12,46 @@
                     <div class="bookcover" id="bookcoverImage"></div>
                 </div>
 
-                <input type="hidden" id="bookBookcoverFileName">
+                <input type="hidden" id="bookBookcoverFileName" class="js-book-form-field">
             </div>
             <div class="col-md-8">
                 <div class="form-group">
                     <label for="bookTitle">Title</label>
-                    <input type="text" class="form-control full-width" id="bookTitle" required>
+                    <input type="text" class="form-control js-book-form-field full-width" id="bookTitle" required>
                 </div>
                 <div class="form-group">
                     <label for="bookAuthor">Author</label>
-                    <input type="text" class="form-control full-width" id="bookAuthor">
+                    <input type="text" class="form-control js-book-form-field full-width" id="bookAuthor">
                 </div>
                 <div class="form-group">
                     <label for="bookGenre">Genre</label>
-                    <input type="text" class="form-control full-width" id="bookGenre">
+                    <input type="text" class="form-control js-book-form-field full-width" id="bookGenre">
                 </div>
 
                 <div class="row">
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="bookDateRead">Date Read</label>
-                            <input type="date" class="form-control full-width" id="bookDateRead">
+                            <input type="date" class="form-control js-book-form-field full-width" id="bookDateRead">
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="form-group not-read-yet">
                             <label for="bookNotReadYet">
-                                <input type="checkbox" id="bookNotReadYet">Not read yet
+                                <input type="checkbox" id="bookNotReadYet" class="js-book-form-field">Not read yet
                             </label>
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="form-group">
                             <label for="bookNumberOfPages">Page Count</label>
-                            <input type="number" class="form-control full-width" id="bookNumberOfPages">
+                            <input type="number" class="form-control js-book-form-field full-width" id="bookNumberOfPages">
                         </div>
                     </div>
                     <div class="col-md-2">
                         <div class="form-group">
                             <label for="bookColor">Color</label>
-                            <input type="color" id="bookColor" class="hidden js-book-form-color-form">
+                            <input type="color" id="bookColor" class="hidden js-book-form-color-form js-book-form-field">
                             <div class="color-stripe js-book-form-color-stripe"></div>
                         </div>
                     </div>
@@ -67,17 +67,17 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="bookPublisher">Publisher</label>
-                    <input type="text" class="form-control full-width" id="bookPublisher">
+                    <input type="text" class="form-control js-book-form-field full-width" id="bookPublisher">
                 </div>
                 <div class="form-group">
                     <label for="bookYearPublished">Year Published</label>
-                    <input type="number" class="form-control full-width" id="bookYearPublished">
+                    <input type="number" class="form-control js-book-form-field full-width" id="bookYearPublished">
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="bookIsbn">ISBN</label>
-                    <input type="text" class="form-control full-width" id="bookIsbn">
+                    <input type="text" class="form-control js-book-form-field full-width" id="bookIsbn">
                 </div>
             </div>
         </div>
@@ -90,21 +90,21 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="bookNationality">Nationality</label>
-                    <input type="text" class="form-control full-width" id="bookNationality">
+                    <input type="text" class="form-control js-book-form-field full-width" id="bookNationality">
                 </div>
                 <div class="form-group">
                     <label for="bookOriginalLanguage">Original Language</label>
-                    <input type="text" class="form-control full-width" id="bookOriginalLanguage">
+                    <input type="text" class="form-control js-book-form-field full-width" id="bookOriginalLanguage">
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="bookLanguageReadIn">Language Read In</label>
-                    <input type="text" class="form-control full-width" id="bookLanguageReadIn">
+                    <input type="text" class="form-control js-book-form-field full-width" id="bookLanguageReadIn">
                 </div>
                 <div class="form-group">
                     <label for="bookTranslator">Translator</label>
-                    <input type="text" class="form-control full-width" id="bookTranslator">
+                    <input type="text" class="form-control js-book-form-field full-width" id="bookTranslator">
                 </div>
             </div>
         </div>
@@ -138,7 +138,7 @@
             <div class="col-md-12">
                 <div class="form-group">
                     <label for="bookRatingStars">Rating</label>
-                    <input type="hidden" id="bookRatingStars">
+                    <input type="hidden" id="bookRatingStars" class="js-book-form-field">
                     <div id="ratingStarsAnchor"></div>
                 </div>
             </div>
@@ -146,11 +146,11 @@
 
         <div class="form-group">
             <label for="bookSummary">Summary</label>
-            <textarea class="form-control full-width book-textarea" id="bookSummary"></textarea>
+            <textarea class="form-control js-book-form-field full-width book-textarea" id="bookSummary"></textarea>
         </div>
         <div class="form-group">
             <label for="bookCommentary">Commentary</label>
-            <textarea class="form-control full-width book-textarea" id="bookCommentary"></textarea>
+            <textarea class="form-control js-book-form-field full-width book-textarea" id="bookCommentary"></textarea>
         </div>
     </div>
 </form>

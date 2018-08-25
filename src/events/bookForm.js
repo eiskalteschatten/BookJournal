@@ -31,12 +31,31 @@ async function createNewBook() {
     $('#ratingStarsAnchor').html(renderedStars);
 }
 
-ipcRenderer.on('create-new-book', async () => {
-    createNewBook();
-});
+ipcRenderer.on('create-new-book', createNewBook);
+$(document).on('click', '.js-new-book', createNewBook); // eslint-disable-line
 
-$(document).on('click', '.js-new-book', function() { // eslint-disable-line
-    createNewBook();
+
+// Save Book
+
+let saveTimeout;
+
+async function saveBook() {
+    clearTimeout(saveTimeout);
+
+    const $bookActivityLoader = $('#bookActivityLoader');
+    $bookActivityLoader.removeClass('hidden');
+
+    saveTimeout = setTimeout(() => {
+        $bookActivityLoader.addClass('hidden');
+    }, 1000);
+}
+
+$(window).on('save-book', saveBook); // eslint-disable-line
+$(document).on('change', '.js-book-form-field', saveBook); // eslint-disable-line
+
+$(document).on('keypress', '.js-book-form-field', function() {  // eslint-disable-line
+    // Timeout stuff here maybe
+    saveBook();
 });
 
 
