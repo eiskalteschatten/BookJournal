@@ -13,7 +13,7 @@ Category.getAllSorted = async function() {
     return await this.findAll({
         order: [
             [
-                Sequelize.fn('lower',Sequelize.col('name')),
+                Sequelize.fn('lower', Sequelize.col('name')),
                 'ASC'
             ]
         ]
