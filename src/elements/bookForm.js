@@ -28,8 +28,9 @@ class BookForm {
     }
 
     async renderRatingStars() {
-        const fullClass = 'full';
+        // const fullClass = 'full';
         const emptyClass = 'empty';
+        const classes = [emptyClass, emptyClass, emptyClass, emptyClass, emptyClass];
 
         return new Promise((resolve, reject) => {
             const template = path.join(__dirname, '../templates/bookForm/ratingStars.njk');
@@ -40,11 +41,11 @@ class BookForm {
             });
         }).then(templateString => {
             return nunjucks.renderString(templateString, {
-                firstClass: fullClass,
-                secondClass: fullClass,
-                thirdClass: fullClass,
-                fourthClass: emptyClass,
-                fifthClass: emptyClass
+                firstClass: classes[0],
+                secondClass: classes[1],
+                thirdClass: classes[2],
+                fourthClass: classes[3],
+                fifthClass: classes[4]
             });
         }).catch(error => {
             console.error(error);
