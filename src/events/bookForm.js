@@ -7,6 +7,11 @@ $(window).on('bookFormLoaded', e => { // eslint-disable-line
     console.log('book form has loaded', e);
 });
 
+$(document).on('click', '#bookNotReadYet', function() { // eslint-disable-line
+    if ($(this).prop('checked')) $('#bookDateRead').prop('disabled', true);
+    else $('#bookDateRead').prop('disabled', false);
+});
+
 
 // Book Colors
 

@@ -17,6 +17,10 @@
     font-size: 1em;
     padding: 8px;
 
+    &:disabled {
+        opacity: .5;
+    }
+
     &.full-width {
         width: 100%;
     }
