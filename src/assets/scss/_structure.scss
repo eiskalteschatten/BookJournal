@@ -21,6 +21,7 @@ $titleBarHeight: 22px;
         .sidebar {
             flex: 1 1 auto;
             overflow: auto;
+            padding-top: 10px;
 
             .list {
                 margin-top: 0;
@@ -73,6 +74,8 @@ $titleBarHeight: 22px;
             padding-top: $titleBarHeight;
 
             .sidebar {
+                padding-top: 0;
+
                 .list {
                     margin-top: 15px;
                 }
