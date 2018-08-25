@@ -22,8 +22,11 @@ $(document).on('click', '#bookNotReadYet', function() { // eslint-disable-line
 // Bookcover
 
 async function saveBookcover(imagePath) {
-    const fileName = await BookForm.saveBookcover(imagePath);
-    if (fileName) $('#bookBookcoverFileName').val(fileName);
+    const fileInfo = await BookForm.saveBookcover(imagePath);
+    if (fileInfo.fileName) $('#bookBookcoverFileName').val(fileInfo.fileName);
+
+    $('#bookcoverImage').attr('style', `background-image: url('${fileInfo.filePath}')`);
+    $('#bookcoverUploadArea').addClass('has-bookcover');
 }
 
 $(document).on('click', '#bookcoverUploadArea', function() { // eslint-disable-line

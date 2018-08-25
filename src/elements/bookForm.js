@@ -98,7 +98,7 @@ class BookForm {
     static async saveBookcover(imagePath) {
         const bookcoverConfig = config.bookcovers;
         const bookcoverExtensions = bookcoverConfig.extensions;
-        const extension = path.extname(imagePath).replace('.', '');
+        const extension = path.extname(imagePath).replace('.', '').toLowerCase();
 
         return new Promise((resolve, reject) => {
             const uuid = uuidv4();
@@ -117,7 +117,10 @@ class BookForm {
 
             fs.copyFile(imagePath, newImagePath, error => {
                 if (error) reject(error);
-                resolve(newFileName);
+                resolve({
+                    fileName: newFileName,
+                    filePath: newImagePath
+                });
             });
         }).catch(error => {
             console.error(error);
