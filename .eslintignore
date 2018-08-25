@@ -9,3 +9,5 @@ jasmine-runner-api.js
 src/public/
 
 *.min.js
+
+glyph-iconset-master
