@@ -11,6 +11,9 @@ $(window).on('bookFormLoaded', e => { // eslint-disable-line
     console.log('book form has loaded', e);
 });
 
+
+// Rating Stars
+
 let starRestoreTimeout;
 
 $(document).on('mouseout', '.js-rating-star', function() { // eslint-disable-line
@@ -54,4 +57,10 @@ $(document).on('click', '.js-rating-star', function() { // eslint-disable-line
             $(this).removeClass('temp-empty').addClass('empty');
         }
     });
+});
+
+$(document).on('click', '.js-remove-rating', function() { // eslint-disable-line
+    $('.js-rating-star')
+        .removeClass('full')
+        .addClass('empty');
 });
