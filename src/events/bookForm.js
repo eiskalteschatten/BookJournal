@@ -28,51 +28,80 @@ $(document).on('change', '.js-book-form-color-form', function() { // eslint-disa
 });
 
 
-// Tags
+// Tags & Categories
+
+function deleteBadge($deleteButton) {
+    const $badge = $deleteButton.closest('.js-tag-badge');
+    const $tagCluster = $deleteButton.closest('.js-tag-cluster');
+    const $tagHidden = $tagCluster.siblings('.js-tag-hidden');
+    const tagText = $badge.data('delete-id');
+    const tags = $tagHidden.val().split(',');
+
+    const newTags = tags.filter(tag => {
+        return tag + '' !== tagText + '';
+    });
+
+    if ($tagCluster.hasClass('js-category-cluster')) {
+        $tagCluster
+            .siblings('#bookCategories')
+            .find(`option[value="${tagText}"]`)
+            .prop('disabled', false);
+    }
+
+    $tagHidden.val(newTags);
+    $badge.remove();
+}
 
 $(document).on('keypress', '#bookTags', async function(e) { // eslint-disable-line
     if (e.keyCode !== 13) return;
-
     e.preventDefault();
 
     const $this = $(this);
     const inputValue = $this.val().trim();
 
     if (inputValue !== '') {
-        const $tagHidden = $this.prevAll('#bookTagsHidden');
-        const $tagCluster = $this.nextAll('.js-tag-cluster:first');
+        const $tagHidden = $this.siblings('.js-tag-hidden');
+        const $tagCluster = $this.siblings('.js-tag-cluster');
         const newTags = inputValue.split(',');
 
         for (const i in newTags) {
             const tag = newTags[i].trim();
-            const badge = await BookForm.renderTagBadge(tag);
-            $tagCluster.append(badge);
+            if (tag !== '') {
+                const badge = await BookForm.renderTagCategoryBadge(tag, tag);
+                $tagCluster.append(badge);
 
-            const hiddenValue = $tagHidden.val();
-            const newValue = hiddenValue !== '' ? hiddenValue + ',' + tag : tag;
-            $tagHidden.val(newValue);
+                const hiddenValue = $tagHidden.val();
+                const newValue = hiddenValue !== '' ? hiddenValue + ',' + tag : tag;
+                $tagHidden.val(newValue);
+            }
         }
 
         $tagCluster.removeClass('hidden');
-
         $this.val('');
     }
 });
 
 $(document).on('click', '.js-delete-tag', function() { // eslint-disable-line
+    deleteBadge($(this));
+});
+
+$(document).on('change', '#bookCategories', async function() { // eslint-disable-line
     const $this = $(this);
-    const $badge = $this.closest('.js-tag-badge');
-    const $tagCluster = $this.closest('.js-tag-cluster');
-    const $tagHidden = $tagCluster.siblings('#bookTagsHidden');
+    const $selected = $this.find('option:selected');
+    const $tagHidden = $this.siblings('.js-tag-hidden');
+    const $tagCluster = $this.siblings('.js-tag-cluster');
+    const categoryId = $this.val();
 
-    const tagText = $this.siblings('.js-tag-text').text();
-    const tags = $tagHidden.val().split(',');
-    const newTags = tags.filter(function(tag) {
-        return tag !== tagText;
-    });
+    const badge = await BookForm.renderTagCategoryBadge($selected.text(), categoryId);
+    $tagCluster.append(badge);
 
-    $tagHidden.val(newTags);
-    $badge.remove();
+    const hiddenValue = $tagHidden.val();
+    const newValue = hiddenValue !== '' ? hiddenValue + ',' + categoryId : categoryId;
+    $tagHidden.val(newValue);
+
+    $tagCluster.removeClass('hidden');
+    $selected.prop('disabled', true);
+    $this.val('-1');
 });
 
 

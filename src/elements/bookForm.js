@@ -71,9 +71,9 @@ class BookForm {
         });
     }
 
-    static async renderTagBadge(tag) {
+    static async renderTagCategoryBadge(tag, deleteId) {
         return new Promise((resolve, reject) => {
-            const template = path.join(__dirname, '../templates/bookForm/tagBadge.njk');
+            const template = path.join(__dirname, '../templates/bookForm/tagCategoryBadge.njk');
 
             fs.readFile(template, 'utf8', (error, string) => {
                 if (error) reject(error);
@@ -81,7 +81,8 @@ class BookForm {
             });
         }).then(templateString => {
             return nunjucks.renderString(templateString, {
-                tag
+                tag,
+                deleteId
             });
         }).catch(error => {
             console.error(error);

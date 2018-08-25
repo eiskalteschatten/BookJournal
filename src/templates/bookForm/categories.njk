@@ -1,9 +1,18 @@
+<input type="hidden" value="{{ bookCategories }}" class="tag-hidden js-tag-hidden" id="bookCategoriesHidden">
+
 <select class="form-control full-width" id="bookCategories">
-    <option value="-1" selected>No category</option>
-    <option disabled>──────────</option>
+    <option value="-1" disabled selected>Select a Category</option>
+
     {% for category in categories %}
         <option value="{{ category.id }}">{{ category.name }}</option>
     {% else %}
         <option disabled>No categories available</option>
     {% endfor %}
 </select>
+
+
+<div class="{% if not categories %}hidden{% endif %} tag-cluster js-tag-cluster js-category-cluster" id="categoryCluster">
+    {% for tag in bookCategories %}
+        {% include "src/templates/bookForm/tagCategoryBadge.njk" %}
+    {% endfor %}
+</div>
