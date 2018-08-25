@@ -1,0 +1,8 @@
+<input type="hidden" value="{{ post.tags }}" class="tag-hidden js-tag-hidden" id="tagHidden">
+<input type="text" class="form-control full-width" id="bookTags" placeholder="Type comma-seperated tags and press enter">
+
+<div class="{% if not tags %}hidden{% endif %} tag-cluster js-tag-cluster" id="tagCluster">
+    {% for tag in tags %}
+        {% include "src/templates/bookForm/tagBadge.njk" %}
+    {% endfor %}
+</div>

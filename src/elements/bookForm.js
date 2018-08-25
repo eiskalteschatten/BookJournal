@@ -70,6 +70,23 @@ class BookForm {
             console.error(error);
         });
     }
+
+    static async renderTagBadge(tag) {
+        return new Promise((resolve, reject) => {
+            const template = path.join(__dirname, '../templates/bookForm/tagBadge.njk');
+
+            fs.readFile(template, 'utf8', (error, string) => {
+                if (error) reject(error);
+                resolve(string);
+            });
+        }).then(templateString => {
+            return nunjucks.renderString(templateString, {
+                tag
+            });
+        }).catch(error => {
+            console.error(error);
+        });
+    }
 }
 
 module.exports = BookForm;

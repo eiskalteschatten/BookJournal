@@ -1,4 +1,4 @@
-<form class="book-form">
+<form class="book-form" id="bookForm">
 
     <div class="group">
         <div class="row">
@@ -95,7 +95,7 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="bookTags">Tags</label>
-                    <input type="text" class="form-control full-width" id="bookTags" placeholder="Type comma-seperated tags and press enter">
+                    {% include "src/templates/bookForm/tags.njk" %}
                 </div>
             </div>
             <div class="col-md-6">
