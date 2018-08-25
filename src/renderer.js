@@ -43,6 +43,7 @@ async function renderBookForm() {
     const bookForm = new BookForm();
     const rendered = await bookForm.render();
     $('#bookDetails').html(rendered);
+    $(window).trigger('bookFormLoaded');  // eslint-disable-line
 }
 
 render();

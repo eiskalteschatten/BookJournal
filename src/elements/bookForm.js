@@ -45,6 +45,10 @@ class BookForm {
             console.error(error);
         });
     }
+
+    static renderRatingStars() {
+
+    }
 }
 
 module.exports = BookForm;
