@@ -15,6 +15,29 @@ $(document).on('click', '#bookNotReadYet', function() { // eslint-disable-line
 });
 
 
+// Bookcover
+
+$(document).on('click', '#bookcoverUploadArea', function() { // eslint-disable-line
+    $('#bookBookcoverForm').trigger('click');
+});
+
+$(document).on('dragover', '#bookcoverUploadArea', function(e) { // eslint-disable-line
+    e.preventDefault();
+    $('#bookcoverUploadArea').addClass('dragover');
+});
+
+$(document).on('dragleave', '#bookcoverUploadArea', function(e) { // eslint-disable-line
+    e.preventDefault();
+    $('#bookcoverUploadArea').removeClass('dragover');
+});
+
+$(document).on('drop', '#bookcoverUploadArea', function(e) { // eslint-disable-line
+    e.preventDefault();
+    $('#bookcoverUploadArea').removeClass('dragover');
+    // _dashboardMedia.upload(e.originalEvent.dataTransfer.files);
+});
+
+
 // Book Colors
 
 $(document).on('click', '.js-book-form-color-stripe', function() { // eslint-disable-line
