@@ -26,6 +26,9 @@ The project is currently in its infancy.
 - Synching of database via cloud service of choice
 
 
+## Icons
+
+From https://glyph.smarticons.co
 
 ---
 
