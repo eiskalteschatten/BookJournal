@@ -3,13 +3,23 @@
 const $ = require('jquery');
 
 
+$(window).on('bookFormLoaded', e => { // eslint-disable-line
+    console.log('book form has loaded', e);
+});
+
+
+// Book Colors
+
 $(document).on('click', '.js-book-form-color-stripe', function() { // eslint-disable-line
     $(this).siblings('.js-book-form-color-form').click();
 });
 
-$(window).on('bookFormLoaded', e => { // eslint-disable-line
-    console.log('book form has loaded', e);
+$(document).on('change', '.js-book-form-color-form', function() { // eslint-disable-line
+    const $colorForm = $(this);
+    const color = $colorForm.val();
+    $colorForm.siblings('.js-book-form-color-stripe').attr('style', `background-color: ${color}`);
 });
+
 
 
 // Rating Stars
