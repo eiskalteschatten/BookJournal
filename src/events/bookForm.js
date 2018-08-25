@@ -1,6 +1,6 @@
 'use strict';
 
-const remote = require('electron').remote;
+const {ipcRenderer, remote} = require('electron');
 const dialog = remote.dialog;
 const $ = require('jquery');
 
@@ -11,6 +11,10 @@ const BookForm = require('../elements/bookForm');
 
 $(window).on('bookFormLoaded', e => { // eslint-disable-line
     console.log('book form has loaded', e);
+});
+
+$(document).on('click', '#bookUtilityMenu', function() { // eslint-disable-line
+    ipcRenderer.send('show-book-utility-menu');
 });
 
 $(document).on('click', '#bookNotReadYet', function() { // eslint-disable-line

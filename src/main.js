@@ -10,6 +10,7 @@ const {app, BrowserWindow, Menu, ipcMain} = require('electron');
 
 // Menus
 const appMenu = require('./config/menus/app');
+const bookUtilityMenu = require('./config/menus/bookUtility');
 const categoryListElementCm = require('./config/menus/categoryListElementCm');
 const inputCm = require('./config/menus/inputCm');
 
@@ -124,5 +125,11 @@ ipcMain.on('show-category-list-element-context-menu', event => {
 ipcMain.on('show-input-context-menu', event => {
     const window = BrowserWindow.fromWebContents(event.sender);
     const menu = Menu.buildFromTemplate(inputCm);
+    menu.popup(window);
+});
+
+ipcMain.on('show-book-utility-menu', event => {
+    const window = BrowserWindow.fromWebContents(event.sender);
+    const menu = Menu.buildFromTemplate(bookUtilityMenu);
     menu.popup(window);
 });

@@ -1,3 +1,17 @@
+.book-utility-menu {
+    $size: 24px;
+    background: url($gear) no-repeat center;
+    cursor: pointer;
+    float: right;
+    height: $size;
+    opacity: .8;
+    width: $size;
+
+    &:hover {
+        opacity: 1;
+    }
+}
+
 .book-form {
     .bookcover-upload-area {
         border: 1px dashed $uploadAreaBorderColor;
