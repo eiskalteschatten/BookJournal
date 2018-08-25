@@ -46,8 +46,29 @@ class BookForm {
         });
     }
 
-    static renderRatingStars() {
+    async renderRatingStars() {
+        const fullClass = 'full';
+        const halfClass = 'half';
+        const emptyClass = 'empty';
 
+        return new Promise((resolve, reject) => {
+            const template = path.join(__dirname, '../templates/bookForm/ratingStars.njk');
+
+            fs.readFile(template, 'utf8', (error, string) => {
+                if (error) reject(error);
+                resolve(string);
+            });
+        }).then(templateString => {
+            return nunjucks.renderString(templateString, {
+                firstClass: fullClass,
+                secondClass: fullClass,
+                thirdClass: halfClass,
+                fourthClass: emptyClass,
+                fifthClass: emptyClass
+            });
+        }).catch(error => {
+            console.error(error);
+        });
     }
 }
 

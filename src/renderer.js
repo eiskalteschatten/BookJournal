@@ -43,6 +43,10 @@ async function renderBookForm() {
     const bookForm = new BookForm();
     const rendered = await bookForm.render();
     $('#bookDetails').html(rendered);
+
+    const renderedStars = await bookForm.renderRatingStars();
+    $('#ratingStarsAnchor').html(renderedStars);
+
     $(window).trigger('bookFormLoaded');  // eslint-disable-line
 }
 

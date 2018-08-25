@@ -7,4 +7,30 @@
         height: $size;
         width: $size;
     }
+
+    .rating-stars {
+        $starSize: 24px;
+
+        height: $starSize;
+
+        span {
+            background-repeat: no-repeat;
+            background-position: center center;
+            display: inline-block;
+            height: $starSize;
+            width: $starSize;
+
+            &.full {
+                background-image: url('../images/star-dark.svg');
+            }
+
+            &.half {
+                background-image: url('../images/star-half-dark.svg');
+            }
+
+            &.empty {
+                background-image: url('../images/star-empty-dark.svg');
+            }
+        }
+    }
 }
