@@ -139,6 +139,8 @@ $(document).on('mouseover', '.js-rating-star', function() { // eslint-disable-li
 $(document).on('click', '.js-rating-star', function() { // eslint-disable-line
     clearTimeout(starRestoreTimeout);
 
+    const values = [];
+
     $('.js-rating-star').each(function() {
         const $this = $(this);
 
@@ -148,15 +150,21 @@ $(document).on('click', '.js-rating-star', function() { // eslint-disable-line
 
         if ($this.hasClass('temp-full')) {
             $(this).removeClass('temp-full').addClass('full');
+            values.push(parseInt($this.data('value')));
         }
         else if ($this.hasClass('temp-empty')) {
             $(this).removeClass('temp-empty').addClass('empty');
         }
     });
+
+    const rating = Math.max(...values);
+    $('#booksRating').val(rating);
 });
 
 $(document).on('click', '.js-remove-rating', function() { // eslint-disable-line
     $('.js-rating-star')
         .removeClass('full')
         .addClass('empty');
+
+    $('#booksRating').val('');
 });
