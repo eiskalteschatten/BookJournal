@@ -17,6 +17,10 @@
     font-size: 1em;
     padding: 8px;
 
+    &[type="date"] {
+        padding: 5px;
+    }
+
     &:disabled {
         opacity: .5;
     }

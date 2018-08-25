@@ -31,6 +31,15 @@
         }
     }
 
+    .not-read-yet {
+        margin-top: 31px;
+        font-size: 1.1em;
+
+        input[type='checkbox'] {
+            margin-right: 5px;
+        }
+    }
+
     .color-stripe {
         $size: 30px;
         border: 1px solid $colorCircleBorderColor;
@@ -128,14 +137,6 @@
                     opacity: 1;
                 }
             }
-        }
-    }
-
-    .not-read-yet {
-        margin-top: -8px;
-
-        input[type='checkbox'] {
-            margin-right: 5px;
         }
     }
 }

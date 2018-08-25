@@ -26,17 +26,30 @@
                 </div>
 
                 <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="bookDateRead">Date Read</label>
+                            <input type="date" class="form-control full-width" id="bookDateRead">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group not-read-yet">
+                            <label for="bookNotReadYet">
+                                <input type="checkbox" id="bookNotReadYet">Not read yet
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="bookNumberOfPages">Page Count</label>
+                            <input type="number" class="form-control full-width" id="bookNumberOfPages">
+                        </div>
+                    </div>
                     <div class="col-md-2">
                         <div class="form-group">
                             <label for="bookColor">Color</label>
                             <input type="color" id="bookColor" class="hidden js-book-form-color-form">
                             <div class="color-stripe js-book-form-color-stripe"></div>
-                        </div>
-                    </div>
-                    <div class="col-md-10">
-                        <div class="form-group">
-                            <label for="bookNumberOfPages">Page Count</label>
-                            <input type="number" class="form-control full-width" id="bookNumberOfPages">
                         </div>
                     </div>
                 </div>
@@ -119,23 +132,11 @@
         <div class="group-title">Comments &amp; Review</div>
 
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-12">
                 <div class="form-group">
                     <label for="bookRatingStars">Rating</label>
                     <input type="hidden" id="bookRatingStars">
                     <div id="ratingStarsAnchor"></div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label for="bookDateRead">Date Read</label>
-                    <input type="date" class="form-control full-width" id="bookDateRead">
-                </div>
-
-                <div class="form-group not-read-yet">
-                    <label for="bookNotReadYet">
-                        <input type="checkbox" id="bookNotReadYet">Not read yet
-                    </label>
                 </div>
             </div>
         </div>
