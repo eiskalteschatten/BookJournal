@@ -1,14 +1,16 @@
 <input type="hidden" value="{{ bookCategories }}" class="tag-hidden js-tag-hidden" id="bookCategoriesHidden">
 
-<select class="form-control full-width" id="bookCategories">
-    <option value="-1" disabled selected>Select a Category</option>
+<div class="pre-tag-cluster-wrapper js-pre-tag-cluster-wrapper">
+    <select class="form-control full-width" id="bookCategories">
+        <option value="-1" disabled selected>Select a Category</option>
 
-    {% for category in categories %}
-        <option value="{{ category.id }}">{{ category.name }}</option>
-    {% else %}
-        <option disabled>No categories available</option>
-    {% endfor %}
-</select>
+        {% for category in categories %}
+            <option value="{{ category.id }}">{{ category.name }}</option>
+        {% else %}
+            <option disabled>No categories available</option>
+        {% endfor %}
+    </select>
+</div>
 
 
 <div class="{% if not categories %}hidden{% endif %} tag-cluster js-tag-cluster js-category-cluster" id="categoryCluster">

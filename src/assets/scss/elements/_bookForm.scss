@@ -8,6 +8,10 @@
         width: $size;
     }
 
+    .pre-tag-cluster-wrapper {
+        min-height: 35px;
+    }
+
     .tag-cluster {
         .tag-badge {
             background: $badgeBg;

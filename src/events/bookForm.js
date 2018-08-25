@@ -43,7 +43,8 @@ function deleteBadge($deleteButton) {
 
     if ($tagCluster.hasClass('js-category-cluster')) {
         $tagCluster
-            .siblings('#bookCategories')
+            .siblings('.js-pre-tag-cluster-wrapper')
+            .find('#bookCategories')
             .find(`option[value="${tagText}"]`)
             .prop('disabled', false);
     }
@@ -57,11 +58,12 @@ $(document).on('keypress', '#bookTags', async function(e) { // eslint-disable-li
     e.preventDefault();
 
     const $this = $(this);
+    const $wrapper = $this.closest('.js-pre-tag-cluster-wrapper');
     const inputValue = $this.val().trim();
 
     if (inputValue !== '') {
-        const $tagHidden = $this.siblings('.js-tag-hidden');
-        const $tagCluster = $this.siblings('.js-tag-cluster');
+        const $tagHidden = $wrapper.siblings('.js-tag-hidden');
+        const $tagCluster = $wrapper.siblings('.js-tag-cluster');
         const newTags = inputValue.split(',');
 
         for (const i in newTags) {
@@ -87,9 +89,10 @@ $(document).on('click', '.js-delete-tag', function() { // eslint-disable-line
 
 $(document).on('change', '#bookCategories', async function() { // eslint-disable-line
     const $this = $(this);
+    const $wrapper = $this.closest('.js-pre-tag-cluster-wrapper');
     const $selected = $this.find('option:selected');
-    const $tagHidden = $this.siblings('.js-tag-hidden');
-    const $tagCluster = $this.siblings('.js-tag-cluster');
+    const $tagHidden = $wrapper.siblings('.js-tag-hidden');
+    const $tagCluster = $wrapper.siblings('.js-tag-cluster');
     const categoryId = $this.val();
 
     const badge = await BookForm.renderTagCategoryBadge($selected.text(), categoryId, 'category');

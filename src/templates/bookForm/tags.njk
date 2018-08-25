@@ -1,5 +1,8 @@
 <input type="hidden" value="{{ tags }}" class="tag-hidden js-tag-hidden" id="bookTagsHidden">
-<input type="text" class="form-control full-width" id="bookTags" placeholder="Type comma-seperated tags and press enter">
+
+<div class="pre-tag-cluster-wrapper js-pre-tag-cluster-wrapper">
+    <input type="text" class="form-control full-width" id="bookTags" placeholder="Type comma-seperated tags and press enter">
+</div>
 
 <div class="{% if not tags %}hidden{% endif %} tag-cluster js-tag-cluster" id="tagCluster">
     {% for tag in tags %}
