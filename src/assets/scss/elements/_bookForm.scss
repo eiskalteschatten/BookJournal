@@ -21,15 +21,11 @@
             width: $starSize;
 
             &.full {
-                background-image: url('../images/star-dark.svg');
-            }
-
-            &.half {
-                background-image: url('../images/star-half-dark.svg');
+                background-image: url($ratingStarsFull);
             }
 
             &.empty {
-                background-image: url('../images/star-empty-dark.svg');
+                background-image: url($ratingStarsEmpty);
             }
         }
     }

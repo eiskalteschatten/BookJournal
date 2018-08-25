@@ -48,7 +48,6 @@ class BookForm {
 
     async renderRatingStars() {
         const fullClass = 'full';
-        const halfClass = 'half';
         const emptyClass = 'empty';
 
         return new Promise((resolve, reject) => {
@@ -62,7 +61,7 @@ class BookForm {
             return nunjucks.renderString(templateString, {
                 firstClass: fullClass,
                 secondClass: fullClass,
-                thirdClass: halfClass,
+                thirdClass: fullClass,
                 fourthClass: emptyClass,
                 fifthClass: emptyClass
             });
