@@ -67,7 +67,7 @@ $(document).on('keypress', '#bookTags', async function(e) { // eslint-disable-li
         for (const i in newTags) {
             const tag = newTags[i].trim();
             if (tag !== '') {
-                const badge = await BookForm.renderTagCategoryBadge(tag, tag);
+                const badge = await BookForm.renderTagCategoryBadge(tag, tag, 'tag');
                 $tagCluster.append(badge);
 
                 const hiddenValue = $tagHidden.val();
@@ -92,7 +92,7 @@ $(document).on('change', '#bookCategories', async function() { // eslint-disable
     const $tagCluster = $this.siblings('.js-tag-cluster');
     const categoryId = $this.val();
 
-    const badge = await BookForm.renderTagCategoryBadge($selected.text(), categoryId);
+    const badge = await BookForm.renderTagCategoryBadge($selected.text(), categoryId, 'category');
     $tagCluster.append(badge);
 
     const hiddenValue = $tagHidden.val();

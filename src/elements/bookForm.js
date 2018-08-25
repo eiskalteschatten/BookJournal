@@ -71,7 +71,7 @@ class BookForm {
         });
     }
 
-    static async renderTagCategoryBadge(tag, deleteId) {
+    static async renderTagCategoryBadge(tag, deleteId, typeClass) {
         return new Promise((resolve, reject) => {
             const template = path.join(__dirname, '../templates/bookForm/tagCategoryBadge.njk');
 
@@ -82,7 +82,8 @@ class BookForm {
         }).then(templateString => {
             return nunjucks.renderString(templateString, {
                 tag,
-                deleteId
+                deleteId,
+                typeClass
             });
         }).catch(error => {
             console.error(error);

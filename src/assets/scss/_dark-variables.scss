@@ -19,8 +19,13 @@ $toolbarIconPlus: '../images/si-glyph-button-plus-dark.svg';
 
 $colorCircleBorderColor: #333333;
 
-$tagBadgeBg: lighten($darkBg, 5%);
-$tagBadgeHoverBg: lighten($darkBg, 7%);
+$badgeBg: lighten($darkBg, 5%);
+$badgeHoverBg: lighten($badgeBg, 2%);
+$tagBadgeBg: #610115;
+$tagBadgeHoverBg: lighten($tagBadgeBg, 2%);
+$categoryBadgeBg: #063353;
+$categoryBadgeHoverBg: lighten($categoryBadgeBg, 2%);
+$removeBadge: '../images/si-glyph-circle-remove-dark.svg';
 
 $ratingStarsFull: '../images/star-dark.svg';
 $ratingStarsEmpty: '../images/star-empty-dark.svg';
