@@ -1,8 +1,13 @@
 'use strict';
 
+const dialog = require('electron').remote.dialog;
 const path = require('path');
 const fs = require('fs');
 const nunjucks = require('nunjucks');
+const mkdirp = require('mkdirp');
+const uuidv4 = require('uuid/v4');
+
+const config = require('../config/config');
 
 const Category = require('../models/category');
 
@@ -84,6 +89,35 @@ class BookForm {
                 tag,
                 deleteId,
                 typeClass
+            });
+        }).catch(error => {
+            console.error(error);
+        });
+    }
+
+    static async saveBookcover(imagePath) {
+        const bookcoverConfig = config.bookcovers;
+        const bookcoverExtensions = bookcoverConfig.extensions;
+        const extension = path.extname(imagePath).replace('.', '');
+
+        return new Promise((resolve, reject) => {
+            const uuid = uuidv4();
+            const newFileName = `${uuid}.${extension}`;
+            const newImagePath = path.join(bookcoverConfig.path, newFileName);
+
+            mkdirp(bookcoverConfig.path);
+
+            if (bookcoverExtensions.indexOf(extension) <= -1) {
+                const extensionsString = bookcoverExtensions.join(', ');
+                const error = 'The bookcover must be an image';
+                dialog.showErrorBox(error, `The file you chose is not an image. It must have one of the following file extensions: ${extensionsString}.`);
+                reject(error);
+                return;
+            }
+
+            fs.copyFile(imagePath, newImagePath, error => {
+                if (error) reject(error);
+                resolve(newFileName);
             });
         }).catch(error => {
             console.error(error);

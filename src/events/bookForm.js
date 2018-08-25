@@ -1,6 +1,10 @@
 'use strict';
 
+const remote = require('electron').remote;
+const dialog = remote.dialog;
 const $ = require('jquery');
+
+const config = require('../config/config');
 
 const BookForm = require('../elements/bookForm');
 
@@ -17,8 +21,18 @@ $(document).on('click', '#bookNotReadYet', function() { // eslint-disable-line
 
 // Bookcover
 
+async function saveBookcover(imagePath) {
+    const fileName = await BookForm.saveBookcover(imagePath);
+    if (fileName) $('#bookBookcoverFileName').val(fileName);
+}
+
 $(document).on('click', '#bookcoverUploadArea', function() { // eslint-disable-line
-    $('#bookBookcoverForm').trigger('click');
+    dialog.showOpenDialog(remote.getCurrentWindow(), {
+        filters: [
+            { name: 'Images', extensions: config.bookcovers.extensions }
+        ],
+        properties: ['openFile']
+    }, async imagePath => saveBookcover(imagePath[0]));
 });
 
 $(document).on('dragover', '#bookcoverUploadArea', function(e) { // eslint-disable-line
@@ -34,7 +48,7 @@ $(document).on('dragleave', '#bookcoverUploadArea', function(e) { // eslint-disa
 $(document).on('drop', '#bookcoverUploadArea', function(e) { // eslint-disable-line
     e.preventDefault();
     $('#bookcoverUploadArea').removeClass('dragover');
-    // _dashboardMedia.upload(e.originalEvent.dataTransfer.files);
+    saveBookcover(e.originalEvent.dataTransfer.files[0].path);
 });
 
 
