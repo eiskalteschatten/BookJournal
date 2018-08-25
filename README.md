@@ -28,7 +28,7 @@ The project is currently in its infancy.
 
 ## Icons
 
-From https://glyph.smarticons.co
+From https://glyph.smarticons.co and https://material.io/tools/icons/?style=sharp
 
 ---
 
