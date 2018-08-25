@@ -16,6 +16,7 @@
         span {
             background-repeat: no-repeat;
             background-position: center center;
+            cursor: pointer;
             display: inline-block;
             height: $starSize;
             width: $starSize;
@@ -24,8 +25,16 @@
                 background-image: url($ratingStarsFull);
             }
 
+            &.temp-full {
+                background-image: url($ratingStarsFull) !important;
+            }
+
             &.empty {
                 background-image: url($ratingStarsEmpty);
+            }
+
+            &.temp-empty {
+                background-image: url($ratingStarsEmpty) !important ;
             }
         }
     }
