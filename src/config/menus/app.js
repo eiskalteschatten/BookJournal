@@ -10,14 +10,14 @@ const template = [
                 label: 'New Book',
                 accelerator: 'CmdOrCtrl+N',
                 click: async (item, focusedWindow) => {
-                    focusedWindow.webContents.send('createNew', 'book');
+                    focusedWindow.webContents.send('create-new-book');
                 }
             },
             {
                 label: 'New Category',
                 accelerator: 'CmdOrCtrl+Shift+N',
                 click: async (item, focusedWindow) => {
-                    focusedWindow.webContents.send('createNew', 'category');
+                    focusedWindow.webContents.send('create-new-category');
                 }
             },
             {type: 'separator'},

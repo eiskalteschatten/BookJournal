@@ -34,9 +34,8 @@ $('.js-new-category').click(async e => {
     createNewCategory();
 });
 
-ipcRenderer.on('createNew', async (event, data) => {
-    if (data === 'category')
-        createNewCategory();
+ipcRenderer.on('create-new-category', async () => {
+    createNewCategory();
 });
 
 $(document).on('blur', '.js-list-element-edit-name', function() { // eslint-disable-line

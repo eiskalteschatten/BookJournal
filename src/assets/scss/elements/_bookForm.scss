@@ -1,3 +1,13 @@
+.book-form-wrapper {
+    background: url($noBookSelected) no-repeat center;
+    background-size: 20%;
+    height: 100%;
+
+    &.form-displayed {
+        background: none;
+    }
+}
+
 .book-utility-menu {
     $size: 24px;
     background: url($gear) no-repeat center;

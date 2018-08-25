@@ -9,10 +9,6 @@ const config = require('../config/config');
 const BookForm = require('../elements/bookForm');
 
 
-$(window).on('bookFormLoaded', e => { // eslint-disable-line
-    console.log('book form has loaded', e);
-});
-
 $(document).on('click', '#bookUtilityMenu', function() { // eslint-disable-line
     ipcRenderer.send('show-book-utility-menu');
 });
@@ -20,6 +16,27 @@ $(document).on('click', '#bookUtilityMenu', function() { // eslint-disable-line
 $(document).on('click', '#bookNotReadYet', function() { // eslint-disable-line
     if ($(this).prop('checked')) $('#bookDateRead').prop('disabled', true);
     else $('#bookDateRead').prop('disabled', false);
+});
+
+
+// Create New Book
+
+async function createNewBook() {
+    const bookForm = new BookForm();
+    const rendered = await bookForm.render();
+    $('#bookDetails').html(rendered);
+    $('#bookFormWrapper').addClass('form-displayed');
+
+    const renderedStars = await bookForm.renderRatingStars();
+    $('#ratingStarsAnchor').html(renderedStars);
+}
+
+ipcRenderer.on('create-new-book', async () => {
+    createNewBook();
+});
+
+$(document).on('click', '.js-new-book', function() { // eslint-disable-line
+    createNewBook();
 });
 
 
@@ -59,7 +76,7 @@ $(document).on('drop', '#bookcoverUploadArea', function(e) { // eslint-disable-l
 });
 
 
-// Book Colors
+// Book Color
 
 $(document).on('click', '.js-book-form-color-stripe', function() { // eslint-disable-line
     $(this).siblings('.js-book-form-color-form').click();

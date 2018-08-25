@@ -7,7 +7,7 @@ const template = [
     {
         label: 'New Book',
         click: async (item, focusedWindow) => {
-            focusedWindow.webContents.send('createNew', 'book');
+            focusedWindow.webContents.send('create-new-book');
         }
     },
     {

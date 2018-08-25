@@ -6,7 +6,6 @@ const $ = require('jquery');
 
 const {loadPreferences} = require('./initialPreferences');
 const SidebarList = require('./elements/list/sidebar');
-const BookForm = require('./elements/bookForm');
 
 let preferences;
 
@@ -18,7 +17,7 @@ async function render() {
 
     renderBookList();
     await renderSidebar();
-    await renderBookForm();
+    // await renderBookForm();
 
     $('.js-sidebar-list-element').first().trigger('click');
 }
@@ -37,17 +36,6 @@ async function renderSidebar() {
 
 function renderBookList() {
     $('#bookListWrapper').css('width', preferences.middleColumnWidth + 'px');
-}
-
-async function renderBookForm() {
-    const bookForm = new BookForm();
-    const rendered = await bookForm.render();
-    $('#bookDetails').html(rendered);
-
-    const renderedStars = await bookForm.renderRatingStars();
-    $('#ratingStarsAnchor').html(renderedStars);
-
-    $(window).trigger('bookFormLoaded');  // eslint-disable-line
 }
 
 render();
