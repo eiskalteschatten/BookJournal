@@ -9,10 +9,6 @@ $(window).on('bookFormLoaded', e => { // eslint-disable-line
     console.log('book form has loaded', e);
 });
 
-// $(document).on('keypress', '#bookForm', function(e) { // eslint-disable-line
-//     return e.keyCode != 13;
-// });
-
 $(document).on('click', '#bookNotReadYet', function() { // eslint-disable-line
     if ($(this).prop('checked')) $('#bookDateRead').prop('disabled', true);
     else $('#bookDateRead').prop('disabled', false);
@@ -34,34 +30,49 @@ $(document).on('change', '.js-book-form-color-form', function() { // eslint-disa
 
 // Tags
 
-$(document).on('keypress', '.js-tag-input', async function(e) { // eslint-disable-line
+$(document).on('keypress', '#bookTags', async function(e) { // eslint-disable-line
+    if (e.keyCode !== 13) return;
+
     e.preventDefault();
 
     const $this = $(this);
+    const inputValue = $this.val().trim();
 
-    if (e.keyCode === 13) {
-        const inputValue = $this.val().trim();
+    if (inputValue !== '') {
+        const $tagHidden = $this.prevAll('#bookTagsHidden');
+        const $tagCluster = $this.nextAll('.js-tag-cluster:first');
+        const newTags = inputValue.split(',');
 
-        if (inputValue !== '') {
-            const $tagHidden = $this.prevAll('.js-tag-hidden:first');
-            const $tagCluster = $this.nextAll('.js-tag-cluster:first');
-            const newTags = inputValue.split(',');
+        for (const i in newTags) {
+            const tag = newTags[i].trim();
+            const badge = await BookForm.renderTagBadge(tag);
+            $tagCluster.append(badge);
 
-            for (const i in newTags) {
-                const tag = newTags[i].trim();
-                const badge = await BookForm.renderTagBadge(tag);
-                $tagCluster.append(badge);
-
-                const hiddenValue = $tagHidden.val();
-                const newValue = hiddenValue !== '' ? hiddenValue + ',' + tag : tag;
-                $tagHidden.val(newValue);
-            }
-
-            $tagCluster.removeClass('hidden');
-
-            $this.val('');
+            const hiddenValue = $tagHidden.val();
+            const newValue = hiddenValue !== '' ? hiddenValue + ',' + tag : tag;
+            $tagHidden.val(newValue);
         }
+
+        $tagCluster.removeClass('hidden');
+
+        $this.val('');
     }
+});
+
+$(document).on('click', '.js-delete-tag', function() { // eslint-disable-line
+    const $this = $(this);
+    const $badge = $this.closest('.js-tag-badge');
+    const $tagCluster = $this.closest('.js-tag-cluster');
+    const $tagHidden = $tagCluster.siblings('#bookTagsHidden');
+
+    const tagText = $this.siblings('.js-tag-text').text();
+    const tags = $tagHidden.val().split(',');
+    const newTags = tags.filter(function(tag) {
+        return tag !== tagText;
+    });
+
+    $tagHidden.val(newTags);
+    $badge.remove();
 });
 
 

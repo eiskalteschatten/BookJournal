@@ -8,6 +8,33 @@
         width: $size;
     }
 
+    .tag-cluster {
+        .tag-badge {
+            background: $tagBadgeBg;
+            border-radius: 5px;
+            display: inline-block;
+            padding: 7px 10px;
+            margin: 15px 15px 0 0;
+
+            &:hover {
+                background: $tagBadgeHoverBg;
+
+                .delete-tag {
+                    opacity: 1;
+                }
+            }
+
+            .delete-tag {
+                margin-left: 3px;
+                opacity: .2;
+
+                img {
+                    vertical-align: text-top;
+                }
+            }
+        }
+    }
+
     .rating-stars {
         $starSize: 24px;
 

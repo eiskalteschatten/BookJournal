@@ -19,6 +19,9 @@ $toolbarIconPlus: '../images/si-glyph-button-plus-dark.svg';
 
 $colorCircleBorderColor: #333333;
 
+$tagBadgeBg: lighten($darkBg, 5%);
+$tagBadgeHoverBg: lighten($darkBg, 7%);
+
 $ratingStarsFull: '../images/star-dark.svg';
 $ratingStarsEmpty: '../images/star-empty-dark.svg';
 $ratingStarsRemove: '../images/si-glyph-trash.svg';
