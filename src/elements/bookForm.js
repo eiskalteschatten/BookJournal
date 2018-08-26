@@ -69,8 +69,8 @@ class BookForm {
 
     async render() {
         const categories = await Category.getAllSorted();
-
-        let book;
+        let ratingClasses = ['empty', 'empty', 'empty', 'empty', 'empty'];
+        let book = [];
 
         if (this.id) {
             book = await Book.findById(this.id);
@@ -93,17 +93,15 @@ class BookForm {
                 book.categoryNames = categoryNames;
             }
 
-            let ratingClasses = ['empty', 'empty', 'empty', 'empty', 'empty'];
-
             if (book.rating) {
                 ratingClasses = ratingClasses.map((element, index) => {
                     const index1 = index + 1;
                     return (index1 <= book.rating) ? 'full' : element;
                 });
             }
-
-            book.ratingClasses = ratingClasses;
         }
+
+        book.ratingClasses = ratingClasses;
 
         return new Promise((resolve, reject) => {
             const template = path.join(__dirname, '../templates/bookForm.njk');
