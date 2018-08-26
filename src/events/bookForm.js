@@ -42,28 +42,26 @@ let saveTimeout;
 async function saveBook() {
     clearTimeout(saveTimeout);
 
-    const $bookActivityLoader = $('#bookActivityLoader');
-    $bookActivityLoader.removeClass('hidden');
-
     saveTimeout = setTimeout(() => {
-        $bookActivityLoader.addClass('hidden');
+        const $bookActivityLoader = $('#bookActivityLoader');
+        $bookActivityLoader.removeClass('hidden');
+
+        setTimeout(() => {
+            $bookActivityLoader.addClass('hidden');
+        }, 500);
     }, 1000);
 }
 
 $(window).on('save-book', saveBook); // eslint-disable-line
 $(document).on('change', '.js-book-form-field', saveBook); // eslint-disable-line
-
-$(document).on('keypress', '.js-book-form-field', function() {  // eslint-disable-line
-    // Timeout stuff here maybe
-    saveBook();
-});
+$(document).on('keyup', '.js-book-form-field', saveBook); // eslint-disable-line
 
 
 // Bookcover
 
 async function saveBookcover(imagePath) {
     const fileInfo = await BookForm.saveBookcover(imagePath);
-    if (fileInfo.fileName) $('#bookBookcoverFileName').val(fileInfo.fileName);
+    if (fileInfo.fileName) $('#bookBookcoverFileName').val(fileInfo.fileName).trigger('change');
 
     $('#bookcoverImage').attr('style', `background-image: url('${fileInfo.filePath}')`);
     $('#bookcoverUploadArea').addClass('has-bookcover');
@@ -129,7 +127,7 @@ function deleteBadge($deleteButton) {
             .prop('disabled', false);
     }
 
-    $tagHidden.val(newTags);
+    $tagHidden.val(newTags).trigger('change');
     $badge.remove();
 }
 
@@ -158,6 +156,7 @@ $(document).on('keypress', '#bookTags', async function(e) { // eslint-disable-li
             }
         }
 
+        $tagHidden.trigger('change');
         $tagCluster.removeClass('hidden');
         $this.val('');
     }
@@ -180,7 +179,7 @@ $(document).on('change', '#bookCategories', async function() { // eslint-disable
 
     const hiddenValue = $tagHidden.val();
     const newValue = hiddenValue !== '' ? hiddenValue + ',' + categoryId : categoryId;
-    $tagHidden.val(newValue);
+    $tagHidden.val(newValue).trigger('change');
 
     $tagCluster.removeClass('hidden');
     $selected.prop('disabled', true);
@@ -238,7 +237,7 @@ $(document).on('click', '.js-rating-star', function() { // eslint-disable-line
     });
 
     const rating = Math.max(...values);
-    $('#booksRating').val(rating);
+    $('#booksRating').val(rating).trigger('change');
 });
 
 $(document).on('click', '.js-remove-rating', function() { // eslint-disable-line
@@ -246,5 +245,5 @@ $(document).on('click', '.js-remove-rating', function() { // eslint-disable-line
         .removeClass('full')
         .addClass('empty');
 
-    $('#booksRating').val('');
+    $('#booksRating').val('').trigger('change');
 });
