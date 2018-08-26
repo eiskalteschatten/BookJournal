@@ -1,6 +1,5 @@
 'use strict';
 
-const uuidv4 = require('uuid/v4');
 const path = require('path');
 const fs = require('fs');
 const nunjucks = require('nunjucks');
@@ -10,7 +9,6 @@ class ListElement {
     constructor(displayName, iconPath = '') {
         this.displayName = displayName;
         this.iconPath = iconPath;
-        this.id = uuidv4();
         this.classes = 'list-element js-list-element';
         this.type = 'clickable';
     }

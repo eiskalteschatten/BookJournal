@@ -1,0 +1,37 @@
+.book-list {
+    .list-element {
+        border-bottom: 1px solid $listBorderColor;
+        padding: 0 !important;
+        height: 70px;
+
+        .list-element-color {
+            float: left;
+            height: 100%;
+            margin-right: 7px;
+            width: 5px;
+        }
+
+        .content-wrapper {
+            float: left;
+            height: 100%;
+            padding: 10px 5px;
+
+            .list-element-bookcover {
+                background-size: cover;
+                float: left;
+                height: 100%;
+                margin-right: 12px;
+                width: 50px;
+            }
+
+            .list-element-name {
+                font-weight: bold;
+                margin-bottom: 5px;
+            }
+
+            .list-element-author {
+                font-size: .8em;
+            }
+        }
+    }
+}

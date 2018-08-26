@@ -53,6 +53,10 @@ $titleBarHeight: 22px;
         cursor: col-resize;
         flex: 0 0 auto;
         width: 2px;
+
+        &.sidebar {
+            background-color: $sidebarBg;
+        }
     }
 }
 

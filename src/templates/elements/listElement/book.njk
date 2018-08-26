@@ -1,0 +1,18 @@
+{% set data = '' %}
+
+{% for field, value in dataFields %}
+    {% set data = data + 'data-' + field + '="' + value + '"' %}
+{% endfor %}
+
+<li data-id="{{ book.id }}" class="{{ book.classes }}"{{ data | safe }}>
+    <div class="list-element-color" style="background-color: {{ book.color }};"></div>
+
+    <div class="content-wrapper">
+        <div class="list-element-bookcover" style="background-image: url('{{ book.bookcoverPath }}');"></div>
+
+        <div class="float-left">
+            <div class="list-element-name">{{ book.title }}</div>
+            <div class="list-element-author">{{ book.author }}</div>
+        </div>
+    </div>
+</li>
