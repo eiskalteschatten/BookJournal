@@ -8,7 +8,11 @@
     <div class="list-element-color" style="background-color: {{ book.color }};"></div>
 
     <div class="content-wrapper">
-        <div class="list-element-bookcover" style="background-image: url('{{ book.bookcoverPath }}');"></div>
+        {% if book.bookcoverPath %}
+            <div class="list-element-bookcover" style="background-image: url('{{ book.bookcoverPath }}');"></div>
+        {% else %}
+            <div class="list-element-bookcover no-cover"></div>
+        {% endif %}
 
         <div class="float-left">
             <div class="list-element-name">{{ book.title }}</div>

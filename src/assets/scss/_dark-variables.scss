@@ -7,7 +7,6 @@ $middleColumnBg: lighten($darkBg, 1%);
 $listHoverBg: lighten($sidebarBg, 5%);
 $listSelectedBg: #063353;
 $listBorderColor: darken($darkBg, 3%);
-$bookListHoverBg: lighten($middleColumnBg, 1%);
 
 $formBg: lighten($darkBg, 7%);
 $formColor: $darkFontColor;
@@ -22,6 +21,9 @@ $toolbarIconPlus: '../images/si-glyph-button-plus-dark.svg';
 $noBookSelected: '../images/si-glyph-book-open-dark.svg';
 
 $gear: '../images/gear-dark.svg';
+
+$bookcoverListPlaceholder: '../images/bookcover-dark.svg';
+$bookListHoverBg: lighten($middleColumnBg, 1%);
 
 $bookcoverUploadArea: '../images/bookcover-dark.svg';
 $uploadAreaBorderColor: #333333;
