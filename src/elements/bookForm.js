@@ -81,6 +81,18 @@ class BookForm {
 
             if (book.tags)
                 book.tagArray = book.tags.split(',');
+
+            if (book.categories) {
+                const ids = book.categories.split(',');
+                const categoryArray = [];
+
+                for (const id of ids) {
+                    const category = await Category.findById(id);
+                    categoryArray.push(category.name);
+                }
+
+                book.categoryArray = categoryArray;
+            }
         }
 
         return new Promise((resolve, reject) => {
