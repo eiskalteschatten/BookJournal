@@ -43,8 +43,12 @@
                     </div>
                     <div class="col-md-3">
                         <div class="form-group not-read-yet">
+                            {% if book.notReadYet == true %}
+                                {% set notReadYet = 'checked' %}
+                            {% endif %}
+
                             <label for="bookNotReadYet">
-                                <input type="checkbox" id="bookNotReadYet" class="js-book-form-field">Not read yet
+                                <input type="checkbox" id="bookNotReadYet" class="js-book-form-field" {{ notReadYet }}>Not read yet
                             </label>
                         </div>
                     </div>
