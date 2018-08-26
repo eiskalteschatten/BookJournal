@@ -9,9 +9,13 @@
     <div class="group">
         <div class="row">
             <div class="col-md-4">
-                <div class="bookcover-upload-area" id="bookcoverUploadArea">
+                {% if book.bookcoverPath %}
+                    {% set hasCover = 'has-bookcover' %}
+                {% endif %}
+
+                <div class="bookcover-upload-area {{ hasCover }}" id="bookcoverUploadArea">
                     <div class="instructions">Click here or drag and drop an image<br>to set the bookcover</div>
-                    <div class="bookcover" id="bookcoverImage"></div>
+                    <div class="bookcover" id="bookcoverImage" style="background-image: url('{{ book.bookcoverPath }}')"></div>
                 </div>
 
                 <input type="hidden" id="bookBookcoverFileName" class="js-book-form-field" value="{{ book.bookcover }}">
