@@ -13,8 +13,8 @@
 </div>
 
 
-<div class="{% if not book.categoryArray %}hidden{% endif %} tag-cluster js-tag-cluster js-category-cluster" id="categoryCluster">
-    {% for tag in book.categoryArray %}
+<div class="{% if not book.categoryNames %}hidden{% endif %} tag-cluster js-tag-cluster js-category-cluster" id="categoryCluster">
+    {% for deleteId, tag in book.categoryNames %}
         {% set typeClass = 'category' %}
         {% include "src/templates/bookForm/tagCategoryBadge.njk" %}
     {% endfor %}

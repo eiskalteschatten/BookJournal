@@ -162,6 +162,10 @@ function deleteBadge($deleteButton) {
     $badge.remove();
 }
 
+$(document).on('click', '.js-delete-tag', function() { // eslint-disable-line
+    deleteBadge($(this));
+});
+
 $(document).on('keypress', '#bookTags', async function(e) { // eslint-disable-line
     if (e.keyCode !== 13) return;
     e.preventDefault();
@@ -191,10 +195,6 @@ $(document).on('keypress', '#bookTags', async function(e) { // eslint-disable-li
         $tagCluster.removeClass('hidden');
         $this.val('');
     }
-});
-
-$(document).on('click', '.js-delete-tag', function() { // eslint-disable-line
-    deleteBadge($(this));
 });
 
 $(document).on('change', '#bookCategories', async function() { // eslint-disable-line

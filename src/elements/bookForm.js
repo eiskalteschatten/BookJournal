@@ -84,14 +84,14 @@ class BookForm {
 
             if (book.categories) {
                 const ids = book.categories.split(',');
-                const categoryArray = [];
+                const categoryNames = {};
 
                 for (const id of ids) {
                     const category = await Category.findById(id);
-                    categoryArray.push(category.name);
+                    categoryNames[id] = category.name;
                 }
 
-                book.categoryArray = categoryArray;
+                book.categoryNames = categoryNames;
             }
         }
 

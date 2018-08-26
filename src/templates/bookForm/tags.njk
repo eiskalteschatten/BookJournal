@@ -7,6 +7,7 @@
 <div class="{% if not book.tagArray %}hidden{% endif %} tag-cluster js-tag-cluster" id="tagCluster">
     {% for tag in book.tagArray %}
         {% set typeClass = 'tag' %}
+        {% set deleteId = tag %}
         {% include "src/templates/bookForm/tagCategoryBadge.njk" %}
     {% endfor %}
 </div>
