@@ -49,6 +49,28 @@ async function saveBook() {
     const $bookActivityLoader = $('#bookActivityLoader');
     $bookActivityLoader.removeClass('hidden');
 
+    const formData = {};
+
+    $('#bookForm').find('input[type!="checkbox"]').each(function() {
+        const $this = $(this);
+        formData[$this.attr('id')] = $this.val();
+    });
+
+    $('#bookForm').find('input[type="checkbox"]').each(function() {
+        const $this = $(this);
+        formData[$this.attr('id')] = $this.prop('checked');
+    });
+
+    $('#bookForm').find('textarea').each(function() {
+        const $this = $(this);
+        formData[$this.attr('id')] = $this.val();
+    });
+
+    const bookForm = new BookForm(formData);
+    const id = await bookForm.save();
+
+    $('#bookBookcoverId').val(id);
+
     setTimeout(() => {
         $bookActivityLoader.addClass('hidden');
     }, 500);

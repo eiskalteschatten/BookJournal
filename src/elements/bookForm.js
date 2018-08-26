@@ -9,11 +9,63 @@ const uuidv4 = require('uuid/v4');
 
 const config = require('../config/config');
 
-// const Book = require('../models/book');
+const Book = require('../models/book');
 const Category = require('../models/category');
+
+const bookFormMap = {
+    bookBookcoverId: 'id',
+    bookTitle: 'title',
+    bookAuthor: 'author',
+    bookGenre: 'genre',
+    bookDateRead: 'dateRead',
+    bookNotReadYet: 'notReadYet',
+    bookNumberOfPages: 'pageCount',
+    bookColor: 'color',
+    bookBookcoverFileName: 'bookcover',
+    bookPublisher: 'publisher',
+    bookIsbn: 'isbn',
+    bookYearPublished: 'yearPublished',
+    bookNationality: 'nationality',
+    bookLanguageReadIn: 'languageReadIn',
+    bookOriginalLanguage: 'originalLanguage',
+    bookTranslator: 'translator',
+    bookTagsHidden: 'tags',
+    bookCategoriesHidden: 'categories',
+    booksRating: 'rating',
+    bookSummary: 'summary',
+    bookCommentary: 'commentary'
+};
 
 
 class BookForm {
+    constructor(formData) {
+        const newFormData = {};
+
+        for (const formId in formData) {
+            const newKey = bookFormMap[formId];
+            newFormData[newKey] = formData[formId];
+        }
+
+        this.formData = newFormData;
+        this.id = newFormData.id;
+    }
+
+    async save() {
+        const formData = this.formData;
+        const id = this.id;
+        let book;
+
+        if (id === '') {
+            book = await Book.create(formData);
+            this.id = book.id;
+        }
+        else {
+            await Book.update(formData, {where: {id: id}});
+        }
+
+        return this.id;
+    }
+
     async render() {
         const categories = await Category.getAllSorted();
 
