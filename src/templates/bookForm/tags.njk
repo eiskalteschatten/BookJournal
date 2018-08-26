@@ -1,11 +1,12 @@
-<input type="hidden" value="{{ tags }}" class="tag-hidden js-tag-hidden js-book-form-field" id="bookTagsHidden" value="{{ book.tags }}">
+<input type="hidden" class="tag-hidden js-tag-hidden js-book-form-field" id="bookTagsHidden" value="{{ book.tags }}">
 
 <div class="pre-tag-cluster-wrapper js-pre-tag-cluster-wrapper">
     <input type="text" class="form-control full-width" id="bookTags" placeholder="Type comma-seperated tags and press enter">
 </div>
 
-<div class="{% if not tags %}hidden{% endif %} tag-cluster js-tag-cluster" id="tagCluster">
-    {% for tag in tags %}
+<div class="{% if not book.tagArray %}hidden{% endif %} tag-cluster js-tag-cluster" id="tagCluster">
+    {% for tag in book.tagArray %}
+        {% set typeClass = 'tag' %}
         {% include "src/templates/bookForm/tagCategoryBadge.njk" %}
     {% endfor %}
 </div>

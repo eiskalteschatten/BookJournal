@@ -75,8 +75,12 @@ class BookForm {
 
         if (this.id) {
             book = await Book.findById(this.id);
+
             if (book.bookcover)
                 book.bookcoverPath = path.join(config.bookcovers.path, book.bookcover);
+
+            if (book.tags)
+                book.tagArray = book.tags.split(',');
         }
 
         return new Promise((resolve, reject) => {
