@@ -38,22 +38,19 @@ const bookFormMap = {
 
 
 class BookForm {
-    constructor(formData) {
-        const newFormData = {};
-
-        for (const formId in formData) {
-            const newKey = bookFormMap[formId];
-            newFormData[newKey] = formData[formId];
-        }
-
-        this.formData = newFormData;
-        this.id = newFormData.id;
+    constructor(id) {
+        this.id = id;
     }
 
-    async save() {
-        const formData = this.formData;
+    async save(oldFormData) {
+        const formData = {};
         const id = this.id;
         let book;
+
+        for (const formId in oldFormData) {
+            const newKey = bookFormMap[formId];
+            formData[newKey] = oldFormData[formId];
+        }
 
         if (id === '') {
             book = await Book.create(formData);
@@ -64,6 +61,10 @@ class BookForm {
         }
 
         return this.id;
+    }
+
+    async delete() {
+        await Book.destroy({where: {id: this.id}});
     }
 
     async render() {

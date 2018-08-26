@@ -66,10 +66,12 @@ async function saveBook() {
         formData[$this.attr('id')] = $this.val();
     });
 
-    const bookForm = new BookForm(formData);
-    const id = await bookForm.save();
+    const id = $('#bookBookcoverId').val();
 
-    $('#bookBookcoverId').val(id);
+    const bookForm = new BookForm(id);
+    const newId = await bookForm.save(formData);
+
+    $('#bookBookcoverId').val(newId);
 
     setTimeout(() => {
         $bookActivityLoader.addClass('hidden');
