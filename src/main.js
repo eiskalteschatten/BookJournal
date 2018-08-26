@@ -133,3 +133,15 @@ ipcMain.on('show-book-utility-menu', event => {
     const menu = Menu.buildFromTemplate(bookUtilityMenu);
     menu.popup(window);
 });
+
+ipcMain.on('enable-book-items', () => {
+    const menu = Menu.getApplicationMenu();
+    menu.getMenuItemById('saveBook').enabled = true;
+    menu.getMenuItemById('deleteBook').enabled = true;
+});
+
+ipcMain.on('disable-book-items', () => {
+    const menu = Menu.getApplicationMenu();
+    menu.getMenuItemById('saveBook').enabled = false;
+    menu.getMenuItemById('deleteBook').enabled = false;
+});

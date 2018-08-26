@@ -22,8 +22,19 @@ const template = [
             },
             {type: 'separator'},
             {
+                id: 'saveBook',
+                label: 'Save Book',
+                accelerator: 'CmdOrCtrl+S',
+                enabled: false,
+                click: async (item, focusedWindow) => {
+                    focusedWindow.webContents.send('save-book');
+                }
+            },
+            {
+                id: 'deleteBook',
                 label: 'Delete Book',
                 accelerator: 'CmdOrCtrl+Shift+D',
+                enabled: false,
                 click: async (item, focusedWindow) => {
                     dialog.showMessageBox({
                         message: 'Are you sure you want to delete this book?',

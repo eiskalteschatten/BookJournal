@@ -18,6 +18,10 @@ $(document).on('click', '#bookNotReadYet', function() { // eslint-disable-line
     else $('#bookDateRead').prop('disabled', false);
 });
 
+$(window).on('book-form-loaded', function() { // eslint-disable-line
+    ipcRenderer.send('enable-book-items');
+});
+
 
 // Create New Book
 
@@ -29,6 +33,8 @@ async function createNewBook() {
 
     const renderedStars = await bookForm.renderRatingStars();
     $('#ratingStarsAnchor').html(renderedStars);
+
+    $(window).trigger('book-form-loaded'); // eslint-disable-line
 }
 
 ipcRenderer.on('create-new-book', createNewBook);
@@ -40,21 +46,22 @@ $(document).on('click', '.js-new-book', createNewBook); // eslint-disable-line
 let saveTimeout;
 
 async function saveBook() {
-    clearTimeout(saveTimeout);
+    const $bookActivityLoader = $('#bookActivityLoader');
+    $bookActivityLoader.removeClass('hidden');
 
-    saveTimeout = setTimeout(() => {
-        const $bookActivityLoader = $('#bookActivityLoader');
-        $bookActivityLoader.removeClass('hidden');
-
-        setTimeout(() => {
-            $bookActivityLoader.addClass('hidden');
-        }, 500);
-    }, 1000);
+    setTimeout(() => {
+        $bookActivityLoader.addClass('hidden');
+    }, 500);
 }
 
-$(window).on('save-book', saveBook); // eslint-disable-line
-$(document).on('change', '.js-book-form-field', saveBook); // eslint-disable-line
-$(document).on('keyup', '.js-book-form-field', saveBook); // eslint-disable-line
+async function saveBookTimeout() {
+    clearTimeout(saveTimeout);
+    saveTimeout = setTimeout(saveBook, 1000);
+}
+
+ipcRenderer.on('save-book', saveBook);
+$(document).on('change', '.js-book-form-field', saveBookTimeout); // eslint-disable-line
+$(document).on('keyup', '.js-book-form-field', saveBookTimeout); // eslint-disable-line
 
 
 // Bookcover
