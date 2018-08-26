@@ -1,5 +1,6 @@
 'use strict';
 
+const $ = require('jquery');
 const path = require('path');
 const fs = require('fs');
 const nunjucks = require('nunjucks');
@@ -41,6 +42,11 @@ class BookListElement extends ListElement {
         object.classes = this.classes;
 
         return object;
+    }
+
+    static onClick($element) {
+        $('.js-book-list-element').removeClass('selected');
+        $element.addClass('selected');
     }
 }
 

@@ -6,6 +6,8 @@ $middleColumnBg: lighten($darkBg, 1%);
 
 $listHoverBg: lighten($sidebarBg, 5%);
 $listSelectedBg: #063353;
+$listBorderColor: darken($darkBg, 3%);
+$bookListHoverBg: lighten($middleColumnBg, 1%);
 
 $formBg: lighten($darkBg, 7%);
 $formColor: $darkFontColor;
@@ -16,8 +18,6 @@ $buttonActiveBg: darken($buttonBg, 10%);
 
 $toolbarButtonColor: $darkFontColor;
 $toolbarIconPlus: '../images/si-glyph-button-plus-dark.svg';
-
-$listBorderColor: #111111;
 
 $noBookSelected: '../images/si-glyph-book-open-dark.svg';
 

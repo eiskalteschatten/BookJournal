@@ -4,6 +4,14 @@
         padding: 0 !important;
         height: 70px;
 
+        &:hover {
+            background-color: $bookListHoverBg !important;
+        }
+
+        &.selected {
+            background: $listSelectedBg !important;
+        }
+
         .list-element-color {
             float: left;
             height: 100%;
