@@ -32,7 +32,7 @@ const bookFormMap = {
     bookTranslator: 'translator',
     bookTagsHidden: 'tags',
     bookCategoriesHidden: 'categories',
-    booksRating: 'rating',
+    bookRating: 'rating',
     bookSummary: 'summary',
     bookCommentary: 'commentary'
 };
@@ -47,7 +47,6 @@ class BookForm {
         const formData = {};
         const id = this.id;
         let book;
-
         for (const formId in oldFormData) {
             const newKey = bookFormMap[formId];
             formData[newKey] = oldFormData[formId];

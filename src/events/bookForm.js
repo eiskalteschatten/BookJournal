@@ -268,7 +268,7 @@ $(document).on('click', '.js-rating-star', function() { // eslint-disable-line
     });
 
     const rating = Math.max(...values);
-    $('#booksRating').val(rating).trigger('change');
+    $('#bookRating').val(rating).trigger('change');
 });
 
 $(document).on('click', '.js-remove-rating', function() { // eslint-disable-line
@@ -276,5 +276,5 @@ $(document).on('click', '.js-remove-rating', function() { // eslint-disable-line
         .removeClass('full')
         .addClass('empty');
 
-    $('#booksRating').val('').trigger('change');
+    $('#bookRating').val('').trigger('change');
 });
