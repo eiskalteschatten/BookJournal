@@ -92,6 +92,17 @@ class BookForm {
 
                 book.categoryNames = categoryNames;
             }
+
+            let ratingClasses = ['empty', 'empty', 'empty', 'empty', 'empty'];
+
+            if (book.rating) {
+                ratingClasses = ratingClasses.map((element, index) => {
+                    const index1 = index + 1;
+                    return (index1 <= book.rating) ? 'full' : element;
+                });
+            }
+
+            book.ratingClasses = ratingClasses;
         }
 
         return new Promise((resolve, reject) => {
@@ -105,31 +116,6 @@ class BookForm {
             return nunjucks.renderString(templateString, {
                 book,
                 categories
-            });
-        }).catch(error => {
-            console.error(error);
-        });
-    }
-
-    async renderRatingStars() {
-        // const fullClass = 'full';
-        const emptyClass = 'empty';
-        const classes = [emptyClass, emptyClass, emptyClass, emptyClass, emptyClass];
-
-        return new Promise((resolve, reject) => {
-            const template = path.join(__dirname, '../templates/bookForm/ratingStars.njk');
-
-            fs.readFile(template, 'utf8', (error, string) => {
-                if (error) reject(error);
-                resolve(string);
-            });
-        }).then(templateString => {
-            return nunjucks.renderString(templateString, {
-                firstClass: classes[0],
-                secondClass: classes[1],
-                thirdClass: classes[2],
-                fourthClass: classes[3],
-                fifthClass: classes[4]
             });
         }).catch(error => {
             console.error(error);
@@ -208,9 +194,6 @@ class BookForm {
 
     async afterRender() {
         $('#bookFormWrapper').addClass('form-displayed');
-
-        const renderedStars = await this.renderRatingStars();
-        $('#ratingStarsAnchor').html(renderedStars);
     }
 }
 
