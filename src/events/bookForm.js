@@ -18,8 +18,11 @@ $(document).on('click', '#bookNotReadYet', function() { // eslint-disable-line
     else $('#bookDateRead').prop('disabled', false);
 });
 
-$(window).on('book-form-loaded', function() { // eslint-disable-line
+$(window).on('book-form-loaded', function(event, isNewBook = false) { // eslint-disable-line
     ipcRenderer.send('enable-book-items');
+
+    if (isNewBook)
+        $('.js-book-list-element').removeClass('selected');
 });
 
 
@@ -29,12 +32,9 @@ async function createNewBook() {
     const bookForm = new BookForm();
     const rendered = await bookForm.render();
     $('#bookDetails').html(rendered);
-    $('#bookFormWrapper').addClass('form-displayed');
+    await bookForm.afterRender();
 
-    const renderedStars = await bookForm.renderRatingStars();
-    $('#ratingStarsAnchor').html(renderedStars);
-
-    $(window).trigger('book-form-loaded'); // eslint-disable-line
+    $(window).trigger('book-form-loaded', [true]); // eslint-disable-line
 }
 
 ipcRenderer.on('create-new-book', createNewBook);

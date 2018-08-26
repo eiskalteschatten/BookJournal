@@ -4,7 +4,7 @@
 
 <form class="book-form" id="bookForm">
 
-    <input type="hidden" id="bookBookcoverId">
+    <input type="hidden" id="bookBookcoverId" value="{{ book.id }}">
 
     <div class="group">
         <div class="row">
@@ -14,27 +14,27 @@
                     <div class="bookcover" id="bookcoverImage"></div>
                 </div>
 
-                <input type="hidden" id="bookBookcoverFileName" class="js-book-form-field">
+                <input type="hidden" id="bookBookcoverFileName" class="js-book-form-field" value="{{ book.bookcover }}">
             </div>
             <div class="col-md-8">
                 <div class="form-group">
                     <label for="bookTitle">Title</label>
-                    <input type="text" class="form-control js-book-form-field full-width" id="bookTitle">
+                    <input type="text" class="form-control js-book-form-field full-width" id="bookTitle" value="{{ book.title }}">
                 </div>
                 <div class="form-group">
                     <label for="bookAuthor">Author</label>
-                    <input type="text" class="form-control js-book-form-field full-width" id="bookAuthor">
+                    <input type="text" class="form-control js-book-form-field full-width" id="bookAuthor" value="{{ book.author }}">
                 </div>
                 <div class="form-group">
                     <label for="bookGenre">Genre</label>
-                    <input type="text" class="form-control js-book-form-field full-width" id="bookGenre">
+                    <input type="text" class="form-control js-book-form-field full-width" id="bookGenre" value="{{ book.genre }}">
                 </div>
 
                 <div class="row">
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="bookDateRead">Date Read</label>
-                            <input type="date" class="form-control js-book-form-field full-width" id="bookDateRead">
+                            <input type="date" class="form-control js-book-form-field full-width" id="bookDateRead" value="{{ book.dateRead }}">
                         </div>
                     </div>
                     <div class="col-md-3">
@@ -47,14 +47,14 @@
                     <div class="col-md-3">
                         <div class="form-group">
                             <label for="bookNumberOfPages">Page Count</label>
-                            <input type="number" class="form-control js-book-form-field full-width" id="bookNumberOfPages">
+                            <input type="number" class="form-control js-book-form-field full-width" id="bookNumberOfPages" value="{{ book.pageCount }}">
                         </div>
                     </div>
                     <div class="col-md-2">
                         <div class="form-group">
                             <label for="bookColor">Color</label>
-                            <input type="color" id="bookColor" class="hidden js-book-form-color-form js-book-form-field">
-                            <div class="color-stripe js-book-form-color-stripe"></div>
+                            <input type="color" id="bookColor" class="hidden js-book-form-color-form js-book-form-field" value="{{ book.color }}">
+                            <div class="color-stripe js-book-form-color-stripe" style="background-color: {{ book.color }};"></div>
                         </div>
                     </div>
                 </div>
@@ -69,17 +69,17 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="bookPublisher">Publisher</label>
-                    <input type="text" class="form-control js-book-form-field full-width" id="bookPublisher">
+                    <input type="text" class="form-control js-book-form-field full-width" id="bookPublisher" value="{{ book.publisher }}">
                 </div>
                 <div class="form-group">
                     <label for="bookYearPublished">Year Published</label>
-                    <input type="number" class="form-control js-book-form-field full-width" id="bookYearPublished">
+                    <input type="number" class="form-control js-book-form-field full-width" id="bookYearPublished" value="{{ book.yearPublished }}">
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="bookIsbn">ISBN</label>
-                    <input type="text" class="form-control js-book-form-field full-width" id="bookIsbn">
+                    <input type="text" class="form-control js-book-form-field full-width" id="bookIsbn" value="{{ book.isbn }}">
                 </div>
             </div>
         </div>
@@ -92,21 +92,21 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="bookNationality">Nationality</label>
-                    <input type="text" class="form-control js-book-form-field full-width" id="bookNationality">
+                    <input type="text" class="form-control js-book-form-field full-width" id="bookNationality" value="{{ book.nationality }}">
                 </div>
                 <div class="form-group">
                     <label for="bookOriginalLanguage">Original Language</label>
-                    <input type="text" class="form-control js-book-form-field full-width" id="bookOriginalLanguage">
+                    <input type="text" class="form-control js-book-form-field full-width" id="bookOriginalLanguage" value="{{ book.originalLanguage }}">
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="bookLanguageReadIn">Language Read In</label>
-                    <input type="text" class="form-control js-book-form-field full-width" id="bookLanguageReadIn">
+                    <input type="text" class="form-control js-book-form-field full-width" id="bookLanguageReadIn" value="{{ book.languageReadIn }}">
                 </div>
                 <div class="form-group">
                     <label for="bookTranslator">Translator</label>
-                    <input type="text" class="form-control js-book-form-field full-width" id="bookTranslator">
+                    <input type="text" class="form-control js-book-form-field full-width" id="bookTranslator" value="{{ book.translator }}">
                 </div>
             </div>
         </div>
@@ -147,11 +147,11 @@
 
         <div class="form-group">
             <label for="bookSummary">Summary</label>
-            <textarea class="form-control js-book-form-field full-width book-textarea" id="bookSummary"></textarea>
+            <textarea class="form-control js-book-form-field full-width book-textarea" id="bookSummary">{{ book.summary }}</textarea>
         </div>
         <div class="form-group">
             <label for="bookCommentary">Commentary</label>
-            <textarea class="form-control js-book-form-field full-width book-textarea" id="bookCommentary"></textarea>
+            <textarea class="form-control js-book-form-field full-width book-textarea" id="bookCommentary">{{ book.commentary }}</textarea>
         </div>
     </div>
 </form>

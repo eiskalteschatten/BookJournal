@@ -1,6 +1,7 @@
 'use strict';
 
 const dialog = require('electron').remote.dialog;
+const $ = require('jquery');
 const path = require('path');
 const fs = require('fs');
 const nunjucks = require('nunjucks');
@@ -70,6 +71,14 @@ class BookForm {
     async render() {
         const categories = await Category.getAllSorted();
 
+        let book;
+
+        if (this.id) {
+            book = await Book.findById(this.id);
+            if (book.bookcover)
+                book.bookcoverPath = path.join(config.bookcovers.path, book.bookcover);
+        }
+
         return new Promise((resolve, reject) => {
             const template = path.join(__dirname, '../templates/bookForm.njk');
 
@@ -79,6 +88,7 @@ class BookForm {
             });
         }).then(templateString => {
             return nunjucks.renderString(templateString, {
+                book,
                 categories
             });
         }).catch(error => {
@@ -179,6 +189,13 @@ class BookForm {
         }).catch(error => {
             console.error(error);
         });
+    }
+
+    async afterRender() {
+        $('#bookFormWrapper').addClass('form-displayed');
+
+        const renderedStars = await this.renderRatingStars();
+        $('#ratingStarsAnchor').html(renderedStars);
     }
 }
 
