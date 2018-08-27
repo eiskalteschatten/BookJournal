@@ -113,7 +113,7 @@ async function saveBook() {
 
 async function saveBookTimeout() {
     clearTimeout(saveTimeout);
-    saveTimeout = setTimeout(saveBook, 1000);
+    saveTimeout = setTimeout(saveBook, 500);
 }
 
 ipcRenderer.on('save-book', saveBook);
