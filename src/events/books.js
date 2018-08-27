@@ -176,14 +176,16 @@ async function saveBookcover(imagePath) {
 }
 
 async function deleteBookcover() {
-    const $bookcoverFileName = $('#bookBookcoverFileName');
-    const fileName = $bookcoverFileName.val();
+    if ($('#bookcoverUploadArea').hasClass('has-bookcover')) {
+        const $bookcoverFileName = $('#bookBookcoverFileName');
+        const fileName = $bookcoverFileName.val();
 
-    await BookForm.deleteBookcover(fileName);
+        await BookForm.deleteBookcover(fileName);
 
-    $bookcoverFileName .val('').trigger('change');
-    $('#bookcoverImage').attr('style', '');
-    $('#bookcoverUploadArea').removeClass('has-bookcover');
+        $bookcoverFileName .val('').trigger('change');
+        $('#bookcoverImage').attr('style', '');
+        $('#bookcoverUploadArea').removeClass('has-bookcover');
+    }
 }
 
 $(document).on('click', '#bookcoverUploadArea', function() { // eslint-disable-line
