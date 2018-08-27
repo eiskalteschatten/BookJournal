@@ -20,10 +20,8 @@ $(document).on('click', '#bookNotReadYet', function() { // eslint-disable-line
     else $('#bookDateRead').prop('disabled', false);
 });
 
-let $bookListElementWithContextMenu; // eslint-disable-line
-
 $(document).on('contextmenu', '.js-book-list-element', function() { // eslint-disable-line
-    $bookListElementWithContextMenu = $(this);
+    $(this).trigger('click');
     ipcRenderer.send('show-book-utility-menu');
 });
 
@@ -31,6 +29,29 @@ $(window).on('book-form-loaded', function() { // eslint-disable-line
     ipcRenderer.send('enable-book-items');
     $('#bookForm').addClass('js-is-visible');
 });
+
+
+async function updateBookList(book) {
+    const list = new BooksList();
+    await list.loadBooks();
+
+    const rendered = await list.render();
+    const $bookList = $('#bookList');
+    $bookList.html(rendered);
+
+    if (book.id !== '') {
+        const $listItem = $(`.js-book-list-element[data-id="${book.id}"]`);
+        $listItem.addClass('selected');
+    }
+}
+
+function clearBooklistSelection() {
+    $('.js-book-list-element').removeClass('selected');
+    $('#bookForm').removeClass('js-is-visible');
+    $('#bookDetails').html('');
+    $('#bookFormWrapper').removeClass('form-displayed');
+    ipcRenderer.send('disable-book-items');
+}
 
 
 // Create New Book
@@ -51,20 +72,6 @@ $(document).on('click', '.js-new-book', createNewBook); // eslint-disable-line
 
 
 // Save Book
-
-async function updateBookList(book) {
-    const list = new BooksList();
-    await list.loadBooks();
-
-    const rendered = await list.render();
-    const $bookList = $('#bookList');
-    $bookList.html(rendered);
-
-    if (book.id !== '') {
-        const $listItem = $(`.js-book-list-element[data-id="${book.id}"]`);
-        $listItem.addClass('selected');
-    }
-}
 
 let saveTimeout;
 
@@ -130,6 +137,22 @@ $(document).on('click', '.js-book-list-element', async function() { // eslint-di
     BookListElement.onClick($this);
     await loadBook($this.data('id'));
 });
+
+
+// Delete Book
+
+async function deleteBook() {
+    const $selectedBook = $('.js-book-list-element.selected');
+    const id = $selectedBook.data('id');
+
+    const bookForm = new BookForm(id);
+    await bookForm.delete();
+
+    $(`.js-book-list-element[data-id="${id}"]`).remove();
+    clearBooklistSelection();
+}
+
+ipcRenderer.on('delete-book', deleteBook);
 
 
 
