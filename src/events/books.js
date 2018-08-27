@@ -31,6 +31,16 @@ $(window).on('book-form-loaded', function() { // eslint-disable-line
 });
 
 
+function selectBook(id) {
+    const $bookList = $('#bookList');
+    const $listItem = $(`.js-book-list-element[data-id="${id}"]`);
+    $listItem.addClass('selected');
+
+    $bookList.animate({
+        scrollTop: $listItem.position().top + $bookList.scrollTop()
+    }, 100);
+}
+
 async function updateBookList(selectedId) {
     const list = new BooksList();
     await list.loadBooks();
@@ -39,10 +49,7 @@ async function updateBookList(selectedId) {
     const $bookList = $('#bookList');
     $bookList.html(rendered);
 
-    if (selectedId !== '') {
-        const $listItem = $(`.js-book-list-element[data-id="${selectedId}"]`);
-        $listItem.addClass('selected');
-    }
+    if (selectedId !== '') selectBook(selectedId);
 }
 
 function clearBooklistSelection() {
