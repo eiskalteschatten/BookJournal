@@ -211,6 +211,21 @@ class BookForm {
         });
     }
 
+    static async deleteBookcover(fileName) {
+        const bookcoverConfig = config.bookcovers;
+
+        return new Promise((resolve, reject) => {
+            const imagePath = path.join(bookcoverConfig.path, fileName);
+
+            fs.unlink(imagePath, error => {
+                if (error) reject(error);
+                resolve();
+            });
+        }).catch(error => {
+            console.error(error);
+        });
+    }
+
     async afterRender() {
         $('#bookFormWrapper').addClass('form-displayed');
     }

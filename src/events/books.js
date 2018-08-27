@@ -175,6 +175,17 @@ async function saveBookcover(imagePath) {
     $('#bookcoverUploadArea').addClass('has-bookcover');
 }
 
+async function deleteBookcover() {
+    const $bookcoverFileName = $('#bookBookcoverFileName');
+    const fileName = $bookcoverFileName.val();
+
+    await BookForm.deleteBookcover(fileName);
+
+    $bookcoverFileName .val('').trigger('change');
+    $('#bookcoverImage').attr('style', '');
+    $('#bookcoverUploadArea').removeClass('has-bookcover');
+}
+
 $(document).on('click', '#bookcoverUploadArea', function() { // eslint-disable-line
     dialog.showOpenDialog(remote.getCurrentWindow(), {
         filters: [
@@ -199,6 +210,12 @@ $(document).on('drop', '#bookcoverUploadArea', function(e) { // eslint-disable-l
     $('#bookcoverUploadArea').removeClass('dragover');
     saveBookcover(e.originalEvent.dataTransfer.files[0].path);
 });
+
+$(document).on('contextmenu', '#bookcoverUploadArea', function() { // eslint-disable-line
+    ipcRenderer.send('show-bookcover-context-menu');
+});
+
+ipcRenderer.on('delete-bookcover', deleteBookcover);
 
 
 // Book Color
