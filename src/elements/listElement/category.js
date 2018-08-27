@@ -62,15 +62,20 @@ class CategoryListElement extends SidebarListElement {
     }
 
     async saveValues(values) {
-        if (this.id === '') {
-            const category = await Category.create(values);
-            const id = category.id;
-            this.id = id;
-            return id;
+        try {
+            if (this.id === '') {
+                const category = await Category.create(values);
+                const id = category.id;
+                this.id = id;
+                return id;
+            }
+            else {
+                await Category.update(values, {where: {id: this.id}});
+                return this.id;
+            }
         }
-        else {
-            await Category.update(values, {where: {id: this.id}});
-            return this.id;
+        catch(error) {
+            console.error(error);
         }
     }
 

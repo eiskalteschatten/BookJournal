@@ -27,7 +27,9 @@ class BookListElement extends ListElement {
                 resolve(string);
             });
         }).then(templateString => {
-            return nunjucks.renderString(templateString, self.getNunjucksRenderObject());
+            return nunjucks.renderString(templateString, {
+                book: self.getNunjucksRenderObject()
+            });
         }).catch(error => {
             console.error(error);
         });

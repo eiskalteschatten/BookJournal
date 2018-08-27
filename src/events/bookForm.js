@@ -8,6 +8,7 @@ const config = require('../config/config');
 
 const BookListElement = require('../elements/listElement/book');
 const BookForm = require('../elements/bookForm');
+const BooksList = require('../elements/list/books');
 
 
 $(document).on('click', '#bookUtilityMenu', function() { // eslint-disable-line
@@ -51,6 +52,20 @@ $(document).on('click', '.js-new-book', createNewBook); // eslint-disable-line
 
 // Save Book
 
+async function updateBookList(book) {
+    const list = new BooksList();
+    await list.loadBooks();
+
+    const rendered = await list.render();
+    const $bookList = $('#bookList');
+    $bookList.html(rendered);
+
+    if (book.id !== '') {
+        const $listItem = $(`.js-book-list-element[data-id="${book.id}"]`);
+        $listItem.addClass('selected');
+    }
+}
+
 let saveTimeout;
 
 async function saveBook() {
@@ -82,10 +97,7 @@ async function saveBook() {
 
     $('#bookBookcoverId').val(newId);
 
-    const bookListElement = new BookListElement(book);
-    const rendered = await bookListElement.render();
-    $('#bookList').find('.js-list').prepend(rendered);
-    $('.js-book-list-element').first().addClass('selected');
+    await updateBookList(book);
 
     setTimeout(() => {
         $bookActivityLoader.addClass('hidden');
@@ -114,8 +126,6 @@ async function loadBook(id) {
 }
 
 $(document).on('click', '.js-book-list-element', async function() { // eslint-disable-line
-    if ($('#bookForm').hasClass('js-is-visible')) await saveBook();
-
     const $this = $(this);
     BookListElement.onClick($this);
     await loadBook($this.data('id'));

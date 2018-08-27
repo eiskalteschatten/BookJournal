@@ -47,20 +47,31 @@ class BookForm {
         const formData = {};
         const id = this.id;
         let book;
+
         for (const formId in oldFormData) {
             const newKey = bookFormMap[formId];
             formData[newKey] = oldFormData[formId];
         }
 
-        if (id === '') {
-            book = await Book.create(formData);
-            this.id = book.id;
+        try {
+            if (id === '') {
+                book = await Book.create(formData);
+                this.id = book.id;
+                book.isNewBook = true;
+            }
+            else {
+                book = await Book.update(formData, {
+                    where: {id: id},
+                    returning: true
+                });
+                book.isNewBook = false;
+            }
         }
-        else {
-            await Book.update(formData, {where: {id: id}});
+        catch(error) {
+            console.error(error);
         }
 
-        return this;
+        return book;
     }
 
     async delete() {
