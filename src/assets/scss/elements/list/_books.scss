@@ -1,4 +1,6 @@
 .book-list {
+    margin-top: 0;
+
     .list-element {
         border-bottom: 1px solid $listBorderColor;
         padding: 0 !important;
@@ -46,11 +48,5 @@
                 font-size: .8em;
             }
         }
-    }
-}
-
-.darwin {
-    .book-list {
-        margin-top: 0;
     }
 }
