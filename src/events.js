@@ -5,7 +5,7 @@ const $ = require('jquery');
 
 require('./events/sidebar');
 require('./events/categories');
-require('./events/bookForm');
+require('./events/books');
 require('./events/dragbar');
 
 $(document).on('contextmenu', 'input, textarea', function() { // eslint-disable-line
