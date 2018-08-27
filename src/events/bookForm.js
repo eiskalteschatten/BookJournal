@@ -6,6 +6,7 @@ const $ = require('jquery');
 
 const config = require('../config/config');
 
+const BookListElement = require('../elements/listElement/book');
 const BookForm = require('../elements/bookForm');
 
 
@@ -18,8 +19,16 @@ $(document).on('click', '#bookNotReadYet', function() { // eslint-disable-line
     else $('#bookDateRead').prop('disabled', false);
 });
 
+let $bookListElementWithContextMenu; // eslint-disable-line
+
+$(document).on('contextmenu', '.js-book-list-element', function() { // eslint-disable-line
+    $bookListElementWithContextMenu = $(this);
+    ipcRenderer.send('show-book-utility-menu');
+});
+
 $(window).on('book-form-loaded', function(event, isNewBook = false) { // eslint-disable-line
     ipcRenderer.send('enable-book-items');
+    $('#bookForm').addClass('js-is-visible');
 
     if (isNewBook)
         $('.js-book-list-element').removeClass('selected');
@@ -86,6 +95,27 @@ async function saveBookTimeout() {
 ipcRenderer.on('save-book', saveBook);
 $(document).on('change', '.js-book-form-field', saveBookTimeout); // eslint-disable-line
 $(document).on('keyup', '.js-book-form-field', saveBookTimeout); // eslint-disable-line
+
+
+// Load Book
+
+async function loadBook(id) {
+    const bookForm = new BookForm(id);
+    const rendered = await bookForm.render();
+    $('#bookDetails').html(rendered);
+    await bookForm.afterRender();
+
+    $(window).trigger('book-form-loaded'); // eslint-disable-line
+}
+
+$(document).on('click', '.js-book-list-element', async function() { // eslint-disable-line
+    if ($('#bookForm').hasClass('js-is-visible')) await saveBook();
+
+    const $this = $(this);
+    BookListElement.onClick($this);
+    await loadBook($this.data('id'));
+});
+
 
 
 // Bookcover

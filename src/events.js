@@ -5,7 +5,6 @@ const $ = require('jquery');
 
 require('./events/sidebar');
 require('./events/categories');
-require('./events/books');
 require('./events/bookForm');
 require('./events/dragbar');
 
