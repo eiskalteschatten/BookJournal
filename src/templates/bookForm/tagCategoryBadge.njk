@@ -1,3 +1,6 @@
 <span class="tag-badge js-tag-badge {{ typeClass }}" data-delete-id="{{ deleteId }}">
+    {% if typeClass == 'category' %}
+        <span class="category-badge-color js-category-badge-color" style="background-color: {{ category.color }};"></span>
+    {% endif %}
     <span class="delete-tag js-delete-tag"></span><span class="js-tag-text">{{ tag }}</span>
 </span>

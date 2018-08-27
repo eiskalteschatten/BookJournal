@@ -5,7 +5,7 @@
         <option value="-1" disabled selected>Select a Category</option>
 
         {% for category in categories %}
-            <option value="{{ category.id }}">{{ category.name }}</option>
+            <option value="{{ category.id }}" data-color="{{ category.color }}">{{ category.name }}</option>
         {% else %}
             <option disabled>No categories available</option>
         {% endfor %}
@@ -13,9 +13,10 @@
 </div>
 
 
-<div class="{% if not book.categoryNames %}hidden{% endif %} tag-cluster js-tag-cluster js-category-cluster" id="categoryCluster">
-    {% for deleteId, tag in book.categoryNames %}
+<div class="{% if not book.categoryBadges %}hidden{% endif %} tag-cluster js-tag-cluster js-category-cluster" id="categoryCluster">
+    {% for deleteId, category in book.categoryBadges %}
         {% set typeClass = 'category' %}
+        {% set tag = category.name %}
         {% include "src/templates/bookForm/tagCategoryBadge.njk" %}
     {% endfor %}
 </div>

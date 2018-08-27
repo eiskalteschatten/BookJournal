@@ -279,8 +279,9 @@ $(document).on('change', '#bookCategories', async function() { // eslint-disable
     const $tagHidden = $wrapper.siblings('.js-tag-hidden');
     const $tagCluster = $wrapper.siblings('.js-tag-cluster');
     const categoryId = $this.val();
+    const color = $selected.data('color');
 
-    const badge = await BookForm.renderTagCategoryBadge($selected.text(), categoryId, 'category');
+    const badge = await BookForm.renderTagCategoryBadge($selected.text(), categoryId, 'category', color);
     $tagCluster.append(badge);
 
     const hiddenValue = $tagHidden.val();

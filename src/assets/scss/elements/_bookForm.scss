@@ -122,12 +122,14 @@
                 }
             }
 
-            &.category {
-                background: $categoryBadgeBg;
-
-                &:hover {
-                    background: $categoryBadgeHoverBg;
-                }
+            .category-badge-color {
+                $size: 12px;
+                border: 1px solid $colorCircleBorderColor;
+                border-radius: 50%;
+                display: inline-block;
+                height: $size;
+                margin-right: 1px;
+                width: $size;
             }
 
             .delete-tag {

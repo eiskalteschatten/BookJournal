@@ -94,14 +94,17 @@ class BookForm {
 
             if (book.categories) {
                 const ids = book.categories.split(',');
-                const categoryNames = {};
+                const categoryBadges = {};
 
                 for (const id of ids) {
                     const category = await Category.findById(id);
-                    categoryNames[id] = category.name;
+                    categoryBadges[id] = {
+                        name: category.name,
+                        color: category.color
+                    };
                 }
 
-                book.categoryNames = categoryNames;
+                book.categoryBadges = categoryBadges;
             }
 
             if (book.rating) {
@@ -153,7 +156,7 @@ class BookForm {
         });
     }
 
-    static async renderTagCategoryBadge(tag, deleteId, typeClass) {
+    static async renderTagCategoryBadge(tag, deleteId, typeClass, color = '') {
         return new Promise((resolve, reject) => {
             const template = path.join(__dirname, '../templates/bookForm/tagCategoryBadge.njk');
 
@@ -162,11 +165,15 @@ class BookForm {
                 resolve(string);
             });
         }).then(templateString => {
-            return nunjucks.renderString(templateString, {
+            const values = {
                 tag,
                 deleteId,
                 typeClass
-            });
+            };
+
+            if (typeClass === 'category') values.category = { color };
+
+            return nunjucks.renderString(templateString, values);
         }).catch(error => {
             console.error(error);
         });
