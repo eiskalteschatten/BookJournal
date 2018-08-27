@@ -46,7 +46,7 @@ class BookForm {
     async save(oldFormData) {
         const formData = {};
         const id = this.id;
-        let book;
+        let book = {};
 
         for (const formId in oldFormData) {
             const newKey = bookFormMap[formId];
@@ -57,21 +57,16 @@ class BookForm {
             if (id === '') {
                 book = await Book.create(formData);
                 this.id = book.id;
-                book.isNewBook = true;
             }
             else {
-                book = await Book.update(formData, {
-                    where: {id: id},
-                    returning: true
-                });
-                book.isNewBook = false;
+                await Book.update(formData, { where: {id: id} });
             }
         }
         catch(error) {
             console.error(error);
         }
 
-        return book;
+        return this.id;
     }
 
     async delete() {

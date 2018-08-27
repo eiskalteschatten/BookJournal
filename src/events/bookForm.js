@@ -31,7 +31,7 @@ $(window).on('book-form-loaded', function() { // eslint-disable-line
 });
 
 
-async function updateBookList(book) {
+async function updateBookList(selectedId) {
     const list = new BooksList();
     await list.loadBooks();
 
@@ -39,8 +39,8 @@ async function updateBookList(book) {
     const $bookList = $('#bookList');
     $bookList.html(rendered);
 
-    if (book.id !== '') {
-        const $listItem = $(`.js-book-list-element[data-id="${book.id}"]`);
+    if (selectedId !== '') {
+        const $listItem = $(`.js-book-list-element[data-id="${selectedId}"]`);
         $listItem.addClass('selected');
     }
 }
@@ -99,12 +99,12 @@ async function saveBook() {
     const id = $('#bookBookcoverId').val();
 
     const bookForm = new BookForm(id);
-    const book = await bookForm.save(formData);
-    const newId = book.id;
+    const newId = await bookForm.save(formData);
 
-    $('#bookBookcoverId').val(newId);
-
-    await updateBookList(book);
+    if (newId) {
+        $('#bookBookcoverId').val(newId);
+        await updateBookList(newId);
+    }
 
     setTimeout(() => {
         $bookActivityLoader.addClass('hidden');
