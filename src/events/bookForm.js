@@ -26,24 +26,23 @@ $(document).on('contextmenu', '.js-book-list-element', function() { // eslint-di
     ipcRenderer.send('show-book-utility-menu');
 });
 
-$(window).on('book-form-loaded', function(event, isNewBook = false) { // eslint-disable-line
+$(window).on('book-form-loaded', function() { // eslint-disable-line
     ipcRenderer.send('enable-book-items');
     $('#bookForm').addClass('js-is-visible');
-
-    if (isNewBook)
-        $('.js-book-list-element').removeClass('selected');
 });
 
 
 // Create New Book
 
 async function createNewBook() {
+    $('.js-book-list-element').removeClass('selected');
+
     const bookForm = new BookForm();
     const rendered = await bookForm.render();
     $('#bookDetails').html(rendered);
     await bookForm.afterRender();
 
-    $(window).trigger('book-form-loaded', [true]); // eslint-disable-line
+    $(window).trigger('book-form-loaded'); // eslint-disable-line
 }
 
 ipcRenderer.on('create-new-book', createNewBook);
@@ -78,9 +77,15 @@ async function saveBook() {
     const id = $('#bookBookcoverId').val();
 
     const bookForm = new BookForm(id);
-    const newId = await bookForm.save(formData);
+    const book = await bookForm.save(formData);
+    const newId = book.id;
 
     $('#bookBookcoverId').val(newId);
+
+    const bookListElement = new BookListElement(book);
+    const rendered = await bookListElement.render();
+    $('#bookList').find('.js-list').prepend(rendered);
+    $('.js-book-list-element').first().addClass('selected');
 
     setTimeout(() => {
         $bookActivityLoader.addClass('hidden');

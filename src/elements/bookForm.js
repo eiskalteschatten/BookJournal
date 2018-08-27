@@ -60,7 +60,7 @@ class BookForm {
             await Book.update(formData, {where: {id: id}});
         }
 
-        return this.id;
+        return this;
     }
 
     async delete() {

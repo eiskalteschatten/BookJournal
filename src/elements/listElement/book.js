@@ -21,7 +21,7 @@ class BookListElement extends ListElement {
         const self = this;
 
         return new Promise((resolve, reject) => {
-            const template = path.join(__dirname, '../templates/elements/listElement/book.njk');
+            const template = path.join(__dirname, '../../templates/elements/listElement/book.njk');
             fs.readFile(template, 'utf8', (error, string) => {
                 if (error) reject(error);
                 resolve(string);
