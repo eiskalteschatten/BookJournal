@@ -16,7 +16,13 @@ module.exports = async (type, categoryId = '') => {
             break;
         case 'category':
             query = {
-                where: { categories: categoryId }
+                where: {
+                    $or: [
+                        { categories: categoryId },
+                        { categories: { $like: `%${categoryId},%` } },
+                        { categories: { $like: `%,${categoryId}%` } }
+                    ]
+                }
             };
             break;
         default:
