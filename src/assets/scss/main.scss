@@ -26,6 +26,10 @@ body {
     }
 }
 
+a {
+    color: $linkColor;
+}
+
 .float-left {
     float: left;
 }
