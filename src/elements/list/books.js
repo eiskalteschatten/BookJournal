@@ -1,6 +1,5 @@
 'use strict';
 
-const $ = require('jquery');
 const path = require('path');
 const fs = require('fs');
 const nunjucks = require('nunjucks');
@@ -11,8 +10,9 @@ const BookListElement = require('../../elements/listElement/book');
 
 
 class Books extends List {
-    constructor() {
+    constructor(query = '') {
         super();
+        this.query = query;
     }
 
     async render() {
@@ -42,20 +42,13 @@ class Books extends List {
     }
 
     async loadBooks() {
-        const books = await Book.getAllSorted();
+        const books = this.query
+            ? await Book.getSortedByQuery(this.query)
+            : await Book.getAllSorted();
 
         for(const book of books) {
             this.addBookElement(book);
         }
-    }
-
-    static sortBooks() {
-        const list = $('#sidebar').find('.js-list');
-        const sort = (a, b) => {
-            return ($(b).find('.js-list-element-name').text().toLowerCase()) < ($(a).find('.js-list-element-name').text().toLowerCase()) ? 1 : -1;
-        };
-
-        $('.js-category-list-element').sort(sort).appendTo(list);
     }
 }
 
