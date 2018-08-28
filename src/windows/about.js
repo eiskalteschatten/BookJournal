@@ -13,7 +13,9 @@ class AboutWindow extends Window {
             height: 320,
             resizable: false,
             minimizable: false,
-            maximizable: false
+            maximizable: false,
+            title: '',
+            autoHideMenuBar: true
         };
 
         super(modalPath, displayOptions);
