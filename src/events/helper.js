@@ -20,11 +20,15 @@ async function loadBook(id) {
 function selectBook(id) {
     const $bookList = $('#bookList');
     const $listItem = $(`.js-book-list-element[data-id="${id}"]`);
-    $listItem.addClass('selected');
+    const position = $listItem.position();
 
-    $bookList.animate({
-        scrollTop: $listItem.position().top + $bookList.scrollTop()
-    }, 100);
+    if ($listItem && position) {
+        $listItem.addClass('selected');
+
+        $bookList.animate({
+            scrollTop: position.top + $bookList.scrollTop()
+        }, 100);
+    }
 }
 
 async function updateBookList(selectedId) {
