@@ -5,16 +5,9 @@ const appConfig = config.app;
 
 
 // Modules to control application life and create native browser window
-const {app, BrowserWindow, Menu, ipcMain} = require('electron');
+const {app, BrowserWindow, Menu} = require('electron');
 
-
-// Menus
-const appMenu = require('./config/menus/app');
-const bookUtilityMenu = require('./config/menus/bookUtility');
-const bookcoverCm = require('./config/menus/bookcoverCm');
-const categoryListElementCm = require('./config/menus/categoryListElementCm');
-const inputCm = require('./config/menus/inputCm');
-
+const appMenu = require('./menus/config/app');
 
 // Preferences
 const {loadPreferences} = require('./initialPreferences');
@@ -116,39 +109,4 @@ app.on('activate', function () {
 
 
 // Menus
-
-ipcMain.on('show-category-list-element-context-menu', event => {
-    const window = BrowserWindow.fromWebContents(event.sender);
-    const menu = Menu.buildFromTemplate(categoryListElementCm);
-    menu.popup(window);
-});
-
-ipcMain.on('show-input-context-menu', event => {
-    const window = BrowserWindow.fromWebContents(event.sender);
-    const menu = Menu.buildFromTemplate(inputCm);
-    menu.popup(window);
-});
-
-ipcMain.on('show-book-utility-menu', event => {
-    const window = BrowserWindow.fromWebContents(event.sender);
-    const menu = Menu.buildFromTemplate(bookUtilityMenu);
-    menu.popup(window);
-});
-
-ipcMain.on('show-bookcover-context-menu', event => {
-    const window = BrowserWindow.fromWebContents(event.sender);
-    const menu = Menu.buildFromTemplate(bookcoverCm);
-    menu.popup(window);
-});
-
-ipcMain.on('enable-book-items', () => {
-    const menu = Menu.getApplicationMenu();
-    menu.getMenuItemById('saveBook').enabled = true;
-    menu.getMenuItemById('deleteBook').enabled = true;
-});
-
-ipcMain.on('disable-book-items', () => {
-    const menu = Menu.getApplicationMenu();
-    menu.getMenuItemById('saveBook').enabled = false;
-    menu.getMenuItemById('deleteBook').enabled = false;
-});
+require('./menus/menus');
