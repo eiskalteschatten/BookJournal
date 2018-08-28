@@ -2,6 +2,15 @@
 
 const {app, shell, dialog} = require('electron');
 
+const AboutWindow = require('../../windows/about');
+
+
+function openAbout() {
+    const aboutWindow = new AboutWindow();
+    aboutWindow.open();
+}
+
+
 const template = [
     {
         label: 'File',
@@ -102,7 +111,10 @@ if (process.platform === 'darwin') {
     template.unshift({
         label: app.getName(),
         submenu: [
-            {role: 'about'},
+            {
+                label: 'About Book Journal',
+                click: openAbout
+            },
             {type: 'separator'},
             {role: 'services', submenu: []},
             {type: 'separator'},
@@ -137,7 +149,10 @@ if (process.platform === 'darwin') {
 else {
     // Help menu
     template[4].submenu.push(
-        {role: 'about'}
+        {
+            label: 'About Book Journal',
+            click: openAbout
+        }
     );
 }
 
