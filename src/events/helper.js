@@ -5,6 +5,7 @@ const $ = require('jquery');
 
 const BookForm = require('../elements/bookForm');
 const BooksList = require('../elements/list/books');
+const filterBooks = require('../filters/books');
 
 
 async function loadBook(id) {
@@ -29,11 +30,7 @@ function selectBook(id) {
 async function updateBookList(selectedId) {
     const list = new BooksList();
     await list.loadBooks();
-
-    const rendered = await list.render();
-    const $bookList = $('#bookList');
-    $bookList.html(rendered);
-
+    await changeFilter();
     if (selectedId !== '') selectBook(selectedId);
 }
 
@@ -45,10 +42,17 @@ function clearBooklistSelection() {
     ipcRenderer.send('disable-book-items');
 }
 
+async function changeFilter() {
+    const $element = $('.js-sidebar-list-element.selected');
+    const renderedBookList = await filterBooks($element.data('query-type'), $element.data('id'));
+    $('#bookList').html(renderedBookList);
+}
+
 
 module.exports = {
     loadBook,
     selectBook,
     updateBookList,
-    clearBooklistSelection
+    clearBooklistSelection,
+    changeFilter
 };
