@@ -44,8 +44,10 @@ function clearBooklistSelection() {
 
 async function changeFilter() {
     const $element = $('.js-sidebar-list-element.selected');
-    const renderedBookList = await filterBooks($element.data('query-type'), $element.data('id'));
-    $('#bookList').html(renderedBookList);
+    const rendered = await filterBooks($element.data('query-type'), $element.data('id'));
+    const $bookList = $('#bookList');
+    $bookList.html(rendered);
+    $bookList.removeClass('loading');
 }
 
 

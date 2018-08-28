@@ -6,7 +6,6 @@ const $ = require('jquery');
 
 const {loadPreferences} = require('./initialPreferences');
 const SidebarList = require('./elements/list/sidebar');
-const BooksList = require('./elements/list/books');
 
 let preferences;
 
@@ -16,7 +15,7 @@ async function render() {
 
     preferences = await loadPreferences();
 
-    await renderBookList();
+    renderBookList();
     await renderSidebar();
 
     $('.js-sidebar-list-element').first().trigger('click');
@@ -34,16 +33,8 @@ async function renderSidebar() {
     $sidebar.removeClass('loading');
 }
 
-async function renderBookList() {
+function renderBookList() {
     $('#bookListWrapper').css('width', preferences.middleColumnWidth + 'px');
-
-    const list = new BooksList();
-    await list.loadBooks();
-
-    const rendered = await list.render();
-    const $bookList = $('#bookList');
-    $bookList.html(rendered);
-    $bookList.removeClass('loading');
 }
 
 render();
