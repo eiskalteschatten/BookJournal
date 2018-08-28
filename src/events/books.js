@@ -6,9 +6,9 @@ const $ = require('jquery');
 
 const config = require('../config/config');
 
+const eventHelper = require('./helper');
 const BookListElement = require('../elements/listElement/book');
 const BookForm = require('../elements/bookForm');
-const BooksList = require('../elements/list/books');
 
 
 $(document).on('click', '#bookUtilityMenu', function() { // eslint-disable-line
@@ -30,35 +30,6 @@ $(window).on('book-form-loaded', function() { // eslint-disable-line
     $('#bookForm').addClass('js-is-visible');
 });
 
-
-function selectBook(id) {
-    const $bookList = $('#bookList');
-    const $listItem = $(`.js-book-list-element[data-id="${id}"]`);
-    $listItem.addClass('selected');
-
-    $bookList.animate({
-        scrollTop: $listItem.position().top + $bookList.scrollTop()
-    }, 100);
-}
-
-async function updateBookList(selectedId) {
-    const list = new BooksList();
-    await list.loadBooks();
-
-    const rendered = await list.render();
-    const $bookList = $('#bookList');
-    $bookList.html(rendered);
-
-    if (selectedId !== '') selectBook(selectedId);
-}
-
-function clearBooklistSelection() {
-    $('.js-book-list-element').removeClass('selected');
-    $('#bookForm').removeClass('js-is-visible');
-    $('#bookDetails').html('');
-    $('#bookFormWrapper').removeClass('form-displayed');
-    ipcRenderer.send('disable-book-items');
-}
 
 
 // Create New Book
@@ -112,7 +83,7 @@ async function saveBook() {
 
     if (newId) {
         $('#bookBookcoverId').val(newId);
-        await updateBookList(newId);
+        await eventHelper.updateBookList(newId);
     }
 
     setTimeout(() => {
@@ -132,19 +103,10 @@ $(document).on('keyup', '.js-book-form-field', saveBookTimeout); // eslint-disab
 
 // Load Book
 
-async function loadBook(id) {
-    const bookForm = new BookForm(id);
-    const rendered = await bookForm.render();
-    $('#bookDetails').html(rendered);
-    await bookForm.afterRender();
-
-    $(window).trigger('book-form-loaded'); // eslint-disable-line
-}
-
 $(document).on('click', '.js-book-list-element', async function() { // eslint-disable-line
     const $this = $(this);
     BookListElement.onClick($this);
-    await loadBook($this.data('id'));
+    await eventHelper.loadBook($this.data('id'));
 });
 
 
@@ -158,7 +120,7 @@ async function deleteBook() {
     await bookForm.delete();
 
     $(`.js-book-list-element[data-id="${id}"]`).remove();
-    clearBooklistSelection();
+    eventHelper.clearBooklistSelection();
 }
 
 ipcRenderer.on('delete-book', deleteBook);
