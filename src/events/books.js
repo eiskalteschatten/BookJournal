@@ -7,7 +7,6 @@ const $ = require('jquery');
 const config = require('../config/config');
 
 const eventHelper = require('./helper');
-const BookListElement = require('../elements/listElement/book');
 const BookForm = require('../elements/bookForm');
 
 
@@ -105,7 +104,8 @@ $(document).on('keyup', '.js-book-form-field', saveBookTimeout); // eslint-disab
 
 $(document).on('click', '.js-book-list-element', async function() { // eslint-disable-line
     const $this = $(this);
-    BookListElement.onClick($this);
+    $('.js-book-list-element').removeClass('selected');
+    $(this).addClass('selected');
     await eventHelper.loadBook($this.data('id'));
 });
 
