@@ -1,13 +1,15 @@
-$mainBg: #222222;
-$mainFontColor: #e0e0e0;
+$mainBg: #f0f0f0;
+$mainFontColor: #0e0e0e;
 
 $linkColor: #019CEE;
 
 $sidebarBg: #000000;
+$sidebarColor: #e0e0e0;
 $middleColumnBg: lighten($mainBg, 1%);
 
 $listHoverBg: lighten($sidebarBg, 5%);
-$listSelectedBg: #063353;
+$listSelectedBg: #98bbd4;
+$listSelectedDarkBg: #063353;
 $listBorderColor: darken($mainBg, 3%);
 
 $formBg: lighten($mainBg, 7%);
@@ -32,11 +34,13 @@ $uploadAreaBorderColor: #333333;
 $uploadAreaDragoverBg: #333333;
 
 $colorCircleBorderColor: #333333;
+$colorCircleLightBorderColor: #dcdcdc;
 
 $badgeBg: lighten($mainBg, 5%);
-$badgeHoverBg: lighten($badgeBg, 2%);
-$tagBadgeBg: #610115;
-$tagBadgeHoverBg: lighten($tagBadgeBg, 2%);
+$badgeHoverBg: darken($badgeBg, 10%);
+$tagBadgeBg: #dc506d;
+$tagBadgeHoverBg: darken($tagBadgeBg, 10%);
+$tagBadgeColor: #ffffff;
 $removeBadge: '../images/si-glyph-circle-remove-dark.svg';
 
 $ratingStarsFull: '../images/star-dark.svg';

@@ -19,12 +19,19 @@ $titleBarHeight: 22px;
         width: 200px;
 
         .sidebar {
+            color: $sidebarColor;
             flex: 1 1 auto;
             overflow: auto;
             padding-top: 10px;
 
             .list {
                 margin-top: 0;
+            }
+
+            .list-element {
+                &.selected {
+                    background: $listSelectedDarkBg;
+                }
             }
         }
     }

@@ -86,7 +86,7 @@
 
     .color-stripe {
         $size: 30px;
-        border: 1px solid $colorCircleBorderColor;
+        border: 1px solid $colorCircleLightBorderColor;
         border-radius: 50%;
         cursor: pointer;
         height: $size;
@@ -116,6 +116,7 @@
 
             &.tag {
                 background: $tagBadgeBg;
+                color: $tagBadgeColor;
 
                 &:hover {
                     background: $tagBadgeHoverBg;
@@ -124,7 +125,7 @@
 
             .category-badge-color {
                 $size: 12px;
-                border: 1px solid $colorCircleBorderColor;
+                border: 1px solid $colorCircleLightBorderColor;
                 border-radius: 50%;
                 display: inline-block;
                 height: $size;
