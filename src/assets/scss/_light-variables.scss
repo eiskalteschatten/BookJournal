@@ -20,16 +20,17 @@ $buttonHoverBg: darken($buttonBg, 2%);
 $buttonActiveBg: darken($buttonBg, 10%);
 
 $toolbarButtonColor: $mainFontColor;
-$toolbarIconPlus: '../images/si-glyph-button-plus-dark.svg';
+$toolbarIconPlus: '../images/light/si-glyph-button-plus.svg';
+$toolbarIconSidebarPlus: '../images/dark/si-glyph-button-plus.svg';
 
-$noBookSelected: '../images/si-glyph-book-open-dark.svg';
+$noBookSelected: '../images/light/si-glyph-book-open.svg';
 
-$gear: '../images/gear-dark.svg';
+$gear: '../images/light/gear.svg';
 
-$bookcoverListPlaceholder: '../images/bookcover-dark.svg';
+$bookcoverListPlaceholder: '../images/light/bookcover.svg';
 $bookListHoverBg: lighten($middleColumnBg, 1%);
 
-$bookcoverUploadArea: '../images/bookcover-dark.svg';
+$bookcoverUploadArea: $bookcoverListPlaceholder;
 $uploadAreaBorderColor: #333333;
 $uploadAreaDragoverBg: #333333;
 
@@ -41,8 +42,9 @@ $badgeHoverBg: darken($badgeBg, 10%);
 $tagBadgeBg: #dc506d;
 $tagBadgeHoverBg: darken($tagBadgeBg, 10%);
 $tagBadgeColor: #ffffff;
-$removeBadge: '../images/si-glyph-circle-remove-dark.svg';
+$removeBadge: '../images/dark/si-glyph-circle-remove.svg';
+$removeBadgeDarkFg: '../images/light/si-glyph-circle-remove.svg';
 
-$ratingStarsFull: '../images/star-dark.svg';
-$ratingStarsEmpty: '../images/star-empty-dark.svg';
+$ratingStarsFull: '../images/light/star.svg';
+$ratingStarsEmpty: '../images/light/star-empty.svg';
 $ratingStarsRemove: '../images/si-glyph-trash.svg';

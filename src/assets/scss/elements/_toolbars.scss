@@ -20,6 +20,10 @@
 
             &.plus {
                 background-image: url($toolbarIconPlus);
+
+                &.sidebar {
+                    background-image: url($toolbarIconSidebarPlus);
+                }
             }
         }
     }

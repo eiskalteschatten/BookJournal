@@ -123,6 +123,12 @@
                 }
             }
 
+            &.category {
+                .delete-tag {
+                    background: url($removeBadgeDarkFg) no-repeat center center;
+                }
+            }
+
             .category-badge-color {
                 $size: 12px;
                 border: 1px solid $colorCircleLightBorderColor;
