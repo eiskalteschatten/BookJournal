@@ -1,23 +1,23 @@
-$darkBg: #222222;
-$darkFontColor: #e0e0e0;
+$mainBg: #222222;
+$mainFontColor: #e0e0e0;
 
 $linkColor: #019CEE;
 
 $sidebarBg: #000000;
-$middleColumnBg: lighten($darkBg, 1%);
+$middleColumnBg: lighten($mainBg, 1%);
 
 $listHoverBg: lighten($sidebarBg, 5%);
 $listSelectedBg: #063353;
-$listBorderColor: darken($darkBg, 3%);
+$listBorderColor: darken($mainBg, 3%);
 
-$formBg: lighten($darkBg, 7%);
-$formColor: $darkFontColor;
-$buttonBg: lighten($darkBg, 7%);
-$buttonColor: $darkFontColor;
+$formBg: lighten($mainBg, 7%);
+$formColor: $mainFontColor;
+$buttonBg: lighten($mainBg, 7%);
+$buttonColor: $mainFontColor;
 $buttonHoverBg: darken($buttonBg, 2%);
 $buttonActiveBg: darken($buttonBg, 10%);
 
-$toolbarButtonColor: $darkFontColor;
+$toolbarButtonColor: $mainFontColor;
 $toolbarIconPlus: '../images/si-glyph-button-plus-dark.svg';
 
 $noBookSelected: '../images/si-glyph-book-open-dark.svg';
@@ -33,7 +33,7 @@ $uploadAreaDragoverBg: #333333;
 
 $colorCircleBorderColor: #333333;
 
-$badgeBg: lighten($darkBg, 5%);
+$badgeBg: lighten($mainBg, 5%);
 $badgeHoverBg: lighten($badgeBg, 2%);
 $tagBadgeBg: #610115;
 $tagBadgeHoverBg: lighten($tagBadgeBg, 2%);

@@ -1,11 +1,10 @@
 @import "global-variables";
 @import "light-variables";
-@import "dark-variables";
 
 
 body {
-    background: $darkBg;
-    color: $darkFontColor;
+    background: $mainBg;
+    color: $mainFontColor;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Helvetica Neue', Arial, sans-serif;
     font-size: 15px;
 }

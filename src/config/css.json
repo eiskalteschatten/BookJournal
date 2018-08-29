@@ -1,7 +1,8 @@
 {
     "sassFilesToCompile": [
         "bootstrap.scss",
-        "main.scss",
+        "light.scss",
+        "dark.scss",
         "about.scss"
     ]
 }

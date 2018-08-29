@@ -1,8 +1,3 @@
-@import "global-variables";
-@import "light-variables";
-@import "dark-variables";
-
-
 html, body {
     height: 100%;
     padding: 0;
@@ -11,19 +6,11 @@ html, body {
 }
 
 body {
+    background: $mainBg;
+    color: $mainFontColor;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Helvetica Neue', Arial, sans-serif;
     font-size: 15px;
     overflow: hidden;
-
-    &.dark-theme {
-        background: $darkBg;
-        color: $darkFontColor;
-    }
-
-    &.light-theme {
-        background: $lightBg;
-        color: $lightFontColor;
-    }
 }
 
 a {

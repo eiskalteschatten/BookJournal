@@ -1,2 +1,44 @@
-$lightBg: #f0f0f0;
-$lightFontColor: #222222;
+$mainBg: #222222;
+$mainFontColor: #e0e0e0;
+
+$linkColor: #019CEE;
+
+$sidebarBg: #000000;
+$middleColumnBg: lighten($mainBg, 1%);
+
+$listHoverBg: lighten($sidebarBg, 5%);
+$listSelectedBg: #063353;
+$listBorderColor: darken($mainBg, 3%);
+
+$formBg: lighten($mainBg, 7%);
+$formColor: $mainFontColor;
+$buttonBg: lighten($mainBg, 7%);
+$buttonColor: $mainFontColor;
+$buttonHoverBg: darken($buttonBg, 2%);
+$buttonActiveBg: darken($buttonBg, 10%);
+
+$toolbarButtonColor: $mainFontColor;
+$toolbarIconPlus: '../images/si-glyph-button-plus-dark.svg';
+
+$noBookSelected: '../images/si-glyph-book-open-dark.svg';
+
+$gear: '../images/gear-dark.svg';
+
+$bookcoverListPlaceholder: '../images/bookcover-dark.svg';
+$bookListHoverBg: lighten($middleColumnBg, 1%);
+
+$bookcoverUploadArea: '../images/bookcover-dark.svg';
+$uploadAreaBorderColor: #333333;
+$uploadAreaDragoverBg: #333333;
+
+$colorCircleBorderColor: #333333;
+
+$badgeBg: lighten($mainBg, 5%);
+$badgeHoverBg: lighten($badgeBg, 2%);
+$tagBadgeBg: #610115;
+$tagBadgeHoverBg: lighten($tagBadgeBg, 2%);
+$removeBadge: '../images/si-glyph-circle-remove-dark.svg';
+
+$ratingStarsFull: '../images/star-dark.svg';
+$ratingStarsEmpty: '../images/star-empty-dark.svg';
+$ratingStarsRemove: '../images/si-glyph-trash.svg';
