@@ -9,7 +9,7 @@ The project is currently in its infancy.
 - Organize them in categories
 - Update mechanism
 - Dark and light themes
-- Automatically fetch book information based on the ISBN - https://openlibrary.org/dev/docs/api/books
+- Automatically fetch book information based on the ISBN - https://openlibrary.org/dev/docs/api/books or https://developers.google.com/books/docs/dynamic-links or https://docs.aws.amazon.com/AWSECommerceService/latest/DG/ItemLookup.html
 
 ### 1.1
 - Search
