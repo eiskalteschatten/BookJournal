@@ -15,6 +15,8 @@ async function render() {
 
     preferences = await loadPreferences();
 
+    $('#mainCss').attr('href', `../assets/css/${preferences.theme}.css`);
+
     renderBookList();
     await renderSidebar();
 

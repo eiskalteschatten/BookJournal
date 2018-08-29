@@ -24,7 +24,18 @@ async function changeTheme(theme, window) {
     }
 }
 
+async function getCurrentTheme() {
+    try {
+        const preferences = await Preferences.findById(1);
+        return preferences.theme;
+    }
+    catch(error) {
+        console.error(error);
+    }
+}
+
 
 module.exports = {
-    changeTheme
+    changeTheme,
+    getCurrentTheme
 };
