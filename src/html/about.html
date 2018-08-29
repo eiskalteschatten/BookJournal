@@ -33,6 +33,10 @@
                             <div><b>Chromium Version:</b> <script>document.write(process.versions.chrome)</script></div>
                             <div><b>Electron Version:</b> <script>document.write(process.versions.electron)</script></div>
                         </div>
+
+                        <div class="legal">
+                            Copyright &copy; Alex Seifert 2018. Licensed under the MIT License.
+                        </div>
                     </div>
                 </div>
             </div>
@@ -41,6 +45,7 @@
         <script>
             const $ = require('jquery');
             const {shell} = require('electron');
+            const path = require('path');
 
             $('#alexSeifertLink').click(function(e) {
                 e.preventDefault();
