@@ -1,6 +1,6 @@
 'use strict';
 
-const { BrowserWindow, Menu, ipcMain} = require('electron');
+const {BrowserWindow, Menu, ipcMain} = require('electron');
 
 const bookUtilityMenu = require('./config/bookUtility');
 const bookcoverCm = require('./config/bookcoverCm');

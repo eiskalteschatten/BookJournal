@@ -30,7 +30,11 @@ const Preferences = db.define('preferences', {
     middleColumnWidth: {
         type: Sequelize.INTEGER,
         allowNull: true
-    }
+    },
+    theme: {
+        type: Sequelize.STRING,
+        defaultValue: 'light'
+    },
 });
 
 Preferences.sync();

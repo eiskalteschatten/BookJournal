@@ -80,7 +80,9 @@ async function createWindow() {
     });
 
     const menu = Menu.buildFromTemplate(appMenu);
+    const menuItem = `${preferences.theme}Theme`;
     Menu.setApplicationMenu(menu);
+    menu.getMenuItemById(menuItem).checked = true;
 }
 
 app.setName(appConfig.name);

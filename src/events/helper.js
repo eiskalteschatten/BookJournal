@@ -1,6 +1,6 @@
 'use strict';
 
-const {ipcRenderer} = require('electron');
+const {ipcRenderer, remote} = require('electron');
 const $ = require('jquery');
 
 const BookForm = require('../elements/bookForm');
@@ -54,11 +54,16 @@ async function changeFilter() {
     $bookList.removeClass('loading');
 }
 
+function reloadWindow() {
+    remote.getCurrentWindow().reload();
+}
+
 
 module.exports = {
     loadBook,
     selectBook,
     updateBookList,
     clearBooklistSelection,
-    changeFilter
+    changeFilter,
+    reloadWindow
 };

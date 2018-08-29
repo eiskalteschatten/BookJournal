@@ -3,6 +3,7 @@
 const {app, shell, dialog} = require('electron');
 
 const AboutWindow = require('../../windows/about');
+const themePreferences = require('../../preferences/theme');
 
 
 function openAbout() {
@@ -79,6 +80,23 @@ const template = [
     {
         label: 'View',
         submenu: [
+            {
+                id: 'lightTheme',
+                label: 'Light Theme',
+                type: 'checkbox',
+                click: (item, focusedWindow) => {
+                    themePreferences.changeTheme('light', focusedWindow);
+                }
+            },
+            {
+                id: 'darkTheme',
+                label: 'Dark Theme',
+                type: 'checkbox',
+                click: (item, focusedWindow) => {
+                    themePreferences.changeTheme('dark', focusedWindow);
+                }
+            },
+            {type: 'separator'},
             {role: 'reload'},
             {role: 'forcereload'},
             {role: 'toggledevtools'},
