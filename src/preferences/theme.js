@@ -9,7 +9,7 @@ async function changeTheme(theme, window) {
         const preferences = await Preferences.findById(1);
         await preferences.update({theme});
 
-        window.webContents.send('reload-window');
+        window.webContents.send('switch-css', theme);
 
         const menuItem = `${theme}Theme`;
         const menu = Menu.getApplicationMenu();
@@ -17,7 +17,6 @@ async function changeTheme(theme, window) {
         menu.getMenuItemById('lightTheme').checked = false;
         menu.getMenuItemById('darkTheme').checked = false;
         menu.getMenuItemById(menuItem).checked = true;
-
     }
     catch(error) {
         console.error(error);

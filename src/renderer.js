@@ -15,7 +15,8 @@ async function render() {
 
     preferences = await loadPreferences();
 
-    $('#mainCss').attr('href', `../assets/css/${preferences.theme}.css`);
+    $('.js-main-css').prop('disabled', true);
+    $(`#${preferences.theme}Css`).prop('disabled', false);
 
     renderBookList();
     await renderSidebar();

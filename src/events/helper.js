@@ -1,6 +1,6 @@
 'use strict';
 
-const {ipcRenderer, remote} = require('electron');
+const {ipcRenderer} = require('electron');
 const $ = require('jquery');
 
 const BookForm = require('../elements/bookForm');
@@ -54,8 +54,9 @@ async function changeFilter() {
     $bookList.removeClass('loading');
 }
 
-function reloadWindow() {
-    remote.getCurrentWindow().reload();
+function switchCss(id) {
+    $('.js-main-css').prop('disabled', true);
+    $(`#${id}`).prop('disabled', false);
 }
 
 
@@ -65,5 +66,5 @@ module.exports = {
     updateBookList,
     clearBooklistSelection,
     changeFilter,
-    reloadWindow
+    switchCss
 };

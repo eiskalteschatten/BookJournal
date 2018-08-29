@@ -15,7 +15,9 @@ $(document).on('contextmenu', 'input, textarea', function() { // eslint-disable-
     ipcRenderer.send('show-input-context-menu');
 });
 
-ipcRenderer.on('reload-window', helper.reloadWindow);
+ipcRenderer.on('switch-css', (event, arg) => {
+    helper.switchCss(`${arg}Css`);
+});
 
 if (process.platform === 'darwin') {
     require('./events/macos');
