@@ -40,7 +40,7 @@ $badgeBg: lighten($mainBg, 5%);
 $badgeHoverBg: lighten($badgeBg, 2%);
 $tagBadgeBg: #610115;
 $tagBadgeHoverBg: lighten($tagBadgeBg, 2%);
-tagBadgeColor: $mainFontColor;
+$tagBadgeColor: $mainFontColor;
 $removeBadge: '../images/si-glyph-circle-remove-dark.svg';
 
 $ratingStarsFull: '../images/star-dark.svg';
