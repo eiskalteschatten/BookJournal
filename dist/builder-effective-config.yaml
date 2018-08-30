@@ -1,9 +1,0 @@
-directories:
-  output: dist
-  buildResources: build
-appId: com.alexseifert.bookjournal
-mac:
-  category: public.app-category.productivity
-productName: BookJournal
-copyright: Copyright © 2018 Alex Seifert
-electronVersion: 2.0.8

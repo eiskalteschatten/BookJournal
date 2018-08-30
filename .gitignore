@@ -5,3 +5,5 @@ src/assets/css
 *.code-workspace
 
 .DS_Store
+
+dist
