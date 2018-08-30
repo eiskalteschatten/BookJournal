@@ -3,6 +3,11 @@
 const {ipcRenderer, remote} = require('electron');
 const dialog = remote.dialog;
 const $ = require('jquery');
+const request = require('request');
+const fs = require('fs');
+const path = require('path');
+const mkdirp = require('mkdirp');
+const allLanguages = require('iso-639-1');
 
 const config = require('../config/config');
 
@@ -355,8 +360,7 @@ $(document).on('blur', '#bookIsbn', function() { // eslint-disable-line
         $('#bookFetchingBookInfo').removeClass('hidden');
 
         const bookInfo = await BookForm.fetchBookInfo(isbn);
-
-        console.log(bookInfo);
+        sessionStorage.setItem('bookInfo', JSON.stringify(bookInfo)); // eslint-disable-line
 
         $('#bookFetchingBookInfo').addClass('hidden');
 
@@ -368,7 +372,35 @@ $(document).on('blur', '#bookIsbn', function() { // eslint-disable-line
 $(document).on('click', '#bookFillOutBookInfo', async function(e) { // eslint-disable-line
     e.preventDefault();
 
-    // Fill out form
+    try {
+        let bookInfo = sessionStorage.getItem('bookInfo'); // eslint-disable-line
+        bookInfo = JSON.parse(bookInfo);
+        bookInfo = bookInfo.items[0].volumeInfo;
 
-    await saveBook();
+        const authors = bookInfo.authors.join(', ');
+        const publishedDate = new Date(bookInfo.publishedDate);
+        const language = allLanguages.getName(bookInfo.language);
+
+        $('#bookTitle').val(bookInfo.title);
+        $('#bookAuthor').val(authors);
+        $('#bookPublisher').val(bookInfo.publisher);
+        $('#bookYearPublished').val(publishedDate.getFullYear());
+        $('#bookSummary').val(bookInfo.description);
+        $('#bookNumberOfPages').val(bookInfo.pageCount);
+        $('#bookLanguageReadIn').val(language);
+
+        let imagePath = config.bookcovers.tempPath;
+        mkdirp(imagePath);
+        imagePath = path.join(imagePath, 'tempCover.jpg');
+
+        request({uri: bookInfo.imageLinks.thumbnail})
+            .pipe(fs.createWriteStream(imagePath))
+            .on('close', async () => {
+                await saveBookcover(imagePath);
+                await saveBook();
+            });
+    }
+    catch(error) {
+        console.error(error);
+    }
 });

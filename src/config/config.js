@@ -5,6 +5,7 @@ const os = require('os');
 
 const packageJson = require('../../package');
 
+const tempStoragePath = path.join(os.tmpdir(), 'bookjournal');
 const storagePath = path.join(os.homedir(), '.bookjournal');
 
 
@@ -12,7 +13,8 @@ module.exports = {
     app: {
         name: 'Book Journal',
         version: packageJson.version,
-        storagePath
+        storagePath,
+        tempStoragePath
     },
     database: {
         path: storagePath,
@@ -20,6 +22,7 @@ module.exports = {
     },
     bookcovers: {
         path: path.join(storagePath, 'bookcovers'),
+        tempPath: path.join(tempStoragePath, 'bookcovers'),
         extensions: ['jpg', 'jpeg', 'png', 'gif', 'svg']
     },
     bookInfo: {
