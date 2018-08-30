@@ -2,6 +2,7 @@
 
 const {app, shell, dialog} = require('electron');
 
+const config = require('../../config/config');
 const AboutWindow = require('../../windows/about');
 const themePreferences = require('../../preferences/theme');
 
@@ -135,7 +136,7 @@ if (process.platform === 'darwin') {
         label: app.getName(),
         submenu: [
             {
-                label: 'About Book Journal',
+                label: `About ${config.app.name}`,
                 click: openAbout
             },
             {type: 'separator'},
@@ -173,7 +174,7 @@ else {
     // Help menu
     template[4].submenu.push(
         {
-            label: 'About Book Journal',
+            label: `About ${config.app.name}`,
             click: openAbout
         }
     );

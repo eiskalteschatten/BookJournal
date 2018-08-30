@@ -9,7 +9,17 @@
     "test": "npm run lint",
     "lint": "./node_modules/.bin/eslint .",
     "precommit": "npm test",
-    "postinstall": "install-app-deps"
+    "postinstall": "install-app-deps",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
+  },
+  "build": {
+    "appId": "com.alexseifert.bookjournal",
+    "mac": {
+      "category": "public.app-category.productivity"
+    },
+    "productName": "BookJournal",
+    "copyright": "Copyright © 2018 Alex Seifert"
   },
   "repository": "gogs@git.alexseifert.de:alexseifert/BookJournalElectron.git",
   "keywords": [],

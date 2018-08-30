@@ -11,7 +11,7 @@ const storagePath = path.join(os.homedir(), '.bookjournal');
 
 module.exports = {
     app: {
-        name: 'Book Journal',
+        name: packageJson.build.productName,
         version: packageJson.version,
         storagePath,
         tempStoragePath
