@@ -21,6 +21,7 @@
             "category": "public.app-category.productivity"
         },
         "linux": {
+            "target": ["snap", "deb", "rpm", "tar.gz"],
             "category": "Office"
         },
         "win": {
@@ -29,7 +30,11 @@
     },
     "repository": "gogs@git.alexseifert.de:alexseifert/BookJournalElectron.git",
     "keywords": [],
-    "author": "Alex Seifert",
+    "author": {
+        "name": "Alex Seifert",
+        "email": "alex@alexseifert.com"
+    },
+    "homepage": "https://www.alexseifert.com",
     "license": "",
     "devDependencies": {
         "compile-sass": "0.0.5",
