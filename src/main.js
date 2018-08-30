@@ -1,12 +1,11 @@
 'use strict';
 
-const config = require('./config/config');
-const appConfig = config.app;
-
-
 // Modules to control application life and create native browser window
 const {app, BrowserWindow, Menu} = require('electron');
+const path = require('path');
 
+const config = require('./config/config');
+const appConfig = config.app;
 const appMenu = require('./menus/config/app');
 
 // Preferences
@@ -23,7 +22,8 @@ async function createWindow() {
     // Create the browser window.
     const browserWindow = {
         width: preferences.windowWidth,
-        height: preferences.windowHeight
+        height: preferences.windowHeight,
+        icon: path.join(__dirname, './assets/icon128.png')
     };
 
     if (process.platform === 'darwin')
@@ -60,7 +60,7 @@ async function createWindow() {
                 windowX: windowBounds.x,
                 windowY: windowBounds.y,
                 windowIsFullScreen: mainWindow.isFullScreen(),
-                windowIsMaximized: mainWindow.isMaximized()
+                windowIsMaximized: mainWindow.isMaximized(),
             };
 
             await preferences.updateAttributes(values);
