@@ -14,9 +14,12 @@ The project is currently in its infancy.
 ### 1.1
 - Search
 - Reading stats
-- Sort books by field in the book form
 
 ### 1.2
+- Sort books by field in the book form
+- Link books (relates to, is translation of, etc)
+
+### 1.3
 - Print a book
 - Export book as PDF
 
