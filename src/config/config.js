@@ -3,16 +3,14 @@
 const path = require('path');
 const os = require('os');
 
-const packageJson = require('../../package');
-
 const tempStoragePath = path.join(os.tmpdir(), 'bookjournal');
 const storagePath = path.join(os.homedir(), '.bookjournal');
 
 
 module.exports = {
     app: {
-        name: packageJson.build.productName,
-        version: packageJson.version,
+        name: 'BookJournal',
+        version: '1.0.0',
         storagePath,
         tempStoragePath
     },
