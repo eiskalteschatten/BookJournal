@@ -7,6 +7,7 @@ const fs = require('fs');
 const nunjucks = require('nunjucks');
 const mkdirp = require('mkdirp');
 const uuidv4 = require('uuid/v4');
+const request = require('request');
 
 const config = require('../config/config');
 
@@ -228,6 +229,26 @@ class BookForm {
 
     async afterRender() {
         $('#bookFormWrapper').addClass('form-displayed');
+    }
+
+    static async fetchBookInfo(isbn) {
+        let url = config.bookInfo.google.url;
+        url = url.replace('${isbn}', isbn);
+
+        return new Promise((resolve, reject) => {
+            request(url, (error, response, body) => {
+                if (error) reject(error);
+
+                try {
+                    resolve(JSON.parse(body));
+                }
+                catch(error) {
+                    reject(error);
+                }
+            });
+        }).catch(error => {
+            console.error(error);
+        });
     }
 }
 

@@ -351,12 +351,24 @@ $(document).on('blur', '#bookIsbn', function() { // eslint-disable-line
 
     if (!isbn) return;
 
-    fetchingTimeout = setTimeout(() => {
+    fetchingTimeout = setTimeout(async () => {
         $('#bookFetchingBookInfo').removeClass('hidden');
 
-        // retrieve information here
+        const bookInfo = await BookForm.fetchBookInfo(isbn);
+
+        console.log(bookInfo);
 
         $('#bookFetchingBookInfo').addClass('hidden');
-        $('#bookBookInfoFetched').removeClass('hidden');
+
+        if (typeof bookInfo === 'object' && bookInfo.totalItems > 0)
+            $('#bookBookInfoFetched').removeClass('hidden');
     }, 500);
+});
+
+$(document).on('click', '#bookFillOutBookInfo', async function(e) { // eslint-disable-line
+    e.preventDefault();
+
+    // Fill out form
+
+    await saveBook();
 });
