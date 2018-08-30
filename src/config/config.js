@@ -23,23 +23,8 @@ module.exports = {
         extensions: ['jpg', 'jpeg', 'png', 'gif', 'svg']
     },
     bookInfo: {
-        amazon: {
-            url: 'http://webservices.amazon.com/onca/xml?Service=AWSECommerceService&AWSAccessKeyId=AKIAI5NHN2ZXOQQRDO4Q&AssociateTag=[Associate ID]&Operation=ItemLookup&ItemId=${isbn}&Timestamp=${timeStamp}&Signature=[Request Signature]'
+        google: {
+            url: 'https://www.googleapis.com/books/v1/volumes?q=isbn:${isbn}&key=AIzaSyDMzF8mEWNLmjij8U11P7ELIhjQObgBjtg'
         }
     }
 };
-
-
-// https://docs.aws.amazon.com/AWSECommerceService/latest/DG/ItemLookup.html
-// http://webservices.amazon.com/onca/xml?
-// Service=AWSECommerceService&
-// AWSAccessKeyId=[AWS Access Key ID]&
-// AssociateTag=[Associate ID]&
-// Operation=ItemLookup&
-// ItemId=0316067938&
-// ResponseGroup=Reviews&
-// TruncateReviewsAt="256"&
-// IncludeReviewsSummary="False"&
-// Version=2013-08-01
-// &Timestamp=[YYYY-MM-DDThh:mm:ssZ]
-// &Signature=[Request Signature]
