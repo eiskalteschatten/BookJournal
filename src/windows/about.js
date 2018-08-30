@@ -9,8 +9,8 @@ class AboutWindow extends Window {
     constructor() {
         const modalPath = path.join('file://', __dirname, '../html/about.html');
         const displayOptions = {
-            width: 500,
-            height: 220,
+            width: 525,
+            height: 250,
             resizable: false,
             minimizable: false,
             maximizable: false,
