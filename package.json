@@ -23,7 +23,7 @@
         "linux": {
             "category": "Office"
         },
-        "windows": {
+        "win": {
             "icon": "build/icon.ico"
         }
     },
