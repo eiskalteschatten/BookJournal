@@ -28,6 +28,15 @@ a {
 .loading {
     background: url('../images/loader.svg') no-repeat center center;
     background-size: 32px;
+
+    &.inline {
+        $size: 15px;
+        background-size: $size;
+        display: inline-block;
+        height: $size;
+        margin-right: 5px;
+        width: $size;
+    }
 }
 
 

@@ -338,3 +338,25 @@ $(document).on('click', '.js-remove-rating', function() { // eslint-disable-line
 
     $('#bookRating').val('').trigger('change');
 });
+
+
+// Fetching Book Information
+
+let fetchingTimeout;
+
+$(document).on('blur', '#bookIsbn', function() { // eslint-disable-line
+    clearTimeout(fetchingTimeout);
+
+    const isbn = $(this).val();
+
+    if (!isbn) return;
+
+    fetchingTimeout = setTimeout(() => {
+        $('#bookFetchingBookInfo').removeClass('hidden');
+
+        // retrieve information here
+
+        $('#bookFetchingBookInfo').addClass('hidden');
+        $('#bookBookInfoFetched').removeClass('hidden');
+    }, 500);
+});
