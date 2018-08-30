@@ -16,7 +16,7 @@ class AboutWindow extends Window {
             maximizable: false,
             title: '',
             autoHideMenuBar: true,
-            icon: path.join(__dirname, '../assets/icon128.png')
+            icon: path.join(__dirname, '../assets/images/icon128.png')
         };
 
         super(modalPath, displayOptions);

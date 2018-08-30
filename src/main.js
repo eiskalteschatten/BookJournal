@@ -23,7 +23,7 @@ async function createWindow() {
     const browserWindow = {
         width: preferences.windowWidth,
         height: preferences.windowHeight,
-        icon: path.join(__dirname, './assets/icon128.png')
+        icon: path.join(__dirname, './assets/images/icon128.png')
     };
 
     if (process.platform === 'darwin')
