@@ -352,11 +352,12 @@ let fetchingTimeout;
 $(document).on('blur', '#bookIsbn', function() { // eslint-disable-line
     clearTimeout(fetchingTimeout);
 
-    const isbn = $(this).val().replace('-', '').replace(' ', '');
+    const isbn = $(this).val().replace(/[^0-9]/g, '');
 
     if (!isbn) return;
 
     fetchingTimeout = setTimeout(async () => {
+        $('#bookBookInfoFetched').addClass('hidden');
         $('#bookFetchingBookInfo').removeClass('hidden');
 
         const bookInfo = await BookForm.fetchBookInfo(isbn);
