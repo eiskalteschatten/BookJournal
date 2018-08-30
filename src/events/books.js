@@ -352,7 +352,7 @@ let fetchingTimeout;
 $(document).on('blur', '#bookIsbn', function() { // eslint-disable-line
     clearTimeout(fetchingTimeout);
 
-    const isbn = $(this).val();
+    const isbn = $(this).val().replace('-', '').replace(' ', '');
 
     if (!isbn) return;
 
@@ -389,16 +389,20 @@ $(document).on('click', '#bookFillOutBookInfo', async function(e) { // eslint-di
         $('#bookNumberOfPages').val(bookInfo.pageCount);
         $('#bookLanguageReadIn').val(language);
 
-        let imagePath = config.bookcovers.tempPath;
-        mkdirp(imagePath);
-        imagePath = path.join(imagePath, 'tempCover.jpg');
+        if (bookInfo.imageLinks && bookInfo.imageLinks.thumbnail) {
+            let imagePath = config.bookcovers.tempPath;
+            mkdirp(imagePath);
+            imagePath = path.join(imagePath, 'tempCover.jpg');
 
-        request({uri: bookInfo.imageLinks.thumbnail})
-            .pipe(fs.createWriteStream(imagePath))
-            .on('close', async () => {
-                await saveBookcover(imagePath);
-                await saveBook();
-            });
+            request({uri: bookInfo.imageLinks.thumbnail})
+                .pipe(fs.createWriteStream(imagePath))
+                .on('close', async () => {
+                    await saveBookcover(imagePath);
+                });
+        }
+        else {
+            await saveBook();
+        }
     }
     catch(error) {
         console.error(error);
