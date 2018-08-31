@@ -37,7 +37,8 @@
             "target": [
                 "snap",
                 "deb",
-                "tar.gz"
+                "tar.gz",
+                "AppImage"
             ],
             "category": "Office"
         },
