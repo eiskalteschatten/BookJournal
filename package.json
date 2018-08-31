@@ -10,8 +10,10 @@
         "lint": "./node_modules/.bin/eslint .",
         "precommit": "npm test",
         "postinstall": "install-app-deps",
-        "pack": "npm run prestart && electron-builder --dir",
-        "dist": "npm run prestart && electron-builder"
+        "prepack": "node -e 'require(\"./src/build\")()'",
+        "pack": "electron-builder --dir",
+        "predist": "node -e 'require(\"./src/build\")()'",
+        "dist": "electron-builder"
     },
     "build": {
         "productName": "BookJournal",
