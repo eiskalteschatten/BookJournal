@@ -1,0 +1,35 @@
+@import "modal/about";
+
+.modal-container {
+    background: $modalContainerBg;
+    height: 100%;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+
+    .modal {
+        background: $mainBg;
+        box-shadow: 0 0 20px $boxShadowColor;
+        left: 50%;
+        padding: 25px;
+        position: absolute;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1000;
+
+        .modal-close {
+            $size: 15px;
+
+            background: url($modalCloseX) no-repeat center;
+            background-size: $size;
+            cursor: pointer;
+            height: $size;
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            width: $size;
+        }
+    }
+}

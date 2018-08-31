@@ -3,14 +3,7 @@
 const {app, shell, dialog} = require('electron');
 
 const config = require('../../config/config');
-const AboutWindow = require('../../windows/about');
 const themePreferences = require('../../preferences/theme');
-
-
-function openAbout() {
-    const aboutWindow = new AboutWindow();
-    aboutWindow.open();
-}
 
 
 const template = [
@@ -137,7 +130,9 @@ if (process.platform === 'darwin') {
         submenu: [
             {
                 label: `About ${config.app.name}`,
-                click: openAbout
+                click: (item, focusedWindow) => {
+                    focusedWindow.webContents.send('open-about');
+                }
             },
             {type: 'separator'},
             {role: 'services', submenu: []},
@@ -175,7 +170,9 @@ else {
     template[4].submenu.push(
         {
             label: `About ${config.app.name}`,
-            click: openAbout
+            click: (item, focusedWindow) => {
+                focusedWindow.webContents.send('open-about');
+            }
         }
     );
 }

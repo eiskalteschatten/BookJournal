@@ -9,6 +9,7 @@ require('./events/sidebar');
 require('./events/categories');
 require('./events/books');
 require('./events/dragbar');
+require('./events/modal');
 
 
 $(document).on('contextmenu', 'input, textarea', function() { // eslint-disable-line
@@ -18,6 +19,7 @@ $(document).on('contextmenu', 'input, textarea', function() { // eslint-disable-
 ipcRenderer.on('switch-css', (event, arg) => {
     helper.switchCss(`${arg}Css`);
 });
+
 
 if (process.platform === 'darwin') {
     require('./events/macos');

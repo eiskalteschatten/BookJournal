@@ -2,7 +2,6 @@
     "sassFilesToCompile": [
         "bootstrap.scss",
         "light.scss",
-        "dark.scss",
-        "about.scss"
+        "dark.scss"
     ]
 }

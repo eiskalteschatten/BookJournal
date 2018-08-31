@@ -21,6 +21,10 @@ a {
     float: left;
 }
 
+.clear-fix {
+    clear: both;
+}
+
 .hidden {
     display: none;
 }
@@ -47,3 +51,4 @@ a {
 @import "elements/groups";
 @import "elements/forms";
 @import "elements/bookForm";
+@import "elements/modal";

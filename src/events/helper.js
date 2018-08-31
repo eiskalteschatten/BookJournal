@@ -59,6 +59,15 @@ function switchCss(id) {
     $(`#${id}`).prop('disabled', false);
 }
 
+function openModal(id) {
+    $('#modalContainer').removeClass('hidden');
+    $(`#${id}`).removeClass('hidden');
+}
+
+function closeModal(id) {
+    $('#modalContainer').addClass('hidden');
+    $(`#${id}`).addClass('hidden');
+}
 
 module.exports = {
     loadBook,
@@ -66,5 +75,7 @@ module.exports = {
     updateBookList,
     clearBooklistSelection,
     changeFilter,
-    switchCss
+    switchCss,
+    openModal,
+    closeModal
 };

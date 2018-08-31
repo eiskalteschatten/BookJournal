@@ -3,11 +3,13 @@
 const $ = require('jquery');
 
 const SidebarList = require('./elements/list/sidebar');
+const AboutModal = require('./elements/modal/about');
 
 
 async function render() {
     await renderSidebar();
     $('.js-sidebar-list-element').first().trigger('click');
+    await renderModals();
 }
 
 async function renderSidebar() {
@@ -18,6 +20,14 @@ async function renderSidebar() {
     const $sidebar = $('#sidebar');
     $sidebar.html(rendered);
     $sidebar.removeClass('loading');
+}
+
+async function renderModals() {
+    const $modalAnchor = $('#modalAnchor');
+
+    const aboutModal = new AboutModal();
+    const rendered = await aboutModal.render();
+    $modalAnchor.append(rendered);
 }
 
 render();

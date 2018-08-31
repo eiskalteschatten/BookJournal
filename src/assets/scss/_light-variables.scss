@@ -2,6 +2,7 @@ $mainBg: #f0f0f0;
 $mainFontColor: #0e0e0e;
 
 $linkColor: #019CEE;
+$boxShadowColor: darken($mainBg, 50%);
 
 $sidebarBg: #000000;
 $sidebarColor: #e0e0e0;
@@ -22,6 +23,9 @@ $buttonActiveBg: darken($buttonBg, 10%);
 $toolbarButtonColor: $mainFontColor;
 $toolbarIconPlus: '../images/light/si-glyph-button-plus.svg';
 $toolbarIconSidebarPlus: '../images/dark/si-glyph-button-plus.svg';
+
+$modalContainerBg: rgba(240, 240, 240, .8);
+$modalCloseX: '../images/light/modal-close-x.svg';
 
 $noBookSelected: '../images/light/icon-monotone.svg';
 
