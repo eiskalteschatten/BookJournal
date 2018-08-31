@@ -1,5 +1,5 @@
 {
-    "name": "book-journal",
+    "name": "bookjournal",
     "version": "1.0.0",
     "description": "A digital book journal.",
     "main": "./src/main.js",
@@ -19,6 +19,7 @@
         "productName": "BookJournal",
         "copyright": "Copyright © 2018 Alex Seifert",
         "appId": "com.alexseifert.bookjournal",
+        "buildDependenciesFromSource": true,
         "mac": {
             "target": ["dmg"],
             "category": "public.app-category.productivity"
