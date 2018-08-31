@@ -28,15 +28,24 @@
             "!Notes.md"
         ],
         "mac": {
-            "target": ["dmg"],
+            "target": [
+                "dmg"
+            ],
             "category": "public.app-category.productivity"
         },
         "linux": {
-            "target": ["snap", "deb", "tar.gz"],
+            "target": [
+                "snap",
+                "deb",
+                "tar.gz"
+            ],
             "category": "Office"
         },
         "win": {
-            "target": ["nsis", "portable"],
+            "target": [
+                "nsis",
+                "portable"
+            ],
             "icon": "build/icon.ico"
         }
     },
