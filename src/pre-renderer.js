@@ -17,6 +17,8 @@ async function render() {
 
     $('#sidebarWrapper').css('width', preferences.sidebarWidth + 'px');
     $('#bookListWrapper').css('width', preferences.middleColumnWidth + 'px');
+
+    sessionStorage.setItem('preferences', JSON.stringify(preferences));  // eslint-disable-line
 }
 
 render();

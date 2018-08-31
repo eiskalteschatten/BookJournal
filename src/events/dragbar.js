@@ -31,7 +31,9 @@ $(document).mouseup(async function(e) { // eslint-disable-line
             middleColumnWidth: parseInt($('#bookListWrapper').css('width'))
         };
 
-        const preferences = await Preferences.findById(1);
-        await preferences.updateAttributes(values);
+        let preferences = await Preferences.findById(1);
+        preferences = await preferences.updateAttributes(values);
+
+        sessionStorage.setItem('preferences', JSON.stringify(preferences));  // eslint-disable-line
     }
 });

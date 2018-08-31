@@ -35,6 +35,14 @@ const Preferences = db.define('preferences', {
         type: Sequelize.STRING,
         defaultValue: 'light'
     },
+    fetchBookInfoFromGoogle: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: true
+    },
+    checkForUpdates: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: true
+    }
 });
 
 Preferences.sync();

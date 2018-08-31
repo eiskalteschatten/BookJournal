@@ -350,24 +350,33 @@ $(document).on('click', '.js-remove-rating', function() { // eslint-disable-line
 let fetchingTimeout;
 
 $(document).on('blur', '#bookIsbn', function() { // eslint-disable-line
-    clearTimeout(fetchingTimeout);
+    try {
+        let preferences = sessionStorage.getItem('preferences');  // eslint-disable-line
+        preferences = JSON.parse(preferences);
 
-    const isbn = $(this).val().replace(/[^0-9]/g, '');
+        if (!preferences.fetchBookInfoFromGoogle) return;
 
-    if (!isbn) return;
+        clearTimeout(fetchingTimeout);
 
-    fetchingTimeout = setTimeout(async () => {
-        $('#bookBookInfoFetched').addClass('hidden');
-        $('#bookFetchingBookInfo').removeClass('hidden');
+        const isbn = $(this).val().replace(/[^0-9]/g, '');
+        if (!isbn) return;
 
-        const bookInfo = await BookForm.fetchBookInfo(isbn);
-        sessionStorage.setItem('bookInfo', JSON.stringify(bookInfo)); // eslint-disable-line
+        fetchingTimeout = setTimeout(async () => {
+            $('#bookBookInfoFetched').addClass('hidden');
+            $('#bookFetchingBookInfo').removeClass('hidden');
 
-        $('#bookFetchingBookInfo').addClass('hidden');
+            const bookInfo = await BookForm.fetchBookInfo(isbn);
+            sessionStorage.setItem('bookInfo', JSON.stringify(bookInfo)); // eslint-disable-line
 
-        if (typeof bookInfo === 'object' && bookInfo.totalItems > 0)
-            $('#bookBookInfoFetched').removeClass('hidden');
-    }, 500);
+            $('#bookFetchingBookInfo').addClass('hidden');
+
+            if (typeof bookInfo === 'object' && bookInfo.totalItems > 0)
+                $('#bookBookInfoFetched').removeClass('hidden');
+        }, 500);
+    }
+    catch(error) {
+        console.error(error);
+    }
 });
 
 $(document).on('click', '#bookFillOutBookInfo', async function(e) { // eslint-disable-line
