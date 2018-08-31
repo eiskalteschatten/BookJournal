@@ -18,6 +18,7 @@
         "copyright": "Copyright © 2018 Alex Seifert",
         "appId": "com.alexseifert.bookjournal",
         "mac": {
+            "target": ["dmg"],
             "category": "public.app-category.productivity"
         },
         "linux": {
@@ -25,6 +26,7 @@
             "category": "Office"
         },
         "win": {
+            "target": ["nsis", "portable"],
             "icon": "build/icon.ico"
         }
     },
