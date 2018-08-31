@@ -20,7 +20,6 @@
         "copyright": "Copyright © 2018 Alex Seifert",
         "appId": "com.alexseifert.bookjournal",
         "buildDependenciesFromSource": true,
-        "asar": false,
         "files": [
             "!*.code-workspace",
             "!build-scripts",
