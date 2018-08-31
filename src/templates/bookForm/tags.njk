@@ -8,6 +8,6 @@
     {% for tag in book.tagArray %}
         {% set typeClass = 'tag' %}
         {% set deleteId = tag %}
-        {% include "src/templates/bookForm/tagCategoryBadge.njk" %}
+        {% include "bookForm/tagCategoryBadge.njk" %}
     {% endfor %}
 </div>

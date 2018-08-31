@@ -2,7 +2,7 @@
 
 const path = require('path');
 const fs = require('fs');
-const nunjucks = require('nunjucks');
+const nunjucks = require('../nunjucks');
 
 const ListElement = require('./listElement');
 const TitleListElement = require('./listElement/title');

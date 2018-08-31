@@ -2,7 +2,8 @@
 
 const path = require('path');
 const fs = require('fs');
-const nunjucks = require('nunjucks');
+
+const nunjucks = require('../nunjucks');
 
 
 class ListElement {

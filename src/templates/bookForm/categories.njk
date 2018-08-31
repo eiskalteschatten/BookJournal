@@ -17,6 +17,6 @@
     {% for deleteId, category in book.categoryBadges %}
         {% set typeClass = 'category' %}
         {% set tag = category.name %}
-        {% include "src/templates/bookForm/tagCategoryBadge.njk" %}
+        {% include "bookForm/tagCategoryBadge.njk" %}
     {% endfor %}
 </div>

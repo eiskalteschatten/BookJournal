@@ -3,8 +3,8 @@
 const $ = require('jquery');
 const path = require('path');
 const fs = require('fs');
-const nunjucks = require('nunjucks');
 
+const nunjucks = require('../../nunjucks');
 const SidebarListElement = require('../listElement/sidebar');
 const Category = require('../../models/category');
 

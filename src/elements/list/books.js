@@ -2,8 +2,8 @@
 
 const path = require('path');
 const fs = require('fs');
-const nunjucks = require('nunjucks');
 
+const nunjucks = require('../../nunjucks');
 const List = require('../list');
 const Book = require('../../models/book');
 const BookListElement = require('../../elements/listElement/book');

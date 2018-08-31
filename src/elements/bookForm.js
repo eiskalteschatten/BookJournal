@@ -4,11 +4,11 @@ const dialog = require('electron').remote.dialog;
 const $ = require('jquery');
 const path = require('path');
 const fs = require('fs');
-const nunjucks = require('nunjucks');
 const mkdirp = require('mkdirp');
 const uuidv4 = require('uuid/v4');
 const request = require('request');
 
+const nunjucks = require('../nunjucks');
 const config = require('../config/config');
 
 const Book = require('../models/book');
