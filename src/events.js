@@ -20,6 +20,10 @@ ipcRenderer.on('switch-css', (event, arg) => {
     helper.switchCss(`${arg}Css`);
 });
 
+ipcRenderer.on('check-for-updates', async () => {
+    helper.checkForUpdates(true);
+});
+
 
 if (process.platform === 'darwin') {
     require('./events/macos');

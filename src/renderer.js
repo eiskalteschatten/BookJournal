@@ -2,6 +2,8 @@
 
 const $ = require('jquery');
 
+const helper = require('./events/helper');
+
 const SidebarList = require('./elements/list/sidebar');
 const AboutModal = require('./elements/modal/about');
 
@@ -10,6 +12,7 @@ async function render() {
     await renderSidebar();
     $('.js-sidebar-list-element').first().trigger('click');
     await renderModals();
+    helper.checkForUpdates();
 }
 
 async function renderSidebar() {

@@ -14,6 +14,9 @@ module.exports = {
         storagePath,
         tempStoragePath
     },
+    updates: {
+        url: 'https://www.alexseifert.com/bookjournal/api/check-for-updates/'
+    },
     database: {
         path: storagePath,
         fileName: 'bookjournal.sqlite'

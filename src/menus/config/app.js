@@ -134,6 +134,12 @@ if (process.platform === 'darwin') {
                     focusedWindow.webContents.send('open-about');
                 }
             },
+            {
+                label: 'Check for Updates...',
+                click: (item, focusedWindow) => {
+                    focusedWindow.webContents.send('check-for-updates');
+                }
+            },
             {type: 'separator'},
             {role: 'services', submenu: []},
             {type: 'separator'},
@@ -167,14 +173,23 @@ if (process.platform === 'darwin') {
 }
 else {
     // Help menu
-    template[4].submenu.push(
+    const helpMenu = template[4].submenu;
+    template[4].submenu = [
+        {
+            label: 'Check for Updates...',
+            click: (item, focusedWindow) => {
+                focusedWindow.webContents.send('check-for-updates');
+            }
+        },
+        {type: 'separator'},
+        helpMenu[0],
         {
             label: `About ${config.app.name}`,
             click: (item, focusedWindow) => {
                 focusedWindow.webContents.send('open-about');
             }
         }
-    );
+    ];
 }
 
 module.exports = template;
