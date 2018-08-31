@@ -32,7 +32,7 @@
             "category": "public.app-category.productivity"
         },
         "linux": {
-            "target": ["snap", "deb", "rpm", "tar.gz"],
+            "target": ["snap", "deb", "tar.gz"],
             "category": "Office"
         },
         "win": {
