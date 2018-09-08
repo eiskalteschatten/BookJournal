@@ -2,7 +2,7 @@
     "name": "bookjournal",
     "version": "1.0.0",
     "description": "A digital book journal.",
-    "main": "./src/main.js",
+    "main": "./src/mainSnapshot.js",
     "scripts": {
         "prestart": "node -e 'require(\"./src/build\")()'",
         "start": "electron .",
@@ -68,6 +68,7 @@
     },
     "dependencies": {
         "bootstrap": "^4.1.1",
+        "electron-link": "^0.2.2",
         "iso-639-1": "^2.0.3",
         "jquery": "^3.3.1",
         "mkdirp": "^0.5.1",
@@ -75,6 +76,7 @@
         "popper.js": "^1.14.4",
         "sequelize": "^4.38.0",
         "sqlite3": "^4.0.2",
+        "uglify-js": "^3.4.9",
         "uuid": "^3.3.2"
     }
 }

@@ -12,6 +12,7 @@ The project is currently in its infancy.
 - Automatically fetch book information based on the ISBN - https://developers.google.com/books/docs/v1/using
 
 ### 1.1
+- Improve initial loading time
 - Preferences: light/dark theme, automatically fetch book information from Google Books (on/off), update automatically (on/off)
 - Search
 - Reading stats

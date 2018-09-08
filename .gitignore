@@ -7,3 +7,6 @@ src/assets/css
 .DS_Store
 
 dist
+
+.build-cache
+src/mainSnapshot.js
