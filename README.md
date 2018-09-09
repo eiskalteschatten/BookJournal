@@ -13,11 +13,12 @@ The project is currently in its infancy.
 
 ### 1.1
 - Improve initial loading time
+- Mac Sandboxing
 - Preferences: light/dark theme, automatically fetch book information from Google Books (on/off), update automatically (on/off)
 - Search
-- Reading stats
 
 ### 1.2
+- Reading stats
 - Sort books by field in the book form
 - Link books (relates to, is translation of, etc)
 
