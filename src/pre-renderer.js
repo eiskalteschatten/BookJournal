@@ -1,18 +1,18 @@
 'use strict';
 
 function preRender() {
-    const theme = localStorage.getItem('theme') || 'light';  // eslint-disable-line
+    const theme = localStorage.getItem('theme') || 'light';
     const themeCss = `${theme}Css`;
 
-    document.getElementById(themeCss).disabled = false;  // eslint-disable-line
+    document.getElementById(themeCss).disabled = false;
 
-    const body = document.getElementsByTagName('body')[0];  // eslint-disable-line
+    const body = document.getElementsByTagName('body')[0];
     body.classList.add(process.platform);
 
-    const preferences = localStorage.getItem('preferences');  // eslint-disable-line
+    const preferences = localStorage.getItem('preferences');
 
-    document.getElementById('sidebarWrapper').style.width = `${preferences.sidebarWidth}px`;  // eslint-disable-line
-    document.getElementById('bookListWrapper').style.width = `${preferences.middleColumnWidth}px`;  // eslint-disable-line
+    document.getElementById('sidebarWrapper').style.width = `${preferences.sidebarWidth}px`;
+    document.getElementById('bookListWrapper').style.width = `${preferences.middleColumnWidth}px`;
 }
 
-window.onload = preRender;  // eslint-disable-line
+window.onload = preRender;

@@ -11,7 +11,7 @@ ipcRenderer.on('open-about', () => {
 
 });
 
-$(document).on('click', '.js-modal-close', function() { // eslint-disable-line
+$(document).on('click', '.js-modal-close', function() {
     const id = $(this).closest('.js-modal').attr('id');
     helper.closeModal(id);
 });
@@ -20,6 +20,6 @@ $(document).on('click', '.js-modal-close', function() { // eslint-disable-line
 
 // About Modal
 
-$(document).on('click', '#alexSeifertLink', function() { // eslint-disable-line
+$(document).on('click', '#alexSeifertLink', function() {
     shell.openExternal('https://www.alexseifert.com');
 });

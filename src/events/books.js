@@ -15,21 +15,21 @@ const eventHelper = require('./helper');
 const BookForm = require('../elements/bookForm');
 
 
-$(document).on('click', '#bookUtilityMenu', function() { // eslint-disable-line
+$(document).on('click', '#bookUtilityMenu', function() {
     ipcRenderer.send('show-book-utility-menu');
 });
 
-$(document).on('click', '#bookNotReadYet', function() { // eslint-disable-line
+$(document).on('click', '#bookNotReadYet', function() {
     if ($(this).prop('checked')) $('#bookDateRead').prop('disabled', true);
     else $('#bookDateRead').prop('disabled', false);
 });
 
-$(document).on('contextmenu', '.js-book-list-element', function() { // eslint-disable-line
+$(document).on('contextmenu', '.js-book-list-element', function() {
     $(this).trigger('click');
     ipcRenderer.send('show-book-utility-menu');
 });
 
-$(window).on('book-form-loaded', function() { // eslint-disable-line
+$(window).on('book-form-loaded', function() {
     ipcRenderer.send('enable-book-items');
     $('#bookForm').addClass('js-is-visible');
 });
@@ -46,11 +46,11 @@ async function createNewBook() {
     $('#bookDetails').html(rendered);
     await bookForm.afterRender();
 
-    $(window).trigger('book-form-loaded'); // eslint-disable-line
+    $(window).trigger('book-form-loaded');
 }
 
 ipcRenderer.on('create-new-book', createNewBook);
-$(document).on('click', '.js-new-book', createNewBook); // eslint-disable-line
+$(document).on('click', '.js-new-book', createNewBook);
 
 
 // Save Book
@@ -101,13 +101,13 @@ async function saveBookTimeout() {
 }
 
 ipcRenderer.on('save-book', saveBook);
-$(document).on('change', '.js-book-form-field', saveBookTimeout); // eslint-disable-line
-$(document).on('keyup', '.js-book-form-field', saveBookTimeout); // eslint-disable-line
+$(document).on('change', '.js-book-form-field', saveBookTimeout);
+$(document).on('keyup', '.js-book-form-field', saveBookTimeout);
 
 
 // Load Book
 
-$(document).on('click', '.js-book-list-element', async function() { // eslint-disable-line
+$(document).on('click', '.js-book-list-element', async function() {
     const $this = $(this);
     $('.js-book-list-element').removeClass('selected');
     $(this).addClass('selected');
@@ -155,7 +155,7 @@ async function deleteBookcover() {
     }
 }
 
-$(document).on('click', '#bookcoverUploadArea', function() { // eslint-disable-line
+$(document).on('click', '#bookcoverUploadArea', function() {
     dialog.showOpenDialog(remote.getCurrentWindow(), {
         filters: [
             { name: 'Images', extensions: config.bookcovers.extensions }
@@ -164,23 +164,23 @@ $(document).on('click', '#bookcoverUploadArea', function() { // eslint-disable-l
     }, async imagePath => saveBookcover(imagePath[0]));
 });
 
-$(document).on('dragover', '#bookcoverUploadArea', function(e) { // eslint-disable-line
+$(document).on('dragover', '#bookcoverUploadArea', function(e) {
     e.preventDefault();
     $('#bookcoverUploadArea').addClass('dragover');
 });
 
-$(document).on('dragleave', '#bookcoverUploadArea', function(e) { // eslint-disable-line
+$(document).on('dragleave', '#bookcoverUploadArea', function(e) {
     e.preventDefault();
     $('#bookcoverUploadArea').removeClass('dragover');
 });
 
-$(document).on('drop', '#bookcoverUploadArea', function(e) { // eslint-disable-line
+$(document).on('drop', '#bookcoverUploadArea', function(e) {
     e.preventDefault();
     $('#bookcoverUploadArea').removeClass('dragover');
     saveBookcover(e.originalEvent.dataTransfer.files[0].path);
 });
 
-$(document).on('contextmenu', '#bookcoverUploadArea', function() { // eslint-disable-line
+$(document).on('contextmenu', '#bookcoverUploadArea', function() {
     ipcRenderer.send('show-bookcover-context-menu');
 });
 
@@ -189,11 +189,11 @@ ipcRenderer.on('delete-bookcover', deleteBookcover);
 
 // Book Color
 
-$(document).on('click', '.js-book-form-color-stripe', function() { // eslint-disable-line
+$(document).on('click', '.js-book-form-color-stripe', function() {
     $(this).siblings('.js-book-form-color-form').click();
 });
 
-$(document).on('change', '.js-book-form-color-form', function() { // eslint-disable-line
+$(document).on('change', '.js-book-form-color-form', function() {
     const $colorForm = $(this);
     const color = $colorForm.val();
     $colorForm.siblings('.js-book-form-color-stripe').attr('style', `background-color: ${color}`);
@@ -226,11 +226,11 @@ function deleteBadge($deleteButton) {
     $badge.remove();
 }
 
-$(document).on('click', '.js-delete-tag', function() { // eslint-disable-line
+$(document).on('click', '.js-delete-tag', function() {
     deleteBadge($(this));
 });
 
-$(document).on('keypress', '#bookTags', async function(e) { // eslint-disable-line
+$(document).on('keypress', '#bookTags', async function(e) {
     if (e.keyCode !== 13) return;
     e.preventDefault();
 
@@ -261,7 +261,7 @@ $(document).on('keypress', '#bookTags', async function(e) { // eslint-disable-li
     }
 });
 
-$(document).on('change', '#bookCategories', async function() { // eslint-disable-line
+$(document).on('change', '#bookCategories', async function() {
     const $this = $(this);
     const $wrapper = $this.closest('.js-pre-tag-cluster-wrapper');
     const $selected = $this.find('option:selected');
@@ -287,7 +287,7 @@ $(document).on('change', '#bookCategories', async function() { // eslint-disable
 
 let starRestoreTimeout;
 
-$(document).on('mouseout', '.js-rating-star', function() { // eslint-disable-line
+$(document).on('mouseout', '.js-rating-star', function() {
     starRestoreTimeout = setTimeout(function() {
         $('.js-rating-star')
             .removeClass('temp-full')
@@ -295,7 +295,7 @@ $(document).on('mouseout', '.js-rating-star', function() { // eslint-disable-lin
     }, 100);
 });
 
-$(document).on('mouseover', '.js-rating-star', function() { // eslint-disable-line
+$(document).on('mouseover', '.js-rating-star', function() {
     clearTimeout(starRestoreTimeout);
 
     $('.js-rating-star')
@@ -311,7 +311,7 @@ $(document).on('mouseover', '.js-rating-star', function() { // eslint-disable-li
         .addClass('temp-full');
 });
 
-$(document).on('click', '.js-rating-star', function() { // eslint-disable-line
+$(document).on('click', '.js-rating-star', function() {
     clearTimeout(starRestoreTimeout);
 
     const values = [];
@@ -336,7 +336,7 @@ $(document).on('click', '.js-rating-star', function() { // eslint-disable-line
     $('#bookRating').val(rating).trigger('change');
 });
 
-$(document).on('click', '.js-remove-rating', function() { // eslint-disable-line
+$(document).on('click', '.js-remove-rating', function() {
     $('.js-rating-star')
         .removeClass('full')
         .addClass('empty');
@@ -349,9 +349,9 @@ $(document).on('click', '.js-remove-rating', function() { // eslint-disable-line
 
 let fetchingTimeout;
 
-$(document).on('blur', '#bookIsbn', function() { // eslint-disable-line
+$(document).on('blur', '#bookIsbn', function() {
     try {
-        let preferences = sessionStorage.getItem('preferences');  // eslint-disable-line
+        let preferences = sessionStorage.getItem('preferences');
         preferences = JSON.parse(preferences);
 
         if (!preferences.fetchBookInfoFromGoogle) return;
@@ -366,7 +366,7 @@ $(document).on('blur', '#bookIsbn', function() { // eslint-disable-line
             $('#bookFetchingBookInfo').removeClass('hidden');
 
             const bookInfo = await BookForm.fetchBookInfo(isbn);
-            sessionStorage.setItem('bookInfo', JSON.stringify(bookInfo)); // eslint-disable-line
+            sessionStorage.setItem('bookInfo', JSON.stringify(bookInfo));
 
             $('#bookFetchingBookInfo').addClass('hidden');
 
@@ -379,11 +379,11 @@ $(document).on('blur', '#bookIsbn', function() { // eslint-disable-line
     }
 });
 
-$(document).on('click', '#bookFillOutBookInfo', async function(e) { // eslint-disable-line
+$(document).on('click', '#bookFillOutBookInfo', async function(e) {
     e.preventDefault();
 
     try {
-        let bookInfo = sessionStorage.getItem('bookInfo'); // eslint-disable-line
+        let bookInfo = sessionStorage.getItem('bookInfo');
         bookInfo = JSON.parse(bookInfo);
         bookInfo = bookInfo.items[0].volumeInfo;
 

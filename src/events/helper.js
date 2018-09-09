@@ -17,7 +17,7 @@ async function loadBook(id) {
     $('#bookDetails').html(rendered);
     await bookForm.afterRender();
 
-    $(window).trigger('book-form-loaded'); // eslint-disable-line
+    $(window).trigger('book-form-loaded');
 }
 
 function selectBook(id) {
@@ -75,7 +75,7 @@ function closeModal(id) {
 async function checkForUpdates(showNoUpdateDialog = false) {
     return new Promise((resolve, reject) => {
         try {
-            let preferences = localStorage.getItem('preferences');  // eslint-disable-line
+            let preferences = localStorage.getItem('preferences');
             preferences = JSON.parse(preferences);
 
             if (!preferences.checkForUpdates) resolve();

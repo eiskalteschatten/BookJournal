@@ -14,16 +14,15 @@ $('.js-dragbar').mousedown(function(e) {
 
     dragging = true;
 
-    $(document).mousemove(function(e) { // eslint-disable-line
-        // $draggableColumn.css('width', e.pageX);
+    $(document).mousemove(function(e) {
         var newWidth = e.pageX - $draggableColumn.offset().left;
         $draggableColumn.css('width', newWidth);
     });
 });
 
-$(document).mouseup(async function(e) { // eslint-disable-line
+$(document).mouseup(async function() {
     if (dragging) {
-        $(document).unbind('mousemove'); // eslint-disable-line
+        $(document).unbind('mousemove');
         dragging = false;
 
         const values = {
@@ -34,6 +33,6 @@ $(document).mouseup(async function(e) { // eslint-disable-line
         let preferences = await Preferences.findById(1);
         preferences = await preferences.updateAttributes(values);
 
-        localStorage.setItem('preferences', JSON.stringify(preferences));  // eslint-disable-line
+        localStorage.setItem('preferences', JSON.stringify(preferences));
     }
 });

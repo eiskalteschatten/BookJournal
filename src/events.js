@@ -12,13 +12,13 @@ require('./events/dragbar');
 require('./events/modal');
 
 
-$(document).on('contextmenu', 'input, textarea', function() { // eslint-disable-line
+$(document).on('contextmenu', 'input, textarea', function() {
     ipcRenderer.send('show-input-context-menu');
 });
 
 ipcRenderer.on('switch-css', (event, theme) => {
     helper.switchCss(`${theme}Css`);
-    localStorage.setItem('theme', theme);  // eslint-disable-line
+    localStorage.setItem('theme', theme);
 });
 
 ipcRenderer.on('check-for-updates', async () => {

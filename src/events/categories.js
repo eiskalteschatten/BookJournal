@@ -10,7 +10,7 @@ const BookForm = require('../elements/bookForm');
 
 let $elementWithContextMenu;
 
-$(document).on('contextmenu', '.js-category-list-element', function() { // eslint-disable-line
+$(document).on('contextmenu', '.js-category-list-element', function() {
     $elementWithContextMenu = $(this);
     ipcRenderer.send('show-category-list-element-context-menu');
 });
@@ -38,14 +38,14 @@ ipcRenderer.on('create-new-category', async () => {
     createNewCategory();
 });
 
-$(document).on('blur', '.js-list-element-edit-name', function() { // eslint-disable-line
+$(document).on('blur', '.js-list-element-edit-name', function() {
     const $field = $(this);
 
     if ($field && $field.val() === '')
         $field.closest('.js-list-element-edit').remove();
 });
 
-$(document).on('keyup', '.js-list-element-edit-name', async function(e) { // eslint-disable-line
+$(document).on('keyup', '.js-list-element-edit-name', async function(e) {
     const $field = $(this);
 
     if (e.keyCode === 27) { // esc should close the field
@@ -69,14 +69,14 @@ $(document).on('keyup', '.js-list-element-edit-name', async function(e) { // esl
 
 // Category Colors
 
-$(document).on('click', '.js-list-element-color', function() { // eslint-disable-line
+$(document).on('click', '.js-list-element-color', function() {
     $(this).siblings('.js-list-element-color-form').click();
 });
 
 
 let saveColorTimer;
 
-$(document).on('change', '.js-list-element-color-form', async function() { // eslint-disable-line
+$(document).on('change', '.js-list-element-color-form', async function() {
     clearTimeout(saveColorTimer);
 
     const $colorForm = $(this);
@@ -106,11 +106,11 @@ ipcRenderer.on('rename-category', () => {
     openCategoryRenameMode($elementWithContextMenu);
 });
 
-$(document).on('dblclick', '.js-category-list-element', function() { // eslint-disable-line
+$(document).on('dblclick', '.js-category-list-element', function() {
     openCategoryRenameMode($(this));
 });
 
-$(document).on('blur', '.js-list-element-edit-rename', function() { // eslint-disable-line
+$(document).on('blur', '.js-list-element-edit-rename', function() {
     const $field = $(this);
     const $li = $field.closest('.js-category-list-element');
     const $edit = $li.find('.js-list-element-edit');
@@ -122,7 +122,7 @@ $(document).on('blur', '.js-list-element-edit-rename', function() { // eslint-di
     $name.removeClass('hidden');
 });
 
-$(document).on('keyup', '.js-list-element-edit-rename', async function(e) { // eslint-disable-line
+$(document).on('keyup', '.js-list-element-edit-rename', async function(e) {
     const $field = $(this);
     const $li = $field.closest('.js-category-list-element');
     const $edit = $li.find('.js-list-element-edit');

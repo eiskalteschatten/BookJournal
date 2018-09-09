@@ -33,14 +33,17 @@ module.exports = {
             "off"
         ],
         "no-case-declarations": [
-          "off"
+            "off"
         ],
         "prefer-const": [
-          "error"
+            "error"
         ],
         "arrow-parens": [
-          "error",
-          "as-needed"
+            "error",
+            "as-needed"
+        ],
+        "no-undef": [
+            "off"
         ],
         "promise/catch-or-return": "error",
         "promise/param-names": "error",

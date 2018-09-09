@@ -1,7 +1,5 @@
 'use strict';
 
-const $ = require('jquery');
-
 const helper = require('./events/helper');
 
 const SidebarList = require('./elements/list/sidebar');
@@ -12,26 +10,24 @@ async function renderSidebar() {
     const list = new SidebarList();
     await list.loadCategories();
 
-    const rendered = await list.render();
-    const $sidebar = $('#sidebar');
-    $sidebar.html(rendered);
-    $sidebar.removeClass('loading');
+    const sidebar = document.getElementById('sidebar');
+    sidebar.innerHTML = await list.render();
 }
 
 async function renderModals() {
-    const $modalAnchor = $('#modalAnchor');
+    const modalAnchor = document.getElementById('modalAnchor');
 
     const aboutModal = new AboutModal();
     const rendered = await aboutModal.render();
-    $modalAnchor.append(rendered);
+    modalAnchor.insertAdjacentHTML('beforeend', rendered);
 }
 
 async function postRender() {
     const {loadPreferences} = require('./initialPreferences');
     const preferences = await loadPreferences();
 
-    localStorage.setItem('preferences', JSON.stringify(preferences));  // eslint-disable-line
-    localStorage.setItem('theme', preferences.theme);  // eslint-disable-line
+    localStorage.setItem('preferences', JSON.stringify(preferences));
+    localStorage.setItem('theme', preferences.theme);
 
     helper.checkForUpdates();
 }
@@ -40,8 +36,10 @@ async function render() {
     require('./events.js');
 
     await renderSidebar();
-    $('.js-sidebar-list-element').first().trigger('click');
-    document.getElementById('defaultCss').remove();  // eslint-disable-line
+    const firstSidebarListItem = document.getElementsByClassName('js-sidebar-list-element')[0];
+    firstSidebarListItem.click();
+
+    document.getElementById('defaultCss').remove();
 
     await renderModals();
     await postRender();
