@@ -141,6 +141,14 @@ if (process.platform === 'darwin') {
                 }
             },
             {type: 'separator'},
+            {
+                label: 'Preferences',
+                accelerator: 'Cmd+,',
+                click: (item, focusedWindow) => {
+                    focusedWindow.webContents.send('open-preferences');
+                }
+            },
+            {type: 'separator'},
             {role: 'services', submenu: []},
             {type: 'separator'},
             {role: 'hide'},
@@ -172,6 +180,19 @@ if (process.platform === 'darwin') {
     ];
 }
 else {
+    // Edit menu
+    template[1].submenu.push([
+        {type: 'separator'},
+        {
+            label: 'Preferences',
+            accelerator: 'Ctrl+,',
+            click: (item, focusedWindow) => {
+                focusedWindow.webContents.send('open-preferences');
+            }
+        }
+    ]);
+
+
     // Help menu
     const helpMenu = template[4].submenu;
     template[4].submenu = [
