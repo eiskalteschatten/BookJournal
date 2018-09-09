@@ -4,26 +4,29 @@
         <meta charset="UTF-8">
         <title>BookJournal</title>
 
-        <link rel="stylesheet" href="../assets/css/bootstrap.css" type="text/css">
-
-        <link rel="stylesheet" href="../assets/css/light.css" class="js-main-css" id="lightCss" title="Light" disabled>
-        <link rel="stylesheet" href="../assets/css/dark.css" class="js-main-css" id="darkCss"  title="Dark" disabled>
-
         <style id="defaultCss">
-            body {
-                background-color: #000000;
-                color: #ffffff;
-            }
-
-            a {
-                color: #ffffff;
+            .splash-screen {
+                background: #ffffff url('../assets/images/light/icon-monotone.svg') no-repeat fixed center;
+                background-size: 30%;
+                height: 100%;
+                left: 0;
+                position: absolute;
+                top: 0;
+                width: 100%;
+                z-index: 10000000000;
             }
         </style>
+
+        <link rel="stylesheet" href="../assets/css/bootstrap.css" type="text/css">
+        <link rel="stylesheet" href="../assets/css/light.css" class="js-main-css" id="lightCss" title="Light" disabled>
+        <link rel="stylesheet" href="../assets/css/dark.css" class="js-main-css" id="darkCss"  title="Dark" disabled>
 
         <script src="../pre-renderer.js"></script>
     </head>
     <body>
         <div class="title-bar js-title-bar"></div>
+
+        <div class="splash-screen" id="splashScreen"></div>
 
         <main class="main-structure">
 
@@ -66,7 +69,9 @@
         </div>
 
         <script>
-            require('../renderer.js');
+            setTimeout(() => {
+                require('../renderer.js');
+            }, 100);
         </script>
     </body>
 </html>

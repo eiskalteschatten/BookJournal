@@ -5,7 +5,7 @@ function preRender() {
     const themeCss = `${theme}Css`;
 
     document.getElementById(themeCss).disabled = false;  // eslint-disable-line
-    document.getElementById('defaultCss').remove();  // eslint-disable-line
+    //document.getElementById('defaultCss').remove();  // eslint-disable-line
 
     const body = document.getElementsByTagName('body')[0];  // eslint-disable-line
     body.classList.add(process.platform);
