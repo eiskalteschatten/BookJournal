@@ -18,14 +18,15 @@
             a {
                 color: #ffffff;
             }
+
+            .bottom-toolbar {
+                display: none;
+            }
         </style>
+
+        <script src="../pre-renderer.js"></script>
     </head>
     <body>
-        <script>
-            const prerender = require('../pre-renderer.js');
-            prerender();
-        </script>
-
         <div class="title-bar js-title-bar"></div>
 
         <main class="main-structure">
@@ -69,7 +70,7 @@
         </div>
 
         <script>
-            require('../events.js');
+            require('../renderer.js');
         </script>
     </body>
 </html>

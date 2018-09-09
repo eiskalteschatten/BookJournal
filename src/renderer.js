@@ -36,9 +36,13 @@ async function postRender() {
     helper.checkForUpdates();
 }
 
-module.exports = async () => {
+async function render() {
+    require('./events.js');
+
     await renderSidebar();
     $('.js-sidebar-list-element').first().trigger('click');
     await renderModals();
     await postRender();
-};
+}
+
+render();
