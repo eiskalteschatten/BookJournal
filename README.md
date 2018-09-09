@@ -2,7 +2,7 @@
 
 The project is currently in its infancy.
 
-## Roadmap
+## Release Notes
 
 ### 1.0
 - Add books
@@ -10,6 +10,9 @@ The project is currently in its infancy.
 - Update mechanism
 - Dark and light themes
 - Automatically fetch book information based on the ISBN - https://developers.google.com/books/docs/v1/using
+
+
+## Roadmap
 
 ### 1.1
 - Improve initial loading time
