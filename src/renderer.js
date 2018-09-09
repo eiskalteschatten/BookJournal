@@ -4,7 +4,6 @@ const helper = require('./events/helper');
 
 const SidebarList = require('./elements/list/sidebar');
 const AboutModal = require('./elements/modal/about');
-const PreferencesModal = require('./elements/modal/preferences');
 
 
 async function renderSidebar() {
@@ -20,9 +19,6 @@ async function renderModals() {
 
     const aboutModal = new AboutModal();
     rendered += await aboutModal.render();
-
-    const preferencesModal = new PreferencesModal();
-    rendered += await preferencesModal.render();
 
     document.getElementById('modalAnchor').innerHTML = rendered;
 }

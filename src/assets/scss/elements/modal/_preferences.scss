@@ -6,6 +6,8 @@
     }
 
     .preferences-theme {
+        cursor: pointer;
+
         .theme-image {
             $borderSize: 2px;
             height: 60px;
@@ -31,7 +33,6 @@
             }
 
             .gradient {
-                cursor: pointer;
                 border: $borderSize solid $preferencesThemeBorderColor;
                 border-radius: 3px;
                 box-shadow: 0 0 10px $preferencesThemeShadowColor;

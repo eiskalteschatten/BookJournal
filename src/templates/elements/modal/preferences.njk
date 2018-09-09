@@ -2,6 +2,15 @@
 
 {% block body %}
 
+    {% set lightThemeSelected = '' %}
+    {% set darkThemeSelected = '' %}
+
+    {% if preferences.theme == 'light' %}
+        {% set lightThemeSelected = ' selected' %}
+    {% else %}
+        {% set darkThemeSelected = ' selected' %}
+    {% endif %}
+
     <div class="preferences-modal">
         <div class="container-fluid">
             <div class="row">
@@ -13,7 +22,7 @@
 
                 <div class="col-sm-6 align-center">
                     <div class="preferences-theme">
-                        <div class="theme-image light selected">
+                        <div class="theme-image light{{ lightThemeSelected }}">
                             <div class="gradient"></div>
                         </div>
                         Light
@@ -21,7 +30,7 @@
                 </div>
                 <div class="col-sm-6 align-center">
                     <div class="preferences-theme">
-                        <div class="theme-image dark">
+                        <div class="theme-image dark{{ darkThemeSelected }}">
                             <div class="gradient"></div>
                         </div>
                         Dark
@@ -32,14 +41,14 @@
             <div class="row preferences-section">
                 <h3 class="modal-header">Book Information</h3>
                 <label for="preferencesFetchBookInformation">
-                    <input type="checkbox" id="preferencesFetchBookInformation"> Fetch book information automatically after entering the ISBN
+                    <input type="checkbox" id="preferencesFetchBookInformation" {% if preferences.fetchBookInfoFromGoogle %}checked{% endif %}> Fetch book information automatically after entering the ISBN
                 </label>
             </div>
 
             <div class="row preferences-section">
                 <h3 class="modal-header">Updates</h3>
                 <label for="preferencesCheckForUpdates">
-                    <input type="checkbox" id="preferencesCheckForUpdates"> Automatically check for updates
+                    <input type="checkbox" id="preferencesCheckForUpdates" {% if preferences.checkForUpdates %}checked{% endif %}> Automatically check for updates
                 </label>
             </div>
         </div>

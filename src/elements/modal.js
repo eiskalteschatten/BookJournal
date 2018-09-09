@@ -20,8 +20,8 @@ class Modal {
                 if (error) reject(error);
                 resolve(string);
             });
-        }).then(templateString => {
-            return nunjucks.renderString(templateString, this.getNunjucksRenderObject());
+        }).then(async templateString => {
+            return nunjucks.renderString(templateString, await this.getNunjucksRenderObject());
         }).catch(error => {
             console.error(error);
         });

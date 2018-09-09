@@ -1,6 +1,7 @@
 'use strict';
 
 const Modal = require('../modal');
+const PreferencesModel = require('../../models/preferences');
 
 
 class Preferences extends Modal {
@@ -8,9 +9,10 @@ class Preferences extends Modal {
         super('preferences');
     }
 
-    getNunjucksRenderObject() {
+    async getNunjucksRenderObject() {
         const object = super.getNunjucksRenderObject();
 
+        object.preferences = await PreferencesModel.findById(1);
 
         return object;
     }
