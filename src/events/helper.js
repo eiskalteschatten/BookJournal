@@ -63,7 +63,11 @@ function switchCss(id) {
 }
 
 function openModal(id) {
-    $('#modalContainer').removeClass('hidden');
+    const $modalContainer = $('#modalContainer');
+
+    if (!$modalContainer.hasClass('hidden')) return;
+
+    $modalContainer.removeClass('hidden');
     $(`#${id}`).removeClass('hidden');
 }
 
