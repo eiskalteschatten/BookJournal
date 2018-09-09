@@ -1,4 +1,5 @@
 @import "modal/about";
+@import "modal/preferences";
 
 .modal-container {
     background: $modalContainerBg;
@@ -20,6 +21,10 @@
         transform: translate(-50%, -50%);
         z-index: 1000;
 
+        .modal-title {
+            margin-top: 0;
+        }
+
         .modal-close {
             $size: 15px;
 
@@ -31,6 +36,14 @@
             right: 10px;
             top: 10px;
             width: $size;
+        }
+
+        .modal-header {
+            border-bottom: 1px solid $modalHeaderBorderColor;
+            display: block;
+            margin-bottom: 25px;
+            padding-bottom: 5px;
+            width: 100%;
         }
     }
 }

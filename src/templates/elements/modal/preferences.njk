@@ -2,9 +2,36 @@
 
 {% block body %}
 
-    <div class="container-fluid">
-        <div class="row">
-            Preferences
+    <div class="preferences-modal">
+        <div class="container-fluid">
+            <div class="row">
+                <h2 class="modal-title">Preferences</h2>
+            </div>
+
+            <div class="row preferences-section">
+                <h3 class="modal-header">Theme</h3>
+
+                <div class="col-sm-6 align-center">
+                    Light
+                </div>
+                <div class="col-sm-6 align-center">
+                    Dark
+                </div>
+            </div>
+
+            <div class="row preferences-section">
+                <h3 class="modal-header">Book Information</h3>
+                <label for="preferencesFetchBookInformation">
+                    <input type="checkbox" id="preferencesFetchBookInformation"> Fetch book information automatically after entering the ISBN
+                </label>
+            </div>
+
+            <div class="row preferences-section">
+                <h3 class="modal-header">Updates</h3>
+                <label for="preferencesCheckForUpdates">
+                    <input type="checkbox" id="preferencesCheckForUpdates"> Automatically check for updates
+                </label>
+            </div>
         </div>
     </div>
 
