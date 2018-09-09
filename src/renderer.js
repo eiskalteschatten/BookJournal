@@ -4,6 +4,7 @@ const helper = require('./events/helper');
 
 const SidebarList = require('./elements/list/sidebar');
 const AboutModal = require('./elements/modal/about');
+const PreferencesModal = require('./elements/modal/preferences');
 
 
 async function renderSidebar() {
@@ -15,11 +16,15 @@ async function renderSidebar() {
 }
 
 async function renderModals() {
-    const modalAnchor = document.getElementById('modalAnchor');
+    let rendered = '';
 
     const aboutModal = new AboutModal();
-    const rendered = await aboutModal.render();
-    modalAnchor.insertAdjacentHTML('beforeend', rendered);
+    rendered += await aboutModal.render();
+
+    const preferencesModal = new PreferencesModal();
+    rendered += await preferencesModal.render();
+
+    document.getElementById('modalAnchor').innerHTML = rendered;
 }
 
 async function postRender() {

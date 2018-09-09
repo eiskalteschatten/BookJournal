@@ -8,7 +8,10 @@ const helper = require('./helper');
 
 ipcRenderer.on('open-about', () => {
     helper.openModal('aboutModal');
+});
 
+ipcRenderer.on('open-preferences', () => {
+    helper.openModal('preferencesModal');
 });
 
 $(document).on('click', '.js-modal-close', function() {
