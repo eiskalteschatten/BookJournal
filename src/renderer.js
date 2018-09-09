@@ -41,6 +41,8 @@ async function render() {
 
     await renderSidebar();
     $('.js-sidebar-list-element').first().trigger('click');
+    document.getElementById('defaultCss').remove();  // eslint-disable-line
+
     await renderModals();
     await postRender();
 }
