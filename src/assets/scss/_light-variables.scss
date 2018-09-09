@@ -28,6 +28,10 @@ $modalContainerBg: rgba(240, 240, 240, .8);
 $modalCloseX: '../images/light/modal-close-x.svg';
 $modalHeaderBorderColor: lighten($mainFontColor, 80%);
 
+$preferencesThemeBorderColor: $mainFontColor;
+$preferencesThemeSelectedBorderColor: darken($listSelectedBg, 20%);
+$preferencesThemeShadowColor: rgba(0, 0, 0, 0.2);
+
 $noBookSelected: '../images/light/icon-monotone.svg';
 
 $gear: '../images/light/gear.svg';
