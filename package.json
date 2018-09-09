@@ -2,7 +2,7 @@
     "name": "bookjournal",
     "version": "1.0.0",
     "description": "A digital book journal.",
-    "main": "./src/mainSnapshot.js",
+    "main": "./src/main.js",
     "scripts": {
         "prestart": "node -e 'require(\"./src/build\")()'",
         "start": "electron .",
@@ -62,11 +62,9 @@
         "compile-sass": "0.0.5",
         "electron": "^2.0.0",
         "electron-builder": "^20.27.1",
-        "electron-link": "^0.2.2",
         "eslint": "^4.19.1",
         "eslint-plugin-promise": "^3.8.0",
-        "husky": "^0.14.3",
-        "uglify-js": "^3.4.9"
+        "husky": "^0.14.3"
     },
     "dependencies": {
         "bootstrap": "^4.1.1",

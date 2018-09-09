@@ -2,23 +2,20 @@
 
 const $ = require('jquery');
 
-const {loadPreferences} = require('./initialPreferences');
 
+module.exports = async () => {
+    const theme = localStorage.getItem('theme') || 'light';  // eslint-disable-line
 
-async function render() {
+    $(`#${theme}Css`).prop('disabled', false);
+    $('#defaultCss').remove();
+
     $('body').addClass(process.platform);
 
-    const preferences = await loadPreferences();
-
-    $('.js-main-css').prop('disabled', true);
-    $(`#${preferences.theme}Css`).prop('disabled', false);
-
-    $('#defaultCss').remove();
+    const preferences = localStorage.getItem('preferences');  // eslint-disable-line
 
     $('#sidebarWrapper').css('width', preferences.sidebarWidth + 'px');
     $('#bookListWrapper').css('width', preferences.middleColumnWidth + 'px');
 
-    sessionStorage.setItem('preferences', JSON.stringify(preferences));  // eslint-disable-line
-}
-
-render();
+    const render = require('./renderer');
+    await render();
+};

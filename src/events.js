@@ -16,8 +16,9 @@ $(document).on('contextmenu', 'input, textarea', function() { // eslint-disable-
     ipcRenderer.send('show-input-context-menu');
 });
 
-ipcRenderer.on('switch-css', (event, arg) => {
-    helper.switchCss(`${arg}Css`);
+ipcRenderer.on('switch-css', (event, theme) => {
+    helper.switchCss(`${theme}Css`);
+    localStorage.setItem('theme', theme);  // eslint-disable-line
 });
 
 ipcRenderer.on('check-for-updates', async () => {

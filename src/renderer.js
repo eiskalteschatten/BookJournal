@@ -8,13 +8,6 @@ const SidebarList = require('./elements/list/sidebar');
 const AboutModal = require('./elements/modal/about');
 
 
-async function render() {
-    await renderSidebar();
-    $('.js-sidebar-list-element').first().trigger('click');
-    await renderModals();
-    helper.checkForUpdates();
-}
-
 async function renderSidebar() {
     const list = new SidebarList();
     await list.loadCategories();
@@ -33,4 +26,19 @@ async function renderModals() {
     $modalAnchor.append(rendered);
 }
 
-render();
+async function postRender() {
+    const {loadPreferences} = require('./initialPreferences');
+    const preferences = await loadPreferences();
+
+    localStorage.setItem('preferences', JSON.stringify(preferences));  // eslint-disable-line
+    localStorage.setItem('theme', preferences.theme);  // eslint-disable-line
+
+    helper.checkForUpdates();
+}
+
+module.exports = async () => {
+    await renderSidebar();
+    $('.js-sidebar-list-element').first().trigger('click');
+    await renderModals();
+    await postRender();
+};

@@ -75,7 +75,7 @@ function closeModal(id) {
 async function checkForUpdates(showNoUpdateDialog = false) {
     return new Promise((resolve, reject) => {
         try {
-            let preferences = sessionStorage.getItem('preferences');  // eslint-disable-line
+            let preferences = localStorage.getItem('preferences');  // eslint-disable-line
             preferences = JSON.parse(preferences);
 
             if (!preferences.checkForUpdates) resolve();

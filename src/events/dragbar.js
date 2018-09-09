@@ -34,6 +34,6 @@ $(document).mouseup(async function(e) { // eslint-disable-line
         let preferences = await Preferences.findById(1);
         preferences = await preferences.updateAttributes(values);
 
-        sessionStorage.setItem('preferences', JSON.stringify(preferences));  // eslint-disable-line
+        localStorage.setItem('preferences', JSON.stringify(preferences));  // eslint-disable-line
     }
 });
