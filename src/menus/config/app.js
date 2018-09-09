@@ -181,7 +181,7 @@ if (process.platform === 'darwin') {
 }
 else {
     // Edit menu
-    template[1].submenu.push([
+    template[1].submenu.push(
         {type: 'separator'},
         {
             label: 'Preferences',
@@ -190,7 +190,7 @@ else {
                 focusedWindow.webContents.send('open-preferences');
             }
         }
-    ]);
+    );
 
 
     // Help menu
