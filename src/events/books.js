@@ -40,6 +40,18 @@ $(document).on('change', '#bookSort', function() {
     eventHelper.refreshBookList();
 });
 
+$(document).on('click', '#bookSortOrder', function(e) {
+    e.preventDefault();
+
+    const oldSortOrder = localStorage.getItem('sortOrder') || 'ASC';
+    const sortOrder = oldSortOrder === 'ASC' ? 'DESC' : 'ASC';
+    const newArrow = sortOrder === 'DESC' ? '&darr;' : '&uarr;';
+
+    localStorage.setItem('sortOrder', sortOrder);
+    $(this).html(newArrow);
+    eventHelper.refreshBookList();
+});
+
 
 // Create New Book
 

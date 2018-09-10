@@ -69,10 +69,9 @@ module.exports = async (type, term = '') => {
     }
 
     const sortBy = localStorage.getItem('sortBy');
+    const sortOrder = localStorage.getItem('sortOrder');
     const bookList = new BookList(query);
 
-    if (sortBy) await bookList.loadBooks(sortBy);
-    else await bookList.loadBooks();
-
+    await bookList.loadBooks(sortBy, sortOrder);
     return await bookList.render();
 };

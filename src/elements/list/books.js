@@ -19,10 +19,13 @@ class Books extends List {
         this.elements.push(element);
     }
 
-    async loadBooks(sortBy = 'title') {
+    async loadBooks(sortBy = 'title', sortOrder = 'ASC') {
+        sortBy = sortBy || 'title';
+        sortOrder = sortOrder || 'ASC';
+
         const books = this.query
-            ? await Book.getSortedByQuery(this.query, sortBy)
-            : await Book.getAllSorted(sortBy);
+            ? await Book.getSortedByQuery(this.query, sortBy, sortOrder)
+            : await Book.getAllSorted(sortBy, sortOrder);
 
         for(const book of books) {
             this.addBookElement(book);

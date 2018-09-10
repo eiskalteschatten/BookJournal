@@ -36,11 +36,10 @@ function selectBook(id) {
 
 async function updateBookList(selectedId) {
     const sortBy = localStorage.getItem('sortBy');
+    const sortOrder = localStorage.getItem('sortOrder');
     const bookList = new BooksList();
 
-    if (sortBy) await bookList.loadBooks(sortBy);
-    else await bookList.loadBooks();
-
+    await bookList.loadBooks(sortBy, sortOrder);
     await refreshBookList();
 
     if (selectedId !== '') selectBook(selectedId);
