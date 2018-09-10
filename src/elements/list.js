@@ -11,6 +11,7 @@ const TitleListElement = require('./listElement/title');
 class List {
     constructor() {
         this.elements = [];
+        this.template = path.join(__dirname, '../templates/elements/list.njk');
     }
 
     async render() {
@@ -21,9 +22,7 @@ class List {
                 listElements.push(element.getNunjucksRenderObject());
             }
 
-            const template = path.join(__dirname, '../templates/elements/list.njk');
-
-            fs.readFile(template, 'utf8', (error, string) => {
+            fs.readFile(this.template, 'utf8', (error, string) => {
                 if (error) reject(error);
                 resolve(string);
             });
