@@ -19,7 +19,8 @@ $(document).on('keypress', '#sidebarSearchField', async function() {
     clearTimeout(searchTimeout);
     const term = $(this).val();
 
-    searchTimeout = setTimeout(() => {
-        eventHelper.searchBooks(term);
+    searchTimeout = setTimeout(async () => {
+        await eventHelper.searchBooks(term);
+        eventHelper.clearBooklistSelection();
     }, 100);
 });

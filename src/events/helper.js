@@ -37,7 +37,13 @@ function selectBook(id) {
 async function updateBookList(selectedId) {
     const list = new BooksList();
     await list.loadBooks();
-    await changeFilter();
+
+    const searchTerm = sessionStorage.getItem('searching');
+    const isSearching = searchTerm !== 'false';
+
+    if (isSearching) await searchBooks(searchTerm);
+    else await changeFilter();
+
     if (selectedId !== '') selectBook(selectedId);
 }
 
@@ -52,18 +58,15 @@ function clearBooklistSelection() {
 async function changeFilter() {
     const $element = $('.js-sidebar-list-element.selected');
     const rendered = await filterBooks($element.data('query-type'), $element.data('id'));
-    const $bookList = $('#bookList');
-    $bookList.html(rendered);
-    $bookList.removeClass('loading');
+    $('#bookList').html(rendered);
+    sessionStorage.setItem('searching', false);
 }
 
 async function searchBooks(term) {
     $('.js-sidebar-list-element').removeClass('selected');
     const rendered = await filterBooks('search', term);
-    const $bookList = $('#bookList');
-    $bookList.html(rendered);
-    $bookList.removeClass('loading');
-    clearBooklistSelection();
+    $('#bookList').html(rendered);
+    sessionStorage.setItem('searching', term);
 }
 
 function switchCss(id) {
