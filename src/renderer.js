@@ -36,6 +36,9 @@ async function postRender() {
 async function render() {
     require('./events.js');
 
+    const sortBy = localStorage.getItem('sortBy');
+    if (sortBy) document.getElementById('bookSort').value = sortBy;
+
     await renderSidebar();
     const firstSidebarListItem = document.getElementsByClassName('js-sidebar-list-element')[0];
     firstSidebarListItem.click();
