@@ -86,8 +86,9 @@ async function checkForUpdates(showNoUpdateDialog = false) {
 
             $.getJSON(config.updates.url, data => {
                 const versionInt = parseInt(config.app.version.replace(/[^0-9]/g, ''));
+                const versionIntServer = parseInt(data.versionInt);
 
-                if (versionInt < data.versionInt) {
+                if (versionInt < versionIntServer) {
                     dialog.showMessageBox({
                         message: 'An update is available',
                         detail: 'Would you like to download it?',
