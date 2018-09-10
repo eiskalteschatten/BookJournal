@@ -13,6 +13,13 @@ $listSelectedBg: #98bbd4;
 $listSelectedDarkBg: #063353;
 $listBorderColor: darken($mainBg, 3%);
 
+$searchFormBackgroundImage: '../images/search.svg';
+$searchFormBg: #000000;
+$searchFormColor: #ffffff;
+$searchFormBorderColor: lighten($searchFormBg, 15%);
+$searchFormHoverBg: lighten($searchFormBg, 5%);
+$searchFormFocusBg: lighten($searchFormBg, 2%);
+
 $formBg: lighten($mainBg, 7%);
 $formColor: $mainFontColor;
 $buttonBg: lighten($mainBg, 7%);

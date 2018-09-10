@@ -1,6 +1,7 @@
 'use strict';
 
 const $ = require('jquery');
+const path = require('path');
 
 const List = require('../list');
 const ListElement = require('../listElement/sidebar');
@@ -11,6 +12,7 @@ const CategoryListElement = require('../../elements/listElement/category');
 class Sidebar extends List {
     constructor() {
         super();
+        this.template = path.join(__dirname, '../../templates/elements/list/sidebar.njk');
         this.addElement('All Books', '../assets/images/si-glyph-bookcase.svg', 'all-books');
         this.addElement('Future Reading', '../assets/images/si-glyph-bookmark.svg', 'future-reading');
         this.addTitleElement('Categories');
