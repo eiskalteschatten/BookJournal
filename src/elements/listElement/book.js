@@ -41,8 +41,36 @@ class BookListElement extends ListElement {
             object.bookcoverPath = path.join(config.bookcovers.path, object.bookcover);
 
         object.classes = this.classes;
+        object.subtitle = this.determineSubtitle();
 
         return object;
+    }
+
+    determineSubtitle() {
+        const book = this.book;
+        const field = book.subtitleField;
+        const dateRead = new Date(book.dateRead);
+        let subtitle;
+
+        switch(field) {
+            case 'title':
+                subtitle = book.author;
+                break;
+            case 'notReadYet':
+                subtitle = book.notReadYet ? 'Not Read Yet' : `Finished on ${dateRead.toLocaleDateString()}`;
+                break;
+            case 'dateRead':
+                subtitle = (book.dateRead && dateRead.getFullYear() !== 1887) ? `Finished on ${dateRead.toLocaleDateString()}` : '';
+                break;
+            case 'pageCount':
+                const label = book.pageCount > 1 ? `${book.pageCount} pages` :  `${book.pageCount} page`;
+                subtitle = book.pageCount ? label : '';
+                break;
+            default:
+                subtitle = book[field];
+        }
+
+        return subtitle;
     }
 }
 

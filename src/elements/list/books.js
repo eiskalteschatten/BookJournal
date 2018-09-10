@@ -28,6 +28,7 @@ class Books extends List {
             : await Book.getAllSorted(sortBy, sortOrder);
 
         for(const book of books) {
+            book.subtitleField = sortBy;
             this.addBookElement(book);
         }
     }
