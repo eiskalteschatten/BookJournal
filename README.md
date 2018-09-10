@@ -4,6 +4,12 @@ The project is currently in its infancy.
 
 ## Release Notes
 
+### 0.2.0
+- Improve initial loading time
+- Preferences: light/dark theme, automatically fetch book information from Google Books (on/off), update automatically (on/off)
+- Search
+- Sort books by field in the book form
+
 ### 0.1.0
 - Add books
 - Organize them in categories
@@ -13,12 +19,6 @@ The project is currently in its infancy.
 
 
 ## Roadmap
-
-### 0.2.0
-- Improve initial loading time
-- Preferences: light/dark theme, automatically fetch book information from Google Books (on/off), update automatically (on/off)
-- Search
-- Sort books by field in the book form
 
 ### 0.3.0
 - Mac Sandboxing
