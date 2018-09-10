@@ -34,6 +34,12 @@ $(window).on('book-form-loaded', function() {
     $('#bookForm').addClass('js-is-visible');
 });
 
+$(document).on('change', '#bookSort', function() {
+    const sortBy = $(this).val();
+    localStorage.setItem('sortBy', sortBy);
+    eventHelper.refreshBookList();
+});
+
 
 // Create New Book
 

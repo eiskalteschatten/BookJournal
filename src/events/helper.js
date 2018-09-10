@@ -35,16 +35,23 @@ function selectBook(id) {
 }
 
 async function updateBookList(selectedId) {
-    const list = new BooksList();
-    await list.loadBooks();
+    const sortBy = localStorage.getItem('sortBy');
+    const bookList = new BooksList();
 
+    if (sortBy) await bookList.loadBooks(sortBy);
+    else await bookList.loadBooks();
+
+    await refreshBookList();
+
+    if (selectedId !== '') selectBook(selectedId);
+}
+
+async function refreshBookList() {
     const searchTerm = sessionStorage.getItem('searching');
     const isSearching = searchTerm !== 'false';
 
     if (isSearching) await searchBooks(searchTerm);
     else await changeFilter();
-
-    if (selectedId !== '') selectBook(selectedId);
 }
 
 function clearBooklistSelection() {
@@ -148,6 +155,7 @@ module.exports = {
     loadBook,
     selectBook,
     updateBookList,
+    refreshBookList,
     clearBooklistSelection,
     changeFilter,
     searchBooks,

@@ -68,7 +68,11 @@ module.exports = async (type, term = '') => {
             break;
     }
 
+    const sortBy = localStorage.getItem('sortBy');
     const bookList = new BookList(query);
-    await bookList.loadBooks();
+
+    if (sortBy) await bookList.loadBooks(sortBy);
+    else await bookList.loadBooks();
+
     return await bookList.render();
 };
