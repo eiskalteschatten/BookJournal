@@ -57,6 +57,15 @@ async function changeFilter() {
     $bookList.removeClass('loading');
 }
 
+async function searchBooks(term) {
+    $('.js-sidebar-list-element').removeClass('selected');
+    const rendered = await filterBooks('search', term);
+    const $bookList = $('#bookList');
+    $bookList.html(rendered);
+    $bookList.removeClass('loading');
+    clearBooklistSelection();
+}
+
 function switchCss(id) {
     $('.js-main-css').prop('disabled', true);
     $(`#${id}`).prop('disabled', false);
@@ -138,6 +147,7 @@ module.exports = {
     updateBookList,
     clearBooklistSelection,
     changeFilter,
+    searchBooks,
     switchCss,
     openModal,
     closeModal,

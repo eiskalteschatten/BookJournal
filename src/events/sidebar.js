@@ -11,3 +11,15 @@ $(document).on('click', '.js-sidebar-list-element', async function() {
     await eventHelper.changeFilter();
     eventHelper.clearBooklistSelection();
 });
+
+
+let searchTimeout;
+
+$(document).on('keypress', '#sidebarSearchField', async function() {
+    clearTimeout(searchTimeout);
+    const term = $(this).val();
+
+    searchTimeout = setTimeout(() => {
+        eventHelper.searchBooks(term);
+    }, 100);
+});

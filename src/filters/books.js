@@ -3,7 +3,7 @@
 const BookList = require('../elements/list/books');
 
 
-module.exports = async (type, categoryId = '') => {
+module.exports = async (type, term = '') => {
     let query;
 
     switch(type) {
@@ -18,9 +18,32 @@ module.exports = async (type, categoryId = '') => {
             query = {
                 where: {
                     $or: [
-                        { categories: categoryId },
-                        { categories: { $like: `%${categoryId},%` } },
-                        { categories: { $like: `%,${categoryId}%` } }
+                        { categories: term },
+                        { categories: { $like: `%${term},%` } },
+                        { categories: { $like: `%,${term}%` } }
+                    ]
+                }
+            };
+            break;
+        case 'search':
+            query = {
+                where: {
+                    $or: [
+                        { title: { $like: `%${term}%` } },
+                        { author: { $like: `%${term}%` } },
+                        { genre: { $like: `%${term}%` } },
+                        { pageCount: { $like: `%${term}%` } },
+                        { publisher: { $like: `%${term}%` } },
+                        { isbn: { $like: `%${term}%` } },
+                        { yearPublished: { $like: `%${term}%` } },
+                        { nationality: { $like: `%${term}%` } },
+                        { languageReadIn: { $like: `%${term}%` } },
+                        { originalLanguage: { $like: `%${term}%` } },
+                        { translator: { $like: `%${term}%` } },
+                        { tags: { $like: `%,${term}%` } },
+                        { categories: { $like: `%,${term}%` } },
+                        { summary: { $like: `%${term}%` } },
+                        { commentary: { $like: `%${term}%` } }
                     ]
                 }
             };

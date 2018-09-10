@@ -35,7 +35,6 @@ $(window).on('book-form-loaded', function() {
 });
 
 
-
 // Create New Book
 
 async function createNewBook() {
@@ -129,7 +128,6 @@ async function deleteBook() {
 }
 
 ipcRenderer.on('delete-book', deleteBook);
-
 
 
 // Bookcover
