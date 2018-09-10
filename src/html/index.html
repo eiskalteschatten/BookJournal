@@ -5,7 +5,7 @@
         <title>BookJournal</title>
 
         <style id="defaultCss">
-            .bottom-toolbar {
+            .top-toolbar, .bottom-toolbar {
                 display: none;
             }
         </style>
@@ -34,6 +34,28 @@
 
             <!-- Begin Middle Column -->
             <div class="middle-column column js-resizable-column list-container" id="bookListWrapper">
+                <div class="top-toolbar">
+                    <div class="book-sort-wrapper">
+                        <span class="book-sort-label">Sort by:</span>
+
+                        <select class="book-sort" id="bookSort">
+                            <option value="author">Author</option>
+                            <option value="dateRead">Date Read</option>
+                            <option value="genre">Genre</option>
+                            <option value="isbn">ISBN</option>
+                            <option value="languageReadIn">Language Read In</option>
+                            <option value="nationality">Nationality</option>
+                            <option value="notReadYet">Not Read Yet</option>
+                            <option value="originalLanguage">Original Language</option>
+                            <option value="pageCount">Page Count</option>
+                            <option value="publisher">Publisher</option>
+                            <option value="rating">Rating</option>
+                            <option value="title" selected>Title</option>
+                            <option value="translator">Translator</option>
+                            <option value="yearPublished">Year Published</option>
+                        </select>
+                    </div>
+                </div>
                 <div id="bookList" class="booklist"></div>
                 <div class="bottom-toolbar">
                     <div class="loading book-activity-loader hidden" id="bookActivityLoader"></div>
