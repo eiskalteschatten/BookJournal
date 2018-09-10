@@ -1,18 +1,23 @@
 'use strict';
 
 function preRender() {
-    const theme = localStorage.getItem('theme') || 'light';
-    const themeCss = `${theme}Css`;
+    try {
+        const theme = localStorage.getItem('theme') || 'light';
+        const themeCss = `${theme}Css`;
 
-    document.getElementById(themeCss).disabled = false;
+        document.getElementById(themeCss).disabled = false;
 
-    const body = document.getElementsByTagName('body')[0];
-    body.classList.add(process.platform);
+        const body = document.getElementsByTagName('body')[0];
+        body.classList.add(process.platform);
 
-    const preferences = localStorage.getItem('preferences');
+        const preferences = JSON.parse(localStorage.getItem('preferences'));
 
-    document.getElementById('sidebarWrapper').style.width = `${preferences.sidebarWidth}px`;
-    document.getElementById('bookListWrapper').style.width = `${preferences.middleColumnWidth}px`;
+        document.getElementById('sidebarWrapper').style.width = `${preferences.sidebarWidth}px`;
+        document.getElementById('bookListWrapper').style.width = `${preferences.middleColumnWidth}px`;
+    }
+    catch(error) {
+        console.error(error);
+    }
 }
 
 window.onload = preRender;
