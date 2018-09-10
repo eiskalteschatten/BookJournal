@@ -71,6 +71,29 @@
 
                 .list-element-subtitle {
                     font-size: .8em;
+
+                    .book-list-rating-stars {
+                        $starSize: 14px;
+                        height: $starSize;
+
+                        span {
+                            background-repeat: no-repeat;
+                            background-size: 100%;
+                            background-position: center center;
+                            cursor: pointer;
+                            display: inline-block;
+                            height: $starSize;
+                            width: $starSize;
+
+                            &.full {
+                                background-image: url($ratingStarsFull);
+                            }
+
+                            &.empty {
+                                background-image: url($ratingStarsEmpty);
+                            }
+                        }
+                    }
                 }
             }
         }

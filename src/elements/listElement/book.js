@@ -16,7 +16,7 @@ class BookListElement extends ListElement {
         this.classes = 'list-element js-book-list-element';
     }
 
-    render() {
+    async render() {
         const self = this;
 
         return new Promise((resolve, reject) => {
@@ -25,28 +25,28 @@ class BookListElement extends ListElement {
                 if (error) reject(error);
                 resolve(string);
             });
-        }).then(templateString => {
+        }).then(async templateString => {
             return nunjucks.renderString(templateString, {
-                book: self.getNunjucksRenderObject()
+                book: await self.getNunjucksRenderObject()
             });
         }).catch(error => {
             console.error(error);
         });
     }
 
-    getNunjucksRenderObject() {
+    async getNunjucksRenderObject() {
         const object = this.book;
 
         if (object.bookcover)
             object.bookcoverPath = path.join(config.bookcovers.path, object.bookcover);
 
         object.classes = this.classes;
-        object.subtitle = this.determineSubtitle();
+        object.subtitle = await this.determineSubtitle();
 
         return object;
     }
 
-    determineSubtitle() {
+    async determineSubtitle() {
         const book = this.book;
         const field = book.subtitleField;
         const dateRead = new Date(book.dateRead);
@@ -66,11 +66,37 @@ class BookListElement extends ListElement {
                 const label = book.pageCount > 1 ? `${book.pageCount} pages` :  `${book.pageCount} page`;
                 subtitle = book.pageCount ? label : '';
                 break;
+            case 'rating':
+                subtitle = await this.renderRatingStars();
+                break;
             default:
                 subtitle = book[field];
         }
 
         return subtitle;
+    }
+
+    async renderRatingStars() {
+        const bookRating = this.book.rating;
+
+        let ratingClasses = ['empty', 'empty', 'empty', 'empty', 'empty'];
+        ratingClasses = ratingClasses.map((element, index) => {
+            const index1 = index + 1;
+            return (index1 <= bookRating) ? 'full' : element;
+        });
+
+        return new Promise(async (resolve, reject) => {
+            const template = path.join(__dirname, '../../templates/elements/listElement/book/ratingStars.njk');
+
+            fs.readFile(template, 'utf8', (error, string) => {
+                if (error) reject(error);
+                resolve(string);
+            });
+        }).then(templateString => {
+            return nunjucks.renderString(templateString, {ratingClasses});
+        }).catch(error => {
+            console.error(error);
+        });
     }
 }
 

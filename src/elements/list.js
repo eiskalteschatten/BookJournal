@@ -17,9 +17,9 @@ class List {
     async render() {
         const listElements = [];
 
-        return new Promise((resolve, reject) => {
+        return new Promise(async (resolve, reject) => {
             for (const element of this.elements) {
-                listElements.push(element.getNunjucksRenderObject());
+                listElements.push(await element.getNunjucksRenderObject());
             }
 
             fs.readFile(this.template, 'utf8', (error, string) => {
