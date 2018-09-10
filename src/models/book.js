@@ -84,26 +84,26 @@ const Book = db.define('book', {
     },
 });
 
-Book.getAllSorted = async function(sortBy = 'title') {
+Book.getAllSorted = async function(sortBy = 'title', sortOrder = 'ASC') {
     return await this.findAll({
         order: [
             [
                 Sequelize.fn('lower', Sequelize.col(sortBy)),
-                'ASC'
+                sortOrder
             ]
         ]
     });
 };
 
-Book.getSortedByQuery = async function(query, sortBy = 'title') {
-    return await this.findAll(query, {
-        order: [
-            [
-                Sequelize.fn('lower', Sequelize.col(sortBy)),
-                'ASC'
-            ]
+Book.getSortedByQuery = async function(query, sortBy = 'title', sortOrder = 'ASC') {
+    query.order = [
+        [
+            Sequelize.fn('lower', Sequelize.col(sortBy)),
+            sortOrder
         ]
-    });
+    ];
+
+    return await this.findAll(query);
 };
 
 Book.sync();
