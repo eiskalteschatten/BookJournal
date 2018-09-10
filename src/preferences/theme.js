@@ -1,6 +1,8 @@
 'use strict';
 
-const {Menu} = require('electron');
+const {ipcRenderer, Menu} = require('electron');
+const $ = require('jquery');
+
 const Preferences = require('../models/preferences');
 
 
@@ -11,12 +13,14 @@ async function changeTheme(theme, window) {
 
         window.webContents.send('switch-css', theme);
 
-        const menuItem = `${theme}Theme`;
-        const menu = Menu.getApplicationMenu();
-        menu.getMenuItemById(menuItem).checked = true;
-        menu.getMenuItemById('lightTheme').checked = false;
-        menu.getMenuItemById('darkTheme').checked = false;
-        menu.getMenuItemById(menuItem).checked = true;
+        if (process.type === 'renderer') {
+            ipcRenderer.send('switch-theme', theme);
+            $('.js-preferences-theme-image').removeClass('selected');
+            $(`.js-preferences-theme[data-theme="${theme}"]`).find('.js-preferences-theme-image').addClass('selected');
+        }
+        else {
+            switchMenu(theme);
+        }
     }
     catch(error) {
         console.error(error);
@@ -33,8 +37,17 @@ async function getCurrentTheme() {
     }
 }
 
+function switchMenu(theme) {
+    const menuItem = `${theme}Theme`;
+    const menu = Menu.getApplicationMenu();
+    menu.getMenuItemById('lightTheme').checked = false;
+    menu.getMenuItemById('darkTheme').checked = false;
+    menu.getMenuItemById(menuItem).checked = true;
+}
+
 
 module.exports = {
     changeTheme,
-    getCurrentTheme
+    getCurrentTheme,
+    switchMenu
 };

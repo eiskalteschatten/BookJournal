@@ -1,10 +1,11 @@
 'use strict';
 
-const {ipcRenderer, shell} = require('electron');
+const {ipcRenderer, shell, remote} = require('electron');
 const $ = require('jquery');
 
 const helper = require('./helper');
 
+const preferencesTheme = require('../preferences/theme');
 const PreferencesModal = require('../elements/modal/preferences');
 
 
@@ -28,6 +29,23 @@ $(document).on('click', '.js-modal-close', function() {
 
     if (id === 'preferencesModal') $modal.remove();
 });
+
+
+
+// Preferences Modal
+
+$(document).on('click', '.js-preferences-theme', function() {
+    const theme = $(this).data('theme');
+    preferencesTheme.changeTheme(theme, remote.getCurrentWindow());
+});
+
+// $(document).on('click', '.js-preferences-theme', function() {
+
+// });
+
+// $(document).on('click', '.js-preferences-theme', function() {
+
+// });
 
 
 

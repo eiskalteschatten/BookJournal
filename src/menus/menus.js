@@ -6,6 +6,7 @@ const bookUtilityMenu = require('./config/bookUtility');
 const bookcoverCm = require('./config/bookcoverCm');
 const categoryListElementCm = require('./config/categoryListElementCm');
 const inputCm = require('./config/inputCm');
+const {switchMenu} = require('../preferences/theme');
 
 
 ipcMain.on('show-category-list-element-context-menu', event => {
@@ -42,4 +43,8 @@ ipcMain.on('disable-book-items', () => {
     const menu = Menu.getApplicationMenu();
     menu.getMenuItemById('saveBook').enabled = false;
     menu.getMenuItemById('deleteBook').enabled = false;
+});
+
+ipcMain.on('switch-theme', (event, theme) => {
+    switchMenu(theme);
 });
