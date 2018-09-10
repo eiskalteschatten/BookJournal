@@ -34,6 +34,7 @@ The project is currently in its infancy.
 - Create custom filters
 - Webcam-scanning of bar codes
 - Synching of database via cloud service of choice
+- Multiple languages
 
 
 ## Icons
