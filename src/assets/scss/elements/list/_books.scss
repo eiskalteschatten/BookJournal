@@ -8,6 +8,10 @@
         padding: 0 !important;
         height: 70px;
 
+        &:first-child {
+            border-top: 1px solid $listBorderColor;
+        }
+
         &:hover {
             background-color: $bookListHoverBg !important;
         }

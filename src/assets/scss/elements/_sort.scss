@@ -1,0 +1,17 @@
+.book-sort-wrapper {
+    font-size: .8em;
+    padding: 8px 10px;
+    text-align: right;
+
+    .book-sort {
+        background: $sortBg;
+        border: none;
+        color: $sortColor;
+    }
+}
+
+.darwin {
+    .book-sort-wrapper {
+        margin-top: 22px;
+    }
+}

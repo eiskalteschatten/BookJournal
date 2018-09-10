@@ -1,3 +1,24 @@
+<div class="book-sort-wrapper">
+    <span class="book-sort-label">Sort by:</span>
+
+    <select class="book-sort">
+        <option value="author">Author</option>
+        <option value="dateRead">Date Read</option>
+        <option value="genre">Genre</option>
+        <option value="isbn">ISBN</option>
+        <option value="languageReadIn">Language Read In</option>
+        <option value="nationality">Nationality</option>
+        <option value="notReadYet">Not Read Yet</option>
+        <option value="originalLanguage">Original Language</option>
+        <option value="pageCount">Page Count</option>
+        <option value="publisher">Publisher</option>
+        <option value="rating">Rating</option>
+        <option value="title" selected>Title</option>
+        <option value="translator">Translator</option>
+        <option value="yearPublished">Year Published</option>
+    </select>
+</div>
+
 <ul class="list book-list js-list">
     {% for book in listElements %}
         {% include "elements/listElement/book.njk" %}

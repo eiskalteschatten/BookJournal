@@ -39,6 +39,9 @@ $preferencesThemeBorderColor: $mainFontColor;
 $preferencesThemeSelectedBorderColor: darken($listSelectedBg, 20%);
 $preferencesThemeShadowColor: rgba(0, 0, 0, 0.2);
 
+$sortBg: $middleColumnBg;
+$sortColor: $mainFontColor;
+
 $noBookSelected: '../images/light/icon-monotone.svg';
 
 $gear: '../images/light/gear.svg';
