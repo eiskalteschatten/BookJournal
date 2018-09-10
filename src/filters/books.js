@@ -2,6 +2,8 @@
 
 const BookList = require('../elements/list/books');
 
+const Category = require('../models/category');
+
 
 module.exports = async (type, term = '') => {
     let query;
@@ -41,12 +43,26 @@ module.exports = async (type, term = '') => {
                         { originalLanguage: { $like: `%${term}%` } },
                         { translator: { $like: `%${term}%` } },
                         { tags: { $like: `%${term}%` } },
-                        { categories: { $like: `%${term}%` } },
                         { summary: { $like: `%${term}%` } },
                         { commentary: { $like: `%${term}%` } }
                     ]
                 }
             };
+
+            const categories = await Category.findAll({
+                where: {
+                    name: { $like: `%${term}%` }
+                }
+            });
+
+            for (const category of categories) {
+                query.where.$or.push(
+                    { categories: category.id },
+                    { categories: { $like: `%${category.id},%` } },
+                    { categories: { $like: `%,${category.id}%` } }
+                );
+            }
+
             break;
         default:
             break;
