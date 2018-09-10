@@ -10,7 +10,7 @@ const storagePath = path.join(os.homedir(), '.bookjournal');
 module.exports = {
     app: {
         name: 'BookJournal',
-        version: '1.1.0',
+        version: '0.2.0',
         storagePath,
         tempStoragePath
     },
