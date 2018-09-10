@@ -26,6 +26,7 @@ The project is currently in its infancy.
 - Link books (relates to, is translation of, etc)
 
 ### 0.4.0
+- MacBook Touchbar
 - Print a book
 - Export book as PDF
 
