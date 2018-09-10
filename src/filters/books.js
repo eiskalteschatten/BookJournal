@@ -40,8 +40,8 @@ module.exports = async (type, term = '') => {
                         { languageReadIn: { $like: `%${term}%` } },
                         { originalLanguage: { $like: `%${term}%` } },
                         { translator: { $like: `%${term}%` } },
-                        { tags: { $like: `%,${term}%` } },
-                        { categories: { $like: `%,${term}%` } },
+                        { tags: { $like: `%${term}%` } },
+                        { categories: { $like: `%${term}%` } },
                         { summary: { $like: `%${term}%` } },
                         { commentary: { $like: `%${term}%` } }
                     ]
