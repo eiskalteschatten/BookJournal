@@ -69,11 +69,16 @@ function openModal(id) {
 
     $modalContainer.removeClass('hidden');
     $(`#${id}`).removeClass('hidden');
+
+    $(document).keydown(function(e) {
+        if (e.keyCode === 27) closeModal(id);
+    });
 }
 
 function closeModal(id) {
     $('#modalContainer').addClass('hidden');
     $(`#${id}`).addClass('hidden');
+    $(document).unbind('keydown');
 }
 
 async function checkForUpdates(showNoUpdateDialog = false) {
