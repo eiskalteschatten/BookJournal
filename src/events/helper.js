@@ -28,8 +28,10 @@ function selectBook(id) {
     if ($listItem && position) {
         $listItem.addClass('selected');
 
+        const bookListTopToolbarHeight = $('#bookListTopToolbar').outerHeight(true);
+
         $bookList.animate({
-            scrollTop: position.top + $bookList.scrollTop()
+            scrollTop: (position.top - bookListTopToolbarHeight) + $bookList.scrollTop()
         }, 100);
     }
 }
