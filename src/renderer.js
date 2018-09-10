@@ -39,6 +39,9 @@ async function render() {
     const sortBy = localStorage.getItem('sortBy');
     if (sortBy) document.getElementById('bookSort').value = sortBy;
 
+    const sortOrder = localStorage.getItem('sortOrder');
+    if (sortOrder === 'DESC') document.getElementById('bookSortOrder').innerHTML = '&darr;';
+
     await renderSidebar();
     const firstSidebarListItem = document.getElementsByClassName('js-sidebar-list-element')[0];
     firstSidebarListItem.click();
