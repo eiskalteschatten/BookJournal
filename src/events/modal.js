@@ -7,6 +7,7 @@ const helper = require('./helper');
 
 const preferencesTheme = require('../preferences/theme');
 const PreferencesModal = require('../elements/modal/preferences');
+const changePreferences = require('../preferences/change');
 
 
 ipcRenderer.on('open-about', () => {
@@ -39,13 +40,17 @@ $(document).on('click', '.js-preferences-theme', function() {
     preferencesTheme.changeTheme(theme, remote.getCurrentWindow());
 });
 
-// $(document).on('click', '.js-preferences-theme', function() {
+$(document).on('click', '#preferencesFetchBookInformation', function() {
+    changePreferences({
+        fetchBookInfoFromGoogle: $(this).prop('checked')
+    });
+});
 
-// });
-
-// $(document).on('click', '.js-preferences-theme', function() {
-
-// });
+$(document).on('click', '#preferencesCheckForUpdates', function() {
+    changePreferences({
+        checkForUpdates: $(this).prop('checked')
+    });
+});
 
 
 

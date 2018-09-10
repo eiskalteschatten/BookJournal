@@ -351,7 +351,7 @@ let fetchingTimeout;
 
 $(document).on('blur', '#bookIsbn', function() {
     try {
-        let preferences = sessionStorage.getItem('preferences');
+        let preferences = localStorage.getItem('preferences');
         preferences = JSON.parse(preferences);
 
         if (!preferences.fetchBookInfoFromGoogle) return;

@@ -2,7 +2,7 @@
 
 const $ = require('jquery');
 
-const Preferences = require('../models/preferences');
+const changePreferences = require('../preferences/change');
 
 
 let dragging = false;
@@ -25,14 +25,9 @@ $(document).mouseup(async function() {
         $(document).unbind('mousemove');
         dragging = false;
 
-        const values = {
+        changePreferences({
             sidebarWidth: parseInt($('#sidebarWrapper').css('width')),
             middleColumnWidth: parseInt($('#bookListWrapper').css('width'))
-        };
-
-        let preferences = await Preferences.findById(1);
-        preferences = await preferences.updateAttributes(values);
-
-        localStorage.setItem('preferences', JSON.stringify(preferences));
+        });
     }
 });

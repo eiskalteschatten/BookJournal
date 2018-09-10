@@ -87,7 +87,10 @@ async function checkForUpdates(showNoUpdateDialog = false) {
             let preferences = localStorage.getItem('preferences');
             preferences = JSON.parse(preferences);
 
-            if (!preferences.checkForUpdates) resolve();
+            if (!preferences.checkForUpdates) {
+                resolve();
+                return;
+            }
 
             $.getJSON(config.updates.url, data => {
                 const versionInt = parseInt(config.app.version.replace(/[^0-9]/g, ''));
