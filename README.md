@@ -22,6 +22,7 @@ The project is currently in its infancy.
 
 ### 0.3.0
 - Mac Sandboxing
+- Database versioning for future upgrades
 - Reading stats
 - Link books (relates to, is translation of, etc)
 
