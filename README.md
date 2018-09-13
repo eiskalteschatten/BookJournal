@@ -4,6 +4,12 @@ The project is currently in its infancy.
 
 ## Release Notes
 
+### 0.3.0
+- Mac Sandboxing
+- Database versioning for future upgrades
+- Reading stats
+- Link books (relates to, is translation of, etc)
+
 ### 0.2.0
 - Improve initial loading time
 - Preferences: light/dark theme, automatically fetch book information from Google Books (on/off), update automatically (on/off)
@@ -19,12 +25,6 @@ The project is currently in its infancy.
 
 
 ## Roadmap
-
-### 0.3.0
-- Mac Sandboxing
-- Database versioning for future upgrades
-- Reading stats
-- Link books (relates to, is translation of, etc)
 
 ### 0.4.0
 - MacBook Touchbar
