@@ -96,6 +96,7 @@ async function changeFilter() {
 async function searchBooks(term) {
     $('.js-sidebar-list-element').removeClass('selected');
     const rendered = await filterBooks('search', term);
+    switchViewWithBooks();
     $('#bookList').html(rendered);
     sessionStorage.setItem('searching', term);
 }
