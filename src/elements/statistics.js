@@ -21,9 +21,9 @@ class Statistics {
         });
     }
 
-    getNunjucksRenderObject() {
+    async getNunjucksRenderObject() {
         return {
-            type: this.type
+
         };
     }
 }
