@@ -32,6 +32,7 @@ A digital book journal.
 - Export book as PDF
 
 ### 1.0
+- Update to Electron 3?
 - Create custom filters
 - Webcam-scanning of bar codes
 - Synching of database via cloud service of choice
