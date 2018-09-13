@@ -1,6 +1,6 @@
 # Book Journal
 
-The project is currently in its infancy.
+A digital book journal.
 
 ## Release Notes
 
