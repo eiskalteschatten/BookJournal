@@ -14,6 +14,10 @@ const Book = db.define('book', {
         type: Sequelize.STRING,
         allowNull: true
     },
+    dateStarted: {
+        type: Sequelize.DATEONLY,
+        allowNull: true
+    },
     dateRead: {
         type: Sequelize.DATEONLY,
         allowNull: true

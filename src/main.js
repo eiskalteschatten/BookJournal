@@ -8,6 +8,9 @@ const config = require('./config/config');
 const appConfig = config.app;
 const appMenu = require('./menus/config/app');
 
+// Database
+const {cmdMigrate} = require('./dbMigrate');
+
 // Preferences
 const {loadPreferences} = require('./initialPreferences');
 
@@ -91,6 +94,8 @@ app.setName(appConfig.name);
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 app.on('ready', createWindow);
+
+cmdMigrate();
 
 // Quit when all windows are closed.
 app.on('window-all-closed', function () {
