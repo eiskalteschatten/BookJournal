@@ -1,6 +1,6 @@
 'use strict';
 
-const helper = require('./events/helper');
+const checkForUpdates = require('./checkForUpdates');
 
 const SidebarList = require('./elements/list/sidebar');
 const AboutModal = require('./elements/modal/about');
@@ -30,7 +30,7 @@ async function postRender() {
     localStorage.setItem('preferences', JSON.stringify(preferences));
     localStorage.setItem('theme', preferences.theme);
 
-    helper.checkForUpdates();
+    checkForUpdates();
 }
 
 async function render() {

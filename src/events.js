@@ -4,6 +4,7 @@ const {ipcRenderer} = require('electron');
 const $ = require('jquery');
 
 const helper = require('./events/helper');
+const checkForUpdates = require('./checkForUpdates');
 
 require('./events/sidebar');
 require('./events/categories');
@@ -22,7 +23,7 @@ ipcRenderer.on('switch-css', (event, theme) => {
 });
 
 ipcRenderer.on('check-for-updates', async () => {
-    helper.checkForUpdates(true);
+    checkForUpdates(true);
 });
 
 
