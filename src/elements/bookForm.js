@@ -21,6 +21,7 @@ const bookFormMap = {
     bookTitle: 'title',
     bookAuthor: 'author',
     bookGenre: 'genre',
+    bookDateStarted: 'dateStarted',
     bookDateRead: 'dateRead',
     bookNotReadYet: 'notReadYet',
     bookNumberOfPages: 'pageCount',
@@ -55,6 +56,9 @@ class BookForm {
             const newKey = bookFormMap[formId];
             formData[newKey] = oldFormData[formId];
         }
+
+        if (formData.dateStarted === '')
+            formData.dateStarted = new Date(dummyDate);
 
         if (formData.dateRead === '')
             formData.dateRead = new Date(dummyDate);

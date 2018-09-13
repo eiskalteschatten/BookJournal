@@ -98,7 +98,6 @@ async function saveBook() {
     });
 
     const id = $('#bookBookcoverId').val();
-
     const bookForm = new BookForm(id);
     const newId = await bookForm.save(formData);
 
