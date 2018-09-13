@@ -9,6 +9,7 @@ const config = require('../config/config');
 const BookForm = require('../elements/bookForm');
 const BooksList = require('../elements/list/books');
 const filterBooks = require('../filters/books');
+const Statistics = require('../elements/statistics');
 
 
 async function loadBook(id) {
@@ -63,10 +64,35 @@ function clearBooklistSelection() {
     ipcRenderer.send('disable-book-items');
 }
 
+function switchViewNoBooks() {
+    $('#bookListWrapper').addClass('hidden');
+    $('#bookFormWrapper').addClass('hidden');
+    $('#mainColumnAnchor').removeClass('hidden');
+}
+
+function switchViewWithBooks() {
+    $('#bookListWrapper').removeClass('hidden');
+    $('#bookFormWrapper').removeClass('hidden');
+    $('#mainColumnAnchor').addClass('hidden');
+}
+
 async function changeFilter() {
     const $element = $('.js-sidebar-list-element.selected');
-    const rendered = await filterBooks($element.data('query-type'), $element.data('id'));
-    $('#bookList').html(rendered);
+    const queryType = $element.data('query-type');
+    let rendered;
+
+    if (queryType === 'statistics') {
+        const stats = new Statistics();
+        rendered = await stats.render();
+        switchViewNoBooks();
+        $('#mainColumnAnchor').html(rendered);
+    }
+    else {
+        rendered = await filterBooks(queryType, $element.data('id'));
+        switchViewWithBooks();
+        $('#bookList').html(rendered);
+    }
+
     sessionStorage.setItem('searching', false);
 }
 
@@ -158,6 +184,8 @@ module.exports = {
     updateBookList,
     refreshBookList,
     clearBooklistSelection,
+    switchViewNoBooks,
+    switchViewWithBooks,
     changeFilter,
     searchBooks,
     switchCss,

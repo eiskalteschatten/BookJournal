@@ -13,8 +13,11 @@ class Sidebar extends List {
     constructor() {
         super();
         this.template = path.join(__dirname, '../../templates/elements/list/sidebar.njk');
+
         this.addElement('All Books', '../assets/images/si-glyph-bookcase.svg', 'all-books');
         this.addElement('Future Reading', '../assets/images/si-glyph-bookmark.svg', 'future-reading');
+        this.addElement('Statistics', '../assets/images/si-glyph-chart-piece.svg', 'statistics');
+
         this.addTitleElement('Categories');
     }
 
