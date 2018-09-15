@@ -1,7 +1,17 @@
 'use strict';
 
 module.exports = {
-    up: (query, DataTypes) => {
+    up: async (query, DataTypes) => {
+        try {
+            const booksDesc = await query.describeTable('books');
+            if (booksDesc.dateStarted) return Promise.resolve();
+        }
+        catch(error) {
+            // Silently fail because the table most likely doesn't exist and will be
+            // created later
+            return Promise.resolve();
+        }
+
         return query.addColumn(
             'books', 'dateStarted',
             DataTypes.DATEONLY,

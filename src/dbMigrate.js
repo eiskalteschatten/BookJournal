@@ -30,7 +30,7 @@ const umzug = new Umzug({
 
 function logUmzugEvent(eventName) {
     return function(name) {
-        console.log(`${ name } ${ eventName }`);
+        console.log(`${name} ${eventName}`);
     };
 }
 
