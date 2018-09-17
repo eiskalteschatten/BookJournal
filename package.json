@@ -31,7 +31,8 @@
             "target": [
                 "dmg"
             ],
-            "category": "public.app-category.productivity"
+            "category": "public.app-category.productivity",
+            "entitlements": "entitlements.mac.plist"
         },
         "linux": {
             "target": [
