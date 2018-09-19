@@ -80,6 +80,7 @@ async function changeFilter() {
 
     if (queryType === 'statistics') {
         const stats = new Statistics();
+        stats.loadStatistics();
         rendered = await stats.render();
         switchViewNoBooks();
         $('#mainColumnAnchor').html(rendered);
