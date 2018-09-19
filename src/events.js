@@ -10,6 +10,7 @@ require('./events/sidebar');
 require('./events/categories');
 require('./events/books');
 require('./events/dragbar');
+require('./events/statistics');
 require('./events/modal');
 
 
