@@ -30,6 +30,7 @@ A digital book journal.
 - MacBook Touchbar
 - Print a book
 - Export book as PDF
+- Fix Windows-specific issues
 
 ### 1.0
 - Update to Electron 3?
