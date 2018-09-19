@@ -6,9 +6,12 @@ A digital book journal.
 
 ### 0.3.0
 - Mac Sandboxing
+- Change location of the database and bookcovers
+  - Mac: ~/Library/Application Data/BookJournal
+  - Linux: leave at ~/.bookjournal
+  - Windows: C:\Users\{User}\Roaming\Alex Seifert\BookJournal
 - Add database migration strategy for seemless schema updates
 - Reading stats
-- Link books (relates to, is translation of, etc)
 
 ### 0.2.0
 - Improve initial loading time
@@ -27,17 +30,23 @@ A digital book journal.
 ## Roadmap
 
 ### 0.4.0
-- MacBook Touchbar
+- Link books (relates to, is translation of, etc)
 - Print a book
 - Export book as PDF
-- Fix Windows-specific issues
+- Fix Windows-specific bugs
+
+### 0.5.0
+- Update to Electron 3
+- MacBook Touchbar
+- Webcam-scanning of bar codes
+- Multiple languages (initially English, German, French, Spanish)
 
 ### 1.0
-- Update to Electron 3?
 - Create custom filters
-- Webcam-scanning of bar codes
 - Synching of database via cloud service of choice
-- Multiple languages
+- Apple and Microsoft certificates
+- Auto-update with Squirrel
+- Mac App Store version
 
 
 ## Icons
