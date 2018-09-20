@@ -11,9 +11,11 @@
                 const statistics = new Statistics();
                 const returnValue = await statistics.calculateStatistics();
 
-                fromWindow.webContents.send('statistics-years-months', returnValue.allDatesRead);
+                fromWindow.webContents.send('statistics-set-session-storage', returnValue.allDatesRead);
+                fromWindow.webContents.send('statistics-render-page-book-count-year', returnValue.countsYearNumber);
+                fromWindow.webContents.send('statistics-render-page-book-count-month-year', returnValue.countsMonthYearNumber);
 
-                // window.close();
+                window.close();
             }
             catch(error) {
                 console.error(error);
