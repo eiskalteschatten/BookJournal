@@ -58,7 +58,7 @@ class Statistics {
             const year = dateObj.getFullYear();
             const month = dateObj.getMonth();
 
-            if (year === 1887) continue;
+            if (year === 1887 || isNaN(year)) continue;
 
             if (!Array.isArray(allDatesRead[year]))
                 allDatesRead[year] = [];
@@ -72,8 +72,13 @@ class Statistics {
 
         const countsYear = new BookAndPageCounts(newestYear);
         const countsYearNumber = await countsYear.calculate();
-
         console.log('countsYearNumber', countsYearNumber);
+
+        const newestMonth = allDatesRead[newestYear].reverse();
+
+        const countsMonthYear = new BookAndPageCounts(newestYear, newestMonth);
+        const countsMonthYearNumber = await countsMonthYear.calculate();
+        console.log('countsMonthYearNumber', countsMonthYearNumber);
 
         return {
             allDatesRead

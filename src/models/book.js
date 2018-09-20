@@ -111,19 +111,11 @@ Book.getSortedByQuery = async function(query, sortBy = 'title', sortOrder = 'ASC
 };
 
 Book.getByYear = async function(year) {
-    return await this.findAll({
-        where: {
-            dateRead: { $like: `${year}-%` }
-        }
-    });
+    return await db.query(`SELECT * FROM books where strftime('%Y', dateRead) IN('${year}');`, { model: this });
 };
 
 Book.getByMonthYear = async function(month, year) {
-    return await this.findAll({
-        where: {
-            dateRead: { $like: `${year}-${month}%-` }
-        }
-    });
+    return await db.query(`SELECT * FROM books where strftime('%Y-%m', dateRead) IN('${year}-${month}');`, { model: this });
 };
 
 Book.sync();

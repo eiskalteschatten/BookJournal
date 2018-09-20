@@ -26,6 +26,8 @@ class BookAndPageCounts extends StatisticsBox {
             ? await Book.getByYear(this.year)
             : await Book.getByMonthYear(this.month, this.year);
 
+console.log("results", JSON.stringify(results));
+
         let pageCount = 0;
 
         for (const result of results) {
