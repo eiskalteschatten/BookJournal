@@ -7,6 +7,9 @@ const path = require('path');
 const fs = require('fs');
 const nunjucks = require('../nunjucks');
 
+const PageCount = require('./statisticsBox/pageCount');
+const BookCount = require('./statisticsBox/bookCount');
+
 
 class Statistics {
     async render() {
@@ -40,6 +43,17 @@ class Statistics {
         return {
 
         };
+    }
+
+    async calculateStatistics() {
+        const pageCount = new PageCount();
+        const bookCount = new BookCount();
+
+        const pageCountNumber = await pageCount.calculate();
+        const bookCountNumber = await bookCount.calculate();
+
+        console.log('pageCountNumber', pageCountNumber);
+        console.log('bookCountNumber', bookCountNumber);
     }
 }
 
