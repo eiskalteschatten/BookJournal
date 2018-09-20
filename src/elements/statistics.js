@@ -66,8 +66,6 @@ class Statistics {
                 allDatesRead[year].push(month);
         }
 
-        sessionStorage.setItem('allDatesRead', JSON.stringify(allDatesRead));
-
         const pageCount = new PageCount();
         const bookCount = new BookCount();
 
@@ -76,6 +74,10 @@ class Statistics {
 
         console.log('pageCountNumber', pageCountNumber);
         console.log('bookCountNumber', bookCountNumber);
+
+        return {
+            allDatesRead
+        };
     }
 }
 

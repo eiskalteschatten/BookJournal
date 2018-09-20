@@ -10,9 +10,9 @@
                 const fromWindow = BrowserWindow.fromId(fromWindowId)
                 const statistics = new Statistics();
 
-                await statistics.calculateStatistics();
+                const returnValue = await statistics.calculateStatistics();
 
-                fromWindow.webContents.send('factorial-computed');
+                fromWindow.webContents.send('statistics-years-months', returnValue.allDatesRead);
                 // window.close();
             }
             catch(error) {
