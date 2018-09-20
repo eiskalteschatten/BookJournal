@@ -110,6 +110,22 @@ Book.getSortedByQuery = async function(query, sortBy = 'title', sortOrder = 'ASC
     return await this.findAll(query);
 };
 
+Book.getByYear = async function(year) {
+    return await this.findAll({
+        where: {
+            dateRead: { $like: `${year}-%` }
+        }
+    });
+};
+
+Book.getByMonthYear = async function(month, year) {
+    return await this.findAll({
+        where: {
+            dateRead: { $like: `${year}-${month}%` }
+        }
+    });
+};
+
 Book.sync();
 
 module.exports = Book;

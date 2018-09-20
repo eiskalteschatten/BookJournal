@@ -6,13 +6,13 @@
 
         ipcRenderer.on('load-statistics', async function(event, number, fromWindowId) {
             try {
-                console.log("hello");
-                const fromWindow = BrowserWindow.fromId(fromWindowId)
-                const statistics = new Statistics();
+                const fromWindow = BrowserWindow.fromId(fromWindowId);
 
+                const statistics = new Statistics();
                 const returnValue = await statistics.calculateStatistics();
 
                 fromWindow.webContents.send('statistics-years-months', returnValue.allDatesRead);
+
                 // window.close();
             }
             catch(error) {

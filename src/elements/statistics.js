@@ -7,8 +7,7 @@ const path = require('path');
 const fs = require('fs');
 const nunjucks = require('../nunjucks');
 
-const PageCount = require('./statisticsBox/pageCount');
-const BookCount = require('./statisticsBox/bookCount');
+const BookAndPageCounts = require('./statisticsBox/bookAndPageCounts');
 
 const Book = require('../models/book');
 
@@ -33,7 +32,7 @@ class Statistics {
         const windowID = BrowserWindow.getFocusedWindow().id;
         const loadStatsPath = 'file://' + path.join(__dirname, '../html/invisible/load-statistics.html');
 
-        const loadStatsWindow = new BrowserWindow({ width: 400, height: 400, show: false });
+        const loadStatsWindow = new BrowserWindow({ width: 400, height: 400 });
         loadStatsWindow.loadURL(loadStatsPath);
         loadStatsWindow.webContents.on('did-finish-load', () => {
             const input = 100;
@@ -59,6 +58,8 @@ class Statistics {
             const year = dateObj.getFullYear();
             const month = dateObj.getMonth();
 
+            if (year === 1887) continue;
+
             if (!Array.isArray(allDatesRead[year]))
                 allDatesRead[year] = [];
 
@@ -66,14 +67,14 @@ class Statistics {
                 allDatesRead[year].push(month);
         }
 
-        const pageCount = new PageCount();
-        const bookCount = new BookCount();
+        const sortedYears = Object.keys(allDatesRead).reverse();
+        const newestYear = sortedYears[0];
 
-        const pageCountNumber = await pageCount.calculate();
-        const bookCountNumber = await bookCount.calculate();
+        const countsYear = new BookAndPageCounts(newestYear);
 
-        console.log('pageCountNumber', pageCountNumber);
-        console.log('bookCountNumber', bookCountNumber);
+        const countsYearNumber = await countsYear.calculate();
+
+        console.log('countsYearNumber', countsYearNumber);
 
         return {
             allDatesRead
