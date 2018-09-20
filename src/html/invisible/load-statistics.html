@@ -1,23 +1,23 @@
 <html>
   <script>
         const Statistics = require('../../elements/statistics');
-        const ipc = require('electron').ipcRenderer
-        const BrowserWindow = require('electron').remote.BrowserWindow
+        const {ipcRenderer, remote} = require('electron');
+        const BrowserWindow = remote.BrowserWindow;
 
-        ipc.on('compute-factorial', async(event, number, fromWindowId) => {
-            // const result = factorial(number)
-            const fromWindow = BrowserWindow.fromId(fromWindowId)
-            const statistics = new Statistics();
+        ipcRenderer.on('load-statistics', async function(event, number, fromWindowId) {
+            try {
+                console.log("hello");
+                const fromWindow = BrowserWindow.fromId(fromWindowId)
+                const statistics = new Statistics();
 
-            await statistics.calculateStatistics();
+                await statistics.calculateStatistics();
 
-            fromWindow.webContents.send('factorial-computed', number, result)
-            window.close()
+                fromWindow.webContents.send('factorial-computed');
+                // window.close();
+            }
+            catch(error) {
+                console.error(error);
+            }
         })
-
-        // function factorial (num) {
-        //     if (num === 0) return 1
-        //     return num * factorial(num - 1)
-        // }
   </script>
 </html>

@@ -10,6 +10,8 @@ const nunjucks = require('../nunjucks');
 const PageCount = require('./statisticsBox/pageCount');
 const BookCount = require('./statisticsBox/bookCount');
 
+const Book = require('../models/book');
+
 
 class Statistics {
     async render() {
@@ -35,7 +37,7 @@ class Statistics {
         loadStatsWindow.loadURL(loadStatsPath);
         loadStatsWindow.webContents.on('did-finish-load', () => {
             const input = 100;
-            loadStatsWindow.webContents.send('compute-factorial', input, windowID);
+            loadStatsWindow.webContents.send('load-statistics', input, windowID);
         });
     }
 
@@ -46,6 +48,26 @@ class Statistics {
     }
 
     async calculateStatistics() {
+        const datesReadResults = await Book.findAll({
+            attributes: ['dateRead']
+        });
+
+        const allDatesRead = {};
+
+        for (const book of datesReadResults) {
+            const dateObj = new Date(book.dateRead);
+            const year = dateObj.getFullYear();
+            const month = dateObj.getMonth();
+
+            if (!Array.isArray(allDatesRead[year]))
+                allDatesRead[year] = [];
+
+            if (allDatesRead[year].indexOf(month) === -1)
+                allDatesRead[year].push(month);
+        }
+
+        sessionStorage.setItem('allDatesRead', JSON.stringify(allDatesRead));
+
         const pageCount = new PageCount();
         const bookCount = new BookCount();
 
