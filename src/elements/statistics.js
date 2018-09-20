@@ -22,7 +22,7 @@ class Statistics {
                 resolve(string);
             });
         }).then(async templateString => {
-            return nunjucks.renderString(templateString, await this.getNunjucksRenderObject());
+            return nunjucks.renderString(templateString);
         }).catch(error => {
             console.error(error);
         });
@@ -38,12 +38,6 @@ class Statistics {
             const input = 100;
             loadStatsWindow.webContents.send('load-statistics', input, windowID);
         });
-    }
-
-    async getNunjucksRenderObject() {
-        return {
-
-        };
     }
 
     async calculateStatistics() {
