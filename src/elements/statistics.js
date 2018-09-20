@@ -67,21 +67,22 @@ class Statistics {
                 allDatesRead[year].push(month);
         }
 
-        const sortedYears = Object.keys(allDatesRead).reverse();
-        const newestYear = sortedYears[0];
+        const sortDesc = (a, b) => b - a;
 
+        const sortedYears = Object.keys(allDatesRead).sort(sortDesc);
+        const newestYear = sortedYears[0];
         const countsYear = new BookAndPageCounts(newestYear);
         const countsYearNumber = await countsYear.calculate();
-        console.log('countsYearNumber', countsYearNumber);
 
-        const newestMonth = allDatesRead[newestYear].reverse();
-
+        const sortedMonths = allDatesRead[newestYear].slice().sort(sortDesc);
+        const newestMonth = parseInt(sortedMonths[0]) + 1;
         const countsMonthYear = new BookAndPageCounts(newestYear, newestMonth);
         const countsMonthYearNumber = await countsMonthYear.calculate();
-        console.log('countsMonthYearNumber', countsMonthYearNumber);
 
         return {
-            allDatesRead
+            allDatesRead,
+            countsYearNumber,
+            countsMonthYearNumber
         };
     }
 }

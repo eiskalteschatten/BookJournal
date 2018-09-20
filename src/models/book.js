@@ -115,6 +115,7 @@ Book.getByYear = async function(year) {
 };
 
 Book.getByMonthYear = async function(month, year) {
+    if (month < 10) month = `0${month}`;
     return await db.query(`SELECT * FROM books where strftime('%Y-%m', dateRead) IN('${year}-${month}');`, { model: this });
 };
 
