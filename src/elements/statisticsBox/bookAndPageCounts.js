@@ -26,10 +26,18 @@ class BookAndPageCounts extends StatisticsBox {
             ? await Book.getByYear(this.year)
             : await Book.getByMonthYear(this.month, this.year);
 
-console.log("results", results);
+        let pageCount = 0;
+
+        for (const result of results) {
+            const pageCountInt = parseInt(result.pageCount);
+
+            if (result.pageCount && !isNaN(pageCountInt))
+                pageCount += pageCountInt;
+        }
 
         return {
-            results
+            bookCount: results.length,
+            pageCount
         };
     }
 }

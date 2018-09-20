@@ -71,7 +71,6 @@ class Statistics {
         const newestYear = sortedYears[0];
 
         const countsYear = new BookAndPageCounts(newestYear);
-
         const countsYearNumber = await countsYear.calculate();
 
         console.log('countsYearNumber', countsYearNumber);

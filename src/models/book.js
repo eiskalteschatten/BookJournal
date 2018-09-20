@@ -121,7 +121,7 @@ Book.getByYear = async function(year) {
 Book.getByMonthYear = async function(month, year) {
     return await this.findAll({
         where: {
-            dateRead: { $like: `${year}-${month}%` }
+            dateRead: { $like: `${year}-${month}%-` }
         }
     });
 };
