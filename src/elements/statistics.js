@@ -7,8 +7,6 @@ const path = require('path');
 const fs = require('fs');
 const nunjucks = require('../nunjucks');
 
-const BookAndPageCounts = require('./statisticsBox/bookAndPageCounts');
-
 const Book = require('../models/book');
 
 
@@ -65,16 +63,36 @@ class Statistics {
 
         const sortedYears = Object.keys(allDatesRead).sort(sortDesc);
         const newestYear = sortedYears[0];
-        const countsYear = await BookAndPageCounts.calculate(newestYear);
+        const countsYear = await this.calculateBookAndPageCounts(newestYear);
 
         const sortedMonths = allDatesRead[newestYear].slice().sort(sortDesc);
         const newestMonth = parseInt(sortedMonths[0]) + 1;
-        const countsMonthYear = await BookAndPageCounts.calculate(newestYear, newestMonth);
+        const countsMonthYear = await this.calculateBookAndPageCounts(newestYear, newestMonth);
 
         return {
             allDatesRead,
             countsYear,
             countsMonthYear
+        };
+    }
+
+    async calculateBookAndPageCounts(year, month = '') {
+        const results = month === ''
+            ? await Book.getByYear(year)
+            : await Book.getByMonthYear(month, year);
+
+        let pageCount = 0;
+
+        for (const result of results) {
+            const pageCountInt = parseInt(result.pageCount);
+
+            if (result.pageCount && !isNaN(pageCountInt))
+                pageCount += pageCountInt;
+        }
+
+        return {
+            bookCount: results.length,
+            pageCount
         };
     }
 }
