@@ -30,7 +30,6 @@ ipcRenderer.on('statistics-render-page-book-count-month-year', async (event, cou
     const rendered = await bookPageCountMonthYear.render();
     const $element = $('#statisticsBookPageCountMonthYear');
 
-    $element.removeClass('loading');
     $element.html(rendered);
 
     await bookPageCountMonthYear.renderGraphs(
