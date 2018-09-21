@@ -68,14 +68,17 @@ class Statistics {
             countsYear[year] = await this.calculateBookAndPageCounts(year);
         }
 
-        const newestYear = sortedLastFiveYears[0];
-        const sortedLastFiveMonths = allDatesRead[newestYear].slice(0, 5).sort(sortDesc);
-        const countsMonthYear = {};
+        const latestYear = sortedLastFiveYears[0];
+        const sortedLastFiveMonths = allDatesRead[latestYear].slice(0, 5).sort(sortDesc);
+        const countsMonthYearOnlyMonth = {};
 
         for (let month of sortedLastFiveMonths) {
             month = parseInt(month) + 1;
-            countsMonthYear[month] = await this.calculateBookAndPageCounts(newestYear, month);
+            countsMonthYearOnlyMonth[month] = await this.calculateBookAndPageCounts(latestYear, month);
         }
+
+        const countsMonthYear = {};
+        countsMonthYear[latestYear] = countsMonthYearOnlyMonth;
 
         return {
             allDatesRead,

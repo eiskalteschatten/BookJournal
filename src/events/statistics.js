@@ -4,7 +4,7 @@ const {ipcRenderer} = require('electron');
 const $ = require('jquery');
 
 const BookPageCountYear = require('../elements/statisticsBox/bookPageCountYear');
-const MonthYearBox = require('../elements/statisticsBox/monthYearBox');
+const BookPageCountMonthYear = require('../elements/statisticsBox/bookPageCountMonthYear');
 
 
 ipcRenderer.on('statistics-set-session-storage', (event, allDatesRead) => {
@@ -26,10 +26,17 @@ ipcRenderer.on('statistics-render-page-book-count-year', async (event, counts) =
 });
 
 ipcRenderer.on('statistics-render-page-book-count-month-year', async (event, counts) => {
-    const bookCountBox = new MonthYearBox(counts);
-    const rendered = await bookCountBox.render();
+    const bookPageCountMonthYear = new BookPageCountMonthYear(counts);
+    const rendered = await bookPageCountMonthYear.render();
     const $element = $('#statisticsBookPageCountMonthYear');
 
     $element.removeClass('loading');
     $element.html(rendered);
+
+    await bookPageCountMonthYear.renderGraphs(
+        $('#statisticsBooksReadMonthYearGraph'),
+        $('#statisticsPagesReadMonthYearGraph'),
+        $('#statisticsBooksReadMonthYearDoughnutGraph'),
+        $('#statisticsPagesReadMonthYearDoughnutGraph')
+    );
 });

@@ -1,0 +1,31 @@
+{% extends "elements/statisticsBox.njk" %}
+
+{% block content %}
+
+    <div class="statistics-cell-contents">
+        <h3>Books Read Per Month For <span class="js-statistics-books-pages-month-year">{{ latestYear }}</span></h3>
+
+        <div class="row">
+            <div class="col-md-8">
+                <canvas id="statisticsBooksReadMonthYearGraph" class="statistics-graph" height="250"></canvas>
+            </div>
+            <div class="col-md-4">
+                <canvas id="statisticsBooksReadMonthYearDoughnutGraph" class="statistics-graph" height="250"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <div class="statistics-cell-contents">
+        <h3>Pages Read Per Month For <span class="js-statistics-books-pages-month-year">{{ latestYear }}</span></h3>
+
+        <div class="row">
+            <div class="col-md-8">
+                <canvas id="statisticsPagesReadMonthYearGraph" class="statistics-graph" height="250"></canvas>
+            </div>
+            <div class="col-md-4">
+                <canvas id="statisticsPagesReadMonthYearDoughnutGraph" class="statistics-graph" height="250"></canvas>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

@@ -12,11 +12,30 @@ const defaultOptions = {
             ticks: {
                 beginAtZero: true
             }
+        }],
+        xAxes: [{
+            ticks: {
+                beginAtZero: true
+            }
         }]
     },
     legend: {
         display: false
+    }
+};
+
+const doughnutOptions = {
+    scales: {
+        yAxes: [{
+            display: false
+        }],
+        xAxes: [{
+            display: false
+        }]
     },
+    legend: {
+        display: false
+    }
 };
 
 const backgroundColor = [
@@ -35,6 +54,7 @@ module.exports = () => {
     return {
         Chart,
         defaultOptions,
+        doughnutOptions,
         backgroundColor
     };
 };
