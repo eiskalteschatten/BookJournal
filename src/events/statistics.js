@@ -5,6 +5,7 @@ const $ = require('jquery');
 
 const BookPageCountYear = require('../elements/statisticsBox/bookPageCountYear');
 const BookPageCountMonthYear = require('../elements/statisticsBox/bookPageCountMonthYear');
+const Statistics = require('../elements/statistics');
 
 
 async function renderBookPageCountMonthYear(counts, allDatesRead) {
@@ -40,6 +41,14 @@ ipcRenderer.on('statistics-render-page-book-count-month-year', async (event, cou
     await renderBookPageCountMonthYear(counts, allDatesRead);
 });
 
-$(document).on('change', '#statisticsChangeYearSelect', function() {
+$(document).on('change', '#statisticsChangeYearSelect', async function() {
+    const newYear = $(this).val();
 
+    const statistics = new Statistics();
+    const allDatesRead = await statistics.getAllDatesRead();
+    const counts = await statistics.calculateCountsMonthYear(allDatesRead, newYear);
+
+    await renderBookPageCountMonthYear(counts, allDatesRead);
+
+    $('.js-statistics-books-pages-month-year').text(newYear);
 });

@@ -42,11 +42,13 @@ class Statistics {
 
     async calculateStatistics() {
         const allDatesRead = await this.getAllDatesRead();
+        const sortedLastFiveYears = Object.keys(allDatesRead).slice(0, 5).sort(sortDesc);
+        const latestYear = sortedLastFiveYears[0];
 
         return {
             allDatesRead,
             countsYear: await this.calculateCountsYear(allDatesRead),
-            countsMonthYear: await this.calculateCountsMonthYear(allDatesRead)
+            countsMonthYear: await this.calculateCountsMonthYear(allDatesRead, latestYear)
         };
     }
 
@@ -85,19 +87,17 @@ class Statistics {
         return countsYear;
     }
 
-    async calculateCountsMonthYear(allDatesRead) {
-        const sortedLastFiveYears = Object.keys(allDatesRead).slice(0, 5).sort(sortDesc);
-        const latestYear = sortedLastFiveYears[0];
-        const sortedLastFiveMonths = allDatesRead[latestYear].slice(0, 5).sort(sortDesc);
+    async calculateCountsMonthYear(allDatesRead, year) {
+        const sortedMonths = allDatesRead[year].slice().sort(sortDesc);
         const countsMonthYearOnlyMonth = {};
 
-        for (let month of sortedLastFiveMonths) {
+        for (let month of sortedMonths) {
             month = parseInt(month) + 1;
-            countsMonthYearOnlyMonth[month] = await this.calculateBookAndPageCounts(latestYear, month);
+            countsMonthYearOnlyMonth[month] = await this.calculateBookAndPageCounts(year, month);
         }
 
         const countsMonthYear = {};
-        countsMonthYear[latestYear] = countsMonthYearOnlyMonth;
+        countsMonthYear[year] = countsMonthYearOnlyMonth;
 
         return countsMonthYear;
     }
