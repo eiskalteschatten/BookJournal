@@ -12,6 +12,7 @@ A digital book journal.
   - Windows: `C:\Users\{User}\Roaming\Alex Seifert\BookJournal`
 - Add database migration strategy for seemless schema updates
 - Reading stats
+- "Future Reading" -> "Not Read Yet"
 
 ### 0.2.0
 - Improve initial loading time
