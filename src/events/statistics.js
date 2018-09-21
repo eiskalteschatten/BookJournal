@@ -18,6 +18,11 @@ ipcRenderer.on('statistics-render-page-book-count-year', async (event, counts) =
 
     $element.removeClass('loading');
     $element.html(rendered);
+
+    await bookPageCountYear.renderGraphs(
+        $('#statisticsBooksReadYearGraph'),
+        $('#statisticsPagesReadYearGraph')
+    );
 });
 
 ipcRenderer.on('statistics-render-page-book-count-month-year', async (event, counts) => {
