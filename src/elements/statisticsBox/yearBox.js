@@ -10,7 +10,7 @@ class YearBox extends StatisticsBox {
         super();
 
         this.count = count;
-        this.template = path.join(__dirname, '../templates/elements/statisticsBox.njk');
+        this.template = path.join(__dirname, '../../templates/elements/statisticsBox.njk');
     }
 
     async getNunjucksRenderObject() {
