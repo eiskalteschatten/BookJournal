@@ -7,10 +7,10 @@ ipcRenderer.on('statistics-set-session-storage', (event, allDatesRead) => {
     sessionStorage.setItem('allDatesRead', JSON.stringify(allDatesRead));
 });
 
-ipcRenderer.on('statistics-render-page-book-count-year', (event, countsYearNumber) => {
-    console.log('countsYearNumber', countsYearNumber);
+ipcRenderer.on('statistics-render-page-book-count-year', (event, countsYear) => {
+    console.log('countsYear', countsYear);
 });
 
-ipcRenderer.on('statistics-render-page-book-count-month-year', (event, countsMonthYearNumber) => {
-    console.log('countsMonthYearNumber', countsMonthYearNumber);
+ipcRenderer.on('statistics-render-page-book-count-month-year', (event, countsMonthYear) => {
+    console.log('countsMonthYear', countsMonthYear);
 });

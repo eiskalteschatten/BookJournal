@@ -7,11 +7,8 @@ const Book = require('../../models/book');
 
 
 class BookAndPageCounts extends StatisticsBox {
-    constructor(year, month = '') {
+    constructor() {
         super();
-
-        this.year = year;
-        this.month = month;
         this.template = path.join(__dirname, '../templates/elements/statistics.njk');
     }
 
@@ -21,10 +18,10 @@ class BookAndPageCounts extends StatisticsBox {
         };
     }
 
-    async calculate() {
-        const results = this.month === ''
-            ? await Book.getByYear(this.year)
-            : await Book.getByMonthYear(this.month, this.year);
+    static async calculate(year, month = '') {
+        const results = month === ''
+            ? await Book.getByYear(year)
+            : await Book.getByMonthYear(month, year);
 
         let pageCount = 0;
 

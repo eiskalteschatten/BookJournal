@@ -65,18 +65,16 @@ class Statistics {
 
         const sortedYears = Object.keys(allDatesRead).sort(sortDesc);
         const newestYear = sortedYears[0];
-        const countsYear = new BookAndPageCounts(newestYear);
-        const countsYearNumber = await countsYear.calculate();
+        const countsYear = await BookAndPageCounts.calculate(newestYear);
 
         const sortedMonths = allDatesRead[newestYear].slice().sort(sortDesc);
         const newestMonth = parseInt(sortedMonths[0]) + 1;
-        const countsMonthYear = new BookAndPageCounts(newestYear, newestMonth);
-        const countsMonthYearNumber = await countsMonthYear.calculate();
+        const countsMonthYear = await BookAndPageCounts.calculate(newestYear, newestMonth);
 
         return {
             allDatesRead,
-            countsYearNumber,
-            countsMonthYearNumber
+            countsYear,
+            countsMonthYear
         };
     }
 }
