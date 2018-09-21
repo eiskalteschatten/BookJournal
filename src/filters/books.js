@@ -11,7 +11,7 @@ module.exports = async (type, term = '') => {
     switch(type) {
         case 'all-books':
             break;
-        case 'future-reading':
+        case 'not-read-yet':
             query = {
                 where: { notReadYet: true }
             };
