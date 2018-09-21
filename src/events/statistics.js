@@ -3,7 +3,7 @@
 const {ipcRenderer} = require('electron');
 const $ = require('jquery');
 
-const YearBox = require('../elements/statisticsBox/yearBox');
+const BookPageCountYear = require('../elements/statisticsBox/bookPageCountYear');
 const MonthYearBox = require('../elements/statisticsBox/monthYearBox');
 
 
@@ -11,34 +11,20 @@ ipcRenderer.on('statistics-set-session-storage', (event, allDatesRead) => {
     sessionStorage.setItem('allDatesRead', JSON.stringify(allDatesRead));
 });
 
-ipcRenderer.on('statistics-render-page-book-count-year', async (event, countsYear) => {
-    const bookCountBox = new YearBox(countsYear.bookCount);
-    const bookCountRendered = await bookCountBox.render();
-    const $bookCountElement = $('#statisticsBooksReadYear');
+ipcRenderer.on('statistics-render-page-book-count-year', async (event, counts) => {
+    const bookPageCountYear = new BookPageCountYear(counts);
+    const rendered = await bookPageCountYear.render();
+    const $element = $('#statisticsBookPageCountYear');
 
-    $bookCountElement.removeClass('loading');
-    $bookCountElement.html(bookCountRendered);
-
-    const pageCountBox = new YearBox(countsYear.pageCount);
-    const pageCountRendered = await pageCountBox.render();
-    const $pageCountElement = $('#statisticsPageCountYear');
-
-    $pageCountElement.removeClass('loading');
-    $pageCountElement.html(pageCountRendered);
+    $element.removeClass('loading');
+    $element.html(rendered);
 });
 
-ipcRenderer.on('statistics-render-page-book-count-month-year', async (event, countsMonthYear) => {
-    const bookCountBox = new MonthYearBox(countsMonthYear.bookCount);
-    const bookCountRendered = await bookCountBox.render();
-    const $bookCountElement = $('#statisticsBooksReadMonth');
+ipcRenderer.on('statistics-render-page-book-count-month-year', async (event, counts) => {
+    const bookCountBox = new MonthYearBox(counts);
+    const rendered = await bookCountBox.render();
+    const $element = $('#statisticsBookPageCountMonthYear');
 
-    $bookCountElement.removeClass('loading');
-    $bookCountElement.html(bookCountRendered);
-
-    const pageCountBox = new MonthYearBox(countsMonthYear.pageCount);
-    const pageCountRendered = await pageCountBox.render();
-    const $pageCountElement = $('#statisticsPageCountMonth');
-
-    $pageCountElement.removeClass('loading');
-    $pageCountElement.html(pageCountRendered);
+    $element.removeClass('loading');
+    $element.html(rendered);
 });
