@@ -9,19 +9,20 @@ const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'Jul
 
 
 class BookPageCountMonthYear extends StatisticsBox {
-    constructor(statistics) {
+    constructor(statistics, allDatesRead) {
         super(statistics);
 
         const sortedYears = Object.keys(statistics).sort((a, b) => b - a);
         this.latestYear = sortedYears[0];
         this.monthStatistics = statistics[this.latestYear];
+        this.allDatesRead = allDatesRead;
         this.template = path.join(__dirname, '../../templates/elements/statisticsBox/bookPageCountMonthYear.njk');
     }
 
     async getNunjucksRenderObject() {
         const object = await super.getNunjucksRenderObject();
-
         object.latestYear = this.latestYear;
+        object.allDatesRead = this.allDatesRead;
 
         return object;
     }

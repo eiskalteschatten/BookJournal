@@ -11,9 +11,8 @@
                 const statistics = new Statistics();
                 const returnValue = await statistics.calculateStatistics();
 
-                fromWindow.webContents.send('statistics-set-session-storage', returnValue.allDatesRead);
-                fromWindow.webContents.send('statistics-render-page-book-count-year', returnValue.countsYear);
-                fromWindow.webContents.send('statistics-render-page-book-count-month-year', returnValue.countsMonthYear);
+                fromWindow.webContents.send('statistics-render-page-book-count-year', returnValue.allDatesRead, returnValue.countsYear);
+                fromWindow.webContents.send('statistics-render-page-book-count-month-year', returnValue.allDatesRead, returnValue.countsMonthYear);
 
                 window.close();
             }

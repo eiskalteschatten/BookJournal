@@ -7,12 +7,8 @@ const BookPageCountYear = require('../elements/statisticsBox/bookPageCountYear')
 const BookPageCountMonthYear = require('../elements/statisticsBox/bookPageCountMonthYear');
 
 
-ipcRenderer.on('statistics-set-session-storage', (event, allDatesRead) => {
-    sessionStorage.setItem('allDatesRead', JSON.stringify(allDatesRead));
-});
-
-ipcRenderer.on('statistics-render-page-book-count-year', async (event, counts) => {
-    const bookPageCountYear = new BookPageCountYear(counts);
+ipcRenderer.on('statistics-render-page-book-count-year', async (event, allDatesRead, counts) => {
+    const bookPageCountYear = new BookPageCountYear(counts, allDatesRead);
     const rendered = await bookPageCountYear.render();
     const $element = $('#statisticsBookPageCountYear');
 
@@ -25,8 +21,8 @@ ipcRenderer.on('statistics-render-page-book-count-year', async (event, counts) =
     );
 });
 
-ipcRenderer.on('statistics-render-page-book-count-month-year', async (event, counts) => {
-    const bookPageCountMonthYear = new BookPageCountMonthYear(counts);
+ipcRenderer.on('statistics-render-page-book-count-month-year', async (event, allDatesRead, counts) => {
+    const bookPageCountMonthYear = new BookPageCountMonthYear(counts, allDatesRead);
     const rendered = await bookPageCountMonthYear.render();
     const $element = $('#statisticsBookPageCountMonthYear');
 

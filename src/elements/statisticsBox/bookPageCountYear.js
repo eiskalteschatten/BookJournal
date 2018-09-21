@@ -7,18 +7,19 @@ const StatisticsBox = require('../statisticsBox');
 
 
 class BookPageCountYear extends StatisticsBox {
-    constructor(statistics) {
+    constructor(statistics, allDatesRead) {
         super(statistics);
 
         const sortedYears = Object.keys(statistics).sort((a, b) => b - a);
         this.latestYear = sortedYears[0];
+        this.allDatesRead = allDatesRead;
         this.template = path.join(__dirname, '../../templates/elements/statisticsBox/bookPageCountYear.njk');
     }
 
     async getNunjucksRenderObject() {
         const object = await super.getNunjucksRenderObject();
-
         object.latestYear = this.latestYear;
+        object.allDatesRead = this.allDatesRead;
 
         return object;
     }
