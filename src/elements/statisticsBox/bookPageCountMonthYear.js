@@ -60,7 +60,8 @@ class BookPageCountMonthYear extends StatisticsBox {
                 datasets: [{
                     label: 'Books Read Per Month',
                     data: booksReadData,
-                    backgroundColor: chart.backgroundColor
+                    backgroundColor: chart.backgroundColor,
+                    borderWidth: 0
                 }]
             },
             options: chart.doughnutOptions
@@ -86,7 +87,8 @@ class BookPageCountMonthYear extends StatisticsBox {
                 datasets: [{
                     label: 'Pages Read Per Month',
                     data: pagesReadData,
-                    backgroundColor: chart.backgroundColor
+                    backgroundColor: chart.backgroundColor,
+                    borderWidth: 0
                 }]
             },
             options: chart.doughnutOptions

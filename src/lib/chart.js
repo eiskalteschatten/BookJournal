@@ -11,12 +11,14 @@ const defaultOptions = {
         yAxes: [{
             ticks: {
                 beginAtZero: true
-            }
+            },
+            gridLines: {}
         }],
         xAxes: [{
             ticks: {
                 beginAtZero: true
-            }
+            },
+            gridLines: {}
         }]
     },
     legend: {
@@ -48,8 +50,14 @@ const backgroundColor = [
 
 
 module.exports = () => {
+    const theme = localStorage.getItem('theme');
+
     // Values that shouldn't be cached
     Chart.defaults.global.defaultFontColor = window.getComputedStyle(fakeDiv).color;
+
+    const gridColor = theme === 'light' ? 'rgba(14, 14, 14, .1)' : 'rgba(224, 224, 224, .1)';
+    defaultOptions.scales.yAxes[0].gridLines.color = gridColor;
+    defaultOptions.scales.xAxes[0].gridLines.color = gridColor;
 
     return {
         Chart,
