@@ -1,7 +1,7 @@
 'use strict';
 
 const path = require('path');
-const chart = require('../../lib/chart');
+const chartModule = require('../../lib/chart');
 
 const StatisticsBox = require('../statisticsBox');
 
@@ -24,6 +24,7 @@ class BookPageCountYear extends StatisticsBox {
     }
 
     async renderGraphs($booksGraph, $pagesGraph) {
+        const chart = chartModule();
         const statistics = this.statistics;
 
         const labels = [];

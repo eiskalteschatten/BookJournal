@@ -2,11 +2,9 @@
 
 const Chart = require('chart.js');
 
-const theme = localStorage.getItem('theme');
+const fakeDiv = document.querySelector('div');
 
-
-Chart.defaults.global.defaultFontColor = theme === 'light' ? '#0e0e0e' : '#e0e0e0';
-Chart.defaults.global.defaultFontFamily = '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Helvetica Neue", Arial, sans-serif';
+Chart.defaults.global.defaultFontFamily = window.getComputedStyle(fakeDiv).fontFamily;
 
 
 const defaultOptions = {
@@ -30,8 +28,14 @@ const backgroundColor = [
     'rgba(145, 248, 49, 1)'
 ];
 
-module.exports = {
-    Chart,
-    defaultOptions,
-    backgroundColor
+
+module.exports = () => {
+    // Values that shouldn't be cached
+    Chart.defaults.global.defaultFontColor = window.getComputedStyle(fakeDiv).color;
+
+    return {
+        Chart,
+        defaultOptions,
+        backgroundColor
+    };
 };
