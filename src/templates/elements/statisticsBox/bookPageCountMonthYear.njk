@@ -5,7 +5,7 @@
     <div class="statistics-cell-contents">
         <div class="statistics-change-year">
             View statistics for
-            <select>
+            <select class="form-control" id="statisticsChangeYearSelect">
                 {% for year, months in allDatesRead %}
                     {% if year == latestYear %}
                         <option selected>{{ year }}</option>
