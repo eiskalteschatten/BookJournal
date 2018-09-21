@@ -61,13 +61,21 @@ class Statistics {
 
         const sortDesc = (a, b) => b - a;
 
-        const sortedYears = Object.keys(allDatesRead).sort(sortDesc);
-        const newestYear = sortedYears[0];
-        const countsYear = await this.calculateBookAndPageCounts(newestYear);
+        const sortedLastFiveYears = Object.keys(allDatesRead).slice(0, 5).sort(sortDesc);
+        const countsYear = {};
 
-        const sortedMonths = allDatesRead[newestYear].slice().sort(sortDesc);
-        const newestMonth = parseInt(sortedMonths[0]) + 1;
-        const countsMonthYear = await this.calculateBookAndPageCounts(newestYear, newestMonth);
+        for (const year of sortedLastFiveYears) {
+            countsYear[year] = await this.calculateBookAndPageCounts(year);
+        }
+
+        const newestYear = sortedLastFiveYears[0];
+        const sortedLastFiveMonths = allDatesRead[newestYear].slice(0, 5).sort(sortDesc);
+        const countsMonthYear = {};
+
+        for (let month of sortedLastFiveMonths) {
+            month = parseInt(month) + 1;
+            countsMonthYear[month] = await this.calculateBookAndPageCounts(newestYear, month);
+        }
 
         return {
             allDatesRead,
