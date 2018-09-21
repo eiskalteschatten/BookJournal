@@ -35,13 +35,13 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-md-3">
+                    <div class="col-md-4">
                         <div class="form-group">
                             <label for="bookDateStarted">Date Started</label>
                             <input type="date" class="form-control js-book-form-field full-width" id="bookDateStarted" value="{{ book.dateStarted }}">
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-4">
                         <div class="form-group">
                             {% if book.notReadYet == true %}
                                 {% set notReadYet = 'disabled' %}
@@ -50,9 +50,7 @@
                             <label for="bookDateRead">Date Read</label>
                             <input type="date" class="form-control js-book-form-field full-width" id="bookDateRead" {{ notReadYet }} value="{{ book.dateRead }}">
                         </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="form-group not-read-yet">
+                        <div class="not-read-yet">
                             {% if book.notReadYet == true %}
                                 {% set notReadYet = 'checked' %}
                             {% endif %}
@@ -62,7 +60,7 @@
                             </label>
                         </div>
                     </div>
-                    <div class="col-md-2">
+                    <div class="col-md-3">
                         <div class="form-group">
                             <label for="bookNumberOfPages">Page Count</label>
                             <input type="number" class="form-control js-book-form-field full-width" id="bookNumberOfPages" value="{{ book.pageCount }}">
