@@ -1,5 +1,9 @@
 .statistics-wrapper {
     .statistics-cell {
         min-height: 300px;
+
+        .statistics-cell-contents {
+            margin-bottom: 50px;
+        }
     }
 }

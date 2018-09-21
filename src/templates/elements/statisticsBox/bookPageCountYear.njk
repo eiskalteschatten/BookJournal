@@ -2,32 +2,41 @@
 
 {% block content %}
 
-    <h3>Books Read per Year</h3>
+    <div class="statistics-cell-contents">
+        <h3>Books Read per Year</h3>
 
-    <div class="row">
-        <div class="col-md-10">
-            Graph goes here
-        </div>
+        <div class="row">
+            <div class="col-md-9">
+                Graph goes here
+            </div>
 
-        <div class="col-md-2">
-            <strong>
-                Books read in <span class="js-books-read-year">2018</span>:
-            </strong>
-            <span id="booksReadCount">
-                {{ statistics[latestYear].bookCount }}
-            </span>
+            <div class="col-md-3">
+                <strong>
+                    Books read in <span class="js-statistics-books-read-year">{{ latestYear }}</span>:
+                </strong>
+                <span id="statisticsBooksReadCountYear">
+                    {{ statistics[latestYear].bookCount }}
+                </span>
+            </div>
         </div>
     </div>
 
-    <h3>Pages Read per Year</h3>
+    <div class="statistics-cell-contents">
+        <h3>Pages Read per Year</h3>
 
-    <div class="row">
-        <div class="col-md-10">
-            Graph goes here
-        </div>
+        <div class="row">
+            <div class="col-md-9">
+                Graph goes here
+            </div>
 
-        <div class="col-md-2">
-            Stats here
+            <div class="col-md-3">
+                <strong>
+                    Pages read in <span class="js-statistics-pages-read-year">{{ latestYear }}</span>:
+                </strong>
+                <span id="statisticsPagesReadCountYear">
+                    {{ statistics[latestYear].pageCount }}
+                </span>
+            </div>
         </div>
     </div>
 

@@ -20,13 +20,13 @@ class StatisticsBox {
                 resolve(string);
             });
         }).then(async templateString => {
-            return nunjucks.renderString(templateString, await this.getNunjucksRenderObject());
+            return nunjucks.renderString(templateString, this.getNunjucksRenderObject());
         }).catch(error => {
             console.error(error);
         });
     }
 
-    async getNunjucksRenderObject() {
+    getNunjucksRenderObject() {
         return {
             statistics: this.statistics
         };

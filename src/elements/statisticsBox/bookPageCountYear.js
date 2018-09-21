@@ -8,13 +8,16 @@ const StatisticsBox = require('../statisticsBox');
 class BookPageCountYear extends StatisticsBox {
     constructor(statistics) {
         super(statistics);
+
+        const sortedYears = Object.keys(statistics).sort((a, b) => b - a);
+        this.latestYear = sortedYears[0];
         this.template = path.join(__dirname, '../../templates/elements/statisticsBox/bookPageCountYear.njk');
     }
 
-    async getNunjucksRenderObject() {
+    getNunjucksRenderObject() {
         const object = super.getNunjucksRenderObject();
 
-        object.latestYear = Object.keys(this.statistics)[0];
+        object.latestYear = this.latestYear;
 
         return object;
     }
