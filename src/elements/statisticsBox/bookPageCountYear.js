@@ -43,8 +43,7 @@ class BookPageCountYear extends StatisticsBox {
                 datasets: [{
                     label: 'Books Read Per Year',
                     data: booksReadData,
-                    backgroundColor: chart.backgroundColor,
-                    borderColor: chart.borderColor
+                    backgroundColor: chart.backgroundColor
                 }]
             },
             options: chart.defaultOptions
@@ -57,8 +56,7 @@ class BookPageCountYear extends StatisticsBox {
                 datasets: [{
                     label: 'Pages Read Per Year',
                     data: pagesReadData,
-                    backgroundColor: chart.backgroundColor,
-                    borderColor: chart.borderColor
+                    backgroundColor: chart.backgroundColor
                 }]
             },
             options: chart.defaultOptions

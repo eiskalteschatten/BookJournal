@@ -22,49 +22,16 @@ const defaultOptions = {
     },
 };
 
-const backgroundColor = theme === 'light'
-    ?
-    [
-        'rgba(255, 99, 132, 0.2)',
-        'rgba(54, 162, 235, 0.2)',
-        'rgba(255, 206, 86, 0.2)',
-        'rgba(75, 192, 192, 0.2)',
-        'rgba(153, 102, 255, 0.2)',
-        'rgba(255, 159, 64, 0.2)'
-    ]
-    :
-    [
-        'rgba(255, 99, 132, 0.2)',
-        'rgba(54, 162, 235, 0.2)',
-        'rgba(255, 206, 86, 0.2)',
-        'rgba(75, 192, 192, 0.2)',
-        'rgba(153, 102, 255, 0.2)',
-        'rgba(255, 159, 64, 0.2)'
-    ];
-
-const borderColor = theme === 'light'
-    ?
-    [
-        'rgba(255, 99, 132, 1)',
-        'rgba(54, 162, 235, 1)',
-        'rgba(255, 206, 86, 1)',
-        'rgba(75, 192, 192, 1)',
-        'rgba(153, 102, 255, 1)',
-        'rgba(255, 159, 64, 1)'
-    ]
-    :
-    [
-        'rgba(255, 99, 132, 1)',
-        'rgba(54, 162, 235, 1)',
-        'rgba(255, 206, 86, 1)',
-        'rgba(75, 192, 192, 1)',
-        'rgba(153, 102, 255, 1)',
-        'rgba(255, 159, 64, 1)'
-    ];
+const backgroundColor = [
+    'rgba(252, 42, 28, 1)',
+    'rgba(253, 146, 38, 1)',
+    'rgba(16, 64, 251, 1)',
+    'rgba(255, 249, 55, 1)',
+    'rgba(145, 248, 49, 1)'
+];
 
 module.exports = {
     Chart,
     defaultOptions,
-    backgroundColor,
-    borderColor
+    backgroundColor
 };
