@@ -1,7 +1,7 @@
 'use strict';
 
 const path = require('path');
-const Chart = require('chart.js');
+const chart = require('../../lib/chart');
 
 const StatisticsBox = require('../statisticsBox');
 
@@ -25,15 +25,6 @@ class BookPageCountYear extends StatisticsBox {
 
     async renderGraphs($booksGraph, $pagesGraph) {
         const statistics = this.statistics;
-        const options = {
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero: true
-                    }
-                }]
-            }
-        };
 
         const labels = [];
         const booksReadData = [];
@@ -45,28 +36,32 @@ class BookPageCountYear extends StatisticsBox {
             pagesReadData.push(statistics[year].pageCount);
         }
 
-        const booksReadGraph = new Chart($booksGraph, {
+        const booksReadGraph = new chart.Chart($booksGraph, {
             type: 'bar',
             data: {
                 labels,
                 datasets: [{
-                    label: 'Books Read per Year',
-                    data: booksReadData
+                    label: 'Books Read Per Year',
+                    data: booksReadData,
+                    backgroundColor: chart.backgroundColor,
+                    borderColor: chart.borderColor
                 }]
             },
-            options
+            options: chart.defaultOptions
         });
 
-        const pagesReadGraph = new Chart($pagesGraph, {
+        const pagesReadGraph = new chart.Chart($pagesGraph, {
             type: 'bar',
             data: {
                 labels,
                 datasets: [{
-                    label: 'Pages Read per Year',
-                    data: pagesReadData
+                    label: 'Pages Read Per Year',
+                    data: pagesReadData,
+                    backgroundColor: chart.backgroundColor,
+                    borderColor: chart.borderColor
                 }]
             },
-            options
+            options: chart.defaultOptions
         });
 
         return {
