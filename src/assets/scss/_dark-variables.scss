@@ -67,3 +67,5 @@ $removeBadgeDarkFg: $removeBadge;
 $ratingStarsFull: '../images/dark/star.svg';
 $ratingStarsEmpty: '../images/dark/star-empty.svg';
 $ratingStarsRemove: '../images/si-glyph-trash.svg';
+
+$statisticsCellBorderColor: darken($mainFontColor, 50%);
