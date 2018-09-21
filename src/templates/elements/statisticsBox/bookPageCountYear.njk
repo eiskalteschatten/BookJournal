@@ -4,40 +4,12 @@
 
     <div class="statistics-cell-contents">
         <h3>Books Read Per Year</h3>
-
-        <div class="row">
-            <div class="col-md-9">
-                <canvas id="statisticsBooksReadYearGraph" class="statistics-graph" height="250"></canvas>
-            </div>
-
-            <div class="col-md-3">
-                <strong>
-                    Books read in <span class="js-statistics-books-read-year">{{ latestYear }}</span>:
-                </strong>
-                <span id="statisticsBooksReadCountYear">
-                    {{ statistics[latestYear].bookCount }}
-                </span>
-            </div>
-        </div>
+        <canvas id="statisticsBooksReadYearGraph" class="statistics-graph" height="250"></canvas>
     </div>
 
     <div class="statistics-cell-contents">
         <h3>Pages Read Per Year</h3>
-
-        <div class="row">
-            <div class="col-md-9">
-                <canvas id="statisticsPagesReadYearGraph" class="statistics-graph" height="250"></canvas>
-            </div>
-
-            <div class="col-md-3">
-                <strong>
-                    Pages read in <span class="js-statistics-pages-read-year">{{ latestYear }}</span>:
-                </strong>
-                <span id="statisticsPagesReadCountYear">
-                    {{ statistics[latestYear].pageCount }}
-                </span>
-            </div>
-        </div>
+        <canvas id="statisticsPagesReadYearGraph" class="statistics-graph" height="250"></canvas>
     </div>
 
 {% endblock %}

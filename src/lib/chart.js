@@ -6,7 +6,6 @@ const fakeDiv = document.querySelector('div');
 
 Chart.defaults.global.defaultFontFamily = window.getComputedStyle(fakeDiv).fontFamily;
 
-
 const defaultOptions = {
     scales: {
         yAxes: [{
