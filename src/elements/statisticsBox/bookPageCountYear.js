@@ -35,18 +35,20 @@ class BookPageCountYear extends StatisticsBox {
             }
         };
 
+        const labels = [];
         const booksReadData = [];
-        const pagessReadData = [];
+        const pagesReadData = [];
 
         for (const year in statistics) {
+            labels.push(year);
             booksReadData.push(statistics[year].bookCount);
-            pagessReadData.push(statistics[year].pageCount);
+            pagesReadData.push(statistics[year].pageCount);
         }
 
         const booksReadGraph = new Chart($booksGraph, {
             type: 'bar',
             data: {
-                labels: Object.keys(statistics),
+                labels,
                 datasets: [{
                     label: 'Books Read per Year',
                     data: booksReadData
@@ -58,10 +60,10 @@ class BookPageCountYear extends StatisticsBox {
         const pagesReadGraph = new Chart($pagesGraph, {
             type: 'bar',
             data: {
-                labels: Object.keys(statistics),
+                labels,
                 datasets: [{
                     label: 'Pages Read per Year',
-                    data: pagessReadData
+                    data: pagesReadData
                 }]
             },
             options
