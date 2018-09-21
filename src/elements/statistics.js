@@ -42,7 +42,8 @@ class Statistics {
 
     async calculateStatistics() {
         const allDatesRead = await this.getAllDatesRead();
-        const sortedLastFiveYears = Object.keys(allDatesRead).slice(0, 5).sort(sortDesc);
+        const sortedYears = Object.keys(allDatesRead).slice().sort(sortDesc);
+        const sortedLastFiveYears = sortedYears.slice(0, 5);
         const latestYear = sortedLastFiveYears[0];
 
         return {
