@@ -7,7 +7,22 @@ const BookPageCountYear = require('../elements/statisticsBox/bookPageCountYear')
 const BookPageCountMonthYear = require('../elements/statisticsBox/bookPageCountMonthYear');
 
 
-ipcRenderer.on('statistics-render-page-book-count-year', async (event, allDatesRead, counts) => {
+async function renderBookPageCountMonthYear(counts, allDatesRead) {
+    const bookPageCountMonthYear = new BookPageCountMonthYear(counts, allDatesRead);
+    const rendered = await bookPageCountMonthYear.render();
+    const $element = $('#statisticsBookPageCountMonthYear');
+
+    $element.html(rendered);
+
+    await bookPageCountMonthYear.renderGraphs(
+        $('#statisticsBooksReadMonthYearGraph'),
+        $('#statisticsPagesReadMonthYearGraph'),
+        $('#statisticsBooksReadMonthYearDoughnutGraph'),
+        $('#statisticsPagesReadMonthYearDoughnutGraph')
+    );
+}
+
+ipcRenderer.on('statistics-render-page-book-count-year', async (event, counts, allDatesRead) => {
     const bookPageCountYear = new BookPageCountYear(counts, allDatesRead);
     const rendered = await bookPageCountYear.render();
     const $element = $('#statisticsBookPageCountYear');
@@ -21,17 +36,10 @@ ipcRenderer.on('statistics-render-page-book-count-year', async (event, allDatesR
     );
 });
 
-ipcRenderer.on('statistics-render-page-book-count-month-year', async (event, allDatesRead, counts) => {
-    const bookPageCountMonthYear = new BookPageCountMonthYear(counts, allDatesRead);
-    const rendered = await bookPageCountMonthYear.render();
-    const $element = $('#statisticsBookPageCountMonthYear');
+ipcRenderer.on('statistics-render-page-book-count-month-year', async (event, counts, allDatesRead) => {
+    await renderBookPageCountMonthYear(counts, allDatesRead);
+});
 
-    $element.html(rendered);
+$(document).on('change', '#statisticsChangeYearSelect', function() {
 
-    await bookPageCountMonthYear.renderGraphs(
-        $('#statisticsBooksReadMonthYearGraph'),
-        $('#statisticsPagesReadMonthYearGraph'),
-        $('#statisticsBooksReadMonthYearDoughnutGraph'),
-        $('#statisticsPagesReadMonthYearDoughnutGraph')
-    );
 });

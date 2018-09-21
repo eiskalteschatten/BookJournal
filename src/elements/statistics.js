@@ -9,6 +9,8 @@ const nunjucks = require('../nunjucks');
 
 const Book = require('../models/book');
 
+const sortDesc = (a, b) => b - a;
+
 
 class Statistics {
     async render() {
@@ -39,6 +41,16 @@ class Statistics {
     }
 
     async calculateStatistics() {
+        const allDatesRead = await this.getAllDatesRead();
+
+        return {
+            allDatesRead,
+            countsYear: await this.calculateCountsYear(allDatesRead),
+            countsMonthYear: await this.calculateCountsMonthYear(allDatesRead)
+        };
+    }
+
+    async getAllDatesRead() {
         const datesReadResults = await Book.findAll({
             attributes: ['dateRead']
         });
@@ -59,8 +71,10 @@ class Statistics {
                 allDatesRead[year].push(month);
         }
 
-        const sortDesc = (a, b) => b - a;
+        return allDatesRead;
+    }
 
+    async calculateCountsYear(allDatesRead) {
         const sortedLastFiveYears = Object.keys(allDatesRead).slice(0, 5).sort(sortDesc);
         const countsYear = {};
 
@@ -68,6 +82,11 @@ class Statistics {
             countsYear[year] = await this.calculateBookAndPageCounts(year);
         }
 
+        return countsYear;
+    }
+
+    async calculateCountsMonthYear(allDatesRead) {
+        const sortedLastFiveYears = Object.keys(allDatesRead).slice(0, 5).sort(sortDesc);
         const latestYear = sortedLastFiveYears[0];
         const sortedLastFiveMonths = allDatesRead[latestYear].slice(0, 5).sort(sortDesc);
         const countsMonthYearOnlyMonth = {};
@@ -80,11 +99,7 @@ class Statistics {
         const countsMonthYear = {};
         countsMonthYear[latestYear] = countsMonthYearOnlyMonth;
 
-        return {
-            allDatesRead,
-            countsYear,
-            countsMonthYear
-        };
+        return countsMonthYear;
     }
 
     async calculateBookAndPageCounts(year, month = '') {
