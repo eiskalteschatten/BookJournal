@@ -25,12 +25,13 @@
 ## Useful features
 
 - Filters based on the filled-out form fields
-  - Future reading filter (based on checkbox "Not read yet" in place of "read date")
-- Pre-created filters such as "Future Reading"
-- Sort by fields in the book view
-- Categories instead of folders
-- Enter ISBN and the information is automatically filled out
-- Barcode scanner?
+  - [x] Future reading filter (based on checkbox "Not read yet" in place of "read date")
+  - Custom filters
+- [x] Pre-created filters such as "Future Reading"
+- [x] Sort by fields in the book view
+- [x] Categories instead of folders
+- [x] Enter ISBN and the information is automatically filled out
+- Barcode scanner
 - Statisics
   - [x] Total books read per month or year
   - [x] Total page numbers per month or year
