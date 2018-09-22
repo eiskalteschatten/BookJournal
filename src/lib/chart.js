@@ -41,11 +41,14 @@ const doughnutOptions = {
 };
 
 const backgroundColor = [
-    'rgba(252, 42, 28, 1)',
-    'rgba(253, 146, 38, 1)',
-    'rgba(16, 64, 251, 1)',
-    'rgba(255, 249, 55, 1)',
-    'rgba(145, 248, 49, 1)'
+    'rgb(252, 42, 28)',    // red
+    'rgb(253, 146, 38)',   // orange
+    'rgb(16, 64, 251)',    // blue
+    'rgb(255, 249, 55)',   // yellow
+    'rgb(145, 248, 49)',   // green
+    'rgb(148, 33, 146)',   // purple
+    'rgb(0, 253, 255)',    // cyan
+    'rgb(255, 64, 255)',   // pink
 ];
 
 

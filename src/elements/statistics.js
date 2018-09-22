@@ -104,7 +104,7 @@ class Statistics {
 
     sortedLastFiveYears(allDatesRead) {
         const sortedYears = Object.keys(allDatesRead).slice().sort(sortDesc);
-        return sortedYears.slice(0, 5);
+        return sortedYears.slice(0, 7);
     }
 
     async calculateBookAndPageCounts(year, month = '') {
