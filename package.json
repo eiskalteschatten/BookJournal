@@ -33,7 +33,8 @@
                 "pkg"
             ],
             "category": "public.app-category.productivity",
-            "entitlements": "build/entitlements.mac.plist"
+            "entitlements": "build/entitlements.mac.plist",
+            "type": "development"
         },
         "linux": {
             "target": [
