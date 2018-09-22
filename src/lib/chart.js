@@ -40,7 +40,7 @@ const doughnutOptions = {
     }
 };
 
-const backgroundColor = [
+const colors = [
     'rgb(252, 42, 28)',    // red
     'rgb(253, 146, 38)',   // orange
     'rgb(16, 64, 251)',    // blue
@@ -50,6 +50,13 @@ const backgroundColor = [
     'rgb(0, 253, 255)',    // cyan
     'rgb(255, 64, 255)',   // pink
 ];
+
+let backgroundColor = [];
+const numberOfColors = Math.ceil(100 / colors.length);
+
+for (let i = 0; i <= numberOfColors; i++) {
+    backgroundColor = backgroundColor.concat(colors);
+}
 
 
 module.exports = () => {
