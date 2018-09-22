@@ -8,6 +8,7 @@ const fs = require('fs');
 const nunjucks = require('../nunjucks');
 
 const config = require('../config/config');
+const defaultNumberOfYears = config.statistics.defaultNumberOfYears;
 
 const Book = require('../models/book');
 
@@ -44,12 +45,14 @@ class Statistics {
 
     async calculateStatistics() {
         const allDatesRead = await this.getAllDatesRead();
-        const sortedLastFiveYears = this.sortedLastFiveYears(allDatesRead);
-        const latestYear = sortedLastFiveYears[0];
+        const sortedYears = this.sortedYears(allDatesRead);
+        const latestYear = sortedYears[0];
+        const oldestYearIndex = defaultNumberOfYears - 1;
+        const oldestYear = sortedYears[oldestYearIndex] || sortedYears[sortedYears.length];
 
         return {
             allDatesRead,
-            countsYear: await this.calculateCountsYear(allDatesRead),
+            countsYearObj: await this.calculateCountsYear(allDatesRead, oldestYear, latestYear),
             countsMonthYear: await this.calculateCountsMonthYear(allDatesRead, latestYear)
         };
     }
@@ -78,15 +81,22 @@ class Statistics {
         return allDatesRead;
     }
 
-    async calculateCountsYear(allDatesRead) {
-        const sortedLastFiveYears = this.sortedLastFiveYears(allDatesRead);
+    async calculateCountsYear(allDatesRead, firstYear, secondYear) {
+        const years = Object.keys(allDatesRead).slice().sort(sortDesc);
+        const firstSlice = years.indexOf(secondYear) > -1 ? years.indexOf(secondYear) : 0;
+        const lastSlice = years.indexOf(firstYear) > -1 ? years.indexOf(firstYear) + 1 : defaultNumberOfYears;
+        const sortedYears = this.sortedYears(allDatesRead, firstSlice, lastSlice);
         const countsYear = {};
 
-        for (const year of sortedLastFiveYears) {
+        for (const year of sortedYears) {
             countsYear[year] = await this.calculateBookAndPageCounts(year);
         }
 
-        return countsYear;
+        return {
+            countsYear,
+            firstYear,
+            secondYear
+        };
     }
 
     async calculateCountsMonthYear(allDatesRead, year) {
@@ -104,9 +114,9 @@ class Statistics {
         return countsMonthYear;
     }
 
-    sortedLastFiveYears(allDatesRead) {
+    sortedYears(allDatesRead, firstSlice = 0, lastSlice = defaultNumberOfYears) {
         const sortedYears = Object.keys(allDatesRead).slice().sort(sortDesc);
-        return sortedYears.slice(0, config.statistics.defaultNumberOfYears);
+        return sortedYears.slice(firstSlice, lastSlice);
     }
 
     async calculateBookAndPageCounts(year, month = '') {

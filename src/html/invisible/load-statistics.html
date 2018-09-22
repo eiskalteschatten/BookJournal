@@ -11,7 +11,7 @@
                 const statistics = new Statistics();
                 const returnValue = await statistics.calculateStatistics();
 
-                fromWindow.webContents.send('statistics-render-page-book-count-year', returnValue.countsYear, returnValue.allDatesRead);
+                fromWindow.webContents.send('statistics-render-page-book-count-year', returnValue.countsYearObj, returnValue.allDatesRead);
                 fromWindow.webContents.send('statistics-render-page-book-count-month-year', returnValue.countsMonthYear, returnValue.allDatesRead);
 
                 window.close();

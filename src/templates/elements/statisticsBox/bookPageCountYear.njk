@@ -7,7 +7,7 @@
             Year range:
             <select class="form-control" id="statisticsChangeFirstYearRange">
                 {% for year, months in allDatesRead %}
-                    {% if year == oldestSeletedDate %}
+                    {% if year == firstYear %}
                         <option selected>{{ year }}</option>
                     {% else %}
                         <option>{{ year }}</option>
@@ -17,7 +17,7 @@
             to
              <select class="form-control" id="statisticsChangeSecondYearRange">
                 {% for year, months in allDatesRead %}
-                    {% if year == latestYear %}
+                    {% if year == secondYear %}
                         <option selected>{{ year }}</option>
                     {% else %}
                         <option>{{ year }}</option>
