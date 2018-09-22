@@ -29,10 +29,11 @@
         ],
         "mac": {
             "target": [
-                "dmg"
+                "dmg",
+                "pkg"
             ],
             "category": "public.app-category.productivity",
-            "entitlements": "entitlements.mac.plist"
+            "entitlements": "build/entitlements.mac.plist"
         },
         "linux": {
             "target": [
