@@ -11,7 +11,7 @@ A digital book journal.
   - Linux: leave at `~/.bookjournal`
   - Windows: `C:\Users\{User}\AppData\Roaming\Alex Seifert\BookJournal`
 - Add database migration strategy for seemless schema updates
-- Reading stats
+- Reading statistics
 - "Future Reading" -> "Not Read Yet"
 
 ### 0.2.0
@@ -35,21 +35,25 @@ A digital book journal.
 - Print a book
 - Export book as PDF
 - Fix Windows-specific bugs
-- Find new source for high-resolution book covers
 
 ### 0.5.0
 - Update to Electron 3
-- MacBook Touchbar
 - Webcam-scanning of bar codes
 - Multiple languages (initially English, German, French, Spanish)
+- Find new source for high-resolution book covers
 
 ### 1.0
-- Create custom filters
-- Synching of database via cloud service of choice
 - Apple and Microsoft certificates
 - Auto-update with Squirrel
 - Mac App Store version
 
+### 1.1
+- MacBook Touchbar
+- Expand reading statistics (see [Notes.md](Notes.md))
+
+### Future Ideas
+- Create custom filters
+- Synching of database via cloud service of choice
 
 ## Icons
 

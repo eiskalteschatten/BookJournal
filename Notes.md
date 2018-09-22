@@ -32,7 +32,7 @@
 - Enter ISBN and the information is automatically filled out
 - Barcode scanner?
 - Statisics
-  - Total books read per month or year
-  - Total page numbers per month or year
-  - Books read per author, genre, language read in, country of origin, year published (decade)
+  - [x] Total books read per month or year
+  - [x] Total page numbers per month or year
+  - Books read per author, genre, category, language read in, country of origin, year published (decade)
   - etc
