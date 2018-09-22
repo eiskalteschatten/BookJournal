@@ -35,6 +35,7 @@ A digital book journal.
 - Print a book
 - Export book as PDF
 - Fix Windows-specific bugs
+- Find new source for high-resolution book covers
 
 ### 0.5.0
 - Update to Electron 3
