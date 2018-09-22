@@ -8,7 +8,7 @@ A digital book journal.
 - Mac Sandboxing
 - Change location of the database and bookcovers
   - Mac: `~/Library/Application Support/BookJournal`
-  - Linux: `leave at ~/.bookjournal`
+  - Linux: leave at `~/.bookjournal`
   - Windows: `C:\Users\{User}\AppData\Roaming\Alex Seifert\BookJournal`
 - Add database migration strategy for seemless schema updates
 - Reading stats
