@@ -34,16 +34,20 @@ A digital book journal.
 - Link books (relates to, is translation of, etc)
 - Print a book
 - Export book as PDF
-- Fix Windows-specific bugs
+- Popup with other works by an author
+  - Indication of read or not read
+  - Links to Amazon (Affiliates)
+  - Checkbox in preferences to turn it on or off
 
 ### 0.5.0
-- Update to Electron 3
+- Fix Windows-specific bugs
 - Webcam-scanning of bar codes
 - Multiple languages (initially English, German, French, Spanish)
 - Find new source for high-resolution book covers
 
 ### 1.0
 - Apple and Microsoft certificates
+- Update to Electron 3
 - Auto-update with Squirrel
 - Mac App Store version
 
