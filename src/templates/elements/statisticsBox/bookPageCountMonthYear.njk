@@ -3,9 +3,9 @@
 {% block content %}
 
     <div class="statistics-cell-contents">
-        <div class="statistics-change-year">
+        <div class="statistics-change-upper-right">
             View statistics for
-            <select class="form-control" id="statisticsChangeYearSelect">
+            <select class="form-control" id="statisticsChangeMonthYear">
                 {% for year, months in allDatesRead %}
                     {% if year == latestYear %}
                         <option selected>{{ year }}</option>

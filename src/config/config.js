@@ -44,5 +44,8 @@ module.exports = {
         google: {
             url: 'https://www.googleapis.com/books/v1/volumes?q=isbn:${isbn}'
         }
+    },
+    statistics: {
+        defaultNumberOfYears: 7
     }
 };

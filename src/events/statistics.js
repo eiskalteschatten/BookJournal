@@ -41,7 +41,7 @@ ipcRenderer.on('statistics-render-page-book-count-month-year', async (event, cou
     await renderBookPageCountMonthYear(counts, allDatesRead);
 });
 
-$(document).on('change', '#statisticsChangeYearSelect', async function() {
+$(document).on('change', '#statisticsChangeMonthYear', async function() {
     const statistics = new Statistics();
     const allDatesRead = await statistics.getAllDatesRead();
     const counts = await statistics.calculateCountsMonthYear(allDatesRead, $(this).val());

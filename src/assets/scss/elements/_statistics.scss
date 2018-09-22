@@ -3,11 +3,11 @@
         min-height: 300px;
 
         .statistics-cell-contents {
-            margin-bottom: 50px;
+            margin-bottom: 75px;
 
             &.border-bottom {
                 border-bottom: 1px solid $statisticsCellBorderColor;
-                padding-bottom: 50px;
+                padding-bottom: 75px;
             }
 
             .statistics-graph {
@@ -15,7 +15,7 @@
             }
         }
 
-        .statistics-change-year {
+        .statistics-change-upper-right {
             float: right;
             font-size: .9em;
             margin-bottom: 25px;

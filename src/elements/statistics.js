@@ -7,6 +7,8 @@ const path = require('path');
 const fs = require('fs');
 const nunjucks = require('../nunjucks');
 
+const config = require('../config/config');
+
 const Book = require('../models/book');
 
 const sortDesc = (a, b) => b - a;
@@ -104,7 +106,7 @@ class Statistics {
 
     sortedLastFiveYears(allDatesRead) {
         const sortedYears = Object.keys(allDatesRead).slice().sort(sortDesc);
-        return sortedYears.slice(0, 7);
+        return sortedYears.slice(0, config.statistics.defaultNumberOfYears);
     }
 
     async calculateBookAndPageCounts(year, month = '') {

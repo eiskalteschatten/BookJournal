@@ -3,6 +3,29 @@
 {% block content %}
 
     <div class="statistics-cell-contents">
+        <div class="statistics-change-upper-right">
+            Year range:
+            <select class="form-control" id="statisticsChangeFirstYearRange">
+                {% for year, months in allDatesRead %}
+                    {% if year == oldestSeletedDate %}
+                        <option selected>{{ year }}</option>
+                    {% else %}
+                        <option>{{ year }}</option>
+                    {% endif %}
+                {% endfor %}
+            </select>
+            to
+             <select class="form-control" id="statisticsChangeSecondYearRange">
+                {% for year, months in allDatesRead %}
+                    {% if year == latestYear %}
+                        <option selected>{{ year }}</option>
+                    {% else %}
+                        <option>{{ year }}</option>
+                    {% endif %}
+                {% endfor %}
+            </select>
+        </div>
+
         <h3>Books Read Per Year</h3>
         <canvas id="statisticsBooksReadYearGraph" class="statistics-graph" height="250"></canvas>
     </div>
