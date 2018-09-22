@@ -18,9 +18,12 @@ $(document).on('contextmenu', 'input, textarea', function() {
     ipcRenderer.send('show-input-context-menu');
 });
 
-ipcRenderer.on('switch-css', (event, theme) => {
+ipcRenderer.on('switch-theme', (event, theme) => {
     helper.switchCss(`${theme}Css`);
     localStorage.setItem('theme', theme);
+
+    const $statisticsItem = $('.js-sidebar-list-element[data-query-type="statistics"]');
+    if ($statisticsItem.hasClass('selected')) $statisticsItem.trigger('click');
 });
 
 ipcRenderer.on('check-for-updates', async () => {

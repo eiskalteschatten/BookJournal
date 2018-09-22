@@ -11,7 +11,7 @@ async function changeTheme(theme, window) {
         const preferences = await Preferences.findById(1);
         await preferences.update({theme});
 
-        window.webContents.send('switch-css', theme);
+        window.webContents.send('switch-theme', theme);
 
         if (process.type === 'renderer') {
             ipcRenderer.send('switch-theme', theme);
