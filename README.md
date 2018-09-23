@@ -31,16 +31,16 @@ A digital book journal.
 ## Roadmap
 
 ### 0.4.0
-- Link books (relates to, is translation of, etc)
 - Print a book
 - Export book as PDF
 - Popup with other works by an author
   - Indication of read or not read
   - Links to Amazon (Affiliates) with the Amazon country being settable in the preferences
   - Checkbox in preferences to turn it on or off
+- Fix Windows-specific bugs
 
 ### 0.5.0
-- Fix Windows-specific bugs
+- Link books (relates to, is translation of, etc)
 - Webcam-scanning of bar codes
 - Multiple languages (initially English, German, French, Spanish)
 - Find new source for high-resolution book covers
