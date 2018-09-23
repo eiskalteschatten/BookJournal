@@ -4,6 +4,16 @@ A digital book journal.
 
 ## Release Notes
 
+### 0.4.0
+- If NODE_ENV exists and === 'development', use developer DB
+- Print a book
+- Export book as PDF
+- Popup with other works by an author
+  - Indication of read or not read
+  - Links to Amazon (Affiliates) with the Amazon country being settable in the preferences
+  - Checkbox in preferences to turn it on or off
+- Fix Windows-specific bugs
+
 ### 0.3.0
 - Change location of the database and bookcovers
   - Mac: `~/Library/Application Support/BookJournal`
@@ -28,15 +38,6 @@ A digital book journal.
 
 
 ## Roadmap
-
-### 0.4.0
-- Print a book
-- Export book as PDF
-- Popup with other works by an author
-  - Indication of read or not read
-  - Links to Amazon (Affiliates) with the Amazon country being settable in the preferences
-  - Checkbox in preferences to turn it on or off
-- Fix Windows-specific bugs
 
 ### 0.5.0
 - Link books (relates to, is translation of, etc)
