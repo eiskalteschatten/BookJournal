@@ -6,6 +6,7 @@ A digital book journal.
 
 ### 0.4.0
 - If NODE_ENV exists and === 'development', use developer DB
+- Fix crash when changing book colors (change color, then change again using the same color inspector window)
 - Print a book
 - Export book as PDF
 - Popup with other works by an author
