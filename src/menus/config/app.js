@@ -2,6 +2,8 @@
 
 const {app, shell, dialog} = require('electron');
 
+const path = require('path');
+
 const config = require('../../config/config');
 const themePreferences = require('../../preferences/theme');
 
@@ -116,6 +118,15 @@ const template = [
     {
         role: 'help',
         submenu: [
+            {
+                label: 'Show Database Location',
+                click: () => {
+                    const dbConfig = config.database;
+                    const databasePath = path.join(dbConfig.path, dbConfig.fileName);
+                    shell.showItemInFolder(databasePath);
+                }
+            },
+            {type: 'separator'},
             {
                 label: 'About Alex Seifert',
                 click: () => { shell.openExternal('https://www.alexseifert.com'); }
