@@ -5,7 +5,6 @@ A digital book journal.
 ## Release Notes
 
 ### 0.3.0
-- Mac Sandboxing
 - Change location of the database and bookcovers
   - Mac: `~/Library/Application Support/BookJournal`
   - Linux: leave at `~/.bookjournal`
