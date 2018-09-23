@@ -3,7 +3,10 @@
 const path = require('path');
 const os = require('os');
 
+const env = process.env.NODE_ENV;
+
 const tempStoragePath = path.join(os.tmpdir(), 'bookjournal');
+const bookcoversDir = env === 'development' ? 'bookcovers-dev' : 'bookcovers';
 let storagePath;
 
 switch(process.platform) {
@@ -33,11 +36,11 @@ module.exports = {
     },
     database: {
         path: storagePath,
-        fileName: 'bookjournal.sqlite'
+        fileName: env === 'development' ? 'bookjournal-dev.sqlite' : 'bookjournal.sqlite'
     },
     bookcovers: {
-        path: path.join(storagePath, 'bookcovers'),
-        tempPath: path.join(tempStoragePath, 'bookcovers'),
+        path: path.join(storagePath, bookcoversDir),
+        tempPath: path.join(tempStoragePath, bookcoversDir),
         extensions: ['jpg', 'jpeg', 'png', 'gif', 'svg']
     },
     bookInfo: {
