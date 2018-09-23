@@ -215,6 +215,8 @@ else {
         },
         {type: 'separator'},
         helpMenu[0],
+        {type: 'separator'},
+        helpMenu[2],
         {
             label: `About ${config.app.name}`,
             click: (item, focusedWindow) => {
