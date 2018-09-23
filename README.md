@@ -36,7 +36,7 @@ A digital book journal.
 - Export book as PDF
 - Popup with other works by an author
   - Indication of read or not read
-  - Links to Amazon (Affiliates)
+  - Links to Amazon (Affiliates) with the Amazon country being settable in the preferences
   - Checkbox in preferences to turn it on or off
 
 ### 0.5.0
