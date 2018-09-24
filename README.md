@@ -7,6 +7,7 @@ A digital book journal.
 ### 0.4.0
 - If NODE_ENV exists and === 'development', use developer DB
 - Fix crash when changing book colors (change color, then change again using the same color inspector window)
+- Fix bug where bookcovers are not automatically added after fetching book info from Google Books
 - Print a book
 - Export book as PDF
 - Popup with other works by an author
@@ -45,6 +46,7 @@ A digital book journal.
 - Webcam-scanning of bar codes
 - Multiple languages (initially English, German, French, Spanish)
 - Find new source for high-resolution book covers
+- Check for duplicate books (based on title, author, ISBN)
 
 ### 1.0
 - Apple and Microsoft certificates
@@ -55,6 +57,7 @@ A digital book journal.
 ### 1.1
 - MacBook Touchbar
 - Expand reading statistics (see [Notes.md](Notes.md))
+- Reading goals
 
 ### Future Ideas
 - Create custom filters
