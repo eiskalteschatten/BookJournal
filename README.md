@@ -8,8 +8,6 @@ A digital book journal.
 - If NODE_ENV exists and === 'development', use developer DB
 - Fix crash when changing book colors (change color, then change again using the same color inspector window)
 - Fix bug where bookcovers are not automatically added after fetching book info from Google Books
-- Print a book
-- Export book as PDF
 - Popup with other works by an author
   - Indication of read or not read
   - Links to Amazon (Affiliates) with the Amazon country being settable in the preferences
@@ -42,10 +40,14 @@ A digital book journal.
 ## Roadmap
 
 ### 0.5.0
+- Print a book
+- Export book as PDF
+- Find new source for high-resolution book covers
+
+### 0.6.0
 - Link books (relates to, is translation of, etc)
 - Webcam-scanning of bar codes
 - Multiple languages (initially English, German, French, Spanish)
-- Find new source for high-resolution book covers
 - Check for duplicate books (based on title, author, ISBN)
 
 ### 1.0
