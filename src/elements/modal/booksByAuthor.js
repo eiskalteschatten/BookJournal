@@ -8,17 +8,31 @@ const config = require('../../config/config');
 
 
 class BooksByAuthor extends Modal {
-    constructor() {
-        super('books-by-author');
+    constructor(authors) {
+        super('booksByAuthor');
+
+        this.authors = authors;
     }
 
     getNunjucksRenderObject() {
         const object = super.getNunjucksRenderObject();
 
+        object.authors = this.authors;
+
+        try {
+            let books = sessionStorage.getItem('booksByAuthor');
+            books = JSON.parse(books);
+            object.books = books.items;
+        }
+        catch(error) {
+            console.error(error);
+        }
+
         return object;
     }
 
-    static async fetchBooks(authors) {
+    async fetchBooks() {
+        const authors = this.authors;
         if (authors === '') return;
 
         try {

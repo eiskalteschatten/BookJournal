@@ -239,7 +239,8 @@ class BookForm {
         $('#bookFormWrapper').addClass('form-displayed');
 
         const authors = $('#bookAuthor').val();
-        await BooksByAuthor.fetchBooks(authors);
+        const booksByAuthor = new BooksByAuthor(authors);
+        booksByAuthor.fetchBooks(authors);
     }
 
     static async fetchBookInfo(isbn) {

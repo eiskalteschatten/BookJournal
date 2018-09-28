@@ -110,7 +110,8 @@ async function saveBook() {
     }
 
     const authors = $('#bookAuthor').val();
-    BooksByAuthor.fetchBooks(authors);
+    const booksByAuthor = new BooksByAuthor(authors);
+    booksByAuthor.fetchBooks();
 
     setTimeout(() => {
         $bookActivityLoader.addClass('hidden');
@@ -437,4 +438,21 @@ $(document).on('click', '#bookFillOutBookInfo', async function(e) {
     catch(error) {
         console.error(error);
     }
+});
+
+
+// Books by Authors
+
+$(document).on('click', '#bookBooksByAuthorLink', async function(e) {
+    e.preventDefault();
+
+    if ($('#booksByAuthorModal').length) $('#booksByAuthorModal').remove();
+
+    const authors = $('#bookAuthor').val();
+    const booksByAuthor = new BooksByAuthor(authors);
+    const rendered = await booksByAuthor.render();
+
+    $('#modalAnchor').append(rendered);
+
+    eventHelper.openModal('booksByAuthorModal');
 });

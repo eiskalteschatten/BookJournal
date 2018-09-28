@@ -1,0 +1,24 @@
+{% extends "elements/modal.njk" %}
+
+{% block body %}
+
+    <div class="container-fluid">
+        <div class="row">
+            <h2 class="modal-title">Books by {{ authors }}</h2>
+        </div>
+
+        {% for book in books %}
+            <div class="row">
+                <div class="col-xs-3">
+                    <img src="{{ book.volumeInfo.imageLinks.smallThumbnail }}" class="bookcover">
+                </div>
+                <div class="col-xs-9">
+                    <div class="book-info">
+                        <h3 class="title">{{ book.volumeInfo.title }}</h3>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}

@@ -1,5 +1,6 @@
 @import "modal/about";
 @import "modal/preferences";
+@import "modal/booksByAuthor";
 
 .modal-container {
     background: $modalContainerBg;
@@ -15,6 +16,8 @@
         border-radius: 2px;
         box-shadow: 0 0 25px $boxShadowColor;
         left: 50%;
+        max-height: 90%;
+        overflow: auto;
         padding: 25px;
         position: absolute;
         top: 50%;
