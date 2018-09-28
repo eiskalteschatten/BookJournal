@@ -119,6 +119,9 @@ class BookForm {
                 });
             }
 
+            if (book.dateStarted === dummyDate)
+                book.dateStarted = '';
+
             if (book.dateRead === dummyDate)
                 book.dateRead = '';
         }
