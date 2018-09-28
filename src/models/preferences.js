@@ -42,6 +42,14 @@ const Preferences = db.define('preferences', {
     checkForUpdates: {
         type: Sequelize.BOOLEAN,
         defaultValue: true
+    },
+    fetchBooksByAuthor: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: true
+    },
+    fetchBooksByAuthorLanguage: {
+        type: Sequelize.STRING,
+        defaultValue: 'en'
     }
 });
 
