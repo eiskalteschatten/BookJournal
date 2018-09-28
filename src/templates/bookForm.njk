@@ -26,7 +26,12 @@
                     <input type="text" class="form-control js-book-form-field full-width" id="bookTitle" value="{{ book.title }}">
                 </div>
                 <div class="form-group">
-                    <label for="bookAuthor">Author(s)</label>
+                    <label for="bookAuthor">
+                        <span class="float-right" id="bookAuthorInfo">
+                            <a href="#">Other books by this/these author(s)</a>
+                        </span>
+                        Author(s)
+                    </label>
                     <input type="text" class="form-control js-book-form-field full-width" id="bookAuthor" value="{{ book.author }}">
                 </div>
                 <div class="form-group">
