@@ -239,7 +239,7 @@ class BookForm {
     }
 
     static async fetchBookInfo(isbn) {
-        let url = config.bookInfo.google.url;
+        let url = config.bookInfo.google.urlIsbn;
         url = url.replace('${isbn}', isbn);
 
         return new Promise((resolve, reject) => {
