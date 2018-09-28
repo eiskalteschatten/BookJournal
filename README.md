@@ -9,6 +9,7 @@ A digital book journal.
 - Fix crash when changing book colors (change color, then change again using the same color inspector window)
 - Fix bug where bookcovers are not automatically added after fetching book info from Google Books
 - Fix bug where 16/09/1887 is sometimes shown in the date started field
+- Sort books by date added and date updated
 - Popup with other works by an author
   - Indication of read or not read
   - Links to Amazon (Affiliates) with the Amazon country being settable in the preferences
