@@ -24,7 +24,16 @@ class BooksByAuthor extends Modal {
         try {
             let books = sessionStorage.getItem('booksByAuthor');
             books = JSON.parse(books);
-            object.books = books.items;
+
+            object.books = books.items.sort((a, b) => {
+                const titleA = a.volumeInfo.title.toUpperCase();
+                const titleB = b.volumeInfo.title.toUpperCase();
+
+                if (titleA < titleB) return -1;
+                if (titleA > titleB) return 1;
+                return 0;
+            });
+
             object.totalItems = books.totalItems;
             object.showMoreResults = books.totalItems > maxResults;
         }
