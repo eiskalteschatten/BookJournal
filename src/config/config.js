@@ -5,6 +5,8 @@ const os = require('os');
 
 const env = process.env.NODE_ENV;
 
+const bookInfoAuthorsMaxResults = 40;
+
 const tempStoragePath = path.join(os.tmpdir(), 'bookjournal');
 const bookcoversDir = env === 'development' ? 'bookcovers-dev' : 'bookcovers';
 let storagePath;
@@ -46,7 +48,8 @@ module.exports = {
     bookInfo: {
         google: {
             urlIsbn: 'https://www.googleapis.com/books/v1/volumes?q=isbn:${isbn}',
-            urlAuthors: 'https://www.googleapis.com/books/v1/volumes?q=author:${authors}&langRestrict=${lang}&maxResults=40'
+            urlAuthors: 'https://www.googleapis.com/books/v1/volumes?q=author:${authors}&langRestrict=${lang}&startIndex=${index}&maxResults=' + bookInfoAuthorsMaxResults,
+            authorsMaxResults: bookInfoAuthorsMaxResults
         }
     },
     statistics: {

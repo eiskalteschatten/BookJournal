@@ -35,6 +35,8 @@ $modalContainerBg: rgba(2, 2, 2, .5);
 $modalCloseX: '../images/dark/modal-close-x.svg';
 $modalHeaderBorderColor: darken($mainFontColor, 70%);
 
+$booksByAuthorHoverBg: lighten($mainBg, 2%);
+
 $preferencesThemeBorderColor: #000000;
 $preferencesThemeSelectedBorderColor: lighten($listSelectedBg, 20%);
 $preferencesThemeShadowColor: rgba(0, 0, 0, 0.8);

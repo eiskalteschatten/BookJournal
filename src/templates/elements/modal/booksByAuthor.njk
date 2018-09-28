@@ -8,17 +8,30 @@
         </div>
 
         {% for book in books %}
-            <div class="row">
-                <div class="col-xs-3">
-                    <img src="{{ book.volumeInfo.imageLinks.smallThumbnail }}" class="bookcover">
+            <div class="row book-row">
+                <div class="col-md-2">
+                    <div class="bookcover-wrapper">
+                        <img src="{{ book.volumeInfo.imageLinks.smallThumbnail }}" class="bookcover">
+                    </div>
                 </div>
-                <div class="col-xs-9">
+                <div class="col-md-8">
                     <div class="book-info">
                         <h3 class="title">{{ book.volumeInfo.title }}</h3>
+                        <div class="authors">{{ book.volumeInfo.authors | join(', ') }}</div>
+                        <div class="description">{{ book.volumeInfo.description | truncate(200) }}</div>
                     </div>
+                </div>
+                <div class="col-md-2">
+                    READ?
                 </div>
             </div>
         {% endfor %}
+
+        <div class="row show-more-results {% if showMoreResults == false %}hidden{% endif %}">
+            <div class="col-md-12 align-center">
+                <a href="#" id="booksByAuthorShowMoreResults">Show more results</a>
+            </div>
+        </div>
     </div>
 
 {% endblock %}

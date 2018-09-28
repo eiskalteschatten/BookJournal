@@ -6,6 +6,8 @@ const request = require('request');
 const Modal = require('../modal');
 const config = require('../../config/config');
 
+const maxResults = config.bookInfo.google.authorsMaxResults;
+
 
 class BooksByAuthor extends Modal {
     constructor(authors) {
@@ -23,6 +25,8 @@ class BooksByAuthor extends Modal {
             let books = sessionStorage.getItem('booksByAuthor');
             books = JSON.parse(books);
             object.books = books.items;
+            object.totalItems = books.totalItems;
+            object.showMoreResults = books.totalItems > maxResults;
         }
         catch(error) {
             console.error(error);
@@ -31,7 +35,7 @@ class BooksByAuthor extends Modal {
         return object;
     }
 
-    async fetchBooks() {
+    async fetchBooks(index = 0) {
         const authors = this.authors;
         if (authors === '') return;
 
@@ -44,7 +48,7 @@ class BooksByAuthor extends Modal {
             sessionStorage.setItem('booksByAuthor', '');
 
             let url = config.bookInfo.google.urlAuthors;
-            url = url.replace('${authors}', authors).replace('${lang}', preferences.fetchBooksByAuthorLanguage);
+            url = url.replace('${authors}', authors).replace('${lang}', preferences.fetchBooksByAuthorLanguage).replace('${index}', index);
 
             return new Promise((resolve, reject) => {
                 request(url, (error, response, body) => {
@@ -53,7 +57,7 @@ class BooksByAuthor extends Modal {
                     try {
                         const bodyJson = JSON.parse(body);
 
-                        if (response.statusCode <= 299 && bodyJson.totalItems > 0) {
+                        if (bodyJson.totalItems > 0) {
                             sessionStorage.setItem('booksByAuthor', body);
                             $('#bookAuthorInfo').removeClass('hidden');
                         }

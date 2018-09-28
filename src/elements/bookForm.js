@@ -240,7 +240,7 @@ class BookForm {
 
         const authors = $('#bookAuthor').val();
         const booksByAuthor = new BooksByAuthor(authors);
-        booksByAuthor.fetchBooks(authors);
+        booksByAuthor.fetchBooks();
     }
 
     static async fetchBookInfo(isbn) {

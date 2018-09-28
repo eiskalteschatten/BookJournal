@@ -1,13 +1,40 @@
 .booksByAuthor-modal {
-    .bookcover {
-        max-height: 100px;
+    min-width: 800px;
+
+    .bookcover-wrapper {
+        min-height: 100px;
+        min-width: 75px;
+
+        .bookcover {
+            max-width: 75px;
+        }
     }
 
-    .book-info {
-        margin: 0 20px;
+    .book-row {
+        border-bottom: 1px solid $listBorderColor;
+        padding: 10px 0;
 
-        .title {
-            margin-top: 0;
+        &:hover {
+            background: $booksByAuthorHoverBg;
         }
+
+        .book-info {
+            margin: 0 20px;
+
+            .title {
+                margin-bottom: 2px;
+                margin-top: 0;
+            }
+
+            .authors {
+                font-size: .8em;
+                font-style: italic;
+                margin-bottom: 10px;
+            }
+        }
+    }
+
+    .show-more-results {
+        margin-top: 25px;
     }
 }
