@@ -38,9 +38,10 @@ class BooksByAuthor extends Modal {
 
             for (const book of oldBooks) {
                 const volumeInfo = book.volumeInfo;
+                const industryIdentifiers = volumeInfo.industryIdentifiers || [];
                 const isbns = [];
 
-                for (const id of volumeInfo.industryIdentifiers) {
+                for (const id of industryIdentifiers) {
                     isbns.push(id.identifier);
                 }
 
