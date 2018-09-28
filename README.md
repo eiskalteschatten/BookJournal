@@ -43,6 +43,7 @@ A digital book journal.
 - Print a book
 - Export book as PDF
 - Find new source for high-resolution book covers
+- Book type field: eBook, Paperback, Hardback, etc
 
 ### 0.6.0
 - Link books (relates to, is translation of, etc)
@@ -60,6 +61,7 @@ A digital book journal.
 - MacBook Touchbar
 - Expand reading statistics (see [Notes.md](Notes.md))
 - Reading goals
+- Choose book color automatically based on the primary color of the bookcover when the bookcover changes and no color is already set
 
 ### Future Ideas
 - Create custom filters
