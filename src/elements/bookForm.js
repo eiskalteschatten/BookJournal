@@ -10,6 +10,7 @@ const request = require('request');
 
 const nunjucks = require('../nunjucks');
 const config = require('../config/config');
+const BooksByAuthor = require('../elements/modal/booksByAuthor');
 
 const Book = require('../models/book');
 const Category = require('../models/category');
@@ -236,6 +237,18 @@ class BookForm {
 
     async afterRender() {
         $('#bookFormWrapper').addClass('form-displayed');
+
+        try {
+            let preferences = localStorage.getItem('preferences');
+            preferences = JSON.parse(preferences);
+
+            if (preferences.fetchBooksByAuthor) {
+                await BooksByAuthor.fetchBooks();
+            }
+        }
+        catch(error) {
+            console.error(error);
+        }
     }
 
     static async fetchBookInfo(isbn) {
