@@ -83,8 +83,10 @@ async function saveBook() {
     $('#bookForm').find('input[type!="checkbox"]').each(function() {
         const $this = $(this);
 
-        if (!$this.is('.js-book-form-color-form') || ($this.is('.js-book-form-color-form') && $this.hasClass('color-changed')))
+        if (!$this.is('.js-book-form-color-form') || ($this.is('.js-book-form-color-form') && $this.data('color-changed'))) {
             formData[$this.attr('id')] = $this.val();
+            if ($this.data('color-changed')) $this.data('color-changed', false);
+        }
     });
 
     $('#bookForm').find('input[type="checkbox"]').each(function() {
@@ -212,7 +214,7 @@ $(document).on('change', '.js-book-form-color-form', function() {
     const $colorForm = $(this);
     const color = $colorForm.val();
     $colorForm.siblings('.js-book-form-color-stripe').attr('style', `background-color: ${color}`);
-    $colorForm.addClass('color-changed');
+    $colorForm.data('color-changed', true);
 });
 
 
