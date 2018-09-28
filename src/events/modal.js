@@ -46,12 +46,23 @@ $(document).on('click', '#preferencesFetchBookInformation', function() {
     });
 });
 
+$(document).on('click', '#preferencesFetchBooksByAuthor', function() {
+    changePreferences({
+        fetchBooksByAuthor: $(this).prop('checked')
+    });
+});
+
+$(document).on('change', '#preferencesFetchBooksByAuthorLanguage', function() {
+    changePreferences({
+        fetchBooksByAuthorLanguage: $(this).val()
+    });
+});
+
 $(document).on('click', '#preferencesCheckForUpdates', function() {
     changePreferences({
         checkForUpdates: $(this).prop('checked')
     });
 });
-
 
 
 // About Modal

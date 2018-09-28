@@ -40,10 +40,29 @@
 
             <div class="row preferences-section">
                 <h3 class="modal-header">Book Information</h3>
-                <label for="preferencesFetchBookInformation">
-                    <input type="checkbox" id="preferencesFetchBookInformation" {% if preferences.fetchBookInfoFromGoogle %}checked{% endif %}> Fetch book information automatically after entering the ISBN
-                </label>
-                <div class="preferences-note">This option will send the ISBN number of your book to Google to retrieve the information.</div>
+
+                <div class="preferences-subsection">
+                    <label for="preferencesFetchBookInformation">
+                        <input type="checkbox" id="preferencesFetchBookInformation" {% if preferences.fetchBookInfoFromGoogle %}checked{% endif %}> Automatically fetch book information automatically after entering the ISBN
+                    </label>
+                    <div class="preferences-note">This option will send the ISBN number of your book to Google to retrieve the information.</div>
+                </div>
+
+                <div class="preferences-subsection">
+                    <label for="preferencesFetchBooksByAuthor">
+                        <input type="checkbox" id="preferencesFetchBooksByAuthor" {% if preferences.fetchBooksByAuthor %}checked{% endif %}> Automatically fetch other books by the given author(s)
+                    </label>
+                    <div class="preferences-note">This option will send the author(s) of your book to Google to retrieve the information.</div>
+                </div>
+
+                <div>
+                    Language to fetch books in:
+                    <select id="preferencesFetchBooksByAuthorLanguage" class="form-control">
+                        {% for code in allLanguageCodes %}
+                            <option value="{{ code }}" {% if preferences.fetchBooksByAuthorLanguage == code %}selected{% endif %}>{{ code | getLanguageName }} ({{ code | getLanguageNativeName }})</option>
+                        {% endfor %}
+                    </select>
+                </div>
             </div>
 
             <div class="row preferences-section">
