@@ -46,7 +46,7 @@ module.exports = {
     bookInfo: {
         google: {
             urlIsbn: 'https://www.googleapis.com/books/v1/volumes?q=isbn:${isbn}',
-            urlAuthors: 'https://www.googleapis.com/books/v1/volumes?q=inauthor:${author}&langRestrict=${lang}'
+            urlAuthors: 'https://www.googleapis.com/books/v1/volumes?q=inauthor:${authors}&langRestrict=${lang}'
         }
     },
     statistics: {

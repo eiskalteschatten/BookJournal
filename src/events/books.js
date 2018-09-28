@@ -13,6 +13,7 @@ const config = require('../config/config');
 
 const eventHelper = require('./helper');
 const BookForm = require('../elements/bookForm');
+const BooksByAuthor = require('../elements/modal/booksByAuthor');
 
 
 $(document).on('click', '#bookUtilityMenu', function() {
@@ -107,6 +108,9 @@ async function saveBook() {
         $('#bookBookcoverId').val(newId);
         await eventHelper.updateBookList(newId);
     }
+
+    const authors = $('#bookAuthor').val();
+    BooksByAuthor.fetchBooks(authors);
 
     setTimeout(() => {
         $bookActivityLoader.addClass('hidden');

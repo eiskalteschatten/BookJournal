@@ -238,17 +238,8 @@ class BookForm {
     async afterRender() {
         $('#bookFormWrapper').addClass('form-displayed');
 
-        try {
-            let preferences = localStorage.getItem('preferences');
-            preferences = JSON.parse(preferences);
-
-            if (preferences.fetchBooksByAuthor) {
-                await BooksByAuthor.fetchBooks();
-            }
-        }
-        catch(error) {
-            console.error(error);
-        }
+        const authors = $('#bookAuthor').val();
+        await BooksByAuthor.fetchBooks(authors);
     }
 
     static async fetchBookInfo(isbn) {
