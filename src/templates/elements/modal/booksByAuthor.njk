@@ -22,7 +22,12 @@
                     </div>
                 </div>
                 <div class="col-md-2">
-                    READ?
+                    {% if book.hasBeenRead %}
+                        READ! (plus date read)
+                    {% else %}
+                        Amazon link<br>
+                        Add to books button
+                    {% endif %}
                 </div>
             </div>
         {% endfor %}

@@ -16,16 +16,16 @@ class BooksByAuthor extends Modal {
         this.authors = authors;
     }
 
-    getNunjucksRenderObject() {
+    async getNunjucksRenderObject() {
         const object = super.getNunjucksRenderObject();
 
         object.authors = this.authors;
 
         try {
-            let books = sessionStorage.getItem('booksByAuthor');
-            books = JSON.parse(books);
+            let bookJson = sessionStorage.getItem('booksByAuthor');
+            bookJson = JSON.parse(bookJson);
 
-            object.books = books.items.sort((a, b) => {
+            const oldBooks = bookJson.items.sort((a, b) => {
                 const titleA = a.volumeInfo.title.toUpperCase();
                 const titleB = b.volumeInfo.title.toUpperCase();
 
@@ -34,14 +34,39 @@ class BooksByAuthor extends Modal {
                 return 0;
             });
 
-            object.totalItems = books.totalItems;
-            object.showMoreResults = books.totalItems > maxResults;
+            const books = [];
+
+            for (const book of oldBooks) {
+                const volumeInfo = book.volumeInfo;
+                const isbns = [];
+
+                for (const id of volumeInfo.industryIdentifiers) {
+                    isbns.push(id.identifier);
+                }
+
+                book.hasBeenRead =  await this.determineIfBookHasBeenRead({
+                    title: volumeInfo.title,
+                    author: volumeInfo.authors,
+                    isbns: isbns
+                });
+
+                books.push(book);
+            }
+
+            object.books = books;
+            object.totalItems = bookJson.totalItems;
+            object.showMoreResults = bookJson.totalItems > maxResults;
         }
         catch(error) {
             console.error(error);
         }
 
         return object;
+    }
+
+    async determineIfBookHasBeenRead(bookInfo) {
+        console.log(bookInfo);
+        return true;
     }
 
     async fetchBooks(index = 0) {
