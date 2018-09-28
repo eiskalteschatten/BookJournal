@@ -51,6 +51,7 @@ A digital book journal.
 - Webcam-scanning of bar codes
 - Multiple languages (initially English, German, French, Spanish)
 - Check for duplicate books (based on title, author, ISBN)
+- Automatically select dark or light theme on macOS depending on if the system is in dark mode or not. The user's preferences override this setting.
 
 ### 1.0
 - Apple and Microsoft certificates
