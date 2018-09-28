@@ -63,6 +63,7 @@ A digital book journal.
 - Expand reading statistics (see [Notes.md](Notes.md))
 - Reading goals
 - Choose book color automatically based on the primary color of the bookcover when the bookcover changes and no color is already set
+- Search for book info using other fields (title, author, etc)
 
 ### Future Ideas
 - Create custom filters
