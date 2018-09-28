@@ -414,6 +414,8 @@ $(document).on('click', '#bookFillOutBookInfo', async function(e) {
         $('#bookNumberOfPages').val(bookInfo.pageCount);
         $('#bookLanguageReadIn').val(language);
 
+        await saveBook();
+
         if (bookInfo.imageLinks && bookInfo.imageLinks.thumbnail) {
             let imagePath = config.bookcovers.tempPath;
             mkdirp(imagePath);
@@ -424,9 +426,6 @@ $(document).on('click', '#bookFillOutBookInfo', async function(e) {
                 .on('close', async () => {
                     await saveBookcover(imagePath);
                 });
-        }
-        else {
-            await saveBook();
         }
     }
     catch(error) {
