@@ -19,15 +19,23 @@ class BooksByAuthor extends Modal {
     }
 
     async getNunjucksRenderObject() {
+        const authors = this.authors;
         const object = super.getNunjucksRenderObject();
 
-        object.authors = this.authors;
+        object.authors = authors;
 
         try {
             let bookJson = sessionStorage.getItem('booksByAuthor');
             bookJson = JSON.parse(bookJson);
 
             const oldBooks = bookJson.items.sort((a, b) => {
+                if (authors.includes(',')) {
+                    const authorsA = a.volumeInfo.authors.join(',').toUpperCase();
+                    const authorsUpperCase = authors.replace(', ', ',').toUpperCase();
+
+                    if (authorsA.includes(authorsUpperCase)) return -1;
+                }
+
                 const titleA = a.volumeInfo.title.toUpperCase();
                 const titleB = b.volumeInfo.title.toUpperCase();
 
