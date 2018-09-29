@@ -124,8 +124,8 @@ Book.getHasBeenRead = async function(title, authors, isbns) {
         where: {
             $or: [
                 {
-                    title: title,
-                    author: authors,
+                    title: { $like: `%${title}%` },
+                    author: { $like: `%${authors}%` },
                     notReadYet: false
                 },
                 {
