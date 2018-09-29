@@ -119,6 +119,24 @@ Book.getByMonthYear = async function(month, year) {
     return await db.query(`SELECT * FROM books where strftime('%Y-%m', dateRead) IN('${year}-${month}');`, { model: this });
 };
 
+Book.getHasBeenRead = async function(title, authors, isbns) {
+    return await this.findOne({
+        where: {
+            $or: [
+                {
+                    title: title,
+                    author: authors,
+                    notReadYet: false
+                },
+                {
+                    isbn: isbns,
+                    notReadYet: false
+                }
+            ]
+        }
+    });
+};
+
 Book.sync();
 
 module.exports = Book;

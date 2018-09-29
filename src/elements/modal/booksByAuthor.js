@@ -6,6 +6,8 @@ const request = require('request');
 const Modal = require('../modal');
 const config = require('../../config/config');
 
+const Book = require('../../models/book');
+
 const maxResults = config.bookInfo.google.authorsMaxResults;
 
 
@@ -45,11 +47,13 @@ class BooksByAuthor extends Modal {
                     isbns.push(id.identifier);
                 }
 
-                book.hasBeenRead =  await this.determineIfBookHasBeenRead({
-                    title: volumeInfo.title,
-                    author: volumeInfo.authors,
-                    isbns: isbns
-                });
+                const bookFromDb = await Book.getHasBeenRead(volumeInfo.title, volumeInfo.authors, isbns);
+                book.hasBeenRead = bookFromDb ? true : false;
+
+                if (bookFromDb && bookFromDb.dateRead) {
+                    const dateRead = new Date(bookFromDb.dateRead);
+                    book.dateRead = dateRead.toLocaleDateString();
+                }
 
                 books.push(book);
             }
@@ -63,11 +67,6 @@ class BooksByAuthor extends Modal {
         }
 
         return object;
-    }
-
-    async determineIfBookHasBeenRead(bookInfo) {
-        console.log(bookInfo);
-        return true;
     }
 
     async fetchBooks(index = 0) {

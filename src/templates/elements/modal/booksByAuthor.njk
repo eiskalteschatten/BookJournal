@@ -23,7 +23,7 @@
                 </div>
                 <div class="col-md-2">
                     {% if book.hasBeenRead %}
-                        READ! (plus date read)
+                        READ! on {{ book.dateRead }}
                     {% else %}
                         Amazon link<br>
                         Add to books button
