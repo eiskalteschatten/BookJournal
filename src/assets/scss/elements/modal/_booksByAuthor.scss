@@ -59,7 +59,12 @@
                     background-repeat: no-repeat;
                     display: inline-block;
                     height: $buttonSize;
+                    opacity: .8;
                     width: $buttonSize;
+
+                    &:hover {
+                        opacity: 1;
+                    }
                 }
 
                 .add-book {
