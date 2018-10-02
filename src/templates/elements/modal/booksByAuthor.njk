@@ -19,6 +19,7 @@
                         <h3 class="title">{{ book.volumeInfo.title }}</h3>
                         <div class="authors">{{ book.volumeInfo.authors | join(', ') }}</div>
                         <div class="description">{{ book.volumeInfo.description | truncate(200) }}</div>
+                        <div class="isbn">ISBN: {{ book.isbn }}</div>
                     </div>
                 </div>
                 <div class="col-md-2">

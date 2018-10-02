@@ -53,6 +53,7 @@ class BooksByAuthor extends Modal {
 
                 for (const id of industryIdentifiers) {
                     isbns.push(id.identifier);
+                    if (id.type === 'ISBN_13') book.isbn = id.identifier;
                 }
 
                 const bookFromDb = await Book.getHasBeenRead(volumeInfo.title, volumeInfo.authors, isbns);
