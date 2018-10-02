@@ -44,36 +44,11 @@
             .info-link {
                 font-size: .8em;
             }
-        }
 
-        .read-status {
-            padding-top: 10px;
-
-            .read {
+            .read-status {
                 color: $booksByAuthorReadStatusColor;
-            }
-
-            .not-read {
-                a {
-                    $buttonSize: 17px;
-                    background-repeat: no-repeat;
-                    display: inline-block;
-                    height: $buttonSize;
-                    opacity: .8;
-                    width: $buttonSize;
-
-                    &:hover {
-                        opacity: 1;
-                    }
-                }
-
-                .add-book {
-                    background-image: url($booksByAuthorAddBookIcon);
-                }
-
-                .shopping-link {
-                    background-image: url($booksByAuthorShoppingIcon);
-                }
+                font-size: .8em;
+                font-weight: bold;
             }
         }
     }

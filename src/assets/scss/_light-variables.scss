@@ -37,9 +37,6 @@ $modalHeaderBorderColor: lighten($mainFontColor, 80%);
 
 $booksByAuthorHoverBg: lighten($mainBg, 1%);
 $booksByAuthorReadStatusColor: #027238;
-$booksByAuthorNotReadStatusColor: #792020;
-$booksByAuthorAddBookIcon: '../images/light/si-glyph-square-plus.svg';
-$booksByAuthorShoppingIcon: '../images/light/si-glyph-bag.svg';
 
 $preferencesThemeBorderColor: $mainFontColor;
 $preferencesThemeSelectedBorderColor: darken($listSelectedBg, 20%);

@@ -14,36 +14,30 @@
                         <img src="{{ book.volumeInfo.imageLinks.smallThumbnail }}" class="bookcover">
                     </div>
                 </div>
-                <div class="col-md-8">
+                <div class="col-md-10">
                     <div class="book-info">
                         <h3 class="title">{{ book.volumeInfo.title }}</h3>
                         <div class="authors">{{ book.volumeInfo.authors | join(', ') }}</div>
-                        <div class="description">{{ book.volumeInfo.description | truncate(200) }}</div>
+                        <div class="description">{{ book.volumeInfo.description | truncate(300) }}</div>
 
                         <div class="row">
-                            <div class="col-md-6 info-link">
+                            <div class="col-md-4 info-link">
                                 <a href="{{ book.volumeInfo.previewLink }}" class="js-external-link">View on Google Books</a>
                             </div>
 
-                            <div class="col-md-6 align-right">
+                            <div class="col-md-4 align-center">
                                 {% if book.isbn %}
                                     <div class="isbn">ISBN: {{ book.isbn }}</div>
                                 {% endif %}
                             </div>
+
+                            <div class="col-md-4 align-right read-status">
+                                {% if book.hasBeenRead %}
+                                    Read on {{ book.dateRead }}
+                                {% endif %}
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-2 read-status align-right">
-                    {% if book.hasBeenRead %}
-                        <div class="read">
-                            <strong>Read</strong> on {{ book.dateRead }}
-                        </div>
-                    {% else %}
-                        <div class="not-read">
-                            <a href="#" class="js-books-by-author-add-book add-book" title="Add book to BookJournal"></a>
-                            <a href="#" class="js-external-link shopping-link" title="View book on Amazon"></a>
-                        </div>
-                    {% endif %}
                 </div>
             </div>
         {% endfor %}

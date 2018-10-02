@@ -12,7 +12,6 @@ A digital book journal.
 - Sort books by date added and date updated
 - Popup with other works by an author
   - Indication of read or not read
-  - Links to Amazon (Affiliates) with the Amazon country being settable in the preferences
   - Checkbox in preferences to turn it on or off
 - Fix Windows-specific bugs
 
@@ -69,6 +68,9 @@ A digital book journal.
 ### 1.2
 - Reading goals
 - Book discovery and recommnded books
+- Popup with other works by an author
+  - Link to Amazon (Affiliates) with the Amazon country being settable in the preferences
+  - Button to add the book to BookJournal
 
 ### Future Ideas
 - Create custom filters
