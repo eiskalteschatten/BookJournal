@@ -85,7 +85,14 @@ async function saveBook() {
         const $this = $(this);
 
         if (!$this.is('.js-book-form-color-form') || ($this.is('.js-book-form-color-form') && $this.data('color-changed'))) {
-            formData[$this.attr('id')] = $this.val();
+            let value = $this.val();
+
+            if ($this.is('#bookIsbn')) {
+                value = value.replace(/[^0-9]/g, '');
+                $this.val(value);
+            }
+
+            formData[$this.attr('id')] = value;
             if ($this.data('color-changed')) $this.data('color-changed', false);
         }
     });
