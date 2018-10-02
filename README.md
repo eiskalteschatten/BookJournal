@@ -71,6 +71,7 @@ A digital book journal.
 - Popup with other works by an author
   - Link to Amazon (Affiliates) with the Amazon country being settable in the preferences
   - Button to add the book to BookJournal
+  - Sort by title, author or whether read
 
 ### Future Ideas
 - Create custom filters
