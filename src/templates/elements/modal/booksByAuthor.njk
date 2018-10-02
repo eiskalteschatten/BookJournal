@@ -20,12 +20,16 @@
                         <div class="authors">{{ book.volumeInfo.authors | join(', ') }}</div>
                         <div class="description">{{ book.volumeInfo.description | truncate(200) }}</div>
 
-                        {% if book.isbn %}
-                            <div class="isbn">ISBN: {{ book.isbn }}</div>
-                        {% endif %}
+                        <div class="row">
+                            <div class="col-md-6 info-link">
+                                <a href="{{ book.volumeInfo.previewLink }}" class="js-external-link">View on Google Books</a>
+                            </div>
 
-                        <div class="info-link">
-                            <a href="{{ book.volumeInfo.previewLink }}" class="js-external-link">View on Google Books</a>
+                            <div class="col-md-6 align-right">
+                                {% if book.isbn %}
+                                    <div class="isbn">ISBN: {{ book.isbn }}</div>
+                                {% endif %}
+                            </div>
                         </div>
                     </div>
                 </div>
