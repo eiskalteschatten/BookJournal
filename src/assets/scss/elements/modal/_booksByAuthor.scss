@@ -40,6 +40,30 @@
                 font-size: .8em;
             }
         }
+
+        .read-status {
+            .read {
+                color: $booksByAuthorReadStatusColor;
+            }
+
+            .not-read {
+                a {
+                    $buttonSize: 17px;
+                    background-repeat: no-repeat;
+                    display: inline-block;
+                    height: $buttonSize;
+                    width: $buttonSize;
+                }
+
+                .add-book {
+                    background-image: url($booksByAuthorAddBookIcon);
+                }
+
+                .amazon-link {
+                    background-image: url($booksByAuthorShoppingIcon);
+                }
+            }
+        }
     }
 
     .show-more-results {

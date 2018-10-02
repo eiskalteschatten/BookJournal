@@ -25,12 +25,16 @@
                         {% endif %}
                     </div>
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-2 read-status align-right">
                     {% if book.hasBeenRead %}
-                        READ! on {{ book.dateRead }}
+                        <div class="read">
+                            <strong>Read</strong> on {{ book.dateRead }}
+                        </div>
                     {% else %}
-                        Amazon link<br>
-                        Add to books button
+                        <div class="not-read">
+                            <a href="#" class="js-books-by-author-add-book add-book" title="Add book to BookJournal"></a>
+                            <a href="#" class="js-books-by-author-add-book amazon-link" title="View book on Amazon"></a>
+                        </div>
                     {% endif %}
                 </div>
             </div>

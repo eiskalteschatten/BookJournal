@@ -36,6 +36,10 @@ $modalCloseX: '../images/dark/modal-close-x.svg';
 $modalHeaderBorderColor: darken($mainFontColor, 70%);
 
 $booksByAuthorHoverBg: lighten($mainBg, 2%);
+$booksByAuthorReadStatusColor: #01D75E;
+$booksByAuthorNotReadStatusColor: #c04b4b;
+$booksByAuthorAddBookIcon: '../images/dark/si-glyph-square-plus.svg';
+$booksByAuthorShoppingIcon: '../images/dark/si-glyph-bag.svg';
 
 $preferencesThemeBorderColor: #000000;
 $preferencesThemeSelectedBorderColor: lighten($listSelectedBg, 20%);
