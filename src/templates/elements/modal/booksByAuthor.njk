@@ -23,6 +23,10 @@
                         {% if book.isbn %}
                             <div class="isbn">ISBN: {{ book.isbn }}</div>
                         {% endif %}
+
+                        <div class="info-link">
+                            <a href="{{ book.volumeInfo.previewLink }}" class="js-external-link">View on Google Books</a>
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-2 read-status align-right">
@@ -33,7 +37,7 @@
                     {% else %}
                         <div class="not-read">
                             <a href="#" class="js-books-by-author-add-book add-book" title="Add book to BookJournal"></a>
-                            <a href="#" class="js-books-by-author-add-book amazon-link" title="View book on Amazon"></a>
+                            <a href="#" class="js-external-link shopping-link" title="View book on Amazon"></a>
                         </div>
                     {% endif %}
                 </div>

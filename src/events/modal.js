@@ -1,6 +1,6 @@
 'use strict';
 
-const {ipcRenderer, shell, remote} = require('electron');
+const {ipcRenderer, remote} = require('electron');
 const $ = require('jquery');
 
 const helper = require('./helper');
@@ -62,11 +62,4 @@ $(document).on('click', '#preferencesCheckForUpdates', function() {
     changePreferences({
         checkForUpdates: $(this).prop('checked')
     });
-});
-
-
-// About Modal
-
-$(document).on('click', '#alexSeifertLink', function() {
-    shell.openExternal('https://www.alexseifert.com');
 });

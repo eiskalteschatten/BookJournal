@@ -1,6 +1,6 @@
 'use strict';
 
-const {ipcRenderer} = require('electron');
+const {ipcRenderer, shell} = require('electron');
 const $ = require('jquery');
 
 const helper = require('./events/helper');
@@ -30,6 +30,11 @@ ipcRenderer.on('check-for-updates', async () => {
     checkForUpdates(true);
 });
 
+$(document).on('click', '.js-external-link', function(e) {
+    e.preventDefault();
+    const href = $(this).attr('href');
+    shell.openExternal(href);
+});
 
 if (process.platform === 'darwin') {
     require('./events/macos');
