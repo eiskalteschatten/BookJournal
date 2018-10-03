@@ -72,6 +72,7 @@ class BooksByAuthor extends Modal {
             object.books = books;
             object.totalItems = bookJson.totalItems;
             object.showMoreResults = bookJson.totalItems > maxResults;
+            object.itemsLeft = bookJson.totalItems - maxResults;
         }
         catch(error) {
             console.error(error);
