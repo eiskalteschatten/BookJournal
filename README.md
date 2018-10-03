@@ -44,6 +44,7 @@ A digital book journal.
 - Print a book
 - Export book as PDF
 - Find new source for high-resolution book covers
+- "Currently Reading" checkbox
 - Book type field: eBook, Paperback, Hardback, etc
 - Choose book color automatically based on the primary color of the bookcover when the bookcover changes and no color is already set
 
