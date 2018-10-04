@@ -43,9 +43,10 @@ A digital book journal.
 ### 0.5.0
 - Print a book
 - Export book as PDF
-- Small frontend refinements
+- Frontend refinements
     - Transparency
     - Modals that can be closed by clicking on the background behind them
+    - Animations
 - Update to Electron 3
 
 ### 0.6.0
