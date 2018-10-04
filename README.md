@@ -43,28 +43,28 @@ A digital book journal.
 ### 0.5.0
 - Print a book
 - Export book as PDF
-- Find new source for high-resolution book covers
 - Small frontend refinements
     - Transparency
     - Modals that can be closed by clicking on the background behind them
+- Update to Electron 3
 
 ### 0.6.0
+- Find new source for high-resolution book covers
 - "Currently Reading" checkbox
 - Book type field: eBook, Paperback, Hardback, etc
 - Choose book color automatically based on the primary color of the bookcover when the bookcover changes and no color is already set
-- Multiple languages (initially English, German, French, Spanish)
 
 ### 0.7.0
+- Multiple languages (initially English, German, French, Spanish)
 - Link books (relates to, is translation of, etc)
-- Webcam-scanning of bar codes
 - Check for duplicate books (based on title, author, ISBN)
 - Automatically select dark or light theme on macOS depending on if the system is in dark mode or not. The user's preferences override this setting.
 
 ### 1.0
 - Apple and Microsoft certificates
-- Update to Electron 3
 - Auto-update with Squirrel
 - Mac App Store version
+- Webcam-scanning of bar codes
 
 ### 1.1
 - MacBook Touchbar
