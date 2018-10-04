@@ -7,40 +7,9 @@
             <h2 class="modal-title">Books by {{ authors }}</h2>
         </div>
 
-        {% for book in books %}
-            <div class="row book-row">
-                <div class="col-md-2">
-                    <div class="bookcover-wrapper">
-                        <img src="{{ book.volumeInfo.imageLinks.smallThumbnail }}" class="bookcover">
-                    </div>
-                </div>
-                <div class="col-md-10">
-                    <div class="book-info">
-                        <h3 class="title">{{ book.volumeInfo.title }}</h3>
-                        <div class="authors">{{ book.volumeInfo.authors | join(', ') }}</div>
-                        <div class="description">{{ book.volumeInfo.description | truncate(300) }}</div>
-
-                        <div class="row">
-                            <div class="col-md-4 info-link">
-                                <a href="{{ book.volumeInfo.previewLink }}" class="js-external-link">View on Google Books</a>
-                            </div>
-
-                            <div class="col-md-4 align-center">
-                                {% if book.isbn %}
-                                    <div class="isbn">ISBN: {{ book.isbn }}</div>
-                                {% endif %}
-                            </div>
-
-                            <div class="col-md-4 align-right read-status">
-                                {% if book.hasBeenRead %}
-                                    Read on {{ book.dateRead }}
-                                {% endif %}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        {% endfor %}
+        <div id="booksByAuthorBookListAnchor">
+            {{ bookList | safe }}
+        </div>
 
         <div class="row show-more-results {% if showMoreResults == false %}hidden{% endif %}">
             <div class="col-md-12 align-center">

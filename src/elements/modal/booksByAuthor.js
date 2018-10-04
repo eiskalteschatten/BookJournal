@@ -4,9 +4,8 @@ const $ = require('jquery');
 const request = require('request');
 
 const Modal = require('../modal');
+const Books = require('./booksByAuthor/books');
 const config = require('../../config/config');
-
-const Book = require('../../models/book');
 
 const maxResults = config.bookInfo.google.authorsMaxResults;
 
@@ -14,14 +13,13 @@ const maxResults = config.bookInfo.google.authorsMaxResults;
 class BooksByAuthor extends Modal {
     constructor(authors) {
         super('booksByAuthor');
-
         this.authors = authors;
     }
 
     async getNunjucksRenderObject() {
-        const authors = this.authors;
         const object = super.getNunjucksRenderObject();
 
+        const authors = this.authors;
         object.authors = authors;
 
         try {
@@ -44,32 +42,10 @@ class BooksByAuthor extends Modal {
                 return 0;
             });
 
-            const books = [];
 
-            for (const book of oldBooks) {
-                const volumeInfo = book.volumeInfo;
-                const industryIdentifiers = volumeInfo.industryIdentifiers || [];
-                const isbns = [];
+            const books = new Books(oldBooks);
+            object.bookList = await books.render();
 
-                for (const id of industryIdentifiers) {
-                    isbns.push(id.identifier);
-                    if (id.type === 'ISBN_13') book.isbn = id.identifier;
-                }
-
-                if (!book.isbn && industryIdentifiers[0]) book.isbn = industryIdentifiers[0].identifier;
-
-                const bookFromDb = await Book.getHasBeenRead(volumeInfo.title, volumeInfo.authors, isbns);
-                book.hasBeenRead = bookFromDb ? true : false;
-
-                if (bookFromDb && bookFromDb.dateRead) {
-                    const dateRead = new Date(bookFromDb.dateRead);
-                    book.dateRead = dateRead.toLocaleDateString();
-                }
-
-                books.push(book);
-            }
-
-            object.books = books;
             object.totalItems = bookJson.totalItems;
             object.showMoreResults = bookJson.totalItems > maxResults;
             object.itemsLeft = bookJson.totalItems - maxResults;
@@ -77,7 +53,6 @@ class BooksByAuthor extends Modal {
         catch(error) {
             console.error(error);
         }
-
         return object;
     }
 
