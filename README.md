@@ -44,14 +44,19 @@ A digital book journal.
 - Print a book
 - Export book as PDF
 - Find new source for high-resolution book covers
+- Small frontend refinements
+    - Transparency
+    - Modals that can be closed by clicking on the background behind them
+
+### 0.6.0
 - "Currently Reading" checkbox
 - Book type field: eBook, Paperback, Hardback, etc
 - Choose book color automatically based on the primary color of the bookcover when the bookcover changes and no color is already set
+- Multiple languages (initially English, German, French, Spanish)
 
-### 0.6.0
+### 0.7.0
 - Link books (relates to, is translation of, etc)
 - Webcam-scanning of bar codes
-- Multiple languages (initially English, German, French, Spanish)
 - Check for duplicate books (based on title, author, ISBN)
 - Automatically select dark or light theme on macOS depending on if the system is in dark mode or not. The user's preferences override this setting.
 
