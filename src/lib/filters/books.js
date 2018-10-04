@@ -1,8 +1,8 @@
 'use strict';
 
-const BookList = require('../elements/list/books');
+const BookList = require('../../elements/list/books');
 
-const Category = require('../models/category');
+const Category = require('../../models/category');
 
 
 module.exports = async (type, term = '') => {

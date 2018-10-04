@@ -1,6 +1,6 @@
 'use strict';
 
-const Preferences = require('../models/preferences');
+const Preferences = require('../../models/preferences');
 
 
 module.exports = async values => {

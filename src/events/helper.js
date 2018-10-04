@@ -5,7 +5,7 @@ const $ = require('jquery');
 
 const BookForm = require('../elements/bookForm');
 const BooksList = require('../elements/list/books');
-const filterBooks = require('../filters/books');
+const filterBooks = require('../lib/filters/books');
 const Statistics = require('../elements/statistics');
 
 

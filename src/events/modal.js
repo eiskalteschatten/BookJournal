@@ -5,9 +5,9 @@ const $ = require('jquery');
 
 const helper = require('./helper');
 
-const preferencesTheme = require('../preferences/theme');
+const preferencesTheme = require('../lib/preferences/theme');
 const PreferencesModal = require('../elements/modal/preferences');
-const changePreferences = require('../preferences/change');
+const changePreferences = require('../lib/preferences/change');
 
 
 ipcRenderer.on('open-about', () => {

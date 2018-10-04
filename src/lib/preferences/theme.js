@@ -3,7 +3,7 @@
 const {ipcRenderer, Menu} = require('electron');
 const $ = require('jquery');
 
-const Preferences = require('../models/preferences');
+const Preferences = require('../../models/preferences');
 
 
 async function changeTheme(theme, window) {

@@ -2,7 +2,7 @@
 
 const $ = require('jquery');
 
-const changePreferences = require('../preferences/change');
+const changePreferences = require('../lib/preferences/change');
 
 
 let dragging = false;

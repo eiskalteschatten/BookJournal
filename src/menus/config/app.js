@@ -5,7 +5,7 @@ const {app, shell, dialog} = require('electron');
 const path = require('path');
 
 const config = require('../../config/config');
-const themePreferences = require('../../preferences/theme');
+const themePreferences = require('../../lib/preferences/theme');
 
 
 const template = [

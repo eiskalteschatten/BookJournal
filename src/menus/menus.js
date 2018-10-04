@@ -6,7 +6,7 @@ const bookUtilityMenu = require('./config/bookUtility');
 const bookcoverCm = require('./config/bookcoverCm');
 const categoryListElementCm = require('./config/categoryListElementCm');
 const inputCm = require('./config/inputCm');
-const {switchMenu} = require('../preferences/theme');
+const {switchMenu} = require('../lib/preferences/theme');
 
 
 ipcMain.on('show-category-list-element-context-menu', event => {
