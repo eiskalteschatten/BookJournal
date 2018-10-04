@@ -130,7 +130,7 @@ class BookForm {
         book.ratingClasses = ratingClasses;
 
         return new Promise((resolve, reject) => {
-            const template = path.join(__dirname, '../templates/bookForm.njk');
+            const template = path.join(__dirname, '../templates/elements/bookForm.njk');
 
             fs.readFile(template, 'utf8', (error, string) => {
                 if (error) reject(error);
@@ -167,7 +167,7 @@ class BookForm {
 
     static async renderTagCategoryBadge(tag, deleteId, typeClass, color = '') {
         return new Promise((resolve, reject) => {
-            const template = path.join(__dirname, '../templates/bookForm/tagCategoryBadge.njk');
+            const template = path.join(__dirname, '../templates/elements/bookForm/tagCategoryBadge.njk');
 
             fs.readFile(template, 'utf8', (error, string) => {
                 if (error) reject(error);
