@@ -29,7 +29,7 @@ class BooksByAuthor extends Modal {
             if (bookJson.items) {
                 const oldBooks = this.sortBooksByTitle(bookJson);
                 object.bookList = await this.renderBookList(oldBooks);
-                object.showMoreResults = booksJson.totalItems > maxResults;
+                object.showMoreResults = bookJson.totalItems > maxResults;
             }
             else {
                 object.showMoreResults = false;
