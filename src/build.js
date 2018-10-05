@@ -8,7 +8,7 @@ const cssConfig = require('./config/css');
 const pathToAssets = './src/assets/';
 
 
-module.exports = async () => {
+async function build() {
     try {
         await compileSass.compileSassAndSaveMultiple({
             sassPath: path.join(pathToAssets, '/scss/'),
@@ -19,4 +19,8 @@ module.exports = async () => {
     catch(error) {
         console.error(error);
     }
-};
+}
+
+build();
+
+module.exports = build;
