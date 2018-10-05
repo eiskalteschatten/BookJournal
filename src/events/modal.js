@@ -72,22 +72,35 @@ $(document).on('click', '#booksByAuthorShowMoreResults', async function() {
     const $loader = $('#booksByAuthorShowMoreResultsLoader');
     $loader.removeClass('invisible');
 
-    let indexFactor = sessionStorage.getItem('booksByAuthorIndexFactor');
-    indexFactor = parseInt(indexFactor) + 1;
-
     const authors = $('#bookAuthor').val();
     const booksByAuthor = new BooksByAuthor(authors);
-    const books = await booksByAuthor.fetchBooks(indexFactor);
 
-    const sortedBooks = booksByAuthor.sortBooksByTitle(books);
-
-    if (sortedBooks.length === 0) {
+    const hideMoreResults = () => {
         $('#booksByAuthorShowMoreResultsWrapper').remove();
+    };
+
+    try {
+        const books = sessionStorage.getItem('booksByAuthor');
+        const booksJson = JSON.parse(books);
+        const sortedBooks = booksByAuthor.sortBooksByTitle(booksJson);
+
+        if (sortedBooks.length === 0) {
+            hideMoreResults();
+        }
+        else {
+            const rendered = await booksByAuthor.renderBookList(sortedBooks);
+            $('#booksByAuthorBookListAnchor').append(rendered);
+        }
+
+        $loader.addClass('invisible');
     }
-    else {
-        const rendered = await booksByAuthor.renderBookList(sortedBooks);
-        $('#booksByAuthorBookListAnchor').append(rendered);
+    catch(error) {
+        console.error(error);
     }
 
-    $loader.addClass('invisible');
+    let indexFactor = sessionStorage.getItem('booksByAuthorIndexFactor');
+    indexFactor = parseInt(indexFactor) + 1;
+    await booksByAuthor.fetchBooks(indexFactor);
+
+    if (!booksByAuthor.hasMoreResults()) hideMoreResults();
 });

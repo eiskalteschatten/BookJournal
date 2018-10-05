@@ -23,7 +23,7 @@ class BooksByAuthor extends Modal {
         object.authors = authors;
 
         try {
-            let bookJson = sessionStorage.getItem('booksByAuthor');
+            let bookJson = sessionStorage.getItem('booksByAuthorInitial');
             bookJson = JSON.parse(bookJson);
 
             const oldBooks = this.sortBooksByTitle(bookJson);
@@ -64,8 +64,15 @@ class BooksByAuthor extends Modal {
 
                         if (totalItems > 0) {
                             sessionStorage.setItem('booksByAuthorIndexFactor', indexFactor);
-                            sessionStorage.setItem('booksByAuthor', body);
-                            $('#bookAuthorInfo').removeClass('hidden');
+
+                            if (indexFactor === 0) {
+                                sessionStorage.setItem('booksByAuthorInitial', body);
+                                $('#bookAuthorInfo').removeClass('hidden');
+                                this.fetchBooks(indexFactor + 1);
+                            }
+                            else {
+                                sessionStorage.setItem('booksByAuthor', body);
+                            }
                         }
 
                         resolve(bodyJson);
@@ -108,6 +115,18 @@ class BooksByAuthor extends Modal {
     async renderBookList(oldBooks) {
         const books = new Books(oldBooks);
         return await books.render();
+    }
+
+    hasMoreResults() {
+        try {
+            const books = sessionStorage.getItem('booksByAuthor');
+            const booksJson = JSON.parse(books);
+
+            return booksJson.items ? true : false;
+        }
+        catch(error) {
+            console.error(error);
+        }
     }
 }
 
