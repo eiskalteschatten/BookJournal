@@ -41,6 +41,10 @@ a {
     display: none !important;
 }
 
+.invisible {
+    visibility: hidden !important;
+}
+
 .loading {
     background: url('../images/loader.svg') no-repeat center center;
     background-size: 32px;

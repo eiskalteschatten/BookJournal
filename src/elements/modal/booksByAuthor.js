@@ -26,25 +26,8 @@ class BooksByAuthor extends Modal {
             let bookJson = sessionStorage.getItem('booksByAuthor');
             bookJson = JSON.parse(bookJson);
 
-            const oldBooks = bookJson.items.sort((a, b) => {
-                if (authors.includes(',')) {
-                    const authorsA = a.volumeInfo.authors.join(',').toUpperCase();
-                    const authorsUpperCase = authors.replace(', ', ',').toUpperCase();
-
-                    if (authorsA.includes(authorsUpperCase)) return -1;
-                }
-
-                const titleA = a.volumeInfo.title.toUpperCase();
-                const titleB = b.volumeInfo.title.toUpperCase();
-
-                if (titleA < titleB) return -1;
-                if (titleA > titleB) return 1;
-                return 0;
-            });
-
-
-            const books = new Books(oldBooks);
-            object.bookList = await books.render();
+            const oldBooks = this.sortBooksByTitle(bookJson);
+            object.bookList = await this.renderBookList(oldBooks);
 
             object.totalItems = bookJson.totalItems;
             object.showMoreResults = bookJson.totalItems > maxResults;
@@ -53,12 +36,15 @@ class BooksByAuthor extends Modal {
         catch(error) {
             console.error(error);
         }
+
         return object;
     }
 
     async fetchBooks(index = 0) {
         const authors = this.authors;
         if (authors === '') return;
+
+        if (index > 0) index = index + maxResults;
 
         try {
             let preferences = localStorage.getItem('preferences');
@@ -77,8 +63,8 @@ class BooksByAuthor extends Modal {
 
                     try {
                         const bodyJson = JSON.parse(body);
-
                         if (bodyJson.totalItems > 0) {
+                            sessionStorage.setItem('booksByAuthorIndex', index);
                             sessionStorage.setItem('booksByAuthor', body);
                             $('#bookAuthorInfo').removeClass('hidden');
                         }
@@ -96,6 +82,31 @@ class BooksByAuthor extends Modal {
         catch(error) {
             console.error(error);
         }
+    }
+
+    sortBooksByTitle(books) {
+        const authors = this.authors;
+
+        return books.items.sort((a, b) => {
+            if (authors.includes(',')) {
+                const authorsA = a.volumeInfo.authors.join(',').toUpperCase();
+                const authorsUpperCase = authors.replace(', ', ',').toUpperCase();
+
+                if (authorsA.includes(authorsUpperCase)) return -1;
+            }
+
+            const titleA = a.volumeInfo.title.toUpperCase();
+            const titleB = b.volumeInfo.title.toUpperCase();
+
+            if (titleA < titleB) return -1;
+            if (titleA > titleB) return 1;
+            return 0;
+        });
+    }
+
+    async renderBookList(oldBooks) {
+        const books = new Books(oldBooks);
+        return await books.render();
     }
 }
 

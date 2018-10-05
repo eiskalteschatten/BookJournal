@@ -6,8 +6,9 @@ const $ = require('jquery');
 const helper = require('./helper');
 
 const preferencesTheme = require('../lib/preferences/theme');
-const PreferencesModal = require('../elements/modal/preferences');
 const changePreferences = require('../lib/preferences/change');
+const PreferencesModal = require('../elements/modal/preferences');
+const BooksByAuthor = require('../elements/modal/booksByAuthor');
 
 
 ipcRenderer.on('open-about', () => {
@@ -62,4 +63,26 @@ $(document).on('click', '#preferencesCheckForUpdates', function() {
     changePreferences({
         checkForUpdates: $(this).prop('checked')
     });
+});
+
+
+// Books By Author modal
+
+$(document).on('click', '#booksByAuthorShowMoreResults', async function() {
+    const $loader = $('#booksByAuthorShowMoreResultsLoader');
+    $loader.removeClass('invisible');
+
+    let index = sessionStorage.getItem('booksByAuthorIndex');
+    index = parseInt(index) + 1;
+
+    const authors = $('#bookAuthor').val();
+    const booksByAuthor = new BooksByAuthor(authors);
+    const books = await booksByAuthor.fetchBooks(index);
+
+    const sortedBooks = booksByAuthor.sortBooksByTitle(books);
+    const rendered = await booksByAuthor.renderBookList(sortedBooks);
+    $('#booksByAuthorBookListAnchor').append(rendered);
+
+    $loader.addClass('invisible');
+    // TODO: show/hide "Show more results" button
 });
