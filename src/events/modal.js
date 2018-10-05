@@ -72,17 +72,22 @@ $(document).on('click', '#booksByAuthorShowMoreResults', async function() {
     const $loader = $('#booksByAuthorShowMoreResultsLoader');
     $loader.removeClass('invisible');
 
-    let index = sessionStorage.getItem('booksByAuthorIndex');
-    index = parseInt(index) + 1;
+    let indexFactor = sessionStorage.getItem('booksByAuthorIndexFactor');
+    indexFactor = parseInt(indexFactor) + 1;
 
     const authors = $('#bookAuthor').val();
     const booksByAuthor = new BooksByAuthor(authors);
-    const books = await booksByAuthor.fetchBooks(index);
+    const books = await booksByAuthor.fetchBooks(indexFactor);
 
     const sortedBooks = booksByAuthor.sortBooksByTitle(books);
-    const rendered = await booksByAuthor.renderBookList(sortedBooks);
-    $('#booksByAuthorBookListAnchor').append(rendered);
+
+    if (sortedBooks.length === 0) {
+        $('#booksByAuthorShowMoreResultsWrapper').remove();
+    }
+    else {
+        const rendered = await booksByAuthor.renderBookList(sortedBooks);
+        $('#booksByAuthorBookListAnchor').append(rendered);
+    }
 
     $loader.addClass('invisible');
-    // TODO: show/hide "Show more results" button
 });

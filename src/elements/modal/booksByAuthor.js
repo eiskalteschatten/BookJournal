@@ -26,12 +26,14 @@ class BooksByAuthor extends Modal {
             let bookJson = sessionStorage.getItem('booksByAuthor');
             bookJson = JSON.parse(bookJson);
 
-            const oldBooks = this.sortBooksByTitle(bookJson);
-            object.bookList = await this.renderBookList(oldBooks);
-
-            object.totalItems = bookJson.totalItems;
-            object.showMoreResults = bookJson.totalItems > maxResults;
-            object.itemsLeft = bookJson.totalItems - maxResults;
+            if (bookJson.items) {
+                const oldBooks = this.sortBooksByTitle(bookJson);
+                object.bookList = await this.renderBookList(oldBooks);
+                object.showMoreResults = booksJson.totalItems > maxResults;
+            }
+            else {
+                object.showMoreResults = false;
+            }
         }
         catch(error) {
             console.error(error);
@@ -40,11 +42,11 @@ class BooksByAuthor extends Modal {
         return object;
     }
 
-    async fetchBooks(index = 0) {
+    async fetchBooks(indexFactor = 0) {
         const authors = this.authors;
         if (authors === '') return;
 
-        if (index > 0) index = index + maxResults;
+        const index = indexFactor > 0 ? (indexFactor * maxResults) + 1 : 0;
 
         try {
             let preferences = localStorage.getItem('preferences');
@@ -63,8 +65,10 @@ class BooksByAuthor extends Modal {
 
                     try {
                         const bodyJson = JSON.parse(body);
-                        if (bodyJson.totalItems > 0) {
-                            sessionStorage.setItem('booksByAuthorIndex', index);
+                        const totalItems = bodyJson.totalItems;
+
+                        if (totalItems > 0) {
+                            sessionStorage.setItem('booksByAuthorIndexFactor', indexFactor);
                             sessionStorage.setItem('booksByAuthor', body);
                             $('#bookAuthorInfo').removeClass('hidden');
                         }
@@ -86,6 +90,8 @@ class BooksByAuthor extends Modal {
 
     sortBooksByTitle(books) {
         const authors = this.authors;
+
+        if (!books.items) return [];
 
         return books.items.sort((a, b) => {
             if (authors.includes(',')) {

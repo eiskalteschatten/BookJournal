@@ -11,7 +11,7 @@
             {{ bookList | safe }}
         </div>
 
-        <div class="row show-more-results {% if showMoreResults == false %}hidden{% endif %}">
+        <div class="row show-more-results {% if showMoreResults == false %}hidden{% endif %}" id="booksByAuthorShowMoreResultsWrapper">
             <div class="col-md-12 align-center">
                 <div class="loading inline invisible float-right" id="booksByAuthorShowMoreResultsLoader"></div>
                 <a href="#" id="booksByAuthorShowMoreResults">Show more results</a>
