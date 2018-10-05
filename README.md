@@ -11,6 +11,7 @@ A digital book journal.
 - Fix bug where 16/09/1887 is sometimes shown in the date started field
 - Fix bug where there is an error when no database exists instead of just creating one
 - Sort books by date added and date updated
+- If there are no books read, the statics page should say that instead of just "spinning" the whole time
 - Popup with other works by an author
   - Indication of read or not read
   - Checkbox in preferences to turn it on or off
