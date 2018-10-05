@@ -5,7 +5,7 @@ const fs = require('fs');
 
 const nunjucks = require('../../nunjucks');
 const ListElement = require('../listElement');
-const config = require('../../config/config');
+const bookcoverHelper = require('../../lib/bookcover');
 
 
 class BookListElement extends ListElement {
@@ -38,7 +38,7 @@ class BookListElement extends ListElement {
         const object = this.book;
 
         if (object.bookcover)
-            object.bookcoverPath = path.join(config.bookcovers.path, object.bookcover);
+            object.bookcoverPath = bookcoverHelper.pruneCoverPath(object.bookcover);
 
         object.classes = this.classes;
         object.subtitle = await this.determineSubtitle();

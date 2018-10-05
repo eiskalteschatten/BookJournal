@@ -11,6 +11,7 @@ const request = require('request');
 const nunjucks = require('../nunjucks');
 const config = require('../config/config');
 const BooksByAuthor = require('../elements/modal/booksByAuthor');
+const bookcoverHelper = require('../lib/bookcover');
 
 const Book = require('../models/book');
 const Category = require('../models/category');
@@ -93,7 +94,7 @@ class BookForm {
             book = await Book.findById(this.id);
 
             if (book.bookcover)
-                book.bookcoverPath = path.join(config.bookcovers.path, book.bookcover);
+                book.bookcoverPath = bookcoverHelper.pruneCoverPath(book.bookcover);
 
             if (book.tags)
                 book.tagArray = book.tags.split(',');
@@ -212,7 +213,7 @@ class BookForm {
                 if (error) reject(error);
                 resolve({
                     fileName: newFileName,
-                    filePath: newImagePath
+                    filePath: bookcoverHelper.pruneCoverPath(newFileName)
                 });
             });
         }).catch(error => {
