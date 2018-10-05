@@ -25,8 +25,11 @@ class BookByAuthor {
             let bookHtml = '';
 
             for (const book of books) {
+                const authors = book.volumeInfo.authors ? book.volumeInfo.authors.join(', ') : '';
+
                 bookHtml += nunjucks.renderString(templateString, {
-                    book
+                    book,
+                    authors
                 });
             }
 

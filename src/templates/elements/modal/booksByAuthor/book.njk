@@ -7,7 +7,7 @@
     <div class="col-md-10">
         <div class="book-info">
             <h3 class="title">{{ book.volumeInfo.title }}</h3>
-            <div class="authors">{{ book.volumeInfo.authors | join(', ') }}</div>
+            <div class="authors">{{ authors }}</div>
             <div class="description">{{ book.volumeInfo.description | truncate(300) }}</div>
 
             <div class="row">
