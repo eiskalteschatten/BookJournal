@@ -45,6 +45,9 @@ class Statistics {
 
     async calculateStatistics() {
         const allDatesRead = await this.getAllDatesRead();
+
+        if (Object.keys(allDatesRead).length === 0) return { noResults: true };
+
         const sortedYears = this.sortedYears(allDatesRead);
         const latestYear = sortedYears[0];
         const oldestYearIndex = defaultNumberOfYears - 1;

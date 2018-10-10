@@ -37,12 +37,17 @@ async function renderBookPageCountMonthYear(counts, allDatesRead) {
     );
 }
 
-ipcRenderer.on('statistics-render-page-book-count-year', async (event, countsYearObj, allDatesRead) => {
-    await renderBookPageCountYear(countsYearObj, allDatesRead);
+ipcRenderer.on('statistics-no-results', async () => {
+    $('.js-statistics-hide-no-results').addClass('hidden');
+    $('#statisticsNoResults').removeClass('hidden');
 });
 
 ipcRenderer.on('statistics-render-page-book-count-month-year', async (event, counts, allDatesRead) => {
     await renderBookPageCountMonthYear(counts, allDatesRead);
+});
+
+ipcRenderer.on('statistics-render-page-book-count-year', async (event, countsYearObj, allDatesRead) => {
+    await renderBookPageCountYear(countsYearObj, allDatesRead);
 });
 
 $(document).on('change', '#statisticsChangeFirstYearRange, #statisticsChangeSecondYearRange', async function() {
