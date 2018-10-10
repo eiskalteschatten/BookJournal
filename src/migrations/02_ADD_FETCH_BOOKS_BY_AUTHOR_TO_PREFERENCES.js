@@ -20,12 +20,22 @@ module.exports = {
             }
         );
 
-        return query.addColumn(
+        await query.sequelize.query(
+            'UPDATE "preferences" SET fetchBooksByAuthor = TRUE;',
+            { raw: true }
+        );
+
+        await query.addColumn(
             'preferences', 'fetchBooksByAuthorLanguage',
             DataTypes.STRING,
             {
                 allowNull: false
             }
+        );
+
+        return await query.sequelize.query(
+            'UPDATE "preferences" SET fetchBooksByAuthorLanguage = "en";',
+            { raw: true }
         );
     },
 
