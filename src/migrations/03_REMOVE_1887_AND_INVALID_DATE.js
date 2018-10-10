@@ -2,6 +2,16 @@
 
 module.exports = {
     up: async query => {
+        try {
+            const books = await query.describeTable('books');
+            if (!books) return Promise.resolve();
+        }
+        catch(error) {
+            // Silently fail because the table doesn't exist and will be
+            // created later
+            return Promise.resolve();
+        }
+
         await query.sequelize.query(
             'UPDATE "books" SET dateStarted = NULL where dateStarted LIKE "1887%" OR dateStarted LIKE "Invalid%";',
             { raw: true }
