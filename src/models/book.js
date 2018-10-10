@@ -126,17 +126,11 @@ Book.getHasBeenRead = async function(title, authors, isbns) {
                 {
                     title: { $like: `%${title}%` },
                     author: { $like: `%${authors}%` },
-                    notReadYet: false,
-                    $and: [
-                        Sequelize.where(Sequelize.fn('strftime', '%Y', Sequelize.col('dateRead')), { $not: '1887' })
-                    ]
+                    notReadYet: false
                 },
                 {
                     isbn: isbns,
-                    notReadYet: false,
-                    $and: [
-                        Sequelize.where(Sequelize.fn('strftime', '%Y', Sequelize.col('dateRead')), { $not: '1887' })
-                    ]
+                    notReadYet: false
                 }
             ]
         }

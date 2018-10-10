@@ -60,15 +60,15 @@ class BookListElement extends ListElement {
                 break;
             case 'dateRead':
                 const dateRead = new Date(book.dateRead);
-                subtitle = (book.dateRead && dateRead.getFullYear() !== 1887) ? `Finished on ${dateRead.toLocaleDateString()}` : '';
+                subtitle = book.dateRead? `Finished on ${dateRead.toLocaleDateString()}` : '';
                 break;
             case 'createdAt':
                 const createdAt = new Date(book.createdAt);
-                subtitle = (book.createdAt && createdAt.getFullYear() !== 1887) ? `Added on ${createdAt.toLocaleDateString()}` : '';
+                subtitle = book.createdAt ? `Added on ${createdAt.toLocaleDateString()}` : '';
                 break;
             case 'updatedAt':
                 const updatedAt = new Date(book.updatedAt);
-                subtitle = (book.updatedAt && updatedAt.getFullYear() !== 1887) ? `Updated on ${updatedAt.toLocaleDateString()}` : '';
+                subtitle = book.updatedAt ? `Updated on ${updatedAt.toLocaleDateString()}` : '';
                 break;
             case 'pageCount':
                 const label = book.pageCount > 1 ? `${book.pageCount} pages` :  `${book.pageCount} page`;

@@ -16,8 +16,6 @@ const bookcoverHelper = require('../lib/bookcover');
 const Book = require('../models/book');
 const Category = require('../models/category');
 
-const dummyDate = '1887-09-16';
-
 const bookFormMap = {
     bookBookcoverId: 'id',
     bookTitle: 'title',
@@ -58,12 +56,6 @@ class BookForm {
             const newKey = bookFormMap[formId];
             formData[newKey] = oldFormData[formId];
         }
-
-        if (formData.dateStarted === '')
-            formData.dateStarted = new Date(dummyDate);
-
-        if (formData.dateRead === '')
-            formData.dateRead = new Date(dummyDate);
 
         try {
             if (id === '') {
@@ -120,12 +112,6 @@ class BookForm {
                     return (index1 <= book.rating) ? 'full' : element;
                 });
             }
-
-            if (book.dateStarted === dummyDate)
-                book.dateStarted = '';
-
-            if (book.dateRead === dummyDate)
-                book.dateRead = '';
         }
 
         book.ratingClasses = ratingClasses;

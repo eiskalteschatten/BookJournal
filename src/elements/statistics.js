@@ -72,7 +72,7 @@ class Statistics {
             const year = dateObj.getFullYear();
             const month = dateObj.getMonth();
 
-            if (year === 1887 || isNaN(year)) continue;
+            if (isNaN(year)) continue;
 
             if (!Array.isArray(allDatesRead[year]))
                 allDatesRead[year] = [];

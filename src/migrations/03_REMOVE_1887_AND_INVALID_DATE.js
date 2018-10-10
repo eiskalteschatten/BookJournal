@@ -1,0 +1,27 @@
+'use strict';
+
+module.exports = {
+    up: async query => {
+        await query.sequelize.query(
+            'UPDATE "books" SET dateStarted = NULL where dateStarted LIKE "1887%" OR dateStarted LIKE "Invalid%";',
+            { raw: true }
+        );
+
+        return await query.sequelize.query(
+            'UPDATE "books" SET dateRead = NULL where dateRead LIKE "1887%" OR dateRead LIKE "Invalid%";',
+            { raw: true }
+        );
+    },
+
+    down: async query => {
+        await query.sequelize.query(
+            'UPDATE "books" SET dateStarted = "1887-09-16" where dateStarted is NULL;',
+            { raw: true }
+        );
+
+        return await query.sequelize.query(
+            'UPDATE "books" SET dateRead = "1887-09-16" where dateRead is NULL;',
+            { raw: true }
+        );
+    }
+};
