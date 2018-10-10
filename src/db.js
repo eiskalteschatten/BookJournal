@@ -10,7 +10,7 @@ const dbPath = config.path;
 const dbFile = path.join(dbPath, config.fileName);
 
 if (!fs.existsSync(dbPath)) {
-    mkdirp(dbPath);
+    mkdirp.sync(dbPath);
 }
 
 

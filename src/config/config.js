@@ -2,6 +2,8 @@
 
 const path = require('path');
 const os = require('os');
+const fs = require('fs');
+const mkdirp = require('mkdirp');
 
 const env = process.env.NODE_ENV;
 
@@ -21,6 +23,10 @@ switch(process.platform) {
     default:
         storagePath = path.join(os.homedir(), '.bookjournal');
         break;
+}
+
+if (!fs.existsSync(storagePath)) {
+    mkdirp.sync(storagePath);
 }
 
 console.log('Application data is saved at:', storagePath);
