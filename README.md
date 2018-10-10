@@ -5,6 +5,7 @@ A digital book journal.
 ## Release Notes
 
 ### 0.5.0
+- Fix bug where weird years show up in the statistics even though they don't exist in the database
 - Print a book
 - Export book as PDF
 - Frontend refinements
