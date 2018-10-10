@@ -65,7 +65,7 @@
     "license": "",
     "devDependencies": {
         "compile-sass": "0.0.5",
-        "electron": "^2.0.11",
+        "electron": "^3.0.3",
         "electron-builder": "^20.28.4",
         "eslint": "^4.19.1",
         "eslint-plugin-promise": "^3.8.0",
