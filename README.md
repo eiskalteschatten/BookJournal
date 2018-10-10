@@ -4,6 +4,16 @@ A digital book journal.
 
 ## Release Notes
 
+### 0.5.0
+- Print a book
+- Export book as PDF
+- Frontend refinements
+    - Transparency
+    - Modals that can be closed by clicking on the background behind them
+    - Animations
+    - Books by Author and Preferences popups have "titlebars" that don't scroll away
+- Update to Electron 3
+
 ### 0.4.0
 - If NODE_ENV exists and === 'development', use developer DB
 - Fix crash when changing book colors (change color, then change again using the same color inspector window)
@@ -41,16 +51,6 @@ A digital book journal.
 
 
 ## Roadmap
-
-### 0.5.0
-- Print a book
-- Export book as PDF
-- Frontend refinements
-    - Transparency
-    - Modals that can be closed by clicking on the background behind them
-    - Animations
-    - Books by Author and Preferences popups have "titlebars" that don't scroll away
-- Update to Electron 3
 
 ### 0.6.0
 - Find new source for high-resolution book covers
