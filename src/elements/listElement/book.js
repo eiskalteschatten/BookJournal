@@ -58,6 +58,10 @@ class BookListElement extends ListElement {
             case 'notReadYet':
                 subtitle = book.notReadYet ? 'Not Read Yet' : `Finished on ${dateRead.toLocaleDateString()}`;
                 break;
+            case 'dateStarted':
+                const dateStarted = new Date(book.dateStarted);
+                subtitle = book.dateStarted? `Started on ${dateStarted.toLocaleDateString()}` : '';
+                break;
             case 'dateRead':
                 const dateRead = new Date(book.dateRead);
                 subtitle = book.dateRead? `Finished on ${dateRead.toLocaleDateString()}` : '';

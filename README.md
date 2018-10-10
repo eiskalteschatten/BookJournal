@@ -10,7 +10,7 @@ A digital book journal.
 - Fix bug where bookcovers are not automatically added after fetching book info from Google Books
 - Fix bug where 16/09/1887 is sometimes shown in the date started field
 - Fix bug where there is an error when no database exists instead of just creating one
-- Sort books by date added and date updated
+- Sort books by date added, date started and date updated
 - If there are no books read, the statics page should say that instead of just "spinning" the whole time
 - Popup with other works by an author
   - Indication of read or not read
