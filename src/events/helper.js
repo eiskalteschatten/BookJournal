@@ -109,11 +109,19 @@ function switchCss(id) {
 
 function openModal(id) {
     const $modalContainer = $('#modalContainer');
+    const $modal = $(`#${id}`);
 
     if (!$modalContainer.hasClass('hidden')) return;
 
     $modalContainer.removeClass('hidden');
-    $(`#${id}`).removeClass('hidden');
+    $modal.removeClass('hidden');
+
+    setTimeout(() => {
+        $modalContainer.addClass('open');
+        setTimeout(() => {
+            $modal.addClass('open');
+        }, 100);
+    }, 100);
 
     $(document).keydown(function(e) {
         if (e.keyCode === 27) closeModal(id);
@@ -121,8 +129,16 @@ function openModal(id) {
 }
 
 function closeModal(id) {
-    $('#modalContainer').addClass('hidden');
-    $(`#${id}`).addClass('hidden');
+    const $modalContainer = $('#modalContainer');
+    const $modal = $(`#${id}`);
+    $modal.removeClass('open');
+    $modalContainer.removeClass('open');
+
+    setTimeout(() => {
+        $modal.addClass('hidden');
+        $modalContainer.addClass('hidden');
+    }, 400);
+
     $(document).unbind('keydown');
 }
 

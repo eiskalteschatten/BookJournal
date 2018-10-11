@@ -28,7 +28,11 @@ function closeModal($modal) {
     const id = $modal.attr('id');
     helper.closeModal(id);
 
-    if (id === 'preferencesModal') $modal.remove();
+    if (id === 'preferencesModal') {
+        setTimeout(() => {
+            $modal.remove();
+        }, 200);
+    }
 }
 
 $(document).on('click', '.js-modal-close', function() {
