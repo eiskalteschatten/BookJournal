@@ -62,7 +62,13 @@ class Statistics {
 
     async getAllDatesRead() {
         const datesReadResults = await Book.findAll({
-            attributes: ['dateRead']
+            attributes: ['dateRead'],
+            where: {
+                dateRead: {
+                    $ne: null,
+                    $not: { $like: 'Invalid%' }
+                }
+            }
         });
 
         const allDatesRead = {};
