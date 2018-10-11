@@ -14,7 +14,7 @@ A digital book journal.
     - [ ] Transparency
     - [x] Modals that can be closed by clicking on the background behind them
     - [ ] Animations
-    - [ ] Books by Author and Preferences popups have "titlebars" that don't scroll away
+    - [x] Books by Author and Preferences modals have "titlebars" that don't scroll away
 - [x] Update to Electron 3
 
 ### 0.4.0

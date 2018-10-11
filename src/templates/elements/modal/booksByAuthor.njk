@@ -2,11 +2,9 @@
 
 {% block body %}
 
-    <div class="container-fluid">
-        <div class="row">
-            <h2 class="modal-title">Books by {{ authors }}</h2>
-        </div>
+    <h2 class="modal-title">Books by {{ authors }}</h2>
 
+    <div class="modal-scroll">
         <div id="booksByAuthorBookListAnchor">
             {{ bookList | safe }}
         </div>

@@ -15,9 +15,12 @@
         background: $mainBg;
         border-radius: 5px;
         box-shadow: 0 0 25px $boxShadowColor;
+        display: flex;
+        flex: 0 0 auto;
+        flex-direction: column;
         left: 50%;
         max-height: 90%;
-        overflow: auto;
+        overflow: hidden;
         padding: 25px;
         position: absolute;
         top: 50%;
@@ -25,6 +28,7 @@
         z-index: 1000;
 
         .modal-title {
+            flex: 0 0 auto;
             margin-top: 0;
         }
 
@@ -39,6 +43,11 @@
             right: 10px;
             top: 10px;
             width: $size;
+        }
+
+        .modal-scroll {
+            flex: 1 1 auto;
+            overflow: auto;
         }
 
         .modal-header {
