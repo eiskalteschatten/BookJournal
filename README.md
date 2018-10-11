@@ -8,6 +8,7 @@ A digital book journal.
 - [x] Fix bug where weird years show up in the statistics even though they don't exist in the database
 - [x] Fix bug where multiple modals open after a modal has been closed by clicking on the background
 - [ ] Fix bug where bookcovers are not automatically added after fetching book info from Google Books
+- [ ] Fix horizontal scrollbar in modals and the bookform column
 - [ ] Print a book
 - [ ] Export book as PDF
 - [ ] Frontend refinements
