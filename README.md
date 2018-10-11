@@ -6,7 +6,7 @@ A digital book journal.
 
 ### 0.5.0
 - [x] Fix bug where weird years show up in the statistics even though they don't exist in the database
-- [ ] Fix bug where multiple modals open after a modal has been closed by clicking on the background
+- [x] Fix bug where multiple modals open after a modal has been closed by clicking on the background
 - [ ] Print a book
 - [ ] Export book as PDF
 - [ ] Frontend refinements

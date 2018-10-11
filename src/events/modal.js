@@ -38,7 +38,7 @@ $(document).on('click', '.js-modal-close', function() {
 
 $(document).on('click', '#modalContainer', function(e) {
     if(!$('#modalAnchor').has(e.target).length) {
-        const $modal = $(this).closest('.js-modal');
+        const $modal = $(this).find('.js-modal:not(.hidden)');
         closeModal($modal);
     }
 });
