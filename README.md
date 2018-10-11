@@ -10,7 +10,7 @@ A digital book journal.
 - [ ] Export book as PDF
 - [ ] Frontend refinements
     - [ ] Transparency
-    - [ ] Modals that can be closed by clicking on the background behind them
+    - [x] Modals that can be closed by clicking on the background behind them
     - [ ] Animations
     - [ ] Books by Author and Preferences popups have "titlebars" that don't scroll away
 - [x] Update to Electron 3

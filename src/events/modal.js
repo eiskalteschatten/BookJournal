@@ -24,14 +24,24 @@ ipcRenderer.on('open-preferences', async () => {
     helper.openModal('preferencesModal');
 });
 
-$(document).on('click', '.js-modal-close', function() {
-    const $modal = $(this).closest('.js-modal');
+function closeModal($modal) {
     const id = $modal.attr('id');
     helper.closeModal(id);
 
     if (id === 'preferencesModal') $modal.remove();
+}
+
+$(document).on('click', '.js-modal-close', function() {
+    const $modal = $(this).closest('.js-modal');
+    closeModal($modal);
 });
 
+$(document).on('click', '#modalContainer', function(e) {
+    if(!$('#modalAnchor').has(e.target).length) {
+        const $modal = $(this).closest('.js-modal');
+        closeModal($modal);
+    }
+});
 
 
 // Preferences Modal
