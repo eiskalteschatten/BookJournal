@@ -223,7 +223,13 @@ class BookForm {
     }
 
     async afterRender() {
-        $('#bookFormWrapper').addClass('form-displayed');
+        const $wrapper = $('#bookFormWrapper');
+
+        if (!$wrapper.hasClass('form-displayed')) {
+            setTimeout(() => {
+                $wrapper.addClass('form-displayed');
+            }, 100);
+        }
 
         const authors = $('#bookAuthor').val();
         const booksByAuthor = new BooksByAuthor(authors);
