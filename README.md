@@ -9,6 +9,7 @@ A digital book journal.
 - [x] Fix bug where multiple modals open after a modal has been closed by clicking on the background
 - [ ] Fix bug where bookcovers are not automatically added after fetching book info from Google Books
 - [ ] Fix horizontal scrollbar in modals and the bookform column
+- [ ] Fix bug in books by author modal where it says "Read on Invalid Date"
 - [ ] Print a book
 - [ ] Export book as PDF
 - [ ] Frontend refinements
