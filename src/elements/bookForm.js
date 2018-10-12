@@ -7,6 +7,7 @@ const fs = require('fs');
 const mkdirp = require('mkdirp');
 const uuidv4 = require('uuid/v4');
 const request = require('request');
+const TinyDatePicker = require('tiny-date-picker');
 
 const nunjucks = require('../nunjucks');
 const config = require('../config/config');
@@ -80,13 +81,19 @@ class BookForm {
     async render() {
         const categories = await Category.getAllSorted();
         let ratingClasses = ['empty', 'empty', 'empty', 'empty', 'empty'];
-        let book = [];
+        let book = {};
 
         if (this.id) {
-            book = await Book.findById(this.id);
+            book = await Book.findById(this.id, { raw: true });
 
             if (book.bookcover)
                 book.bookcoverPath = bookcoverHelper.pruneCoverPath(book.bookcover);
+
+            if (book.dateStarted)
+                book.dateStarted = this.formatDate(book.dateStarted);
+
+            if (book.dateRead)
+                book.dateRead = this.formatDate(book.dateRead);
 
             if (book.tags)
                 book.tagArray = book.tags.split(',');
@@ -231,6 +238,16 @@ class BookForm {
             }, 100);
         }
 
+        const datePickerOptions = {
+            mode: 'dp-below'
+        };
+
+        const dateStarted = document.getElementById('bookDateStarted');
+        TinyDatePicker(dateStarted, datePickerOptions);
+
+        const dateRead = document.getElementById('bookDateRead');
+        TinyDatePicker(dateRead, datePickerOptions);
+
         const authors = $('#bookAuthor').val();
         const booksByAuthor = new BooksByAuthor(authors);
         booksByAuthor.fetchBooks();
@@ -254,6 +271,15 @@ class BookForm {
         }).catch(error => {
             console.error(error);
         });
+    }
+
+    formatDate(date) {
+        if (date !== 'Invalid date') {
+            const dateObj = new Date(date);
+            return date !== 'Invalid date' ? dateObj.toLocaleDateString() : '';
+        }
+
+        return '';
     }
 }
 

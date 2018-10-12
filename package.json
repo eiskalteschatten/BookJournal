@@ -81,6 +81,7 @@
         "popper.js": "^1.14.4",
         "sequelize": "^4.39.0",
         "sqlite3": "^4.0.2",
+        "tiny-date-picker": "^3.2.6",
         "umzug": "^2.1.0",
         "uuid": "^3.3.2"
     }
