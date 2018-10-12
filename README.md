@@ -15,7 +15,7 @@ A digital book journal.
 - [ ] Frontend refinements
     - [ ] Transparency
     - [x] Modals that can be closed by clicking on the background behind them
-    - [ ] Animations
+    - [x] Animations
     - [x] Books by Author and Preferences modals have "titlebars" that don't scroll away
 - [x] Update to Electron 3
 
