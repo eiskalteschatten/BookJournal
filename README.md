@@ -12,8 +12,7 @@ A digital book journal.
 - [ ] Fix bug in books by author modal where it says "Read on Invalid Date"
 - [ ] Print a book
 - [ ] Export book as PDF
-- [ ] Frontend refinements
-    - [ ] Transparency
+- [x] Frontend refinements
     - [x] Modals that can be closed by clicking on the background behind them
     - [x] Animations
     - [x] Books by Author and Preferences modals have "titlebars" that don't scroll away
