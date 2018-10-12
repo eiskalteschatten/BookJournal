@@ -129,7 +129,7 @@ Book.getHasBeenRead = async function(title, authors, isbns) {
                     notReadYet: false,
                     dateRead: {
                         $ne: null,
-                        $not: { $like: 'Invalid%' }
+                        $notLike: 'Invalid%'
                     }
                 },
                 {
@@ -137,7 +137,7 @@ Book.getHasBeenRead = async function(title, authors, isbns) {
                     notReadYet: false,
                     dateRead: {
                         $ne: null,
-                        $not: { $like: 'Invalid%' }
+                        $notLike: 'Invalid%'
                     }
                 }
             ]

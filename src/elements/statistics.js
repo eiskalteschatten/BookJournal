@@ -66,7 +66,7 @@ class Statistics {
             where: {
                 dateRead: {
                     $ne: null,
-                    $not: { $like: 'Invalid%' }
+                    $notLike: 'Invalid%'
                 }
             }
         });
