@@ -1,6 +1,7 @@
 'use strict';
 
-const dialog = require('electron').remote.dialog;
+const {remote} = require('electron');
+const dialog = remote.dialog;
 const $ = require('jquery');
 const path = require('path');
 const fs = require('fs');
@@ -8,6 +9,7 @@ const mkdirp = require('mkdirp');
 const uuidv4 = require('uuid/v4');
 const request = require('request');
 const TinyDatePicker = require('tiny-date-picker');
+const moment = require('moment');
 
 const nunjucks = require('../nunjucks');
 const config = require('../config/config');
@@ -239,6 +241,24 @@ class BookForm {
         }
 
         const datePickerOptions = {
+            format(date) {
+                // console.log("format", date);
+                // console.log("format toLocaleDateString", date.toLocaleDateString());
+                return date.toLocaleDateString();
+            },
+            parse(string) {
+                // console.log("parse str", string);
+                if (string !== '') {
+                    moment.locale(window.navigator.languages);
+                    const date = moment(string);
+                    // date.format('YYYY-MM-DD');
+
+                    // console.log("parse", date.toDate());
+                    return date.toDate().toLocaleDateString();
+                }
+
+                return new Date();
+            },
             mode: 'dp-below'
         };
 

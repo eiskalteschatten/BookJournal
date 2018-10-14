@@ -8,6 +8,7 @@ const fs = require('fs');
 const path = require('path');
 const mkdirp = require('mkdirp');
 const allLanguages = require('iso-639-1');
+const moment = require('moment');
 
 const config = require('../config/config');
 
@@ -90,6 +91,14 @@ async function saveBook() {
             if ($this.is('#bookIsbn')) {
                 value = value.replace(/[^0-9]/g, '');
                 $this.val(value);
+            }
+
+            if ($this.is('.js-book-form-date-field')) {
+                // console.log("value before",value);
+                moment.locale(window.navigator.languages);
+                const date = moment(value);
+                value = date.isValid() ? date.format('YYYY-MM-DD') : '';
+                // console.log("value",value);
             }
 
             formData[$this.attr('id')] = value;
