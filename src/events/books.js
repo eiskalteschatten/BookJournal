@@ -94,11 +94,8 @@ async function saveBook() {
             }
 
             if ($this.is('.js-book-form-date-field')) {
-                // console.log("value before",value);
-                moment.locale(window.navigator.languages);
-                const date = moment(value);
+                const date = moment(value, 'L', window.navigator.languages);
                 value = date.isValid() ? date.format('YYYY-MM-DD') : '';
-                // console.log("value",value);
             }
 
             formData[$this.attr('id')] = value;

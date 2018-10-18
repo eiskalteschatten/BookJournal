@@ -242,19 +242,13 @@ class BookForm {
 
         const datePickerOptions = {
             format(date) {
-                // console.log("format", date);
-                // console.log("format toLocaleDateString", date.toLocaleDateString());
                 return date.toLocaleDateString();
             },
             parse(string) {
-                // console.log("parse str", string);
                 if (string !== '') {
-                    moment.locale(window.navigator.languages);
-                    const date = moment(string);
-                    // date.format('YYYY-MM-DD');
-
-                    // console.log("parse", date.toDate());
-                    return date.toDate().toLocaleDateString();
+                    const date = moment(string, 'L', window.navigator.languages);
+                    date.format('YYYY-MM-DD');
+                    return date.toDate();
                 }
 
                 return new Date();
