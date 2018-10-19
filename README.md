@@ -12,11 +12,11 @@ A digital book journal.
 - [x] Fix bug in books by author modal where it says "Read on Invalid Date"
 - [ ] Print a book
 - [ ] Export book as PDF
-- [ ] Frontend refinements
+- [x] Frontend refinements
     - [x] Modals that can be closed by clicking on the background behind them
     - [x] Animations
     - [x] Books by Author and Preferences modals have "titlebars" that don't scroll away
-    - [ ] New datepicker
+    - [x] New datepicker
 - [x] Update to Electron 3
 
 ### 0.4.0

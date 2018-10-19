@@ -72,3 +72,13 @@ $ratingStarsEmpty: '../images/dark/star-empty.svg';
 $ratingStarsRemove: '../images/si-glyph-trash.svg';
 
 $statisticsCellBorderColor: darken($mainFontColor, 50%);
+
+$datepickerModalBg: rgba(0, 0, 0, .75);
+$datepickerBg: $mainBg;
+$datepickerBeforeBg: #026397;
+$datepickerHeaderBg: lighten($datepickerBg, 3%);
+$datepickerButtonHoverBg: #4c768d;
+$datepickerButtonHoverColor: $mainFontColor;
+$datepickerSelectedBg: $datepickerBeforeBg;
+$datepickerSelectedColor: $datepickerButtonHoverColor;
+$datepickerFooterBg: $datepickerHeaderBg;
