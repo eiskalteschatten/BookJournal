@@ -4,16 +4,17 @@
     "description": "A digital book journal.",
     "main": "./src/main.js",
     "scripts": {
-        "prestart": "node ./src/build.js",
+        "build": "node ./build-scripts/build.js",
+        "prestart": "npm run build",
         "start": "NODE_ENV=development electron .",
-        "prestart:prod": "node ./src/build.js",
+        "prestart:prod": "npm run build",
         "start:prod": "electron .",
         "test": "npm run lint",
         "lint": "./node_modules/.bin/eslint .",
         "postinstall": "install-app-deps",
-        "prepack": "node -e 'require(\"./src/build\")()'",
+        "prepack": "npm run build",
         "pack": "electron-builder --dir",
-        "predist": "node -e 'require(\"./src/build\")()'",
+        "predist": "npm run build",
         "dist": "electron-builder"
     },
     "build": {
