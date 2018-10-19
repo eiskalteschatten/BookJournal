@@ -10,7 +10,6 @@
         "start:prod": "electron .",
         "test": "npm run lint",
         "lint": "./node_modules/.bin/eslint .",
-        "precommit": "npm test",
         "postinstall": "install-app-deps",
         "prepack": "node -e 'require(\"./src/build\")()'",
         "pack": "electron-builder --dir",
@@ -86,5 +85,10 @@
         "tiny-date-picker": "^3.2.6",
         "umzug": "^2.1.0",
         "uuid": "^3.3.2"
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "npm test"
+        }
     }
 }
