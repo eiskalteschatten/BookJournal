@@ -74,7 +74,6 @@
     "dependencies": {
         "bootstrap": "^4.1.1",
         "chart.js": "^2.7.3",
-        "html-pdf": "^2.2.0",
         "iso-639-1": "^2.0.3",
         "jquery": "^3.3.1",
         "mkdirp": "^0.5.1",

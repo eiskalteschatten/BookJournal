@@ -10,8 +10,6 @@ A digital book journal.
 - [ ] Fix bug where bookcovers are not automatically added after fetching book info from Google Books
 - [x] Fix horizontal scrollbar in modals and the bookform column
 - [x] Fix bug in books by author modal where it says "Read on Invalid Date"
-- [ ] Print a book
-- [ ] Export book as PDF
 - [x] Frontend refinements
     - [x] Modals that can be closed by clicking on the background behind them
     - [x] Animations
@@ -58,6 +56,8 @@ A digital book journal.
 ## Roadmap
 
 ### 0.6.0
+- [ ] Print a book
+- [ ] Export book as PDF - https://www.npmjs.com/package/html-pdf
 - [ ] Find new source for high-resolution book covers
 - [ ] "Currently Reading" checkbox
 - [ ] Book type field: eBook, Paperback, Hardback, etc
