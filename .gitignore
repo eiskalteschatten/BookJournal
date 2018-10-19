@@ -9,4 +9,3 @@ src/assets/css
 dist
 
 .build-cache
-src/mainSnapshot.js
