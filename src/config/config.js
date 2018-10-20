@@ -25,6 +25,10 @@ switch(process.platform) {
         break;
 }
 
+if (!fs.existsSync(tempStoragePath)) {
+    mkdirp.sync(tempStoragePath);
+}
+
 if (!fs.existsSync(storagePath)) {
     mkdirp.sync(storagePath);
 }

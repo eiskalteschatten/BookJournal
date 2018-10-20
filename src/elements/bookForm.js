@@ -194,7 +194,7 @@ class BookForm {
             const newFileName = `${uuid}.${extension}`;
             const newImagePath = path.join(bookcoverConfig.path, newFileName);
 
-            mkdirp(bookcoverConfig.path);
+            mkdirp.sync(bookcoverConfig.path);
 
             if (bookcoverExtensions.indexOf(extension) <= -1) {
                 const extensionsString = bookcoverExtensions.join(', ');
