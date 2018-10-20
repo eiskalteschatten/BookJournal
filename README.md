@@ -62,6 +62,7 @@ A digital book journal.
 - [ ] "Currently Reading" checkbox
 - [ ] Book type field: eBook, Paperback, Hardback, etc
 - [ ] Choose book color automatically based on the primary color of the bookcover when the bookcover changes and no color is already set
+- [ ] Move saved window status (size, position, maximized, etc) to a separate JSON file
 
 ### 0.7.0
 - [ ] Multiple languages (initially English, German, French, Spanish)
@@ -69,18 +70,18 @@ A digital book journal.
 - [ ] Check for duplicate books (based on title, author, ISBN)
 - [ ] Automatically select dark or light theme on macOS depending on if the system is in dark mode or not. The user's preferences override this setting.
 
-### 1.0
+### 1.0.0
 - [ ] Apple and Microsoft certificates
 - [ ] Auto-update with Squirrel
 - [ ] Mac App Store version
 - [ ] Webcam-scanning of bar codes
 
-### 1.1
+### 1.1.0
 - [ ] MacBook Touchbar
 - [ ] Expand reading statistics (see [Notes.md](Notes.md))
 - [ ] Search for book info using other fields (title, author, etc)
 
-### 1.2
+### 1.2.0
 - [ ] Reading goals
 - [ ] Book discovery and recommnded books
 - [ ] Popup with other works by an author
