@@ -4,6 +4,15 @@ A digital book journal.
 
 ## Release Notes
 
+### 0.6.0
+- [ ] Print a book
+- [ ] Export book as PDF - https://www.npmjs.com/package/html-pdf
+- [ ] Find new source for high-resolution book covers
+- [ ] "Currently Reading" checkbox
+- [ ] Book type field: eBook, Paperback, Hardback, etc
+- [ ] Choose book color automatically based on the primary color of the bookcover when the bookcover changes and no color is already set
+- [ ] Move saved window status (size, position, maximized, etc) to a separate JSON file
+
 ### 0.5.0
 - [x] Fix bug where weird years show up in the statistics even though they don't exist in the database
 - [x] Fix bug where multiple modals open after a modal has been closed by clicking on the background
@@ -54,15 +63,6 @@ A digital book journal.
 
 
 ## Roadmap
-
-### 0.6.0
-- [ ] Print a book
-- [ ] Export book as PDF - https://www.npmjs.com/package/html-pdf
-- [ ] Find new source for high-resolution book covers
-- [ ] "Currently Reading" checkbox
-- [ ] Book type field: eBook, Paperback, Hardback, etc
-- [ ] Choose book color automatically based on the primary color of the bookcover when the bookcover changes and no color is already set
-- [ ] Move saved window status (size, position, maximized, etc) to a separate JSON file
 
 ### 0.7.0
 - [ ] Multiple languages (initially English, German, French, Spanish)
