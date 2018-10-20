@@ -5,13 +5,13 @@ A digital book journal.
 ## Release Notes
 
 ### 0.6.0
+- [ ] Fix a bug that when a book's color is black, the book is shown as having no color
 - [ ] Print a book
 - [ ] Export book as PDF - https://www.npmjs.com/package/html-pdf
-- [ ] Find new source for high-resolution book covers
 - [ ] "Currently Reading" checkbox
 - [ ] Book type field: eBook, Paperback, Hardback, etc
 - [ ] Choose book color automatically based on the primary color of the bookcover when the bookcover changes and no color is already set
-- [ ] Move saved window status (size, position, maximized, etc) to a separate JSON file
+- [ ] Move saved window status (size, position, maximized, etc) to a separate JSON file outside of the database
 
 ### 0.5.0
 - [x] Fix bug where weird years show up in the statistics even though they don't exist in the database
@@ -69,6 +69,7 @@ A digital book journal.
 - [ ] Link books (relates to, is translation of, etc)
 - [ ] Check for duplicate books (based on title, author, ISBN)
 - [ ] Automatically select dark or light theme on macOS depending on if the system is in dark mode or not. The user's preferences override this setting.
+- [ ] Find new source for high-resolution book covers
 
 ### 1.0.0
 - [ ] Apple and Microsoft certificates
