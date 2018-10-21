@@ -11,7 +11,7 @@
         "start:prod": "electron .",
         "test": "npm run lint",
         "lint": "./node_modules/.bin/eslint .",
-        "postinstall": "install-app-deps",
+        "postinstall": "electron-builder install-app-deps",
         "prepack": "npm run build",
         "pack": "electron-builder --dir",
         "predist": "npm run build",
