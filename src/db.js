@@ -1,7 +1,6 @@
 'use strict';
 
 const Sequelize = require('sequelize');
-const mkdirp = require('mkdirp');
 const fs = require('fs');
 const path = require('path');
 
@@ -10,7 +9,7 @@ const dbPath = config.path;
 const dbFile = path.join(dbPath, config.fileName);
 
 if (!fs.existsSync(dbPath)) {
-    mkdirp.sync(dbPath);
+    fs.mkdirSync(dbPath, { recursive: true });
 }
 
 
