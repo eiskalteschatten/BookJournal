@@ -6,7 +6,6 @@ const $ = require('jquery');
 const request = require('request');
 const fs = require('fs');
 const path = require('path');
-const mkdirp = require('mkdirp');
 const allLanguages = require('iso-639-1');
 const moment = require('moment');
 
@@ -438,14 +437,19 @@ $(document).on('click', '#bookFillOutBookInfo', async function(e) {
 
         if (bookInfo.imageLinks && bookInfo.imageLinks.thumbnail) {
             let imagePath = config.bookcovers.tempPath;
-            mkdirp(imagePath);
-            imagePath = path.join(imagePath, 'tempCover.jpg');
+            fs.mkdir(imagePath, { recursive: true }, error => {
+                if (error) {
+                    console.error(error);
+                }
 
-            request({uri: bookInfo.imageLinks.thumbnail})
-                .pipe(fs.createWriteStream(imagePath))
-                .on('close', async () => {
-                    await saveBookcover(imagePath);
-                });
+                imagePath = path.join(imagePath, 'tempCover.jpg');
+
+                request({uri: bookInfo.imageLinks.thumbnail})
+                    .pipe(fs.createWriteStream(imagePath))
+                    .on('close', async () => {
+                        await saveBookcover(imagePath);
+                    });
+            });
         }
     }
     catch(error) {

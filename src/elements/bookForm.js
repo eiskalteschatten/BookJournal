@@ -5,7 +5,6 @@ const dialog = remote.dialog;
 const $ = require('jquery');
 const path = require('path');
 const fs = require('fs');
-const mkdirp = require('mkdirp');
 const uuidv4 = require('uuid/v4');
 const request = require('request');
 const TinyDatePicker = require('tiny-date-picker');
@@ -194,21 +193,25 @@ class BookForm {
             const newFileName = `${uuid}.${extension}`;
             const newImagePath = path.join(bookcoverConfig.path, newFileName);
 
-            mkdirp.sync(bookcoverConfig.path);
+            fs.mkdir(bookcoverConfig.path, { recursive: true }, error => {
+                if (error) {
+                    console.error(error);
+                }
 
-            if (bookcoverExtensions.indexOf(extension) <= -1) {
-                const extensionsString = bookcoverExtensions.join(', ');
-                const error = 'The bookcover must be an image';
-                dialog.showErrorBox(error, `The file you chose is not an image. It must have one of the following file extensions: ${extensionsString}.`);
-                reject(error);
-                return;
-            }
+                if (bookcoverExtensions.indexOf(extension) <= -1) {
+                    const extensionsString = bookcoverExtensions.join(', ');
+                    const error = 'The bookcover must be an image';
+                    dialog.showErrorBox(error, `The file you chose is not an image. It must have one of the following file extensions: ${extensionsString}.`);
+                    reject(error);
+                    return;
+                }
 
-            fs.copyFile(imagePath, newImagePath, error => {
-                if (error) reject(error);
-                resolve({
-                    fileName: newFileName,
-                    filePath: bookcoverHelper.pruneCoverPath(newFileName)
+                fs.copyFile(imagePath, newImagePath, error => {
+                    if (error) reject(error);
+                    resolve({
+                        fileName: newFileName,
+                        filePath: bookcoverHelper.pruneCoverPath(newFileName)
+                    });
                 });
             });
         }).catch(error => {
