@@ -85,7 +85,6 @@
         "sequelize-migration-wrapper": "^0.1.0",
         "sqlite3": "^4.0.6",
         "tiny-date-picker": "^3.2.8",
-        "umzug": "^2.2.0",
         "uuid": "^3.3.2"
     },
     "husky": {
