@@ -9,8 +9,13 @@ const appConfig = config.app;
 const appMenu = require('./menus/config/app');
 
 // Database
-const {cmdMigrate} = require('./dbMigrate');
-cmdMigrate();
+const sequelize = require('./db');
+const migrateDb = require('sequelize-migration-wrapper');
+migrateDb({
+    sequelize,
+    path: path.join(__dirname, 'migrations')
+});
+migrateDb.migrate();
 
 // Preferences
 const {loadPreferences} = require('./initialPreferences');
