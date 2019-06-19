@@ -5,7 +5,10 @@ A digital book journal.
 ## Release Notes
 
 ### 0.6.0
+- [ ] Fix a bug where "Invalid Date" is shown if no Date Read is given in the book list
 - [ ] Fix a bug that when a book's color is black, the book is shown as having no color
+- [ ] Update to Electron 5
+- [ ] Look into using TypeScript
 - [ ] Print a book
 - [ ] Export book as PDF - https://www.npmjs.com/package/html-pdf
 - [ ] "Currently Reading" checkbox
