@@ -6,7 +6,7 @@ let preferences;
 
 async function loadPreferences() {
     try {
-        preferences = await Preferences.findById(1);
+        preferences = await Preferences.findByPk(1);
 
         if (!preferences) {
             preferences = await Preferences.create();

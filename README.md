@@ -8,7 +8,7 @@ A digital book journal.
 - [x] Support for macOS dark mode
 - [x] Fix a bug where "Invalid Date" is shown if no Date Read is given in the book list
 - [ ] Fix a bug that when a book's color is black, the book is shown as having no color
-- [ ] Update to Electron 5
+- [x] Update to Electron 5
 - [ ] Print a book
 - [ ] Export book as PDF - https://www.npmjs.com/package/html-pdf
 - [ ] "Currently Reading" checkbox

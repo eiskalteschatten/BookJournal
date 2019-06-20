@@ -89,7 +89,7 @@ class BookForm {
         let book = {};
 
         if (this.id) {
-            book = await Book.findById(this.id, { raw: true });
+            book = await Book.findByPk(this.id, { raw: true });
 
             if (book.bookcover)
                 book.bookcoverPath = bookcoverHelper.pruneCoverPath(book.bookcover);
@@ -108,7 +108,7 @@ class BookForm {
                 const categoryBadges = {};
 
                 for (const id of ids) {
-                    const category = await Category.findById(id);
+                    const category = await Category.findByPk(id);
                     categoryBadges[id] = {
                         name: category.name,
                         color: category.color

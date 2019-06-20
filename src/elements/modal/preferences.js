@@ -15,7 +15,7 @@ class Preferences extends Modal {
         const object = super.getNunjucksRenderObject();
         const allLanguageCodes = allLanguages.getAllCodes();
 
-        object.preferences = await PreferencesModel.findById(1);
+        object.preferences = await PreferencesModel.findByPk(1);
         object.allLanguageCodes = allLanguageCodes;
 
         return object;

@@ -8,7 +8,7 @@ const Preferences = require('../../models/preferences');
 
 async function changeTheme(theme, window) {
     try {
-        const preferences = await Preferences.findById(1);
+        const preferences = await Preferences.findByPk(1);
         await preferences.update({theme});
 
         window.webContents.send('switch-theme', theme);
@@ -29,7 +29,7 @@ async function changeTheme(theme, window) {
 
 async function getCurrentTheme() {
     try {
-        const preferences = await Preferences.findById(1);
+        const preferences = await Preferences.findByPk(1);
         return preferences.theme;
     }
     catch(error) {
