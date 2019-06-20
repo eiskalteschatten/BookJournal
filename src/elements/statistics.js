@@ -35,7 +35,15 @@ class Statistics {
         const windowID = BrowserWindow.getFocusedWindow().id;
         const loadStatsPath = 'file://' + path.join(__dirname, '../html/invisible/load-statistics.html');
 
-        const loadStatsWindow = new BrowserWindow({ width: 400, height: 400, show: false });
+        const loadStatsWindow = new BrowserWindow({
+            width: 400,
+            height: 400,
+            show: false,
+            webPreferences: {
+                nodeIntegration: true
+            }
+        });
+
         loadStatsWindow.loadURL(loadStatsPath);
         loadStatsWindow.webContents.on('did-finish-load', () => {
             const input = 100;
