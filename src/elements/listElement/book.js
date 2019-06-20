@@ -46,6 +46,10 @@ class BookListElement extends ListElement {
         return object;
     }
 
+    checkForValidDate(date) {
+        return date !== 'Invalid date';
+    }
+
     async determineSubtitle() {
         const book = this.book;
         const field = book.subtitleField;
@@ -60,11 +64,15 @@ class BookListElement extends ListElement {
                 break;
             case 'dateStarted':
                 const dateStarted = new Date(book.dateStarted);
-                subtitle = book.dateStarted? `Started on ${dateStarted.toLocaleDateString()}` : '';
+                subtitle = book.dateStarted && this.checkForValidDate(book.dateStarted)
+                    ? `Started on ${dateStarted.toLocaleDateString()}`
+                    : '';
                 break;
             case 'dateRead':
                 const dateRead = new Date(book.dateRead);
-                subtitle = book.dateRead? `Finished on ${dateRead.toLocaleDateString()}` : '';
+                subtitle = book.dateRead && this.checkForValidDate(book.dateRead)
+                    ? `Finished on ${dateRead.toLocaleDateString()}`
+                    : '';
                 break;
             case 'createdAt':
                 const createdAt = new Date(book.createdAt);
