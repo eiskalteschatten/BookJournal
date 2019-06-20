@@ -56,7 +56,11 @@ class BookForm {
 
         for (const formId in oldFormData) {
             const newKey = bookFormMap[formId];
-            formData[newKey] = oldFormData[formId];
+            const value = oldFormData[formId];
+
+            formData[newKey] = (value === '' && (newKey === 'dateRead' || newKey === 'dateStarted'))
+                ? null
+                : value;
         }
 
         try {
