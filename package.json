@@ -10,7 +10,7 @@
         "prestart:prod": "npm run build",
         "start:prod": "electron .",
         "test": "npm run lint",
-        "lint": "./node_modules/.bin/eslint .",
+        "lint": "npx eslint .",
         "postinstall": "electron-builder install-app-deps",
         "prepack": "npm run build",
         "pack": "electron-builder --dir",
@@ -19,7 +19,7 @@
     },
     "build": {
         "productName": "BookJournal",
-        "copyright": "Copyright © 2018 Alex Seifert",
+        "copyright": "Copyright © 2018 - 2019 Alex Seifert",
         "appId": "com.alexseifert.bookjournal",
         "buildDependenciesFromSource": true,
         "files": [
