@@ -19,9 +19,13 @@ install:
 script:
     - npm run dist
 
-# deploy:
-#   provider: releases
-#   api_key: $ENCRYPTED_GITHUB_TOKEN
-#   skip_cleanup: true
-#   on:
-#     tags: true
+deploy:
+    provider: releases
+    file_glob: true
+    file: dist/*
+    api_key:
+        secure: LDJpENPczfvOdLPwmP2WpamcpcTfyZWoXag9UqooiIHgSTCUNK+JgfwiCjdId/fPCwnNs7o4ii6oM+k6JmPe4tLDOhOOEAYgZGDuA0b03bkTytZW0ZMhh8fqOXt1NAv9Ic5qXOGWU1c4x4q1rLGdEOomC/dXV8NqK4koslwRkYxcaRMfR7b7kNLRpEvqJt8xmWKeVAf9ZbhGvUOI/yjFdY4A+304fvTdBJ0hXL+dq/oIVkq+o81zA4ustw9kyuZJNyxPWdxXPo+VOzac/4KzD0KF0IJ823OgZi/FRSnTQfqNpZOburd1oGK2Po31XJ2jQvyyAxWXs8pdcViF+QrdTCBtmIrccd9nl/Y0ESQc2d+RIZMdS60VO1Any1zPOPz60MlYGGadA9r9Zk0rQb/7NE09pCwK8FJmleUreUdBtv4IGrP3kYysAEUb7U77e18sVC3mTjyZpMAspSRCdJLWlBgpJLkS13wKcB8JlMgoOue6kOq+S0epA80RGmnLMye+w6PiODuKg8HjKnAQoU/I1IhJxvYZN8VTpZ6x9efpUja4bkRQlzXO7sFkRKhTOXg95K7u9gBTVPacGIy+vfMLG2pHvxjDLCydvxccTNvrKsULVu1M2R2y8j85+l5/xT9vwX7uwiCCeFe0bE3Us4kc+zcPkDrCCkpfSyrdNU5hHTs=
+    skip_cleanup: true
+    on:
+        tags: true
+        repo: eiskalteschatten/BookJournal
