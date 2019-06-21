@@ -11,12 +11,10 @@ A digital book journal.
 - [x] Fix a bug where the "books by author" no longer works
 - [ ] Fix a bug that when a book's color is black, the book is shown as having no color
 - [x] Update to Electron 5
-- [ ] Print a book
-- [ ] Export book as PDF - https://www.npmjs.com/package/html-pdf
 - [ ] "Currently Reading" checkbox
 - [ ] Book type field: eBook, Paperback, Hardback, etc
-- [ ] Choose book color automatically based on the primary color of the bookcover when the bookcover changes and no color is already set
 - [ ] Move saved window status (size, position, maximized, etc) to a separate JSON file outside of the database
+- [ ] Add automatic testing and building with Travis CI
 
 ### 0.5.0
 - [x] Fix bug where weird years show up in the statistics even though they don't exist in the database
@@ -70,7 +68,11 @@ A digital book journal.
 ## Roadmap
 
 ### 0.7.0
-- [ ] Multiple languages (initially English, German, French, Spanish)
+- [ ] Print a book
+- [ ] Export book as PDF - https://www.npmjs.com/package/html-pdf
+- [ ] Choose book color automatically based on the primary color of the bookcover when the bookcover changes and no color is already set
+
+### 0.8.0
 - [ ] Link books (relates to, is translation of, etc)
 - [ ] Check for duplicate books (based on title, author, ISBN)
 - [ ] Automatically select dark or light theme on macOS depending on if the system is in dark mode or not. The user's preferences override this setting.
@@ -83,6 +85,7 @@ A digital book journal.
 - [ ] Webcam-scanning of bar codes
 
 ### 1.1.0
+- [ ] Multiple languages (initially English, German, French, Spanish)
 - [ ] MacBook Touchbar
 - [ ] Expand reading statistics (see [Notes.md](Notes.md))
 - [ ] Search for book info using other fields (title, author, etc)
