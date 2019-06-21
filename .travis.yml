@@ -38,7 +38,7 @@ jobs:
             file:
                 - dist/bookjournal*.tar.gz
                 - dist/bookjournal*.snap
-                - dist/bookjournal*.tar.gz
+                - dist/bookjournal*.deb
             api_key:
                 secure: $API_KEY
             skip_cleanup: true
