@@ -33,8 +33,7 @@
         ],
         "mac": {
             "target": [
-                "dmg",
-                "pkg"
+                "dmg"
             ],
             "category": "public.app-category.productivity",
             "entitlements": "build/entitlements.mac.plist",
