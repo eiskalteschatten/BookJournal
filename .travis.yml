@@ -32,8 +32,7 @@ jobs:
           script: npm run dist
 
 stages:
-    - compile
-    - test
+    - lint
     - deploy
 
 deploy:
