@@ -124,10 +124,10 @@ Book.getByMonthYear = async function(month, year) {
 Book.getHasBeenRead = async function(title, authors, isbns) {
     return await this.findOne({
         where: {
-            $or: [
+            [Op.or]: [
                 {
-                    title: { $like: `%${title}%` },
-                    author: { $like: `%${authors}%` },
+                    title: { [Op.like]: `%${title}%` },
+                    author: { [Op.like]: `%${authors}%` },
                     notReadYet: false,
                     dateRead: {
                         [Op.ne]: null,

@@ -8,7 +8,7 @@ A digital book journal.
 - [x] Support for macOS dark mode
 - [x] Fix a bug where "Invalid Date" is shown if no Date Read is given in the book list
 - [x] Fix a bug where the categories no longer work in the sidebar and the search doesn't work
-- [ ] Fix a bug where the "books by author" no longer works
+- [x] Fix a bug where the "books by author" no longer works
 - [ ] Fix a bug that when a book's color is black, the book is shown as having no color
 - [x] Update to Electron 5
 - [ ] Print a book
