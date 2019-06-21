@@ -1,5 +1,7 @@
 # Book Journal
 
+[![Build Status](https://travis-ci.org/eiskalteschatten/BookJournal.svg?branch=master)](https://travis-ci.org/eiskalteschatten/BookJournal)
+
 A digital book journal.
 
 ![Screenshot](https://raw.githubusercontent.com/eiskalteschatten/BookJournal/master/screenshots/book-light.png)
