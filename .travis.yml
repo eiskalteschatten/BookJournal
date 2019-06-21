@@ -46,6 +46,7 @@ jobs:
                 tags: true
                 repo: eiskalteschatten/BookJournal
         - os: osx
+          if: branch = v0.5.0
           deploy:
             provider: releases
             file_glob: true
@@ -57,6 +58,7 @@ jobs:
                 tags: true
                 repo: eiskalteschatten/BookJournal
         - os: windows
+          if: branch = v0.5.0
           deploy:
             provider: releases
             file_glob: true
