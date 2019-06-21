@@ -27,6 +27,7 @@ jobs:
         - os: windows
 
         - stage: deploy
+          if: branch = $TRAVIS_TAG
           os: linux
           dist: xenial
           deploy:
