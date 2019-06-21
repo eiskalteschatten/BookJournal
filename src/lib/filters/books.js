@@ -1,5 +1,8 @@
 'use strict';
 
+const Sequelize = require('sequelize');
+const Op = Sequelize.Op;
+
 const BookList = require('../../elements/list/books');
 
 const Category = require('../../models/category');
@@ -19,10 +22,10 @@ module.exports = async (type, term = '') => {
         case 'category':
             query = {
                 where: {
-                    $or: [
+                    [Op.or]: [
                         { categories: term },
-                        { categories: { $like: `%${term},%` } },
-                        { categories: { $like: `%,${term}%` } }
+                        { categories: { [Op.like]: `%${term},%` } },
+                        { categories: { [Op.like]: `%,${term}%` } }
                     ]
                 }
             };
@@ -30,37 +33,39 @@ module.exports = async (type, term = '') => {
         case 'search':
             query = {
                 where: {
-                    $or: [
-                        { title: { $like: `%${term}%` } },
-                        { author: { $like: `%${term}%` } },
-                        { genre: { $like: `%${term}%` } },
-                        { pageCount: { $like: `%${term}%` } },
-                        { publisher: { $like: `%${term}%` } },
-                        { isbn: { $like: `%${term}%` } },
-                        { yearPublished: { $like: `%${term}%` } },
-                        { nationality: { $like: `%${term}%` } },
-                        { languageReadIn: { $like: `%${term}%` } },
-                        { originalLanguage: { $like: `%${term}%` } },
-                        { translator: { $like: `%${term}%` } },
-                        { tags: { $like: `%${term}%` } },
-                        { summary: { $like: `%${term}%` } },
-                        { commentary: { $like: `%${term}%` } }
+                    [Op.or]: [
+                        { title: { [Op.like]: `%${term}%` } },
+                        { author: { [Op.like]: `%${term}%` } },
+                        { genre: { [Op.like]: `%${term}%` } },
+                        { pageCount: { [Op.like]: `%${term}%` } },
+                        { publisher: { [Op.like]: `%${term}%` } },
+                        { isbn: { [Op.like]: `%${term}%` } },
+                        { yearPublished: { [Op.like]: `%${term}%` } },
+                        { nationality: { [Op.like]: `%${term}%` } },
+                        { languageReadIn: { [Op.like]: `%${term}%` } },
+                        { originalLanguage: { [Op.like]: `%${term}%` } },
+                        { translator: { [Op.like]: `%${term}%` } },
+                        { tags: { [Op.like]: `%${term}%` } },
+                        { summary: { [Op.like]: `%${term}%` } },
+                        { commentary: { [Op.like]: `%${term}%` } }
                     ]
                 }
             };
 
             const categories = await Category.findAll({
                 where: {
-                    name: { $like: `%${term}%` }
+                    name: { [Op.like]: `%${term}%` }
                 }
             });
 
             for (const category of categories) {
-                query.where.$or.push(
-                    { categories: category.id },
-                    { categories: { $like: `%${category.id},%` } },
-                    { categories: { $like: `%,${category.id}%` } }
-                );
+                if (query.where['Op.or']) {
+                    query.where['Op.or'].push(
+                        { categories: category.id },
+                        { categories: { [Op.like]: `%${category.id},%` } },
+                        { categories: { [Op.like]: `%,${category.id}%` } }
+                    );
+                }
             }
 
             break;
