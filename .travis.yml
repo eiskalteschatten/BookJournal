@@ -3,26 +3,46 @@ language: node_js
 node_js:
     - '12'
 
-matrix:
-    include:
-        - os: linux
-          dist: xenial
-          sudo: required
-        - os: osx
-        - os: windows
-
 cache: npm
 
 install:
     - npm install
 
-script:
-    - npm run dist
+matrix:
+    include:
+        - os: linux
+          dist: xenial
+          sudo: required
+          env:
+            - DEPLOY_FILE1=dist/dist/bookjournal*.tar.gz
+            - DEPLOY_FILE2=dist/dist/dist/bookjournal*.snap
+            - DEPLOY_FILE3=dist/bookjournal*.deb
+        - os: osx
+          env: DEPLOY_FILE1=dist/BookJournal*.dmg
+        - os: windows
+          env: DEPLOY_FILE1=dist/BookJournal*.exe
+
+jobs:
+    include:
+        - stage: lint
+          script: npm run lint
+        # - stage: test
+        #   script: npm test
+        - stage: deploy
+          script: npm run dist
+
+stages:
+    - compile
+    - test
+    - deploy
 
 deploy:
     provider: releases
     file_glob: true
-    file: dist/*
+    file:
+        - $DEPLOY_FILE1
+        - $DEPLOY_FILE2
+        - $DEPLOY_FILE3
     api_key:
         secure: LDJpENPczfvOdLPwmP2WpamcpcTfyZWoXag9UqooiIHgSTCUNK+JgfwiCjdId/fPCwnNs7o4ii6oM+k6JmPe4tLDOhOOEAYgZGDuA0b03bkTytZW0ZMhh8fqOXt1NAv9Ic5qXOGWU1c4x4q1rLGdEOomC/dXV8NqK4koslwRkYxcaRMfR7b7kNLRpEvqJt8xmWKeVAf9ZbhGvUOI/yjFdY4A+304fvTdBJ0hXL+dq/oIVkq+o81zA4ustw9kyuZJNyxPWdxXPo+VOzac/4KzD0KF0IJ823OgZi/FRSnTQfqNpZOburd1oGK2Po31XJ2jQvyyAxWXs8pdcViF+QrdTCBtmIrccd9nl/Y0ESQc2d+RIZMdS60VO1Any1zPOPz60MlYGGadA9r9Zk0rQb/7NE09pCwK8FJmleUreUdBtv4IGrP3kYysAEUb7U77e18sVC3mTjyZpMAspSRCdJLWlBgpJLkS13wKcB8JlMgoOue6kOq+S0epA80RGmnLMye+w6PiODuKg8HjKnAQoU/I1IhJxvYZN8VTpZ6x9efpUja4bkRQlzXO7sFkRKhTOXg95K7u9gBTVPacGIy+vfMLG2pHvxjDLCydvxccTNvrKsULVu1M2R2y8j85+l5/xT9vwX7uwiCCeFe0bE3Us4kc+zcPkDrCCkpfSyrdNU5hHTs=
     skip_cleanup: true
