@@ -19,6 +19,7 @@ A digital book journal.
 - [ ] Book type field: eBook, Paperback, Hardback, etc
 - [ ] Move saved window status (size, position, maximized, etc) to a separate JSON file outside of the database
 - [ ] Add automatic testing and building with Travis CI
+- [ ] Automatic backups of the database on app launch (launch a background process)
 
 ### 0.5.0
 - [x] Fix bug where weird years show up in the statistics even though they don't exist in the database
