@@ -10,13 +10,6 @@ cache: npm
 
 jobs:
     include:
-        - stage: install
-          script: npm install
-          os: linux
-          dist: xenial
-        - os: osx
-        - os: windows
-
         - stage: lint
           script: npm run lint
           os: linux
@@ -73,7 +66,6 @@ jobs:
                 repo: eiskalteschatten/BookJournal
 
 stages:
-    - install
     - lint
     - build
     - deploy
