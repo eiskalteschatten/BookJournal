@@ -1,6 +1,8 @@
 'use strict';
 
 const Sequelize = require('sequelize');
+const Op = Sequelize.Op;
+
 const db = require('../db');
 
 
@@ -128,16 +130,16 @@ Book.getHasBeenRead = async function(title, authors, isbns) {
                     author: { $like: `%${authors}%` },
                     notReadYet: false,
                     dateRead: {
-                        $ne: null,
-                        $notLike: 'Invalid%'
+                        [Op.ne]: null,
+                        [Op.notLike]: 'Invalid%'
                     }
                 },
                 {
                     isbn: isbns,
                     notReadYet: false,
                     dateRead: {
-                        $ne: null,
-                        $notLike: 'Invalid%'
+                        [Op.ne]: null,
+                        [Op.notLike]: 'Invalid%'
                     }
                 }
             ]

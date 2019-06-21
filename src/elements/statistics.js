@@ -3,6 +3,9 @@
 const {remote} = require('electron');
 const BrowserWindow = remote.BrowserWindow;
 
+const Sequelize = require('sequelize');
+const Op = Sequelize.Op;
+
 const path = require('path');
 const fs = require('fs');
 const nunjucks = require('../nunjucks');
@@ -73,8 +76,8 @@ class Statistics {
             attributes: ['dateRead'],
             where: {
                 dateRead: {
-                    $ne: null,
-                    $notLike: 'Invalid%'
+                    [Op.ne]: null,
+                    [Op.notLike]: 'Invalid%'
                 }
             }
         });
