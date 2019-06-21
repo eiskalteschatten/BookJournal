@@ -8,23 +8,6 @@ env:
 
 cache: npm
 
-# install:
-#     - npm install
-
-# matrix:
-#     include:
-#         - os: linux
-#           dist: xenial
-#           sudo: required
-#           env:
-#             - DEPLOY_FILE1=dist/dist/bookjournal*.tar.gz
-#             - DEPLOY_FILE2=dist/dist/dist/bookjournal*.snap
-#             - DEPLOY_FILE3=dist/bookjournal*.deb
-#         - os: osx
-#           env: DEPLOY_FILE1=dist/BookJournal*.dmg
-#         - os: windows
-#           env: DEPLOY_FILE1=dist/BookJournal*.exe
-
 jobs:
     include:
         - stage: install
@@ -96,17 +79,3 @@ stages:
     - lint
     - build
     - deploy
-
-# deploy:
-#     provider: releases
-#     file_glob: true
-#     file:
-#         - $DEPLOY_FILE1
-#         - $DEPLOY_FILE2
-#         - $DEPLOY_FILE3
-#     api_key:
-#         secure: $API_KEY
-#     skip_cleanup: true
-#     on:
-#         tags: true
-#         repo: eiskalteschatten/BookJournal
