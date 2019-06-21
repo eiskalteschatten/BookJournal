@@ -2,6 +2,8 @@
 
 A digital book journal.
 
+![Screenshot](https://raw.githubusercontent.com/eiskalteschatten/BookJournal/master/screenshots/book-light.png)
+
 ## Release Notes
 
 ### 0.6.0
