@@ -21,8 +21,6 @@ jobs:
           script: npm run lint
           os: linux
           dist: xenial
-        - os: osx
-        - os: windows
 
         # - stage: test
         #   script: npm test
