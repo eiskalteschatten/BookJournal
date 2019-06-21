@@ -6,13 +6,12 @@ node_js:
 matrix:
     include:
         - os: linux
-            dist: xenial
-            sudo: required
+          dist: xenial
+          sudo: required
         - os: osx
         - os: windows
 
-cache:
-    npm: true
+cache: npm
 
 install:
     - npm install
