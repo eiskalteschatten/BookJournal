@@ -24,7 +24,9 @@ jobs:
           dist: xenial
           sudo: required
         - os: osx
+          script: npm run dist
         - os: windows
+          script: npm run dist
 
         - stage: deploy
           if: branch = $TRAVIS_TAG
