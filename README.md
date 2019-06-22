@@ -18,7 +18,7 @@ A digital book journal.
 - [ ] "Currently Reading" checkbox
 - [ ] Book type field: eBook, Paperback, Hardback, etc
 - [ ] Move saved window status (size, position, maximized, etc) to a separate JSON file outside of the database
-- [ ] Add automatic testing and building with Travis CI
+- [x] Add automatic testing and building with Travis CI
 - [ ] Automatic backups of the database on app launch (launch a background process)
 
 ### 0.5.0
