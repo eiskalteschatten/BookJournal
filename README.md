@@ -13,10 +13,10 @@ A digital book journal.
 - [x] Fix a bug where "Invalid Date" is shown if no Date Read is given in the book list
 - [x] Fix a bug where the categories no longer work in the sidebar and the search doesn't work
 - [x] Fix a bug where the "books by author" no longer works
-- [ ] Fix a bug that when a book's color is black, the book is shown as having no color
 - [x] Update to Electron 5
 - [ ] "Currently Reading" checkbox
 - [ ] Book type field: eBook, Paperback, Hardback, etc
+- [ ] Add "Books Read" to the sidebar
 - [ ] Move saved window status (size, position, maximized, etc) to a separate JSON file outside of the database
 - [x] Add automatic testing and building with Travis CI
 - [ ] Automatic backups of the database on app launch (launch a background process)
@@ -73,6 +73,7 @@ A digital book journal.
 ## Roadmap
 
 ### 0.7.0
+- [ ] Fix a bug that when a book's color is black, the book is shown as having no color
 - [ ] Print a book
 - [ ] Export book as PDF - https://www.npmjs.com/package/html-pdf
 - [ ] Choose book color automatically based on the primary color of the bookcover when the bookcover changes and no color is already set
