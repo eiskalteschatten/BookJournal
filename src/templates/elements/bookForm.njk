@@ -101,9 +101,26 @@
                     <label for="bookPublisher">Publisher</label>
                     <input type="text" class="form-control js-book-form-field full-width" id="bookPublisher" value="{{ book.publisher }}">
                 </div>
-                <div class="form-group">
-                    <label for="bookYearPublished">Year Published</label>
-                    <input type="number" class="form-control js-book-form-field full-width" id="bookYearPublished" value="{{ book.yearPublished }}">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="bookYearPublished">Year Published</label>
+                            <input type="number" class="form-control js-book-form-field full-width" id="bookYearPublished" value="{{ book.yearPublished }}">
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="form-group">
+                            <label for="bookBookFormat">Book Format</label>
+                            <select class="form-control js-book-form-field full-width" id="bookBookFormat" value="{{ book.bookFormat }}">
+                                <option value="-1" disabled selected>Select a Book Format</option>
+                                <option value="paperback">Paperback</option>
+                                <option value="hardback">Hardback</option>
+                                <option value="ebook">E-Book</option>
+                                <option value="audiobook">Audiobook</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="col-md-6">
