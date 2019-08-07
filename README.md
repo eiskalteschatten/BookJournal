@@ -13,7 +13,7 @@ A digital book journal.
 - [x] Fix a bug where "Invalid Date" is shown if no Date Read is given in the book list
 - [x] Fix a bug where the categories no longer work in the sidebar and the search doesn't work
 - [x] Fix a bug where the "books by author" no longer works
-- [ ] Update to Electron 6
+- [x] Update to Electron 6
 - [ ] "Currently Reading" checkbox
 - [ ] Book type field: eBook, Paperback, Hardback, etc
 - [ ] Add "Books Read" to the sidebar
