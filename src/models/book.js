@@ -28,6 +28,10 @@ const Book = db.define('book', {
         type: Sequelize.BOOLEAN,
         defaultValue: false
     },
+    currentlyReading: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false
+    },
     pageCount: {
         type: Sequelize.INTEGER,
         allowNull: true
