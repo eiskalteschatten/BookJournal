@@ -14,7 +14,7 @@ A digital book journal.
 - [x] Fix a bug where the categories no longer work in the sidebar and the search doesn't work
 - [x] Fix a bug where the "books by author" no longer works
 - [x] Update to Electron 6
-- [ ] "Currently Reading"
+- [x] "Currently Reading"
 - [ ] Book type field and sort by filter
 - [x] Add "Books Read" to the sidebar
 - [ ] Move saved window status (size, position, maximized, etc) to a separate JSON file outside of the database

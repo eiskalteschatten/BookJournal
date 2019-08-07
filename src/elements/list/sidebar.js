@@ -15,6 +15,7 @@ class Sidebar extends List {
         this.template = path.join(__dirname, '../../templates/elements/list/sidebar.njk');
 
         this.addElement('All Books', '../assets/images/si-glyph-bookcase.svg', 'all-books');
+        this.addElement('Currently Reading', '../assets/images/si-glyph-book-open.svg', 'currently-reading');
         this.addElement('Not Read Yet', '../assets/images/si-glyph-bookmark.svg', 'not-read-yet');
         this.addElement('Books Read', '../assets/images/si-glyph-square-checked.svg', 'books-read');
         this.addElement('Statistics', '../assets/images/si-glyph-chart-piece.svg', 'statistics');
