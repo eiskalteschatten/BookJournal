@@ -26,4 +26,22 @@ sequelize.authenticate()
         console.error('Unable to connect to the database:', error);
     });
 
-module.exports = sequelize;
+function createBackup() {
+    return new Promise((resolve, reject) => {
+        if (fs.existsSync(dbFile)) {
+            const dbBackupFile = path.join(dbPath, config.backupFileName);
+            fs.copyFile(dbFile, dbBackupFile, error => {
+                if (error) {
+                    reject(error);
+                }
+
+                resolve();
+            });
+        }
+    });
+}
+
+module.exports = {
+    sequelize,
+    createBackup
+};

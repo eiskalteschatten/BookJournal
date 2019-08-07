@@ -47,7 +47,8 @@ module.exports = {
     },
     database: {
         path: storagePath,
-        fileName: env === 'development' ? 'bookjournal-dev.sqlite' : 'bookjournal.sqlite'
+        fileName: env === 'development' ? 'bookjournal-dev.sqlite' : 'bookjournal.sqlite',
+        backupFileName: env === 'development' ? 'bookjournal-dev-backup.sqlite' : 'bookjournal-backup.sqlite'
     },
     bookcovers: {
         path: path.join(storagePath, bookcoversDir),

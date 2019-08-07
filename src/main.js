@@ -9,7 +9,7 @@ const appConfig = config.app;
 const appMenu = require('./menus/config/app');
 
 // Database
-const sequelize = require('./db');
+const { sequelize } = require('./db');
 const migrateDb = require('sequelize-migration-wrapper');
 migrateDb({
     sequelize,

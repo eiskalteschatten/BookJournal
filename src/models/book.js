@@ -3,7 +3,7 @@
 const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
 
-const db = require('../db');
+const db = require('../db').sequelize;
 
 
 const Book = db.define('book', {

@@ -1,5 +1,10 @@
 'use strict';
 
+const {remote} = require('electron');
+const BrowserWindow = remote.BrowserWindow;
+
+const path = require('path');
+
 const checkForUpdates = require('./checkForUpdates');
 
 const SidebarList = require('./elements/list/sidebar');
@@ -23,6 +28,26 @@ async function renderModals() {
     document.getElementById('modalAnchor').innerHTML = rendered;
 }
 
+function createDbBackup() {
+    const windowID = BrowserWindow.getFocusedWindow().id;
+    const loadDbBackupPath = 'file://' + path.join(__dirname, './html/invisible/backup-db.html');
+
+    const loadDbBackupWindow = new BrowserWindow({
+        width: 400,
+        height: 400,
+        show: false,
+        webPreferences: {
+            nodeIntegration: true
+        }
+    });
+
+    loadDbBackupWindow.loadURL(loadDbBackupPath);
+    loadDbBackupWindow.webContents.on('did-finish-load', () => {
+        const input = 100;
+        loadDbBackupWindow.webContents.send('backup-db', input, windowID);
+    });
+}
+
 async function postRender() {
     const {loadPreferences} = require('./initialPreferences');
     const preferences = await loadPreferences();
@@ -31,6 +56,7 @@ async function postRender() {
     localStorage.setItem('theme', preferences.theme);
 
     checkForUpdates();
+    createDbBackup();
 }
 
 async function render() {
