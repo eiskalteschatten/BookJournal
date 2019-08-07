@@ -56,6 +56,10 @@ const Book = db.define('book', {
         type: Sequelize.INTEGER,
         allowNull: true
     },
+    bookFormat: {
+        type: Sequelize.STRING,
+        allowNull: true
+    },
     nationality: {
         type: Sequelize.STRING,
         allowNull: true
