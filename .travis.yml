@@ -37,7 +37,6 @@ jobs:
             file_glob: true
             file:
                 - dist/bookjournal*.tar.gz
-                - dist/bookjournal*.snap
                 - dist/bookjournal*.deb
             api_key:
                 secure: $API_KEY

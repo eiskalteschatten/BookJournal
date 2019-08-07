@@ -42,7 +42,6 @@
         },
         "linux": {
             "target": [
-                "snap",
                 "deb",
                 "tar.gz"
             ],
