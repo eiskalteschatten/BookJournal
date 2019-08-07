@@ -24,6 +24,7 @@ const bookFormMap = {
     bookAuthor: 'author',
     bookGenre: 'genre',
     bookDateStarted: 'dateStarted',
+    bookCurrentlyReading: 'currentlyReading',
     bookDateRead: 'dateRead',
     bookNotReadYet: 'notReadYet',
     bookNumberOfPages: 'pageCount',
