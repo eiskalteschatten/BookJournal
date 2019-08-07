@@ -13,7 +13,7 @@ A digital book journal.
 - [x] Fix a bug where "Invalid Date" is shown if no Date Read is given in the book list
 - [x] Fix a bug where the categories no longer work in the sidebar and the search doesn't work
 - [x] Fix a bug where the "books by author" no longer works
-- [x] Update to Electron 5
+- [ ] Update to Electron 6
 - [ ] "Currently Reading" checkbox
 - [ ] Book type field: eBook, Paperback, Hardback, etc
 - [ ] Add "Books Read" to the sidebar
@@ -69,44 +69,6 @@ A digital book journal.
 - [x] Dark and light themes
 - [x] Automatically fetch book information based on the ISBN - https://developers.google.com/books/docs/v1/using
 
-
-## Roadmap
-
-### 0.7.0
-- [ ] Fix a bug that when a book's color is black, the book is shown as having no color
-- [ ] Print a book
-- [ ] Export book as PDF - https://www.npmjs.com/package/html-pdf
-- [ ] Choose book color automatically based on the primary color of the bookcover when the bookcover changes and no color is already set
-
-### 0.8.0
-- [ ] Link books (relates to, is translation of, etc)
-- [ ] Check for duplicate books (based on title, author, ISBN)
-- [ ] Automatically select dark or light theme on macOS depending on if the system is in dark mode or not. The user's preferences override this setting.
-- [ ] Find new source for high-resolution book covers
-
-### 1.0.0
-- [ ] Apple and Microsoft certificates
-- [ ] Auto-update with Squirrel
-- [ ] Mac App Store version
-- [ ] Webcam-scanning of bar codes
-
-### 1.1.0
-- [ ] Multiple languages (initially English, German, French, Spanish)
-- [ ] MacBook Touchbar
-- [ ] Expand reading statistics (see [Notes.md](Notes.md))
-- [ ] Search for book info using other fields (title, author, etc)
-
-### 1.2.0
-- [ ] Reading goals
-- [ ] Book discovery and recommnded books
-- [ ] Popup with other works by an author
-  - [ ] Link to Amazon (Affiliates) with the Amazon country being settable in the preferences
-  - [ ] Button to add the book to BookJournal
-  - [ ] Sort by title, author or whether read
-
-### Future Ideas
-- [ ] Create custom filters
-- [ ] Synching of database via cloud service of choice
 
 ## Icons
 
