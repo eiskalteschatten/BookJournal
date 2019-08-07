@@ -19,6 +19,14 @@ module.exports = async (type, term = '') => {
                 where: { notReadYet: true }
             };
             break;
+        case 'books-read':
+            query = {
+                where: {
+                    notReadYet: false,
+                    dateRead: { [Op.ne]: null }
+                }
+            };
+            break;
         case 'category':
             query = {
                 where: {

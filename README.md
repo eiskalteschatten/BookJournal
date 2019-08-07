@@ -16,7 +16,7 @@ A digital book journal.
 - [x] Update to Electron 6
 - [ ] "Currently Reading"
 - [ ] Book type field and sort by filter
-- [ ] Add "Books Read" to the sidebar
+- [x] Add "Books Read" to the sidebar
 - [ ] Move saved window status (size, position, maximized, etc) to a separate JSON file outside of the database
 - [x] Add automatic testing and building with Travis CI
 - [x] Automatic backups of the database on app launch (launch a background process)
