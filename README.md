@@ -15,7 +15,8 @@ A digital book journal.
 - [x] Fix a bug where the "books by author" no longer works
 - [x] Update to Electron 6
 - [x] "Currently Reading"
-- [ ] Book type field and sort by filter
+- [ ] Book format field
+- [ ] Notes field
 - [x] Add "Books Read" to the sidebar
 - [x] Add automatic testing and building with Travis CI
 - [x] Automatic backups of the database on app launch (launch a background process)
