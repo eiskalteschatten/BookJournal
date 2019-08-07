@@ -62,6 +62,9 @@ class BookListElement extends ListElement {
             case 'notReadYet':
                 subtitle = book.notReadYet ? 'Not Read Yet' : `Finished on ${dateRead.toLocaleDateString()}`;
                 break;
+            case 'currentlyReading':
+                subtitle = book.currentlyReading ? 'Currently Reading' : '';
+                break;
             case 'dateStarted':
                 const dateStarted = new Date(book.dateStarted);
                 subtitle = book.dateStarted && this.checkForValidDate(book.dateStarted)
