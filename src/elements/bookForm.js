@@ -56,8 +56,6 @@ class BookForm {
         const id = this.id;
         let book = {};
 
-        console.log(oldFormData)
-
         for (const formId in oldFormData) {
             const newKey = bookFormMap[formId];
             const value = oldFormData[formId];
