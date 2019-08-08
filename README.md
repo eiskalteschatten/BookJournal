@@ -29,6 +29,11 @@ BookJournal runs on the following platforms:
 - Linux
 
 
+## Build Requirements
+
+BookJournal runs on the [Electron](https://electronjs.org/) platform and can therefore be developed and built on any platform supported by Electron. The only requirement is Node >= 12.
+
+
 ## Release Notes
 
 ### 0.6.0
