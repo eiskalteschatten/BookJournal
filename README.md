@@ -6,6 +6,7 @@ A digital book journal.
 
 ![Screenshot](https://raw.githubusercontent.com/eiskalteschatten/BookJournal/master/screenshots/book-light.png)
 
+
 ## Features
 
 - Keep track of all of your books: the books you have read, are reading and would like to read
@@ -17,6 +18,16 @@ A digital book journal.
 - Rate the books you have read and save your commentary
 - Add notes to your books
 - Tag your books for better searching
+
+
+## System Requirements
+
+BookJournal runs on the following platforms:
+
+- Windows
+- macOS
+- Linux
+
 
 ## Release Notes
 
