@@ -14,6 +14,7 @@ const nunjucks = require('../nunjucks');
 const config = require('../config/config');
 const BooksByAuthor = require('../elements/modal/booksByAuthor');
 const bookcoverHelper = require('../lib/bookcover');
+const bookFormats = require('../lib/bookFormats');
 
 const Book = require('../models/book');
 const Category = require('../models/category');
@@ -89,14 +90,6 @@ class BookForm {
         const categories = await Category.getAllSorted();
         let ratingClasses = ['empty', 'empty', 'empty', 'empty', 'empty'];
         let book = {};
-
-        const bookFormats = {
-            paperback: 'Paperback',
-            hardback: 'Hardback',
-            ebook: 'E-Book',
-            audiobook: 'Audiobook',
-            other: 'Other'
-        };
 
         if (this.id) {
             book = await Book.findByPk(this.id, { raw: true });

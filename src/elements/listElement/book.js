@@ -6,6 +6,7 @@ const fs = require('fs');
 const nunjucks = require('../../nunjucks');
 const ListElement = require('../listElement');
 const bookcoverHelper = require('../../lib/bookcover');
+const bookFormats = require('../../lib/bookFormats');
 
 
 class BookListElement extends ListElement {
@@ -64,6 +65,9 @@ class BookListElement extends ListElement {
                 break;
             case 'currentlyReading':
                 subtitle = book.currentlyReading ? 'Currently Reading' : '';
+                break;
+            case 'bookFormat':
+                subtitle = book.bookFormat ? bookFormats[book.bookFormat] : '';
                 break;
             case 'dateStarted':
                 const dateStarted = new Date(book.dateStarted);
