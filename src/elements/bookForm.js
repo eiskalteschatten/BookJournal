@@ -90,6 +90,14 @@ class BookForm {
         let ratingClasses = ['empty', 'empty', 'empty', 'empty', 'empty'];
         let book = {};
 
+        const bookFormats = {
+            paperback: 'Paperback',
+            hardback: 'Hardback',
+            ebook: 'E-Book',
+            audiobook: 'Audiobook',
+            other: 'Other'
+        };
+
         if (this.id) {
             book = await Book.findByPk(this.id, { raw: true });
 
@@ -140,7 +148,8 @@ class BookForm {
         }).then(templateString => {
             return nunjucks.renderString(templateString, {
                 book,
-                categories
+                categories,
+                bookFormats
             });
         }).catch(error => {
             console.error(error);

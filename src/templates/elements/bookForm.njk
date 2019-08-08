@@ -111,14 +111,19 @@
                     <div class="col-md-8">
                         <div class="form-group">
                             <label for="bookBookFormat">Book Format</label>
-                            {# {{ book.bookFormat }} #}
                             <select class="form-control js-book-form-field full-width" id="bookBookFormat">
                                 <option value="-1" disabled selected>Select a Book Format</option>
-                                <option value="paperback">Paperback</option>
-                                <option value="hardback">Hardback</option>
-                                <option value="ebook">E-Book</option>
-                                <option value="audiobook">Audiobook</option>
-                                <option value="other">Other</option>
+
+                                {% for value, name in bookFormats %}
+                                    <option
+                                        value="{{ value }}"
+                                        {% if book.bookFormat == value %}selected{% endif %}
+                                    >
+                                        {{ name }}
+                                    </option>
+                                {% else %}
+                                    <option disabled>No book formats available</option>
+                                {% endfor %}
                             </select>
                         </div>
                     </div>
