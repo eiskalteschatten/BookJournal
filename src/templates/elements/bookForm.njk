@@ -45,7 +45,7 @@
                             <label for="bookDateStarted">Date Started</label>
                             <input type="text" class="form-control js-book-form-field full-width js-book-form-date-field" id="bookDateStarted" value="{{ book.dateStarted }}">
                         </div>
-                        <div class="not-read-yet">
+                        <div class="currently-reading">
                             {% if book.currentlyReading == true %}
                                 {% set currentlyReading = 'checked' %}
                             {% endif %}
