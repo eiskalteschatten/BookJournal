@@ -6,6 +6,18 @@ A digital book journal.
 
 ![Screenshot](https://raw.githubusercontent.com/eiskalteschatten/BookJournal/master/screenshots/book-light.png)
 
+## Features
+
+- Keep track of all of your books: the books you have read, are reading and would like to read
+- Show reading statistics including how many books and pages you have read in a given year
+- Automatically look up information about a book by entering its IBAN
+- See other books by the same author(s)
+- Categorize your books
+- Search through your books
+- Rate the books you have read and save your commentary
+- Add notes to your books
+- Tag your books for better searching
+
 ## Release Notes
 
 ### 0.6.0
