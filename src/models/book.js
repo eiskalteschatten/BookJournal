@@ -96,6 +96,10 @@ const Book = db.define('book', {
         type: Sequelize.TEXT,
         allowNull: true
     },
+    notes: {
+        type: Sequelize.TEXT,
+        allowNull: true
+    }
 });
 
 Book.getAllSorted = async function(sortBy = 'title', sortOrder = 'ASC') {
