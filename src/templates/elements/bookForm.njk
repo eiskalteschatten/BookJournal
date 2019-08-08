@@ -111,7 +111,8 @@
                     <div class="col-md-8">
                         <div class="form-group">
                             <label for="bookBookFormat">Book Format</label>
-                            <select class="form-control js-book-form-field full-width" id="bookBookFormat" value="{{ book.bookFormat }}">
+                            {# {{ book.bookFormat }} #}
+                            <select class="form-control js-book-form-field full-width" id="bookBookFormat">
                                 <option value="-1" disabled selected>Select a Book Format</option>
                                 <option value="paperback">Paperback</option>
                                 <option value="hardback">Hardback</option>

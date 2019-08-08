@@ -33,6 +33,7 @@ const bookFormMap = {
     bookPublisher: 'publisher',
     bookIsbn: 'isbn',
     bookYearPublished: 'yearPublished',
+    bookBookFormat: 'bookFormat',
     bookNationality: 'nationality',
     bookLanguageReadIn: 'languageReadIn',
     bookOriginalLanguage: 'originalLanguage',
@@ -54,6 +55,8 @@ class BookForm {
         const formData = {};
         const id = this.id;
         let book = {};
+
+        console.log(oldFormData)
 
         for (const formId in oldFormData) {
             const newKey = bookFormMap[formId];

@@ -112,6 +112,8 @@ async function saveBook() {
         formData[$this.attr('id')] = $this.val();
     });
 
+    formData.bookBookFormat = $('#bookForm').find('#bookBookFormat').val();
+
     const id = $('#bookBookcoverId').val();
     const bookForm = new BookForm(id);
     const newId = await bookForm.save(formData);
