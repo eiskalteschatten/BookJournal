@@ -18,6 +18,7 @@ A digital book journal.
 - Rate the books you have read and save your commentary
 - Add notes to your books
 - Tag your books for better searching
+- Light and dark mode
 
 
 ## System Requirements
