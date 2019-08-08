@@ -61,7 +61,8 @@ module.exports = async (type, term = '') => {
                         { translator: { [Op.like]: `%${term}%` } },
                         { tags: { [Op.like]: `%${term}%` } },
                         { summary: { [Op.like]: `%${term}%` } },
-                        { commentary: { [Op.like]: `%${term}%` } }
+                        { commentary: { [Op.like]: `%${term}%` } },
+                        { notes: { [Op.like]: `%${term}%` } }
                     ]
                 }
             };

@@ -16,7 +16,7 @@ A digital book journal.
 - [x] Update to Electron 6
 - [x] "Currently Reading"
 - [x] Book format field
-- [ ] Notes field
+- [x] Notes field
 - [x] Add "Books Read" to the sidebar
 - [x] Add automatic testing and building with Travis CI
 - [x] Automatic backups of the database on app launch (launch a background process)
