@@ -43,7 +43,8 @@ const bookFormMap = {
     bookCategoriesHidden: 'categories',
     bookRating: 'rating',
     bookSummary: 'summary',
-    bookCommentary: 'commentary'
+    bookCommentary: 'commentary',
+    bookNotes: 'notes'
 };
 
 
