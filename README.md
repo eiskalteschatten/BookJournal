@@ -15,7 +15,7 @@ A digital book journal.
 - [x] Fix a bug where the "books by author" no longer works
 - [x] Update to Electron 6
 - [x] "Currently Reading"
-- [ ] Book format field
+- [x] Book format field
 - [ ] Notes field
 - [x] Add "Books Read" to the sidebar
 - [x] Add automatic testing and building with Travis CI

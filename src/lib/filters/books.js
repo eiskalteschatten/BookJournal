@@ -54,6 +54,7 @@ module.exports = async (type, term = '') => {
                         { publisher: { [Op.like]: `%${term}%` } },
                         { isbn: { [Op.like]: `%${term}%` } },
                         { yearPublished: { [Op.like]: `%${term}%` } },
+                        { bookFormat: { [Op.like]: `%${term}%` } },
                         { nationality: { [Op.like]: `%${term}%` } },
                         { languageReadIn: { [Op.like]: `%${term}%` } },
                         { originalLanguage: { [Op.like]: `%${term}%` } },
