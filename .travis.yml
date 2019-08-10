@@ -29,7 +29,7 @@ jobs:
           script: npm run dist
 
         - stage: deploy
-          if: branch = v0.5.0
+          if: branch = v0.6.0
           os: linux
           dist: xenial
           deploy:
@@ -45,7 +45,7 @@ jobs:
                 tags: true
                 repo: eiskalteschatten/BookJournal
         - os: osx
-          if: branch = v0.5.0
+          if: branch = v0.6.0
           deploy:
             provider: releases
             file_glob: true
@@ -57,7 +57,7 @@ jobs:
                 tags: true
                 repo: eiskalteschatten/BookJournal
         - os: windows
-          if: branch = v0.5.0
+          if: branch = v0.6.0
           deploy:
             provider: releases
             file_glob: true
