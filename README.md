@@ -19,6 +19,7 @@ A digital book journal.
 - Add notes to your books
 - Tag your books for better searching
 - Light and dark mode
+- Works on multiple platforms (Windows, macOS and Linux)
 
 
 ## System Requirements
