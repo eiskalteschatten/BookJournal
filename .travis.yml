@@ -1,75 +1,75 @@
 language: node_js
 
 node_js:
-    - '12'
+- '12'
 
 env:
-    - API_KEY: LDJpENPczfvOdLPwmP2WpamcpcTfyZWoXag9UqooiIHgSTCUNK+JgfwiCjdId/fPCwnNs7o4ii6oM+k6JmPe4tLDOhOOEAYgZGDuA0b03bkTytZW0ZMhh8fqOXt1NAv9Ic5qXOGWU1c4x4q1rLGdEOomC/dXV8NqK4koslwRkYxcaRMfR7b7kNLRpEvqJt8xmWKeVAf9ZbhGvUOI/yjFdY4A+304fvTdBJ0hXL+dq/oIVkq+o81zA4ustw9kyuZJNyxPWdxXPo+VOzac/4KzD0KF0IJ823OgZi/FRSnTQfqNpZOburd1oGK2Po31XJ2jQvyyAxWXs8pdcViF+QrdTCBtmIrccd9nl/Y0ESQc2d+RIZMdS60VO1Any1zPOPz60MlYGGadA9r9Zk0rQb/7NE09pCwK8FJmleUreUdBtv4IGrP3kYysAEUb7U77e18sVC3mTjyZpMAspSRCdJLWlBgpJLkS13wKcB8JlMgoOue6kOq+S0epA80RGmnLMye+w6PiODuKg8HjKnAQoU/I1IhJxvYZN8VTpZ6x9efpUja4bkRQlzXO7sFkRKhTOXg95K7u9gBTVPacGIy+vfMLG2pHvxjDLCydvxccTNvrKsULVu1M2R2y8j85+l5/xT9vwX7uwiCCeFe0bE3Us4kc+zcPkDrCCkpfSyrdNU5hHTs=
+- API_KEY: 3pRQVGhT2cJ1rn7lyBSY2em9chJlPO5mL7hpCxnq1K6nJBXs3QSVApaLk+jAT3+r2IkPgAQRiG2DLqU+/llc3ymzQfvQNFZliiNoKzUD5xexQLerAoKsL9e1HtZVGXfKAJrzh+5ZWjyzpxmvCjePqcophzvlplwHpo/WUZ4td7GpRBTW/iRo1od+wy4QLrvllSzZCRj6nW38ioktubsU7x5+PMM2SQdsMUEIt1fI8cmA60NyHBE1AdMDWigkrxb2GIpiANQ8HJB3J+m27xBD4pKm+sbYdtkg4gpscm2h5SUnoSZQ9PB9AZ7N/Qsd501WxrQTmTlgYQq9eBmqPtTfU9mMx2ULnG6fH+34//aG7Mr7nfBnmU1zXLLv67aWJ/etd7P/wycDf+6USqAr+gfNwOLV4hjVIlJGrkkLs07HEVzRu0lMUv03xapgYT/G0+w0fm+QY3tII/CvyjELia/xpFk5TMeKkOZLZM1uwj6H7K5ZjqoBn4y6XhdDrwCTc7pfzbvvYhvhFhqL4sNb6q5i6KHaAoob/o+GwVFftVX9aJfcvQhJv/yahBwDtHvZGMwWmvGMzixeJMDZsX7elreE3ntAQmND0KgpMipQv0gesqZB9mD1TTrn1OevelFw2213CmTL6POd9Ke/Cdxc4Qyavsj+FGbDP3PclLBACRYF458=
 
 cache: npm
 
 jobs:
-    include:
-        - stage: lint
-          script: npm run lint
-          os: linux
-          dist: xenial
+  include:
+  - stage: lint
+    script: npm run lint
+    os: linux
+    dist: xenial
 
-        # - stage: test
-        #   script: npm test
+    # - stage: test
+    #   script: npm test
 
-        - stage: build
-          script: npm run dist
-          os: linux
-          dist: xenial
-          sudo: required
-        - os: osx
-          script: npm run dist
-        - os: windows
-          script: npm run dist
+  - stage: build
+    script: npm run dist
+    os: linux
+    dist: xenial
+    sudo: required
+  - os: osx
+    script: npm run dist
+  - os: windows
+    script: npm run dist
 
-        - stage: deploy
-          if: branch = v0.6.0
-          os: linux
-          dist: xenial
-          deploy:
-            provider: releases
-            file_glob: true
-            file:
-                - dist/bookjournal*.tar.gz
-                - dist/bookjournal*.deb
-            api_key:
-                secure: $API_KEY
-            skip_cleanup: true
-            on:
-                tags: true
-                repo: eiskalteschatten/BookJournal
-        - os: osx
-          if: branch = v0.6.0
-          deploy:
-            provider: releases
-            file_glob: true
-            file: dist/BookJournal*.dmg
-            api_key:
-                secure: $API_KEY
-            skip_cleanup: true
-            on:
-                tags: true
-                repo: eiskalteschatten/BookJournal
-        - os: windows
-          if: branch = v0.6.0
-          deploy:
-            provider: releases
-            file_glob: true
-            file: dist/BookJournal*.exe
-            api_key:
-                secure: $API_KEY
-            skip_cleanup: true
-            on:
-                tags: true
-                repo: eiskalteschatten/BookJournal
+  - stage: deploy
+    if: branch = v0.6.0
+    os: linux
+    dist: xenial
+    deploy:
+      provider: releases
+      file_glob: true
+      file:
+      - dist/bookjournal*.tar.gz
+      - dist/bookjournal*.deb
+      api_key:
+        secure: "$API_KEY"
+      skip_cleanup: true
+      on:
+        tags: true
+        repo: eiskalteschatten/BookJournal
+  - os: osx
+    if: branch = v0.6.0
+    deploy:
+      provider: releases
+      file_glob: true
+      file: dist/BookJournal*.dmg
+      api_key:
+        secure: "$API_KEY"
+      skip_cleanup: true
+      on:
+        tags: true
+        repo: eiskalteschatten/BookJournal
+  - os: windows
+    if: branch = v0.6.0
+    deploy:
+      provider: releases
+      file_glob: true
+      file: dist/BookJournal*.exe
+      api_key:
+        secure: "$API_KEY"
+      skip_cleanup: true
+      on:
+        tags: true
+        repo: eiskalteschatten/BookJournal
 
 stages:
-    - lint
-    - build
-    - deploy
+- lint
+- build
+- deploy
