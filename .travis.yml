@@ -39,7 +39,7 @@ jobs:
       - dist/bookjournal*.tar.gz
       - dist/bookjournal*.deb
       api_key:
-        secure: "$API_KEY"
+        secure: "$GITHUB_TOKEN"
       skip_cleanup: true
       on:
         tags: true
@@ -51,7 +51,7 @@ jobs:
       file_glob: true
       file: dist/BookJournal*.dmg
       api_key:
-        secure: "$API_KEY"
+        secure: "$GITHUB_TOKEN"
       skip_cleanup: true
       on:
         tags: true
@@ -63,7 +63,7 @@ jobs:
       file_glob: true
       file: dist/BookJournal*.exe
       api_key:
-        secure: "$API_KEY"
+        secure: "$GITHUB_TOKEN"
       skip_cleanup: true
       on:
         tags: true
