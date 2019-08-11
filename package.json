@@ -55,7 +55,7 @@
             "icon": "build/icon.ico"
         }
     },
-    "repository": "gogs@git.alexseifert.de:alexseifert/BookJournalElectron.git",
+    "repository": "https://github.com/eiskalteschatten/BookJournal.git",
     "keywords": [],
     "author": {
         "name": "Alex Seifert",
