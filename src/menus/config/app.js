@@ -221,6 +221,8 @@ else {
         {type: 'separator'},
         helpMenu[0],
         {type: 'separator'},
+        helpMenu[2],
+        {type: 'separator'},
         helpMenu[4],
         {
             label: `About ${config.app.name}`,
