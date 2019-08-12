@@ -6,6 +6,7 @@ const nunjucks = require('../nunjucks');
 
 const ListElement = require('./listElement');
 const TitleListElement = require('./listElement/title');
+const SpacerListElement = require('./listElement/spacer');
 
 
 class List {
@@ -46,6 +47,11 @@ class List {
 
     addTitleElement(displayName) {
         const element = new TitleListElement(displayName);
+        this.elements.push(element);
+    }
+
+    addSpacerElement() {
+        const element = new SpacerListElement();
         this.elements.push(element);
     }
 }

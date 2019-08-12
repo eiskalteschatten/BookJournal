@@ -7,7 +7,7 @@ const nunjucks = require('../nunjucks');
 
 
 class ListElement {
-    constructor(displayName, iconPath = '') {
+    constructor(displayName = '', iconPath = '') {
         this.displayName = displayName;
         this.iconPath = iconPath;
         this.classes = 'list-element js-list-element';

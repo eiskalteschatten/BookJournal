@@ -32,6 +32,11 @@ module.exports = async (type, term = '') => {
                 }
             };
             break;
+        case 'wishlist':
+            query = {
+                where: { onWishlist: true }
+            };
+            break;
         case 'category':
             query = {
                 where: {
