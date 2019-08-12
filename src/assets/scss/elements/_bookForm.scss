@@ -91,9 +91,8 @@
         }
     }
 
-    .currently-reading, .not-read-yet, .on-wishlist {
+    .checkbox-container {
         margin-top: -10px;
-        font-size: .9em;
 
         input[type='checkbox'] {
             margin-right: 5px;
