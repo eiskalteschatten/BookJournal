@@ -90,6 +90,15 @@
                             <label for="bookNumberOfPages">Page Count</label>
                             <input type="number" class="form-control js-book-form-field full-width" id="bookNumberOfPages" value="{{ book.pageCount }}">
                         </div>
+                        <div class="on-wishlist">
+                            {% if book.onWishlist == true %}
+                                {% set onWishlist = 'checked' %}
+                            {% endif %}
+
+                            <label for="bookOnWishlist">
+                                <input type="checkbox" id="bookOnWishlist" class="js-book-form-field" {{ onWishlist }}>On Wishlist
+                            </label>
+                        </div>
                     </div>
                     <div class="col-md-1">
                         <div class="form-group">

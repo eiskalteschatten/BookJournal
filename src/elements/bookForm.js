@@ -29,6 +29,7 @@ const bookFormMap = {
     bookCurrentlyReading: 'currentlyReading',
     bookDateRead: 'dateRead',
     bookNotReadYet: 'notReadYet',
+    bookOnWishlist: 'onWishlist',
     bookNumberOfPages: 'pageCount',
     bookColor: 'color',
     bookBookcoverFileName: 'bookcover',
