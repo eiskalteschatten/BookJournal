@@ -109,6 +109,10 @@
         width: $size;
     }
 
+    .book-year-published {
+        max-width: 100px;
+    }
+
     .fetching-book-info {
         font-size: .8em;
     }

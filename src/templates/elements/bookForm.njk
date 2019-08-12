@@ -8,7 +8,7 @@
 
     <div class="group">
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-5">
                 {% if book.bookcoverPath %}
                     {% set hasCover = 'has-bookcover' %}
                 {% endif %}
@@ -20,7 +20,7 @@
 
                 <input type="hidden" id="bookBookcoverFileName" class="js-book-form-field" value="{{ book.bookcover }}">
             </div>
-            <div class="col-md-8">
+            <div class="col-md-7">
                 <div class="form-group">
                     <label for="bookTitle">Title</label>
                     <input type="text" class="form-control js-book-form-field full-width" id="bookTitle" value="{{ book.title }}">
@@ -35,69 +35,20 @@
                     <input type="text" class="form-control js-book-form-field full-width" id="bookAuthor" value="{{ book.author }}" placeholder="Enter each author separated by a comma">
                 </div>
 
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="bookEditor">Editor(s)</label>
-                            <input type="text" class="form-control js-book-form-field full-width" id="bookEditor" value="{{ book.editor }}">
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="bookGenre">Genre</label>
-                            <input type="text" class="form-control js-book-form-field full-width" id="bookGenre" value="{{ book.genre }}">
-                        </div>
-                    </div>
+                <div class="form-group">
+                    <label for="bookEditor">Editor(s)</label>
+                    <input type="text" class="form-control js-book-form-field full-width" id="bookEditor" value="{{ book.editor }}">
+                </div>
+                <div class="form-group">
+                    <label for="bookGenre">Genre</label>
+                    <input type="text" class="form-control js-book-form-field full-width" id="bookGenre" value="{{ book.genre }}">
                 </div>
 
                 <div class="row">
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label for="bookDateStarted">Date Started</label>
-                            <input type="text" class="form-control js-book-form-field full-width js-book-form-date-field" id="bookDateStarted" value="{{ book.dateStarted }}">
-                        </div>
-                        <div class="currently-reading">
-                            {% if book.currentlyReading == true %}
-                                {% set currentlyReading = 'checked' %}
-                            {% endif %}
-
-                            <label for="bookCurrentlyReading">
-                                <input type="checkbox" id="bookCurrentlyReading" class="js-book-form-field" {{ currentlyReading }}>Currently Reading
-                            </label>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            {% if book.notReadYet == true %}
-                                {% set notReadYet = 'disabled' %}
-                            {% endif %}
-
-                            <label for="bookDateRead">Date Read</label>
-                            <input type="text" class="form-control js-book-form-field full-width js-book-form-date-field" id="bookDateRead" {{ notReadYet }} value="{{ book.dateRead }}">
-                        </div>
-                        <div class="not-read-yet">
-                            {% if book.notReadYet == true %}
-                                {% set notReadYet = 'checked' %}
-                            {% endif %}
-
-                            <label for="bookNotReadYet">
-                                <input type="checkbox" id="bookNotReadYet" class="js-book-form-field" {{ notReadYet }}>Not read yet
-                            </label>
-                        </div>
-                    </div>
                     <div class="col-md-3">
                         <div class="form-group">
                             <label for="bookNumberOfPages">Page Count</label>
                             <input type="number" class="form-control js-book-form-field full-width" id="bookNumberOfPages" value="{{ book.pageCount }}">
-                        </div>
-                        <div class="on-wishlist">
-                            {% if book.onWishlist == true %}
-                                {% set onWishlist = 'checked' %}
-                            {% endif %}
-
-                            <label for="bookOnWishlist">
-                                <input type="checkbox" id="bookOnWishlist" class="js-book-form-field" {{ onWishlist }}>On Wishlist
-                            </label>
                         </div>
                     </div>
                     <div class="col-md-1">
@@ -112,58 +63,99 @@
         </div>
     </div>
 
-    <div class="group">
-        <div class="group-title">Publication Details</div>
+     <div class="group">
+        <div class="group-title">Status</div>
+
+        <div class="form-group currently-reading">
+            {% if book.currentlyReading == true %}
+                {% set currentlyReading = 'checked' %}
+            {% endif %}
+
+            <label for="bookCurrentlyReading">
+                <input type="checkbox" id="bookCurrentlyReading" class="js-book-form-field" {{ currentlyReading }}>Currently Reading
+            </label>
+        </div>
+
+        <div class="form-group not-read-yet">
+            {% if book.notReadYet == true %}
+                {% set notReadYet = 'checked' %}
+            {% endif %}
+
+            <label for="bookNotReadYet">
+                <input type="checkbox" id="bookNotReadYet" class="js-book-form-field" {{ notReadYet }}>Not read yet
+            </label>
+        </div>
+
+        <div class="form-group on-wishlist">
+            {% if book.onWishlist == true %}
+                {% set onWishlist = 'checked' %}
+            {% endif %}
+
+            <label for="bookOnWishlist">
+                <input type="checkbox" id="bookOnWishlist" class="js-book-form-field" {{ onWishlist }}>On Wishlist
+            </label>
+        </div>
 
         <div class="row">
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="bookPublisher">Publisher</label>
-                    <input type="text" class="form-control js-book-form-field full-width" id="bookPublisher" value="{{ book.publisher }}">
+                    <label for="bookDateStarted">Date Started</label>
+                    <input type="text" class="form-control js-book-form-field full-width js-book-form-date-field" id="bookDateStarted" value="{{ book.dateStarted }}">
                 </div>
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label for="bookYearPublished">Year Published</label>
-                            <input type="number" class="form-control js-book-form-field full-width" id="bookYearPublished" value="{{ book.yearPublished }}">
-                        </div>
-                    </div>
-                    <div class="col-md-8">
-                        <div class="form-group">
-                            <label for="bookBookFormat">Book Format</label>
-                            <select class="form-control js-book-form-field full-width" id="bookBookFormat">
-                                <option value="-1" disabled selected>Select a Book Format</option>
 
-                                {% for value, name in bookFormats %}
-                                    <option
-                                        value="{{ value }}"
-                                        {% if book.bookFormat == value %}selected{% endif %}
-                                    >
-                                        {{ name }}
-                                    </option>
-                                {% else %}
-                                    <option disabled>No book formats available</option>
-                                {% endfor %}
-                            </select>
-                        </div>
-                    </div>
-                </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="bookIsbn">ISBN</label>
-                    <input type="text" class="form-control js-book-form-field full-width" id="bookIsbn" value="{{ book.isbn }}">
+                    <label for="bookDateRead">Date Read</label>
+                    <input type="text" class="form-control js-book-form-field full-width js-book-form-date-field" id="bookDateRead" value="{{ book.dateRead }}">
                 </div>
-                <div class="form-group fetching-book-info">
-                    <div class="hidden" id="bookFetchingBookInfo">
-                        <span class="loading inline"></span>
-                        Fetching book information...
-                    </div>
-                    <div class="hidden" id="bookBookInfoFetched">
-                        Information for this book has been found on Google Books. <a href="#" id="bookFillOutBookInfo">Automatically fill out the form</a><br><br>
-                        <strong>Warning!</strong> This will override any previous entries!
-                    </div>
-                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="group">
+        <div class="group-title">Publication Details</div>
+
+        <div class="form-group">
+            <label for="bookPublisher">Publisher</label>
+            <input type="text" class="form-control js-book-form-field full-width" id="bookPublisher" value="{{ book.publisher }}">
+        </div>
+
+        <div class="form-group">
+            <label for="bookYearPublished">Year Published</label>
+            <input type="number" class="form-control js-book-form-field book-year-published" id="bookYearPublished" value="{{ book.yearPublished }}">
+        </div>
+
+        <div class="form-group">
+            <label for="bookBookFormat">Book Format</label>
+            <select class="form-control js-book-form-field full-width" id="bookBookFormat">
+                <option value="-1" disabled selected>Select a Book Format</option>
+
+                {% for value, name in bookFormats %}
+                    <option
+                        value="{{ value }}"
+                        {% if book.bookFormat == value %}selected{% endif %}
+                    >
+                        {{ name }}
+                    </option>
+                {% else %}
+                    <option disabled>No book formats available</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="bookIsbn">ISBN</label>
+            <input type="text" class="form-control js-book-form-field full-width" id="bookIsbn" value="{{ book.isbn }}">
+        </div>
+        <div class="form-group fetching-book-info">
+            <div class="hidden" id="bookFetchingBookInfo">
+                <span class="loading inline"></span>
+                Fetching book information...
+            </div>
+            <div class="hidden" id="bookBookInfoFetched">
+                Information for this book has been found on Google Books. <a href="#" id="bookFillOutBookInfo">Automatically fill out the form</a><br><br>
+                <strong>Warning!</strong> This will override any previous entries!
             </div>
         </div>
     </div>
@@ -171,47 +163,35 @@
     <div class="group">
         <div class="group-title">Language &amp; Origin</div>
 
-        <div class="row">
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label for="bookNationality">Nationality</label>
-                    <input type="text" class="form-control js-book-form-field full-width" id="bookNationality" value="{{ book.nationality }}">
-                </div>
-                <div class="form-group">
-                    <label for="bookOriginalLanguage">Original Language</label>
-                    <input type="text" class="form-control js-book-form-field full-width" id="bookOriginalLanguage" value="{{ book.originalLanguage }}">
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label for="bookLanguageReadIn">Language Read In</label>
-                    <input type="text" class="form-control js-book-form-field full-width" id="bookLanguageReadIn" value="{{ book.languageReadIn }}">
-                </div>
-                <div class="form-group">
-                    <label for="bookTranslator">Translator</label>
-                    <input type="text" class="form-control js-book-form-field full-width" id="bookTranslator" value="{{ book.translator }}">
-                </div>
-            </div>
+        <div class="form-group">
+            <label for="bookNationality">Nationality</label>
+            <input type="text" class="form-control js-book-form-field full-width" id="bookNationality" value="{{ book.nationality }}">
+        </div>
+        <div class="form-group">
+            <label for="bookOriginalLanguage">Original Language</label>
+            <input type="text" class="form-control js-book-form-field full-width" id="bookOriginalLanguage" value="{{ book.originalLanguage }}">
+        </div>
+        <div class="form-group">
+            <label for="bookLanguageReadIn">Language Read In</label>
+            <input type="text" class="form-control js-book-form-field full-width" id="bookLanguageReadIn" value="{{ book.languageReadIn }}">
+        </div>
+        <div class="form-group">
+            <label for="bookTranslator">Translator</label>
+            <input type="text" class="form-control js-book-form-field full-width" id="bookTranslator" value="{{ book.translator }}">
         </div>
     </div>
 
     <div class="group">
         <div class="group-title">Classification</div>
 
-        <div class="row">
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label for="bookTags">Tags</label>
-                    {% include "elements/bookForm/tags.njk" %}
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label for="bookCategories">Categories</label>
-                    <div id="bookCategoriesWrapper">
-                        {% include "elements/bookForm/categories.njk" %}
-                    </div>
-                </div>
+        <div class="form-group">
+            <label for="bookTags">Tags</label>
+            {% include "elements/bookForm/tags.njk" %}
+        </div>
+        <div class="form-group">
+            <label for="bookCategories">Categories</label>
+            <div id="bookCategoriesWrapper">
+                {% include "elements/bookForm/categories.njk" %}
             </div>
         </div>
     </div>
