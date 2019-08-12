@@ -38,6 +38,9 @@ BookJournal runs on the [Electron](https://electronjs.org/) platform and can the
 
 ## Release Notes
 
+### 0.7.0
+
+
 ### 0.6.0
 - [x] Support for macOS dark mode
 - [x] Fix a bug where "Invalid Date" is shown if no Date Read is given in the book list
