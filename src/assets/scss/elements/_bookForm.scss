@@ -99,6 +99,11 @@
         }
     }
 
+    .date-field {
+        max-width: 150px;
+        width: 100%;
+    }
+
     .color-stripe {
         $size: 30px;
         border: 1px solid $colorCircleLightBorderColor;

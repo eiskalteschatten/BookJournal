@@ -67,7 +67,7 @@
         <div class="group-title">Status</div>
 
         <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-4">
                 <div class="form-group checkbox-container">
                     {% if book.currentlyReading == true %}
                         {% set currentlyReading = 'checked' %}
@@ -99,15 +99,15 @@
                 </div>
             </div>
 
-            <div class="col-md-9">
+            <div class="col-md-8">
                 <div class="form-group">
                     <label for="bookDateStarted">Date Started</label>
-                    <input type="text" class="form-control js-book-form-field full-width js-book-form-date-field" id="bookDateStarted" value="{{ book.dateStarted }}">
+                    <input type="text" class="form-control js-book-form-field date-field js-book-form-date-field" id="bookDateStarted" value="{{ book.dateStarted }}">
                 </div>
 
                 <div class="form-group">
                     <label for="bookDateRead">Date Read</label>
-                    <input type="text" class="form-control js-book-form-field full-width js-book-form-date-field" id="bookDateRead" value="{{ book.dateRead }}">
+                    <input type="text" class="form-control js-book-form-field date-field js-book-form-date-field" id="bookDateRead" value="{{ book.dateRead }}">
                 </div>
             </div>
         </div>
