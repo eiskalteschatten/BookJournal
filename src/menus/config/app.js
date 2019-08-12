@@ -128,6 +128,11 @@ const template = [
             },
             {type: 'separator'},
             {
+                label: 'Submit Feedback',
+                click: () => { shell.openExternal('https://www.alexseifert.com/contact'); }
+            },
+            {type: 'separator'},
+            {
                 label: 'About Alex Seifert',
                 click: () => { shell.openExternal('https://www.alexseifert.com'); }
             }
@@ -216,7 +221,7 @@ else {
         {type: 'separator'},
         helpMenu[0],
         {type: 'separator'},
-        helpMenu[2],
+        helpMenu[4],
         {
             label: `About ${config.app.name}`,
             click: (item, focusedWindow) => {
