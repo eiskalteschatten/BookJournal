@@ -34,9 +34,20 @@
                     </label>
                     <input type="text" class="form-control js-book-form-field full-width" id="bookAuthor" value="{{ book.author }}" placeholder="Enter each author separated by a comma">
                 </div>
-                <div class="form-group">
-                    <label for="bookGenre">Genre</label>
-                    <input type="text" class="form-control js-book-form-field full-width" id="bookGenre" value="{{ book.genre }}">
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="bookEditor">Editor(s)</label>
+                            <input type="text" class="form-control js-book-form-field full-width" id="bookEditor" value="{{ book.editor }}">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="bookGenre">Genre</label>
+                            <input type="text" class="form-control js-book-form-field full-width" id="bookGenre" value="{{ book.genre }}">
+                        </div>
+                    </div>
                 </div>
 
                 <div class="row">

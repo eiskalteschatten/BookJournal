@@ -23,6 +23,7 @@ const bookFormMap = {
     bookBookcoverId: 'id',
     bookTitle: 'title',
     bookAuthor: 'author',
+    bookEditor: 'editor',
     bookGenre: 'genre',
     bookDateStarted: 'dateStarted',
     bookCurrentlyReading: 'currentlyReading',
