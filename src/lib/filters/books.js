@@ -49,6 +49,7 @@ module.exports = async (type, term = '') => {
                     [Op.or]: [
                         { title: { [Op.like]: `%${term}%` } },
                         { author: { [Op.like]: `%${term}%` } },
+                        { editor: { [Op.like]: `%${term}%` } },
                         { genre: { [Op.like]: `%${term}%` } },
                         { pageCount: { [Op.like]: `%${term}%` } },
                         { publisher: { [Op.like]: `%${term}%` } },
