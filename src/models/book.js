@@ -12,6 +12,10 @@ const Book = db.define('book', {
         type: Sequelize.STRING,
         allowNull: true
     },
+    editor: {
+        type: Sequelize.STRING,
+        allowNull: true
+    },
     genre: {
         type: Sequelize.STRING,
         allowNull: true
