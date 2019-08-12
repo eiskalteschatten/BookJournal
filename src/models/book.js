@@ -36,6 +36,10 @@ const Book = db.define('book', {
         type: Sequelize.BOOLEAN,
         defaultValue: false
     },
+    onWishlist: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false
+    },
     pageCount: {
         type: Sequelize.INTEGER,
         allowNull: true
