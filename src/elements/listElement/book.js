@@ -69,6 +69,9 @@ class BookListElement extends ListElement {
             case 'bookFormat':
                 subtitle = book.bookFormat ? bookFormats[book.bookFormat] : '';
                 break;
+            case 'onWishlist':
+                subtitle = book.onWishlist ? 'On Wishlist' : '';
+                break;
             case 'dateStarted':
                 const dateStarted = new Date(book.dateStarted);
                 subtitle = book.dateStarted && this.checkForValidDate(book.dateStarted)
