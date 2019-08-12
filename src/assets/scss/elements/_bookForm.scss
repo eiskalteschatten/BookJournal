@@ -8,8 +8,8 @@
         background: none;
 
         .book-form {
+            left: 50%;
             opacity: 1;
-            right: 0;
         }
     }
 }
@@ -30,10 +30,12 @@
 
 .book-form {
     height: 100%;
+    max-width: 800px;
     opacity: 0.2;
     position: absolute;
-    right: 10%;
+    left: 45%;
     top: 50px;
+    transform: translateX(-50%);
     transition: all 200ms ease-out;
     width: 100%;
 
