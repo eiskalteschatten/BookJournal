@@ -144,7 +144,7 @@ Book.getHasBeenRead = async function(title, authors, isbns) {
                 {
                     title: { [Op.like]: `%${title}%` },
                     author: { [Op.like]: `%${authors}%` },
-                    notReadYet: false,
+                    status: 'read',
                     dateRead: {
                         [Op.ne]: null,
                         [Op.notLike]: 'Invalid%'
@@ -152,7 +152,7 @@ Book.getHasBeenRead = async function(title, authors, isbns) {
                 },
                 {
                     isbn: isbns,
-                    notReadYet: false,
+                    status: 'read',
                     dateRead: {
                         [Op.ne]: null,
                         [Op.notLike]: 'Invalid%'
