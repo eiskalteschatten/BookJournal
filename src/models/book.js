@@ -36,6 +36,10 @@ const Book = db.define('book', {
         type: Sequelize.BOOLEAN,
         defaultValue: false
     },
+    status: {
+        type: Sequelize.STRING,
+        defaultValue: 'notReadYet'
+    },
     onWishlist: {
         type: Sequelize.BOOLEAN,
         defaultValue: false
