@@ -20,11 +20,6 @@ $(document).on('click', '#bookUtilityMenu', function() {
     ipcRenderer.send('show-book-utility-menu');
 });
 
-$(document).on('click', '#bookNotReadYet', function() {
-    if ($(this).prop('checked')) $('#bookDateRead').prop('disabled', true);
-    else $('#bookDateRead').prop('disabled', false);
-});
-
 $(document).on('contextmenu', '.js-book-list-element', function() {
     $(this).trigger('click');
     ipcRenderer.send('show-book-utility-menu');

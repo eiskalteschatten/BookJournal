@@ -1,10 +1,10 @@
 {% macro create(selectors, fieldId, defaultValue = "") %}
-    <input type="hidden" id="{{ fieldId }}" value="{{ defaultValue }}">
+    <input type="hidden" id="{{ fieldId }}" value="{{ defaultValue }}" class="js-selector-input">
 
     <div class="selection-bar">
         {% for value, name in selectors %}
             <div
-                class="selector {% if value == defaultValue %}selected{% endif %}"
+                class="selector js-selector {% if value == defaultValue %}selected{% endif %}"
                 data-value="{{ value }}"
             >
                 {{ name }}
