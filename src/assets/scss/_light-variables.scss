@@ -26,6 +26,8 @@ $buttonBg: lighten($mainBg, 7%);
 $buttonColor: $mainFontColor;
 $buttonHoverBg: darken($buttonBg, 2%);
 $buttonActiveBg: darken($buttonBg, 10%);
+$buttonSelectedBg: darken($buttonBg, 7%);
+$selectionBarSelectorBorderColor: #e0e0e0;
 
 $toolbarButtonColor: $mainFontColor;
 $toolbarIconPlus: '../images/light/si-glyph-button-plus.svg';

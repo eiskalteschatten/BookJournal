@@ -1,3 +1,5 @@
+{% import "elements/selectionBar.njk" as selectionBar %}
+
 <div class="book-utility-menu" id="bookUtilityMenu"></div>
 
 <h1>Book Details</h1>
@@ -128,7 +130,7 @@
 
         <div class="form-group">
             <label for="bookBookFormat">Book Format</label>
-            <select class="form-control js-book-form-field full-width" id="bookBookFormat">
+            {# <select class="form-control js-book-form-field full-width" id="bookBookFormat">
                 <option value="-1" disabled selected>Select a Book Format</option>
 
                 {% for value, name in bookFormats %}
@@ -141,7 +143,9 @@
                 {% else %}
                     <option disabled>No book formats available</option>
                 {% endfor %}
-            </select>
+
+            </select> #}
+            {{ selectionBar.create(bookFormats, "bookBookFormat", book.bookFormat) }}
         </div>
 
         <div class="form-group">
