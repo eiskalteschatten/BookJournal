@@ -28,14 +28,6 @@ const Book = db.define('book', {
         type: Sequelize.DATEONLY,
         allowNull: true
     },
-    notReadYet: {
-        type: Sequelize.BOOLEAN,
-        defaultValue: false
-    },
-    currentlyReading: {
-        type: Sequelize.BOOLEAN,
-        defaultValue: false
-    },
     status: {
         type: Sequelize.ENUM(['notReadYet', 'currentlyReading', 'read', 'stoppedReading', 'takingABreak']),
         defaultValue: 'notReadYet'
