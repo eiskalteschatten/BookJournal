@@ -1,7 +1,12 @@
-{% macro create(selectors, fieldId, defaultValue = "") %}
-    <input type="hidden" id="{{ fieldId }}" value="{{ defaultValue }}" class="js-selector-input">
+{% macro create(selectors, fieldId, defaultValue = "", isInBookForm = false) %}
+    <div class="selection-bar js-selection-bar">
+        <input
+            type="hidden"
+            id="{{ fieldId }}"
+            value="{{ defaultValue }}"
+            class="js-selector-input {% if isInBookForm %}js-book-form-field{% endif %}"
+        >
 
-    <div class="selection-bar">
         {% for value, name in selectors %}
             <div
                 class="selector js-selector {% if value == defaultValue %}selected{% endif %}"
