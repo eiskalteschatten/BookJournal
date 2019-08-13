@@ -37,7 +37,7 @@ const Book = db.define('book', {
         defaultValue: false
     },
     status: {
-        type: Sequelize.STRING,
+        type: Sequelize.ENUM(['notReadYet', 'currentlyReading', 'read', 'stoppedReading', 'takingABreak']),
         defaultValue: 'notReadYet'
     },
     onWishlist: {
