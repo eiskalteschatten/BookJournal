@@ -7,6 +7,7 @@ const nunjucks = require('../../nunjucks');
 const ListElement = require('../listElement');
 const bookcoverHelper = require('../../lib/bookcover');
 const bookFormats = require('../../lib/bookFormats');
+const readingStatuses = require('../../lib/readingStatuses');
 
 
 class BookListElement extends ListElement {
@@ -60,11 +61,8 @@ class BookListElement extends ListElement {
             case 'title':
                 subtitle = book.author;
                 break;
-            case 'notReadYet':
-                subtitle = book.notReadYet ? 'Not Read Yet' : `Finished on ${dateRead.toLocaleDateString()}`;
-                break;
-            case 'currentlyReading':
-                subtitle = book.currentlyReading ? 'Currently Reading' : '';
+            case 'status':
+                subtitle = book.status ? readingStatuses[book.status] : '';
                 break;
             case 'bookFormat':
                 subtitle = book.bookFormat ? bookFormats[book.bookFormat] : '';
