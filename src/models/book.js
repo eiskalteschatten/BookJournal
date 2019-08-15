@@ -28,13 +28,9 @@ const Book = db.define('book', {
         type: Sequelize.DATEONLY,
         allowNull: true
     },
-    notReadYet: {
-        type: Sequelize.BOOLEAN,
-        defaultValue: false
-    },
-    currentlyReading: {
-        type: Sequelize.BOOLEAN,
-        defaultValue: false
+    status: {
+        type: Sequelize.ENUM(['notReadYet', 'currentlyReading', 'read', 'stoppedReading', 'takingABreak']),
+        defaultValue: 'notReadYet'
     },
     onWishlist: {
         type: Sequelize.BOOLEAN,
@@ -148,7 +144,7 @@ Book.getHasBeenRead = async function(title, authors, isbns) {
                 {
                     title: { [Op.like]: `%${title}%` },
                     author: { [Op.like]: `%${authors}%` },
-                    notReadYet: false,
+                    status: 'read',
                     dateRead: {
                         [Op.ne]: null,
                         [Op.notLike]: 'Invalid%'
@@ -156,7 +152,7 @@ Book.getHasBeenRead = async function(title, authors, isbns) {
                 },
                 {
                     isbn: isbns,
-                    notReadYet: false,
+                    status: 'read',
                     dateRead: {
                         [Op.ne]: null,
                         [Op.notLike]: 'Invalid%'

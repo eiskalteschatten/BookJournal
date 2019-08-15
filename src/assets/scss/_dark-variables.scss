@@ -26,6 +26,8 @@ $buttonBg: lighten($mainBg, 7%);
 $buttonColor: $mainFontColor;
 $buttonHoverBg: darken($buttonBg, 2%);
 $buttonActiveBg: darken($buttonBg, 10%);
+$buttonSelectedBg: darken($buttonBg, 7%);
+$selectionBarSelectorBorderColor: darken($buttonBg, 10%);
 
 $toolbarButtonColor: $mainFontColor;
 $toolbarIconPlus: '../images/dark/si-glyph-button-plus.svg';
@@ -58,6 +60,8 @@ $uploadAreaDragoverBg: #333333;
 
 $colorCircleBorderColor: #333333;
 $colorCircleLightBorderColor: $colorCircleBorderColor;
+
+$bookFormGroupBorderColor: #333333;
 
 $badgeBg: lighten($mainBg, 5%);
 $badgeHoverBg: lighten($badgeBg, 2%);

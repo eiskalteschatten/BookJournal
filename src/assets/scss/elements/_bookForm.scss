@@ -8,8 +8,8 @@
         background: none;
 
         .book-form {
+            left: 50%;
             opacity: 1;
-            right: 0;
         }
     }
 }
@@ -30,10 +30,12 @@
 
 .book-form {
     height: 100%;
+    max-width: 800px;
     opacity: 0.2;
     position: absolute;
-    right: 10%;
+    left: 45%;
     top: 50px;
+    transform: translateX(-50%);
     transition: all 200ms ease-out;
     width: 100%;
 
@@ -89,13 +91,17 @@
         }
     }
 
-    .currently-reading, .not-read-yet, .on-wishlist {
-        margin-top: -10px;
-        font-size: .9em;
+    .checkbox-container {
+        margin-bottom: 10px;
 
         input[type='checkbox'] {
             margin-right: 5px;
         }
+    }
+
+    .date-field {
+        max-width: 150px;
+        width: 100%;
     }
 
     .color-stripe {
@@ -107,6 +113,10 @@
         width: $size;
     }
 
+    .book-year-published {
+        max-width: 100px;
+    }
+
     .fetching-book-info {
         font-size: .8em;
     }
@@ -116,6 +126,8 @@
     }
 
     .tag-cluster {
+        margin-bottom: 40px;
+
         .tag-badge {
             background: $badgeBg;
             border-radius: 5px;

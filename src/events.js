@@ -12,6 +12,7 @@ require('./events/books');
 require('./events/dragbar');
 require('./events/statistics');
 require('./events/modal');
+require('./events/forms');
 
 
 $(document).on('contextmenu', 'input, textarea', function() {

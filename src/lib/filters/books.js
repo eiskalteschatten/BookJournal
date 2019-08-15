@@ -16,20 +16,17 @@ module.exports = async (type, term = '') => {
             break;
         case 'currently-reading':
             query = {
-                where: { currentlyReading: true }
+                where: { status: 'currentlyReading' }
             };
             break;
         case 'not-read-yet':
             query = {
-                where: { notReadYet: true }
+                where: { status: 'notReadYet' }
             };
             break;
         case 'books-read':
             query = {
-                where: {
-                    notReadYet: false,
-                    dateRead: { [Op.ne]: null }
-                }
+                where: { status: 'read' }
             };
             break;
         case 'wishlist':
