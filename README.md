@@ -43,7 +43,7 @@ BookJournal runs on the [Electron](https://electronjs.org/) platform and can the
 - [x] Add Editor field
 - [x] Add books to a wishlist
 - [x] Redesigned book form to make it simpler and more fun to use
-- [ ] Redesigned book reading statuses to have more options and to make it easier to understand
+- [x] Redesigned book reading statuses to have more options and to make it easier to understand
 
 ### 0.6.0
 - [x] Support for macOS dark mode
