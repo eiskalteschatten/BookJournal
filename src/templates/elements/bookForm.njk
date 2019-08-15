@@ -68,50 +68,35 @@
      <div class="group">
         <div class="group-title">Status</div>
 
+        <div class="form-group">
+            <label for="bookReadingStatus">Reading Status</label>
+            {{ selectionBar.create(readingStatuses, "bookReadingStatus", book.status, true) }}
+        </div>
+
         <div class="row">
-            <div class="col-md-4">
-                <div class="form-group checkbox-container">
-                    {% if book.currentlyReading == true %}
-                        {% set currentlyReading = 'checked' %}
-                    {% endif %}
-
-                    <label for="bookCurrentlyReading">
-                        <input type="checkbox" id="bookCurrentlyReading" class="js-book-form-field" {{ currentlyReading }}>Currently Reading
-                    </label>
-                </div>
-
-                <div class="form-group checkbox-container">
-                    {% if book.notReadYet == true %}
-                        {% set notReadYet = 'checked' %}
-                    {% endif %}
-
-                    <label for="bookNotReadYet">
-                        <input type="checkbox" id="bookNotReadYet" class="js-book-form-field" {{ notReadYet }}>Not read yet
-                    </label>
-                </div>
-
-                <div class="form-group checkbox-container">
-                    {% if book.onWishlist == true %}
-                        {% set onWishlist = 'checked' %}
-                    {% endif %}
-
-                    <label for="bookOnWishlist">
-                        <input type="checkbox" id="bookOnWishlist" class="js-book-form-field" {{ onWishlist }}>On Wishlist
-                    </label>
-                </div>
-            </div>
-
-            <div class="col-md-8">
+            <div class="col-md-3">
                 <div class="form-group">
                     <label for="bookDateStarted">Date Started</label>
                     <input type="text" class="form-control js-book-form-field date-field js-book-form-date-field" id="bookDateStarted" value="{{ book.dateStarted }}">
                 </div>
+            </div>
 
+            <div class="col-md-3">
                 <div class="form-group">
                     <label for="bookDateRead">Date Read</label>
                     <input type="text" class="form-control js-book-form-field date-field js-book-form-date-field" id="bookDateRead" value="{{ book.dateRead }}">
                 </div>
             </div>
+        </div>
+
+        <div class="form-group checkbox-container">
+            {% if book.onWishlist == true %}
+                {% set onWishlist = 'checked' %}
+            {% endif %}
+
+            <label for="bookOnWishlist">
+                <input type="checkbox" id="bookOnWishlist" class="js-book-form-field" {{ onWishlist }}>On Wishlist
+            </label>
         </div>
     </div>
 

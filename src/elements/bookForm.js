@@ -15,6 +15,7 @@ const config = require('../config/config');
 const BooksByAuthor = require('../elements/modal/booksByAuthor');
 const bookcoverHelper = require('../lib/bookcover');
 const bookFormats = require('../lib/bookFormats');
+const readingStatuses = require('../lib/readingStatuses');
 
 const Book = require('../models/book');
 const Category = require('../models/category');
@@ -26,9 +27,8 @@ const bookFormMap = {
     bookEditor: 'editor',
     bookGenre: 'genre',
     bookDateStarted: 'dateStarted',
-    bookCurrentlyReading: 'currentlyReading',
     bookDateRead: 'dateRead',
-    bookNotReadYet: 'notReadYet',
+    bookReadingStatus: 'status',
     bookOnWishlist: 'onWishlist',
     bookNumberOfPages: 'pageCount',
     bookColor: 'color',
@@ -145,7 +145,8 @@ class BookForm {
             return nunjucks.renderString(templateString, {
                 book,
                 categories,
-                bookFormats
+                bookFormats,
+                readingStatuses
             });
         }).catch(error => {
             console.error(error);
