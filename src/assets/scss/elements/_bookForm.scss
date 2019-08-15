@@ -91,27 +91,25 @@
         }
     }
 
-    .wishlist-checkbox {
-        font-size: 1.1em;
-        margin-top: 25px;
-
-        input[type='checkbox'] {
-            margin-right: 5px;
-        }
-    }
-
     .date-field {
         max-width: 150px;
         width: 100%;
     }
 
-    .color-stripe {
-        $size: 30px;
-        border: 1px solid $colorCircleLightBorderColor;
-        border-radius: 50%;
-        cursor: pointer;
-        height: $size;
-        width: $size;
+    .color-form-group {
+        position: relative;
+
+        .color-stripe {
+            $size: 30px;
+            border: 1px solid $colorCircleLightBorderColor;
+            border-radius: 50%;
+            cursor: pointer;
+            height: $size;
+            left: 50%;
+            position: absolute;
+            transform: translateX(-50%);
+            width: $size;
+        }
     }
 
     .book-year-published {
