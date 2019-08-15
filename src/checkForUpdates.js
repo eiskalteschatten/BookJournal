@@ -13,7 +13,8 @@ module.exports = async (showNoUpdateDialog = false) => {
             let preferences = localStorage.getItem('preferences');
             preferences = JSON.parse(preferences);
 
-            if (!preferences.checkForUpdates) {
+            if (!preferences.checkForUpdates || process.env.NODE_ENV === 'development') {
+                console.log('Checking for updates is disabled.');
                 resolve();
                 return;
             }
