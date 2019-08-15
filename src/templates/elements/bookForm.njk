@@ -53,11 +53,22 @@
                             <input type="number" class="form-control js-book-form-field full-width" id="bookNumberOfPages" value="{{ book.pageCount }}">
                         </div>
                     </div>
-                    <div class="col-md-1">
+                    <div class="col-md-3">
                         <div class="form-group">
                             <label for="bookColor">Color</label>
                             <input type="color" id="bookColor" class="hidden js-book-form-color-form js-book-form-field" value="{{ book.color }}">
                             <div class="color-stripe js-book-form-color-stripe" style="background-color: {{ book.color }};"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group wishlist-checkbox align-right">
+                            {% if book.onWishlist == true %}
+                                {% set onWishlist = 'checked' %}
+                            {% endif %}
+
+                            <label for="bookOnWishlist">
+                                <input type="checkbox" id="bookOnWishlist" class="js-book-form-field" {{ onWishlist }}>On Wishlist
+                            </label>
                         </div>
                     </div>
                 </div>
@@ -87,16 +98,6 @@
                     <input type="text" class="form-control js-book-form-field date-field js-book-form-date-field" id="bookDateRead" value="{{ book.dateRead }}">
                 </div>
             </div>
-        </div>
-
-        <div class="form-group checkbox-container">
-            {% if book.onWishlist == true %}
-                {% set onWishlist = 'checked' %}
-            {% endif %}
-
-            <label for="bookOnWishlist">
-                <input type="checkbox" id="bookOnWishlist" class="js-book-form-field" {{ onWishlist }}>On Wishlist
-            </label>
         </div>
     </div>
 
