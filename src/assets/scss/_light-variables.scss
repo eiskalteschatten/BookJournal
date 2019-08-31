@@ -86,3 +86,9 @@ $datepickerButtonHoverColor: #ffffff;
 $datepickerSelectedBg: $datepickerBeforeBg;
 $datepickerSelectedColor: $datepickerButtonHoverColor;
 $datepickerFooterBg: $datepickerHeaderBg;
+
+$toggleSwitchBg: darken($mainBg, 15%);
+$toggleSwitchKnobBg: #ffffff;
+$toggleSwitchBorder: darken($selectionBarSelectorBorderColor, 15%);
+$toggleSwitchCheckedBg: #019CEE;
+$toggleSwitchCheckedBorder: #98bbd4;
