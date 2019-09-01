@@ -75,7 +75,7 @@ async function createWindow() {
                 windowIsMaximized: mainWindow.isMaximized(),
             };
 
-            await preferences.updateAttributes(values);
+            await preferences.update(values);
         }
         catch(error) {
             console.error(error);
