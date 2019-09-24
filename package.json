@@ -65,7 +65,7 @@
     "license": "",
     "devDependencies": {
         "compile-sass": "^1.0.1",
-        "electron": "^6.0.1",
+        "electron": "^6.0.10",
         "electron-builder": "^21.2.0",
         "eslint": "^4.19.1",
         "eslint-plugin-promise": "^3.8.0",
@@ -80,11 +80,11 @@
         "moment": "^2.24.0",
         "nunjucks": "^3.2.0",
         "popper.js": "^1.15.0",
-        "sequelize": "^5.12.3",
+        "sequelize": "^5.19.0",
         "sequelize-migration-wrapper": "^0.1.1",
-        "sqlite3": "^4.0.9",
+        "sqlite3": "^4.1.0",
         "tiny-date-picker": "^3.2.8",
-        "uuid": "^3.3.2"
+        "uuid": "^3.3.3"
     },
     "husky": {
         "hooks": {
