@@ -64,8 +64,8 @@
     "homepage": "https://www.alexseifert.com",
     "license": "",
     "devDependencies": {
-        "compile-sass": "^1.0.1",
-        "electron": "^6.1.4",
+        "compile-sass": "^1.0.2",
+        "electron": "^6.1.5",
         "electron-builder": "^21.2.0",
         "eslint": "^4.19.1",
         "eslint-plugin-promise": "^3.8.0",
