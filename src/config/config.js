@@ -38,7 +38,7 @@ console.log('Application data is saved at:', storagePath);
 module.exports = {
     app: {
         name: 'BookJournal',
-        version: '0.7.0',
+        version: '0.8.0',
         storagePath,
         tempStoragePath
     },
