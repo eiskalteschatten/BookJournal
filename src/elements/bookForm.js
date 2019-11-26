@@ -219,14 +219,11 @@ class BookForm {
                     return;
                 }
 
-                fs.copyFile(imagePath, newImagePath, error => {
+                fs.copyFile(imagePath, newImagePath, async error => {
                     if (error) reject(error);
-
-                    const filePath = bookcoverHelper.pruneCoverPath(newFileName);
-
                     resolve({
                         fileName: newFileName,
-                        filePath
+                        filePath: bookcoverHelper.pruneCoverPath(newFileName)
                     });
                 });
             });
