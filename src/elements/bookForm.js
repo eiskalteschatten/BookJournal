@@ -9,6 +9,7 @@ const uuidv4 = require('uuid/v4');
 const request = require('request');
 const TinyDatePicker = require('tiny-date-picker');
 const moment = require('moment');
+const ColorThief = require('colorthief');
 
 const nunjucks = require('../nunjucks');
 const config = require('../config/config');
@@ -220,9 +221,12 @@ class BookForm {
 
                 fs.copyFile(imagePath, newImagePath, error => {
                     if (error) reject(error);
+
+                    const filePath = bookcoverHelper.pruneCoverPath(newFileName);
+
                     resolve({
                         fileName: newFileName,
-                        filePath: bookcoverHelper.pruneCoverPath(newFileName)
+                        filePath
                     });
                 });
             });
@@ -244,6 +248,22 @@ class BookForm {
         }).catch(error => {
             console.error(error);
         });
+    }
+
+    static async getPrimaryBookcoverColor(filePath) {
+        try {
+            const rgbColor = await ColorThief.getColor(filePath);
+
+            const hexColor = '#' + rgbColor.map(color => {
+                const hex = color.toString(16);
+                return hex.length === 1 ? '0' + hex : hex;
+            }).join('');
+
+            return hexColor;
+        }
+        catch(error) {
+            console.error(error);
+        }
     }
 
     async afterRender() {

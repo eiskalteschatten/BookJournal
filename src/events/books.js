@@ -217,6 +217,15 @@ $(document).on('contextmenu', '#bookcoverUploadArea', function() {
 
 ipcRenderer.on('delete-bookcover', deleteBookcover);
 
+ipcRenderer.on('get-bookcover-color', async () => {
+    const fileName = $('#bookBookcoverFileName').val();
+    const bookcoverPath = config.bookcovers.path;
+    const filePath = path.resolve(bookcoverPath, fileName);
+    const color = await BookForm.getPrimaryBookcoverColor(filePath);
+
+    $('#bookColor').val(color).trigger('change');
+});
+
 
 // Book Color
 

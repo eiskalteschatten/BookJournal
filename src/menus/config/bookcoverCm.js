@@ -5,6 +5,10 @@ const {dialog} = require('electron');
 
 const template = [
     {
+        label: 'Set Color from Bookcover',
+        click: async (item, focusedWindow) => focusedWindow.webContents.send('get-bookcover-color')
+    },
+    {
         label: 'Delete Bookcover',
         click: async (item, focusedWindow) => {
             dialog.showMessageBox({
