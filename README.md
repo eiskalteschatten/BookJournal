@@ -38,10 +38,15 @@ BookJournal runs on the [Electron](https://electronjs.org/) platform and can the
 
 ## Release Notes
 
+### 0.7.1
+- [x] Fixed a bug where categories couldn't be deleted
+- [x] Fixed a bug where clicking on buttons in the dialog boxes wasn't producing any results
+- [x] Fixed a bug where adding a bookcover was no longer possible
+
 ### 0.7.0
-- [x] Add Submit Feedback button to the Help menu
-- [x] Add Editor field
-- [x] Add books to a wishlist
+- [x] Added Submit Feedback button to the Help menu
+- [x] Added Editor field
+- [x] Added books to a wishlist
 - [x] Feature to set the book's color to the primary color of the bookcover
 - [x] Redesigned book form to make it simpler and more fun to use
 - [x] Redesigned book reading statuses to have more options and to make it easier to understand
