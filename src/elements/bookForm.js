@@ -158,7 +158,7 @@ class BookForm {
         const categories = await Category.getAllSorted();
 
         return new Promise((resolve, reject) => {
-            const template = path.join(__dirname, '../templates/bookForm/categories.njk');
+            const template = path.join(__dirname, '../templates/elements/bookForm/categories.njk');
 
             fs.readFile(template, 'utf8', (error, string) => {
                 if (error) reject(error);

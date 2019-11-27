@@ -19,27 +19,26 @@ module.exports = async (showNoUpdateDialog = false) => {
                 return;
             }
 
-            $.getJSON(config.updates.url, data => {
+            $.getJSON(config.updates.url, async data => {
                 const versionInt = parseInt(config.app.version.replace(/[^0-9]/g, ''));
                 const versionIntServer = parseInt(data.versionInt);
 
                 if (versionInt < versionIntServer) {
-                    dialog.showMessageBox({
+                    const result = await dialog.showMessageBox({
                         message: 'An update is available',
                         detail: 'Would you like to download it?',
                         buttons: ['No', 'Yes'],
                         type: 'info',
                         defaultId: 1,
                         cancelId: 0
-                    }, response => {
-                        if (response === 1)
-                            shell.openExternal(data.downloadUrl);
-
-                        resolve(true);
                     });
+                    if (result.response === 1)
+                        shell.openExternal(data.downloadUrl);
+
+                    resolve(true);
                 }
                 else if (showNoUpdateDialog) {
-                    dialog.showMessageBox({
+                    await dialog.showMessageBox({
                         message: 'There are currently no updates available.',
                         buttons: ['OK'],
                         type: 'info',
