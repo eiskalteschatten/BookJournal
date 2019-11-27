@@ -186,13 +186,15 @@ async function deleteBookcover() {
     }
 }
 
-$(document).on('click', '#bookcoverUploadArea', function() {
-    dialog.showOpenDialog(remote.getCurrentWindow(), {
+$(document).on('click', '#bookcoverUploadArea', async function() {
+    const result = await dialog.showOpenDialog(remote.getCurrentWindow(), {
         filters: [
             { name: 'Images', extensions: config.bookcovers.extensions }
         ],
         properties: ['openFile']
-    }, async imagePath => saveBookcover(imagePath[0]));
+    });
+
+    await saveBookcover(result.filePaths[0]);
 });
 
 $(document).on('dragover', '#bookcoverUploadArea', function(e) {
