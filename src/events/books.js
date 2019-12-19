@@ -443,7 +443,7 @@ $(document).on('click', '#bookFillOutBookInfo', async function(e) {
 
         await saveBook();
 
-        if (bookInfo.imageLinks && bookInfo.imageLinks.thumbnail) {
+        if (bookInfo.imageLinks && (bookInfo.imageLinks.thumbnail || bookInfo.imageLinks.small || bookInfo.imageLinks.medium || bookInfo.imageLinks.large)) {
             let imagePath = config.bookcovers.tempPath;
             fs.mkdir(imagePath, { recursive: true }, error => {
                 if (error) {
@@ -452,7 +452,15 @@ $(document).on('click', '#bookFillOutBookInfo', async function(e) {
 
                 imagePath = path.join(imagePath, 'tempCover.jpg');
 
-                request({uri: bookInfo.imageLinks.thumbnail})
+                const bookCoverLink = bookInfo.imageLinks.large
+                    ? bookInfo.imageLinks.large
+                    : bookInfo.imageLinks.medium
+                        ? bookInfo.imageLinks.medium
+                        : bookInfo.imageLinks.small
+                            ? bookInfo.imageLinks.small
+                            : bookInfo.imageLinks.thumbnail;
+
+                request({uri: bookCoverLink})
                     .pipe(fs.createWriteStream(imagePath))
                     .on('close', async () => {
                         await saveBookcover(imagePath);
