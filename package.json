@@ -79,7 +79,7 @@
         "jquery": "^3.4.1",
         "mkdirp": "^0.5.1",
         "moment": "^2.24.0",
-        "nunjucks": "^3.2.0",
+        "nunjucks": "^3.2.1",
         "popper.js": "^1.16.0",
         "sequelize": "^5.21.2",
         "sequelize-migration-wrapper": "^0.1.1",
