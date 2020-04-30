@@ -76,7 +76,7 @@
         "chart.js": "^2.9.3",
         "colorthief": "^2.3.0",
         "iso-639-1": "^2.1.1",
-        "jquery": "^3.4.1",
+        "jquery": "^3.5.0",
         "mkdirp": "^0.5.1",
         "moment": "^2.24.0",
         "nunjucks": "^3.2.1",
