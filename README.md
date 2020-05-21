@@ -38,6 +38,11 @@ BookJournal runs on the [Electron](https://electronjs.org/) platform and can the
 
 ## Release Notes
 
+### 1.0.0
+- [x] Updated the app icon
+- [x] Updated the dependencies
+- [x] Small tweaks and polishing touches
+
 ### 0.7.1
 - [x] Fixed a bug where categories couldn't be deleted
 - [x] Fixed a bug where clicking on buttons in the dialog boxes wasn't producing any results
