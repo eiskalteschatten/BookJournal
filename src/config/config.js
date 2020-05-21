@@ -43,7 +43,7 @@ module.exports = {
         tempStoragePath
     },
     updates: {
-        url: 'https://www.alexseifert.com/bookjournal/api/check-for-updates/'
+        url: 'https://www.alexseifert.com/api/bookjournal/check-for-updates/'
     },
     database: {
         path: storagePath,
