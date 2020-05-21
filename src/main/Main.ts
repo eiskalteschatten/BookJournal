@@ -2,13 +2,15 @@ import { BrowserWindow, BrowserWindowConstructorOptions } from 'electron';
 import path from 'path';
 
 import config from '../config';
-
 import { setupSequelize } from './db';
+import { Preferences } from './db/models/Preferences';
+import { loadPreferences } from './initialPreferences';
 
 export default class Main {
   static mainWindow: Electron.BrowserWindow | undefined;
   static application: Electron.App;
   static BrowserWindow: typeof BrowserWindow;
+  static preferences: Preferences;
 
   private static onWindowAllClosed(): void {
     if (process.platform !== 'darwin') {
@@ -30,7 +32,7 @@ export default class Main {
           windowIsMaximized: Main.mainWindow.isMaximized(),
         };
 
-        // await preferences.update(values);
+        await Main.preferences.update(values);
 
         Main.mainWindow = undefined;
       }
@@ -42,14 +44,16 @@ export default class Main {
 
   private static async onReady(): Promise<void> {
     await setupSequelize();
+    Main.preferences = await loadPreferences();
+
     // if (process.env.NODE_ENV === 'development') {
     // Open the DevTools.
     // Main.BrowserWindow.addDevToolsExtension('<location to your react chrome extension>');
     // }
 
     const browserWindowOptions: BrowserWindowConstructorOptions = {
-      width: 800,//preferences.windowWidth,
-      height: 600,//preferences.windowHeight,
+      width: Main.preferences.windowWidth,
+      height: Main.preferences.windowHeight,
       icon: path.join(__dirname, '../assets/images/icon128.png'),
       webPreferences: {
         nodeIntegration: true
@@ -60,19 +64,19 @@ export default class Main {
       browserWindowOptions.titleBarStyle = 'hidden';
     }
 
-    // if (preferences.windowX && preferences.windowY) {
-    //   browserWindowOptions.x = preferences.windowX;
-    //   browserWindowOptions.y = preferences.windowY;
-    // }
+    if (Main.preferences.windowX && Main.preferences.windowY) {
+      browserWindowOptions.x = Main.preferences.windowX;
+      browserWindowOptions.y = Main.preferences.windowY;
+    }
 
     Main.mainWindow = new Main.BrowserWindow(browserWindowOptions);
 
     if (Main.mainWindow) {
-      // if (preferences.windowIsMaximized) {
-      //   Main.mainWindow.maximize();
-      // }
+      if (Main.preferences.windowIsMaximized) {
+        Main.mainWindow.maximize();
+      }
 
-      // Main.mainWindow.setFullScreen(preferences.windowIsFullScreen || false);
+      Main.mainWindow.setFullScreen(Main.preferences.windowIsFullScreen || false);
 
       Main.mainWindow.loadURL(
         process.env.NODE_ENV === 'development'
