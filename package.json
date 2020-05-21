@@ -1,6 +1,6 @@
 {
     "name": "bookjournal",
-    "version": "1.0.0",
+    "version": "2.0.0",
     "description": "A digital book journal.",
     "main": "./src/main.js",
     "scripts": {
@@ -21,7 +21,7 @@
     },
     "build": {
         "productName": "BookJournal",
-        "copyright": "Copyright © 2018 - 2019 Alex Seifert",
+        "copyright": "Copyright © 2018 - 2020 Alex Seifert",
         "appId": "com.alexseifert.bookjournal",
         "buildDependenciesFromSource": true,
         "files": [
