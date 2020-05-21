@@ -31,12 +31,12 @@ module.exports = {
     return query.removeColumn('books', 'currentlyReading');
   },
 
-  down: async query => {
+  down: async (query, DataTypes) => {
     await query.addColumn(
       'books',
       'notReadYet',
       {
-        type: Sequelize.BOOLEAN,
+        type: DataTypes.BOOLEAN,
         defaultValue: false
       }
     );
@@ -45,7 +45,7 @@ module.exports = {
       'books',
       'currentlyReading',
       {
-        type: Sequelize.BOOLEAN,
+        type: DataTypes.BOOLEAN,
         defaultValue: false
       }
     );
