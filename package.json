@@ -8,7 +8,7 @@
     "build:electron": "tsc --project tsconfig.electron.json",
     "prebuild": "npm run copyassets",
     "build": "npm run build:react && npm run build:electron",
-    "copyassets": "copyfiles -f \"./src/assets/images/icon128.png\" \"./build/assets/images/\"",
+    "copyassets": "node ./build-scripts/copyassets.js",
     "prestart": "npm run copyassets && npm run build:electron",
     "start": "concurrently \"BROWSER=none npm run start:react\" \"wait-on http://localhost:3000 && NODE_ENV=development electron .\"",
     "start:react": "react-scripts start",
