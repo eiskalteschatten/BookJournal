@@ -1,25 +1,15 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.scss';
+
+import { IntlProviderWrapper } from './intl/IntlContext';
 
 const App: React.FC = () => {
+  // TODO: allow the saved locale from the DB to override the system's settings
+  const locale = navigator.language.split('-')[0] || 'en';
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <IntlProviderWrapper injectedLocale={locale}>
+
+    </IntlProviderWrapper>
   );
 };
 
