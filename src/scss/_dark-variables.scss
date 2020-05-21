@@ -13,7 +13,7 @@ $listSelectedBg: #063353;
 $listSelectedDarkBg: $listSelectedBg;
 $listBorderColor: darken($mainBg, 3%);
 
-$searchFormBackgroundImage: '../images/search.svg';
+$searchFormBackgroundImage: '../assets/images/search.svg';
 $searchFormBg: #000000;
 $searchFormColor: #ffffff;
 $searchFormBorderColor: lighten($searchFormBg, 15%);
@@ -30,11 +30,11 @@ $buttonSelectedBg: darken($buttonBg, 7%);
 $selectionBarSelectorBorderColor: darken($buttonBg, 10%);
 
 $toolbarButtonColor: $mainFontColor;
-$toolbarIconPlus: '../images/dark/si-glyph-button-plus.svg';
+$toolbarIconPlus: '../assets/images/dark/si-glyph-button-plus.svg';
 $toolbarIconSidebarPlus: $toolbarIconPlus;
 
 $modalContainerBg: rgba(2, 2, 2, .5);
-$modalCloseX: '../images/dark/modal-close-x.svg';
+$modalCloseX: '../assets/images/dark/modal-close-x.svg';
 $modalHeaderBorderColor: darken($mainFontColor, 70%);
 
 $booksByAuthorHoverBg: lighten($mainBg, 2%);
@@ -44,14 +44,14 @@ $preferencesThemeBorderColor: #000000;
 $preferencesThemeSelectedBorderColor: lighten($listSelectedBg, 20%);
 $preferencesThemeShadowColor: rgba(0, 0, 0, 0.8);
 
-$noBookSelected: '../images/dark/icon-monotone.svg';
+$noBookSelected: '../assets/images/dark/icon-monotone.svg';
 
-$gear: '../images/dark/gear.svg';
+$gear: '../assets/images/dark/gear.svg';
 
 $sortBg: $middleColumnBg;
 $sortColor: $mainFontColor;
 
-$bookcoverListPlaceholder: '../images/dark/bookcover.svg';
+$bookcoverListPlaceholder: '../assets/images/dark/bookcover.svg';
 $bookListHoverBg: lighten($middleColumnBg, 1%);
 
 $bookcoverUploadArea: $bookcoverListPlaceholder;
@@ -68,12 +68,12 @@ $badgeHoverBg: lighten($badgeBg, 2%);
 $tagBadgeBg: #610115;
 $tagBadgeHoverBg: lighten($tagBadgeBg, 2%);
 $tagBadgeColor: $mainFontColor;
-$removeBadge: '../images/dark/si-glyph-circle-remove.svg';
+$removeBadge: '../assets/images/dark/si-glyph-circle-remove.svg';
 $removeBadgeDarkFg: $removeBadge;
 
-$ratingStarsFull: '../images/dark/star.svg';
-$ratingStarsEmpty: '../images/dark/star-empty.svg';
-$ratingStarsRemove: '../images/si-glyph-trash.svg';
+$ratingStarsFull: '../assets/images/dark/star.svg';
+$ratingStarsEmpty: '../assets/images/dark/star-empty.svg';
+$ratingStarsRemove: '../assets/images/si-glyph-trash.svg';
 
 $statisticsCellBorderColor: darken($mainFontColor, 50%);
 
