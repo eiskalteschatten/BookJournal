@@ -3,6 +3,8 @@ import path from 'path';
 
 import config from '../config';
 
+import { setupSequelize } from './db';
+
 export default class Main {
   static mainWindow: Electron.BrowserWindow | undefined;
   static application: Electron.App;
@@ -38,10 +40,11 @@ export default class Main {
     }
   }
 
-  private static onReady(): void {
+  private static async onReady(): Promise<void> {
+    await setupSequelize();
     // if (process.env.NODE_ENV === 'development') {
-      // Open the DevTools.
-      // Main.BrowserWindow.addDevToolsExtension('<location to your react chrome extension>');
+    // Open the DevTools.
+    // Main.BrowserWindow.addDevToolsExtension('<location to your react chrome extension>');
     // }
 
     const browserWindowOptions: BrowserWindowConstructorOptions = {
@@ -82,10 +85,6 @@ export default class Main {
   }
 
   static main(app: Electron.App, browserWindow: typeof BrowserWindow): void {
-    // we pass the Electron.App object and the
-    // Electron.BrowserWindow into this function
-    // so this class has no dependencies. This
-    // makes the code easier to write tests for
     Main.BrowserWindow = browserWindow;
     Main.application = app;
     Main.application.on('window-all-closed', Main.onWindowAllClosed);

@@ -1,7 +1,7 @@
-'use strict';
+import { QueryInterface } from 'sequelize';
 
-module.exports = {
-  up: async (query, DataTypes) => {
+export default {
+  up: async (query: QueryInterface, DataTypes: any) => {
     try {
       const booksDesc = await query.describeTable('books');
       if (booksDesc.notes) return Promise.resolve();
@@ -22,7 +22,7 @@ module.exports = {
     );
   },
 
-  down: query => {
+  down: async (query: QueryInterface) => {
     return query.sequelize.query(
       [
         'ALTER TABLE "books" DROP COLUMN "notes";'

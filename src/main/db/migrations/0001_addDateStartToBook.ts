@@ -1,10 +1,10 @@
-'use strict';
+import { QueryInterface } from 'sequelize';
 
-module.exports = {
-  up: async (query, DataTypes) => {
+export default {
+  up: async (query: QueryInterface, DataTypes: any) => {
     try {
       const booksDesc = await query.describeTable('books');
-      if (booksDesc.currentlyReading) return Promise.resolve();
+      if (booksDesc.dateStarted) return Promise.resolve();
     }
     catch (error) {
       // Silently fail because the table most likely doesn't exist and will be
@@ -14,18 +14,18 @@ module.exports = {
 
     return query.addColumn(
       'books',
-      'currentlyReading',
+      'dateStarted',
       {
-        type: DataTypes.BOOLEAN,
-        defaultValue: false
+        type: DataTypes.DATEONLY,
+        allowNull: true
       }
     );
   },
 
-  down: query => {
+  down: async (query: QueryInterface) => {
     return query.sequelize.query(
       [
-        'ALTER TABLE "books" DROP COLUMN "currentlyReading";'
+        'ALTER TABLE "books" DROP COLUMN "dateStarted";'
       ].join(''),
       { raw: true });
   }

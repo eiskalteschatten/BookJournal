@@ -1,7 +1,7 @@
-'use strict';
+import { QueryInterface } from 'sequelize';
 
-module.exports = {
-  up: async query => {
+export default {
+  up: async (query: QueryInterface, DataTypes: any) => {
     try {
       const books = await query.describeTable('books');
       if (!books) return Promise.resolve();
@@ -23,7 +23,7 @@ module.exports = {
     );
   },
 
-  down: async query => {
+  down: async (query: QueryInterface) => {
     await query.sequelize.query(
       'UPDATE "books" SET dateStarted = "1887-09-16" where dateStarted is NULL;',
       { raw: true }

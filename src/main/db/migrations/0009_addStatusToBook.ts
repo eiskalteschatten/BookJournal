@@ -1,7 +1,7 @@
-'use strict';
+import { QueryInterface } from 'sequelize';
 
-module.exports = {
-  up: async (query, DataTypes) => {
+export default {
+  up: async (query: QueryInterface, DataTypes: any) => {
     try {
       const booksDesc = await query.describeTable('books');
       if (booksDesc.status) return Promise.resolve();
@@ -31,7 +31,7 @@ module.exports = {
     return query.removeColumn('books', 'currentlyReading');
   },
 
-  down: async (query, DataTypes) => {
+  down: async (query: QueryInterface, DataTypes: any) => {
     await query.addColumn(
       'books',
       'notReadYet',

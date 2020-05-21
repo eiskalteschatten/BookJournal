@@ -1,7 +1,7 @@
-'use strict';
+import { QueryInterface } from 'sequelize';
 
-module.exports = {
-  up: async (query, DataTypes) => {
+export default {
+  up: async (query: QueryInterface, DataTypes: any) => {
     try {
       const desc = await query.describeTable('preferences');
       if (desc.fetchBooksByAuthor || desc.fetchBooksByAuthorLanguage) return Promise.resolve();
@@ -13,9 +13,10 @@ module.exports = {
     }
 
     await query.addColumn(
-      'preferences', 'fetchBooksByAuthor',
-      DataTypes.BOOLEAN,
+      'preferences',
+      'fetchBooksByAuthor',
       {
+        type: DataTypes.BOOLEAN,
         allowNull: true
       }
     );
@@ -26,9 +27,10 @@ module.exports = {
     );
 
     await query.addColumn(
-      'preferences', 'fetchBooksByAuthorLanguage',
-      DataTypes.STRING,
+      'preferences',
+      'fetchBooksByAuthorLanguage',
       {
+        type: DataTypes.STRING,
         allowNull: false
       }
     );
@@ -39,7 +41,7 @@ module.exports = {
     );
   },
 
-  down: query => {
+  down: async (query: QueryInterface) => {
     return query.sequelize.query(
       [
         'ALTER TABLE "preferences" DROP COLUMN "fetchBooksByAuthor";',
