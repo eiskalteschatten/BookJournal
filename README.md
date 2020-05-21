@@ -1,6 +1,7 @@
 # Book Journal
 
-[![Build Status](https://travis-ci.org/eiskalteschatten/BookJournal.svg?branch=master)](https://travis-ci.org/eiskalteschatten/BookJournal)
+![Node.js CI](https://github.com/eiskalteschatten/BookJournal/workflows/Node.js%20CI/badge.svg)
+![Build/release](https://github.com/eiskalteschatten/BookJournal/workflows/Build/release/badge.svg)
 
 A digital book journal.
 
