@@ -1,0 +1,35 @@
+html,
+body {
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+body {
+  background: $mainBg;
+  color: $mainFontColor;
+  font-size: 15px;
+  overflow: hidden;
+}
+
+a {
+  color: $linkColor;
+}
+
+.loading {
+  background: url("../assets/images/loader.svg") no-repeat center center;
+  background-size: 32px;
+
+  &.inline {
+    $size: 15px;
+    background-size: $size;
+    display: inline-block;
+    height: $size;
+    margin-right: 5px;
+    width: $size;
+  }
+}
+
+@import "structure";
+@import "bootstrap";
