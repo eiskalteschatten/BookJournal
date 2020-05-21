@@ -1,7 +1,7 @@
 import { QueryInterface } from 'sequelize';
 
 export default {
-  up: async (query: QueryInterface, DataTypes: any) => {
+  up: async (query: QueryInterface, DataTypes: any): Promise<void> => {
     try {
       const desc = await query.describeTable('preferences');
       if (desc.fetchBooksByAuthor || desc.fetchBooksByAuthorLanguage) return Promise.resolve();
@@ -41,7 +41,7 @@ export default {
     );
   },
 
-  down: async (query: QueryInterface) => {
+  down: async (query: QueryInterface): Promise<void> => {
     return query.sequelize.query(
       [
         'ALTER TABLE "preferences" DROP COLUMN "fetchBooksByAuthor";',

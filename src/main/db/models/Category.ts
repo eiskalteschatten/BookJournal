@@ -9,7 +9,7 @@ export class Category extends Model {
   readonly createdAt: Date;
   readonly updatedAt: Date;
 
-  async getAllSorted() {
+  async getAllSorted(): Promise<void> {
     return await Category.findAll({
       order: [
         [

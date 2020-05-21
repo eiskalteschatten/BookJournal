@@ -63,7 +63,7 @@ export class Book extends Model {
 
     if (monthDigit < 10) {
       month = `0${month}`;
-    };
+    }
 
     return await sequelize.query(`SELECT * FROM books where strftime('%Y-%m', dateRead) IN('${year}-${month}');`);
   }
