@@ -83,4 +83,4 @@ export default interface Theme {
   toggleSwitchBorder: string;
   toggleSwitchCheckedBg: string;
   toggleSwitchCheckedBorder: string;
-}
+} // eslint-disable-line semi
