@@ -1,95 +1,120 @@
 {
-    "name": "bookjournal",
-    "version": "2.0.0",
-    "description": "A digital book journal.",
-    "main": "./src/main.js",
-    "scripts": {
-        "build": "node ./build-scripts/build.js",
-        "prestart": "npm run build",
-        "start": "NODE_ENV=development electron .",
-        "prestart:prod": "npm run build",
-        "start:prod": "electron .",
-        "test": "npm run lint",
-        "lint": "npx eslint .",
-        "postinstall": "electron-builder install-app-deps",
-        "prepack": "npm run build",
-        "pack": "electron-builder --dir",
-        "pack:skipsigning": "CSC_IDENTITY_AUTO_DISCOVERY=false npm run pack",
-        "predist": "npm run build",
-        "dist": "electron-builder",
-        "dist:skipsigning": "CSC_IDENTITY_AUTO_DISCOVERY=false npm run dist"
+  "name": "bookjournal",
+  "version": "2.0.0",
+  "description": "A digital book journal.",
+  "main": "./public/electron.js",
+  "scripts": {
+    "startreact": "react-scripts start",
+    "buildreact": "react-scripts build",
+    "build": "tsc --project tsconfig.electron.json",
+    "eject": "react-scripts eject",
+    "prestart": "npm run build",
+    "start": "concurrently \"BROWSER=none npm run startreact\" \"wait-on http://localhost:3000 && NODE_ENV=development electron .\"",
+    "prestart:prod": "npm run build",
+    "start:prod": "electron .",
+    "test": "npm run lint",
+    "lint": "eslint './**/*.{tsx,ts,js}'",
+    "postinstall": "electron-builder install-app-deps",
+    "prepack": "npm run build",
+    "pack": "electron-builder --dir",
+    "pack:skipsigning": "CSC_IDENTITY_AUTO_DISCOVERY=false npm run pack",
+    "predist": "npm run build",
+    "dist": "electron-builder",
+    "dist:skipsigning": "CSC_IDENTITY_AUTO_DISCOVERY=false npm run dist"
+  },
+  "build": {
+    "productName": "BookJournal",
+    "copyright": "Copyright © 2018 - 2020 Alex Seifert",
+    "appId": "com.alexseifert.bookjournal",
+    "buildDependenciesFromSource": true,
+    "files": [
+      "!*.code-workspace",
+      "!build-scripts",
+      "!glyph-iconset-master",
+      "!images",
+      "!Notes.md"
+    ],
+    "mac": {
+      "target": [
+        "dmg"
+      ],
+      "category": "public.app-category.productivity",
+      "entitlements": "build/entitlements.mac.plist",
+      "type": "development",
+      "darkModeSupport": true
     },
-    "build": {
-        "productName": "BookJournal",
-        "copyright": "Copyright © 2018 - 2020 Alex Seifert",
-        "appId": "com.alexseifert.bookjournal",
-        "buildDependenciesFromSource": true,
-        "files": [
-            "!*.code-workspace",
-            "!build-scripts",
-            "!glyph-iconset-master",
-            "!images",
-            "!Notes.md"
-        ],
-        "mac": {
-            "target": [
-                "dmg"
-            ],
-            "category": "public.app-category.productivity",
-            "entitlements": "build/entitlements.mac.plist",
-            "type": "development",
-            "darkModeSupport": true
-        },
-        "linux": {
-            "target": [
-                "deb",
-                "tar.gz"
-            ],
-            "category": "Office"
-        },
-        "win": {
-            "target": [
-                "nsis",
-                "portable"
-            ],
-            "icon": "build/icon.ico"
-        }
+    "linux": {
+      "target": [
+        "deb",
+        "tar.gz"
+      ],
+      "category": "Office"
     },
-    "repository": "https://github.com/eiskalteschatten/BookJournal.git",
-    "keywords": [],
-    "author": {
-        "name": "Alex Seifert",
-        "email": "alex@alexseifert.com"
-    },
-    "homepage": "https://www.alexseifert.com",
-    "license": "",
-    "devDependencies": {
-        "compile-sass": "^1.1.0",
-        "electron": "^7.3.0",
-        "electron-builder": "^21.2.0",
-        "eslint": "^4.19.1",
-        "eslint-plugin-promise": "^3.8.0",
-        "husky": "^1.3.1"
-    },
-    "dependencies": {
-        "bootstrap": "^4.5.0",
-        "chart.js": "^2.9.3",
-        "colorthief": "^2.3.0",
-        "iso-639-1": "^2.1.3",
-        "jquery": "^3.5.0",
-        "mkdirp": "^0.5.5",
-        "moment": "^2.26.0",
-        "nunjucks": "^3.2.1",
-        "popper.js": "^1.16.1",
-        "sequelize": "^5.21.10",
-        "sequelize-migration-wrapper": "^0.1.1",
-        "sqlite3": "^4.2.0",
-        "tiny-date-picker": "^3.2.8",
-        "uuid": "^3.4.0"
-    },
-    "husky": {
-        "hooks": {
-            "pre-push": "npm run lint"
-        }
+    "win": {
+      "target": [
+        "nsis",
+        "portable"
+      ],
+      "icon": "build/icon.ico"
     }
+  },
+  "repository": "https://github.com/eiskalteschatten/BookJournal.git",
+  "keywords": [],
+  "author": {
+    "name": "Alex Seifert",
+    "email": "alex@alexseifert.com"
+  },
+  "homepage": "https://www.alexseifert.com",
+  "license": "",
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version"
+    ]
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^5.8.0",
+    "@testing-library/react": "^10.0.4",
+    "@testing-library/user-event": "^10.3.3",
+    "@types/jest": "^25.2.3",
+    "@types/node": "^12.12.6",
+    "@types/react": "^16.9.35",
+    "@types/react-dom": "^16.9.8",
+    "@typescript-eslint/eslint-plugin": "^2.34.0",
+    "@typescript-eslint/parser": "^2.34.0",
+    "concurrently": "^5.2.0",
+    "electron": "^9.0.0",
+    "electron-builder": "^22.6.1",
+    "eslint": "^6.6.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-react": "^7.20.0",
+    "husky": "^1.3.1",
+    "node-sass": "^4.14.1",
+    "typescript": "^3.9.3",
+    "wait-on": "^5.0.0"
+  },
+  "dependencies": {
+    "chart.js": "^2.9.3",
+    "colorthief": "^2.3.0",
+    "iso-639-1": "^2.1.3",
+    "mkdirp": "^0.5.5",
+    "moment": "^2.26.0",
+    "react": "^16.13.1",
+    "react-bootstrap": "^1.0.1",
+    "react-dom": "^16.13.1",
+    "react-scripts": "^3.4.1",
+    "sequelize": "^5.21.10",
+    "sequelize-migration-wrapper": "^0.1.1",
+    "sqlite3": "^4.2.0",
+    "uuid": "^3.4.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-push": "npm run lint"
+    }
+  }
 }
