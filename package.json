@@ -4,14 +4,12 @@
   "description": "A digital book journal.",
   "main": "./public/electron.js",
   "scripts": {
-    "startreact": "react-scripts start",
-    "buildreact": "react-scripts build",
-    "build": "tsc --project tsconfig.electron.json",
-    "eject": "react-scripts eject",
-    "prestart": "npm run build",
-    "start": "concurrently \"BROWSER=none npm run startreact\" \"wait-on http://localhost:3000 && NODE_ENV=development electron .\"",
-    "prestart:prod": "npm run build",
-    "start:prod": "electron .",
+    "build:react": "react-scripts build",
+    "build:electron": "tsc --project tsconfig.electron.json",
+    "build": "npm run build:react && npm run build:electron",
+    "prestart": "npm run build:electron",
+    "start": "concurrently \"BROWSER=none npm run start:react\" \"wait-on http://localhost:3000 && NODE_ENV=development electron .\"",
+    "start:react": "react-scripts start",
     "test": "npm run lint",
     "lint": "eslint './**/*.{tsx,ts,js}'",
     "postinstall": "electron-builder install-app-deps",
@@ -20,7 +18,8 @@
     "pack:skipsigning": "CSC_IDENTITY_AUTO_DISCOVERY=false npm run pack",
     "predist": "npm run build",
     "dist": "electron-builder",
-    "dist:skipsigning": "CSC_IDENTITY_AUTO_DISCOVERY=false npm run dist"
+    "dist:skipsigning": "CSC_IDENTITY_AUTO_DISCOVERY=false npm run dist",
+    "eject": "react-scripts eject"
   },
   "build": {
     "productName": "BookJournal",
@@ -39,7 +38,7 @@
         "dmg"
       ],
       "category": "public.app-category.productivity",
-      "entitlements": "build/entitlements.mac.plist",
+      "entitlements": "build-files/entitlements.mac.plist",
       "type": "development",
       "darkModeSupport": true
     },
@@ -55,7 +54,7 @@
         "nsis",
         "portable"
       ],
-      "icon": "build/icon.ico"
+      "icon": "build-files/icon.ico"
     }
   },
   "repository": "https://github.com/eiskalteschatten/BookJournal.git",

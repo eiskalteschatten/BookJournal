@@ -8,5 +8,6 @@ src/assets/css
 
 dist
 electron-dist
+build
 
 .build-cache
