@@ -1,4 +1,4 @@
-import { BrowserWindow } from 'electron';
+import { BrowserWindow, BrowserWindowConstructorOptions } from 'electron';
 import path from 'path';
 
 
@@ -24,7 +24,25 @@ export default class Main {
       // Main.BrowserWindow.addDevToolsExtension('<location to your react chrome extension>');
     }
 
-    Main.mainWindow = new Main.BrowserWindow({ width: 800, height: 600 });
+    const browserWindowOptions: BrowserWindowConstructorOptions = {
+      width: 800,//preferences.windowWidth,
+      height: 600,//preferences.windowHeight,
+      icon: path.join(__dirname, '../assets/images/icon128.png'),
+      webPreferences: {
+        nodeIntegration: true
+      }
+    };
+
+    if (process.platform === 'darwin') {
+      browserWindowOptions.titleBarStyle = 'hidden';
+    }
+
+    // if (preferences.windowX && preferences.windowY) {
+    //   browserWindowOptions.x = preferences.windowX;
+    //   browserWindowOptions.y = preferences.windowY;
+    // }
+
+    Main.mainWindow = new Main.BrowserWindow(browserWindowOptions);
 
     if (Main.mainWindow) {
       Main.mainWindow.loadURL(
