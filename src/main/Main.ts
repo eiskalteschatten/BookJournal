@@ -30,7 +30,7 @@ export default class Main {
       Main.mainWindow.loadURL(
         process.env.NODE_ENV === 'development'
           ? 'http://localhost:3000'
-          : `file://${path.join(__dirname, '../build/index.html')}`
+          : `file://${path.join(__dirname, '../index.html')}`
       );
 
       Main.mainWindow.on('closed', Main.onClose);

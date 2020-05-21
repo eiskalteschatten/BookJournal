@@ -27,11 +27,7 @@
     "appId": "com.alexseifert.bookjournal",
     "buildDependenciesFromSource": true,
     "files": [
-      "!*.code-workspace",
-      "!build-scripts",
-      "!glyph-iconset-master",
-      "!images",
-      "!Notes.md"
+      "build"
     ],
     "mac": {
       "target": [
@@ -63,7 +59,7 @@
     "name": "Alex Seifert",
     "email": "alex@alexseifert.com"
   },
-  "homepage": "https://www.alexseifert.com",
+  "homepage": "./",
   "license": "",
   "browserslist": {
     "production": [

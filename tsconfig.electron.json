@@ -8,14 +8,14 @@
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "allowJs": true,
-    "outDir": "./electron-dist",
+    "outDir": "./build/main",
     "baseUrl": "./src"
   },
   "include": [
     "src/main/**/*.ts"
   ],
   "exclude": [
-    "electron-dist",
+    "build",
     "node_modules"
   ]
 }
