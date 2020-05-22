@@ -1,12 +1,14 @@
 import { Reducer } from 'redux';
+
 import { PreferencesActions } from '../actions/preferencesActions';
+import { Preferences } from '../../main/db/models/Preferences';
 
 export interface PreferencesState {
-  theme: string;
+  all: Preferences | {};
 }
 
 export const initialState: PreferencesState = {
-  theme: ''
+  all: {}
 };
 
 const navReducer: Reducer<PreferencesState, PreferencesActions> = (
@@ -14,10 +16,10 @@ const navReducer: Reducer<PreferencesState, PreferencesActions> = (
   action: PreferencesActions
 ): any => {
   switch (action.type) {
-    case 'PREFERENCES_THEME':
+    case 'PREFERENCES_ALL':
       return {
         ...state,
-        theme: action.theme
+        all: action.all
       };
     default:
       return state;

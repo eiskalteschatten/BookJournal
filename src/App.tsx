@@ -2,6 +2,7 @@ import React from 'react';
 import { ThemeProvider } from 'react-jss';
 import { Provider } from 'react-redux';
 
+import EventsFromMain from './EventsFromMain';
 import { IntlProviderWrapper } from './intl/IntlContext';
 import themes from './theme';
 import store from './store';
@@ -17,6 +18,7 @@ const App: React.FC = () => {
 
   return (
     <Provider store={store}>
+      <EventsFromMain />
       <ThemeProvider theme={activeTheme}>
         <IntlProviderWrapper injectedLocale={locale}>
           <MainLayout />

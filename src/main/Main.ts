@@ -5,6 +5,7 @@ import config from '../config';
 import { setupSequelize } from './db';
 import { Preferences } from './db/models/Preferences';
 import { loadPreferences } from './initialPreferences';
+import initializeRenderer from './initializeRenderer';
 
 export default class Main {
   static mainWindow: Electron.BrowserWindow | undefined;
@@ -85,6 +86,12 @@ export default class Main {
       );
 
       Main.mainWindow.on('closed', Main.onClose);
+
+      Main.mainWindow.webContents.on('did-finish-load', (): void => {
+        if (Main.mainWindow) {
+          initializeRenderer(Main.mainWindow, Main.preferences);
+        }
+      })
     }
   }
 

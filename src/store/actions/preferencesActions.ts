@@ -1,9 +1,11 @@
-import { Action } from 'redux';
+import {  Action } from 'redux';
 
-export interface PreferencesTheme extends Action<'PREFERENCES_THEME'> {
-  theme: string;
+import { Preferences } from '../../main/db/models/Preferences';
+
+export interface PreferencesSetAll extends Action<'PREFERENCES_ALL'> {
+  all: Preferences;
 }
 
-export type PreferencesActions = PreferencesTheme;
+export type PreferencesActions = PreferencesSetAll;
 
-export const preferencesSetTheme = (theme: string): PreferencesTheme => ({ type: 'PREFERENCES_THEME', theme });
+export const preferencesSetAll = (all: Preferences): PreferencesSetAll => ({ type: 'PREFERENCES_ALL', all });
