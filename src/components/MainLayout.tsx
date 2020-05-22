@@ -7,6 +7,7 @@ import Theme from '../theme/interface';
 import { State } from '../store';
 
 import Titlebar from './Titlebar';
+import AdjustableColumn from './AdjustableColumn';
 
 const useStyles = createUseStyles<Theme>((theme: Theme): any => ({
   background: {
@@ -35,7 +36,19 @@ const MainLayout: React.FC = () => {
     >
       {platform === 'darwin' && (<Titlebar />)}
 
-      test
+      <div className='d-flex'>
+        <AdjustableColumn>
+          sidebar
+        </AdjustableColumn>
+
+        <AdjustableColumn>
+          middle
+        </AdjustableColumn>
+
+        <div>
+          book information
+        </div>
+      </div>
     </div>
   );
 };
