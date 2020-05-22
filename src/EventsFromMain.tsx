@@ -5,7 +5,7 @@ import { IpcRendererEvent } from 'electron';
 import { preferencesSetAll } from './store/actions/preferencesActions';
 import Preferences from './main/db/models/Preferences';
 
-const { ipcRenderer } = window.require('electron');
+const { ipcRenderer } = window.require('electron');  // eslint-disable-line no-undef
 
 const EventsFromMain: React.FC = () => {
   const dispatch = useDispatch();

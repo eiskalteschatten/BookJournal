@@ -91,7 +91,7 @@ export default class Main {
         if (Main.mainWindow) {
           initializeRenderer(Main.mainWindow, Main.preferences);
         }
-      })
+      });
     }
   }
 
