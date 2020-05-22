@@ -1,9 +1,6 @@
 import React from 'react';
 import { ThemeProvider } from 'react-jss';
 
-import './scss/bootstrap.scss';
-import './scss/base.scss';
-
 import { IntlProviderWrapper } from './intl/IntlContext';
 import themes from './theme';
 import MainLayout from './components/MainLayout';
