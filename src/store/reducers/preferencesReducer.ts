@@ -10,7 +10,7 @@ export interface PreferencesState {
 export const initialState: PreferencesState = {
 };
 
-const navReducer: Reducer<PreferencesState, PreferencesActions> = (
+const preferencesReducer: Reducer<PreferencesState, PreferencesActions> = (
   state: PreferencesState = initialState,
   action: PreferencesActions
 ): any => {
@@ -25,4 +25,4 @@ const navReducer: Reducer<PreferencesState, PreferencesActions> = (
   }
 };
 
-export default navReducer;
+export default preferencesReducer;
