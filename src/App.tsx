@@ -1,8 +1,10 @@
 import React from 'react';
 import { ThemeProvider } from 'react-jss';
+import { Provider } from 'react-redux';
 
 import { IntlProviderWrapper } from './intl/IntlContext';
 import themes from './theme';
+import store from './store';
 import MainLayout from './components/MainLayout';
 
 const App: React.FC = () => {
@@ -14,11 +16,13 @@ const App: React.FC = () => {
   const activeTheme = themes[theme];
 
   return (
-    <ThemeProvider theme={activeTheme}>
-      <IntlProviderWrapper injectedLocale={locale}>
-        <MainLayout />
-      </IntlProviderWrapper>
-    </ThemeProvider>
+    <Provider store={store}>
+      <ThemeProvider theme={activeTheme}>
+        <IntlProviderWrapper injectedLocale={locale}>
+          <MainLayout />
+        </IntlProviderWrapper>
+      </ThemeProvider>
+    </Provider>
   );
 };
 

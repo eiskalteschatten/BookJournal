@@ -46,10 +46,10 @@ export default class Main {
     await setupSequelize();
     Main.preferences = await loadPreferences();
 
-    // if (process.env.NODE_ENV === 'development') {
-    // Open the DevTools.
-    // Main.BrowserWindow.addDevToolsExtension('<location to your react chrome extension>');
-    // }
+    if (process.env.NODE_ENV === 'development') {
+      const { default: installExtension, REDUX_DEVTOOLS } = require('electron-devtools-installer');
+      await installExtension(REDUX_DEVTOOLS);
+    }
 
     const browserWindowOptions: BrowserWindowConstructorOptions = {
       width: Main.preferences.windowWidth,
