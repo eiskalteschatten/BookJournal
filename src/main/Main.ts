@@ -47,7 +47,7 @@ export default class Main {
     Main.preferences = await loadPreferences();
 
     if (process.env.NODE_ENV === 'development') {
-      const { default: installExtension, REDUX_DEVTOOLS } = require('electron-devtools-installer');
+      const { default: installExtension, REDUX_DEVTOOLS } = require('electron-devtools-installer');  // eslint-disable-line @typescript-eslint/no-var-requires
       await installExtension(REDUX_DEVTOOLS);
     }
 
