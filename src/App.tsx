@@ -14,7 +14,7 @@ const App: React.FC = () => {
   const [activeTheme, setActiveTheme] = useState<Theme>(themes['light']);
 
   // TODO: allow the saved locale from the DB to override the system's settings
-  const [locale] = useState<string>(navigator.language.split('-')[0] || 'en');
+  const [locale] = useState<string>(navigator.language.split('-')[0] || 'en');  // eslint-disable-line no-undef
 
   useEffect(() => setActiveTheme((themes as any)[theme]), [theme]);
 
