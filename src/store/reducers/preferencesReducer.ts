@@ -4,11 +4,10 @@ import { PreferencesActions } from '../actions/preferencesActions';
 import { Preferences } from '../../main/db/models/Preferences';
 
 export interface PreferencesState {
-  all: Preferences | {};
+  all?: Preferences;
 }
 
 export const initialState: PreferencesState = {
-  all: {}
 };
 
 const navReducer: Reducer<PreferencesState, PreferencesActions> = (
