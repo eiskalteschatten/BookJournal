@@ -29,15 +29,17 @@
     "appId": "com.alexseifert.bookjournal",
     "buildDependenciesFromSource": true,
     "files": [
-      "build",
-      "build-files"
+      "build"
     ],
+    "directories": {
+      "buildResources": "build-resources"
+    },
     "mac": {
       "target": [
         "dmg"
       ],
       "category": "public.app-category.productivity",
-      "entitlements": "build-files/entitlements.mac.plist",
+      "entitlements": "build-resources/entitlements.mac.plist",
       "type": "development",
       "darkModeSupport": true
     },
@@ -53,7 +55,7 @@
         "nsis",
         "portable"
       ],
-      "icon": "build-files/icon.ico"
+      "icon": "build-resources/icon.ico"
     }
   },
   "repository": "https://github.com/eiskalteschatten/BookJournal.git",
