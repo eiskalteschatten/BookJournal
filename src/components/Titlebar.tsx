@@ -3,7 +3,7 @@ import { createUseStyles } from 'react-jss';
 
 import Theme from '../theme/interface';
 
-const useStyles = createUseStyles<Theme>((theme: Theme): any => ({
+const useStyles = createUseStyles<Theme>((): any => ({
   titlebar: {
     height: 22,
     width: '100%',

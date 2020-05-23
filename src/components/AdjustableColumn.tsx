@@ -3,7 +3,7 @@ import { createUseStyles } from 'react-jss';
 
 import Theme from '../theme/interface';
 
-const useStyles = createUseStyles<Theme>((theme: Theme): any => ({
+const useStyles = createUseStyles<Theme>((): any => ({
   column: {
     flex: '0 0 auto',
     flexDirection: 'column'
@@ -29,6 +29,7 @@ const AdjustableColumn: React.FC<Props> = ({ minWidth, width, children }) => {
   const handleDrag = (e: any): void => {
     if (columnEl && columnEl.current) {
       // TypeScript still complains about columnEl potentially being null even with the if-statement
+      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
       // @ts-ignore
       const newWidth = e.pageX - columnEl.current.offsetLeft;
       setColumWidth(newWidth);
