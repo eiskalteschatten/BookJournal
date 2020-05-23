@@ -26,22 +26,30 @@ const useStyles = createUseStyles<Theme>((theme: Theme): any => ({
 const MainLayout: React.FC = () => {
   const classes = useStyles();
   const platform = useSelector((state: State) => state.app.platform);
+  const preferences = useSelector((state: State) => state.preferences.all);
 
   return (
     <div
       className={clsx({
         [classes.background]: true,
-        [classes.isDarwin]: platform === 'darwin'
+        [classes.isDarwin]: platform === 'darwin',
+        'd-flex': true
       })}
     >
       {platform === 'darwin' && (<Titlebar />)}
 
-      <div className='d-flex'>
-        <AdjustableColumn>
+      <div className='d-flex align-items-stretch flex-fill'>
+        <AdjustableColumn
+          minWidth={200}
+          width={preferences?.sidebarWidth ?? 200}
+        >
           sidebar
         </AdjustableColumn>
 
-        <AdjustableColumn>
+        <AdjustableColumn
+          minWidth={300}
+          width={preferences?.middleColumnWidth ?? 300}
+        >
           middle
         </AdjustableColumn>
 

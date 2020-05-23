@@ -1,28 +1,69 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useState, useRef } from 'react';
 import { createUseStyles } from 'react-jss';
 
 import Theme from '../theme/interface';
-import { State } from '../store';
 
 const useStyles = createUseStyles<Theme>((theme: Theme): any => ({
   column: {
-
+    flex: '0 0 auto',
+    flexDirection: 'column'
+  },
+  dragbar: {
+    cursor: 'col-resize',
+    flex: '0 0 auto',
+    width: 2
   }
 }));
 
 interface Props {
+  minWidth: number;
+  width: number;
   children?: any;
 }
 
-const AdjustableColumn: React.FC<Props> = ({ children }) => {
+const AdjustableColumn: React.FC<Props> = ({ minWidth, width, children }) => {
   const classes = useStyles();
-  const preferences = useSelector((state: State) => state.preferences.all);
+  const columnEl = useRef(null);
+  const [columnWidth, setColumWidth] = useState<number>(width);
+
+  const handleDrag = (e: any): void => {
+    if (columnEl && columnEl.current) {
+      // TypeScript still complains about columnEl potentially being null even with the if-statement
+      // @ts-ignore
+      const newWidth = e.pageX - columnEl.current.offsetLeft;
+      setColumWidth(newWidth);
+
+      // TODO: save the widths in the preferences
+    }
+  };
+
+  const handleStopDrag = (): void => {
+    window.removeEventListener('mousemove', handleDrag);
+    window.removeEventListener('mouseup', handleStopDrag);
+  };
+
+  const handleStartDrag = (): void => {
+    window.addEventListener('mousemove', handleDrag);
+    window.addEventListener('mouseup', handleStopDrag);
+  };
 
   return (
-    <div className={classes.column}>
-      {children}
-    </div>
+    <>
+      <div
+        className={classes.column}
+        style={{
+          minWidth,
+          width: columnWidth
+        }}
+        ref={columnEl}
+      >
+        {children}
+      </div>
+      <div
+        className={classes.dragbar}
+        onMouseDown={handleStartDrag}
+      />
+    </>
   );
 };
 
