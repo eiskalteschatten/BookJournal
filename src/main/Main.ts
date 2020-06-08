@@ -1,6 +1,8 @@
 import { BrowserWindow, BrowserWindowConstructorOptions } from 'electron';
 import path from 'path';
 
+import './eventsFromRenderer';
+
 import config from '../config';
 import { setupSequelize } from './db';
 import { Preferences } from './db/models/Preferences';

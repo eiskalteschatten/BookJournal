@@ -42,6 +42,7 @@ const MainLayout: React.FC = () => {
         <AdjustableColumn
           minWidth={200}
           width={preferences?.sidebarWidth ?? 200}
+          dbColumn='sidebarWidth'
         >
           sidebar
         </AdjustableColumn>
@@ -49,6 +50,7 @@ const MainLayout: React.FC = () => {
         <AdjustableColumn
           minWidth={300}
           width={preferences?.middleColumnWidth ?? 300}
+          dbColumn='middleColumnWidth'
         >
           middle
         </AdjustableColumn>

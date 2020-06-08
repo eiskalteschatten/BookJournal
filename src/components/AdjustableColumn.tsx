@@ -1,7 +1,9 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { createUseStyles } from 'react-jss';
 
 import Theme from '../theme/interface';
+
+const { ipcRenderer } = window.require('electron');
 
 const useStyles = createUseStyles<Theme>((): any => ({
   column: {
@@ -18,13 +20,18 @@ const useStyles = createUseStyles<Theme>((): any => ({
 interface Props {
   minWidth: number;
   width: number;
+  dbColumn: string;
   children?: any;
 }
 
-const AdjustableColumn: React.FC<Props> = ({ minWidth, width, children }) => {
+const AdjustableColumn: React.FC<Props> = ({ minWidth, width, dbColumn, children }) => {
   const classes = useStyles();
   const columnEl = useRef(null);
   const [columnWidth, setColumWidth] = useState<number>(width);
+
+  useEffect(() => {
+    setColumWidth(width);
+  }, [width]);
 
   const handleDrag = (e: any): void => {
     if (columnEl && columnEl.current) {
@@ -33,12 +40,14 @@ const AdjustableColumn: React.FC<Props> = ({ minWidth, width, children }) => {
       // @ts-ignore
       const newWidth = e.pageX - columnEl.current.offsetLeft;
       setColumWidth(newWidth);
-
-      // TODO: save the widths in the preferences
     }
   };
 
   const handleStopDrag = (): void => {
+    ipcRenderer.send('savePreferences', {
+      [dbColumn]: columnWidth
+    });
+
     window.removeEventListener('mousemove', handleDrag);
     window.removeEventListener('mouseup', handleStopDrag);
   };
