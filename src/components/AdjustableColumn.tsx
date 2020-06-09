@@ -29,17 +29,23 @@ const AdjustableColumn: React.FC<Props> = ({ minWidth, width, dbColumn, children
   const columnEl = useRef(null);
   const [columnWidth, setColumWidth] = useState<number | null>(null);
 
+  let timer: NodeJS.Timeout;
+
   const handleDrag = (e: any): void => {
     if (columnEl && columnEl.current) {
+      clearTimeout(timer);
+
       // TypeScript still complains about columnEl potentially being null even with the if-statement
       // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
       // @ts-ignore
       const newWidth = e.pageX - columnEl.current.offsetLeft;
       setColumWidth(newWidth);
 
-      ipcRenderer.send('savePreferences', {
-        [dbColumn]: newWidth
-      });
+      timer = setTimeout(() => {
+        ipcRenderer.send('savePreferences', {
+          [dbColumn]: newWidth
+        });
+      }, 100);
     }
   };
 
