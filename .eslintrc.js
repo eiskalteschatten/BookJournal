@@ -18,6 +18,11 @@ module.exports = {
     '@typescript-eslint',
     'promise'
   ],
+  'settings': {
+    'react': {
+      'version': 'detect'
+    }
+  },
   'rules': {
     'indent': [
       'error',
