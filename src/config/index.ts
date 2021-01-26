@@ -32,6 +32,8 @@ if (!fs.existsSync(storagePath)) {
 
 console.log('Application data is saved at:', storagePath);
 
+
+// TODO: create a config interface
 export default {
   app: {
     name: 'BookJournal',

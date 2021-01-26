@@ -31,8 +31,10 @@ module.exports = async (showNoUpdateDialog = false) => {
             defaultId: 1,
             cancelId: 0,
           });
-          if (result.response === 1)
+
+          if (result.response === 1) {
             shell.openExternal(data.downloadUrl);
+          }
 
           resolve(true);
         }

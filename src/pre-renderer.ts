@@ -1,19 +1,18 @@
-'use strict';
-
-function preRender() {
+function preRender(): void {
   try {
     const theme = localStorage.getItem('theme') || 'light';
     const themeCss = `${theme}Css`;
 
-    document.getElementById(themeCss).disabled = false;
+    (document.getElementById(themeCss) as any).disabled = false;
 
     const body = document.getElementsByTagName('body')[0];
     body.classList.add(process.platform);
 
-    let preferences = localStorage.getItem('preferences');
+    const preferencesString = localStorage.getItem('preferences');
 
-    if (preferences) {
-      preferences = JSON.parse(preferences);
+    if (preferencesString) {
+      // TODO: add preferences interface
+      const preferences = JSON.parse(preferencesString);
       document.getElementById('sidebarWrapper').style.width = `${preferences.sidebarWidth}px`;
       document.getElementById('bookListWrapper').style.width = `${preferences.middleColumnWidth}px`;
     }
