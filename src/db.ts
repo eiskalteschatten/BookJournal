@@ -1,19 +1,18 @@
-'use strict';
+import { Sequelize } from 'sequelize';
+import fs from 'fs';
+import path from 'path';
 
-const Sequelize = require('sequelize');
-const fs = require('fs');
-const path = require('path');
+import config from './config';
+const { database: dbConfig } = config;
 
-const config = require('./config').default.database;
-const dbPath = config.path;
-const dbFile = path.join(dbPath, config.fileName);
+const dbPath = dbConfig.path;
+const dbFile = path.join(dbPath, dbConfig.fileName);
 
 if (!fs.existsSync(dbPath)) {
   fs.mkdirSync(dbPath, { recursive: true });
 }
 
-
-const sequelize = new Sequelize({
+export const sequelize = new Sequelize({
   dialect: 'sqlite',
   storage: dbFile,
 });
@@ -22,14 +21,14 @@ sequelize.authenticate()
   .then(() => {
     console.log('Connection has been established successfully.');
   })
-  .catch(error => {
+  .catch((error: Error) => {
     console.error('Unable to connect to the database:', error);
   });
 
-function createBackup() {
-  return new Promise((resolve, reject) => {
+export const createBackup = (): Promise<void> =>
+  new Promise<void>((resolve, reject) => {
     if (fs.existsSync(dbFile)) {
-      const dbBackupFile = path.join(dbPath, config.backupFileName);
+      const dbBackupFile = path.join(dbPath, dbConfig.backupFileName);
       fs.copyFile(dbFile, dbBackupFile, error => {
         if (error) {
           reject(error);
@@ -39,9 +38,3 @@ function createBackup() {
       });
     }
   });
-}
-
-module.exports = {
-  sequelize,
-  createBackup,
-};

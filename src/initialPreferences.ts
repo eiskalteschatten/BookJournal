@@ -1,10 +1,10 @@
-'use strict';
+import Preferences from './models/preferences';
 
-const Preferences = require('./models/preferences');
+// TODO: use interface!
+export let preferences;
 
-let preferences;
-
-async function loadPreferences() {
+// TODO: use interface!
+export async function loadPreferences(): Promise<any> {
   try {
     preferences = await Preferences.findByPk(1);
 
@@ -20,8 +20,3 @@ async function loadPreferences() {
     return;
   }
 }
-
-module.exports = {
-  preferences,
-  loadPreferences,
-};
