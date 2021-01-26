@@ -3,7 +3,7 @@
 // Modules to control application life and create native browser window
 const {app, BrowserWindow, Menu} = require('electron');
 const path = require('path');
-const migrateDb = require('sequelize-migration-wrapper');
+const { setupMigration, migrate } = require('sequelize-migration-wrapper');
 
 const config = require('./config/config');
 const appConfig = config.app;
@@ -11,11 +11,11 @@ const appMenu = require('./menus/config/app');
 
 // Database
 const { sequelize } = require('./db');
-migrateDb({
+setupMigration({
     sequelize,
     path: path.join(__dirname, 'migrations')
 });
-migrateDb.migrate();
+migrate();
 
 // Preferences
 const {loadPreferences} = require('./initialPreferences');
