@@ -8,7 +8,7 @@ const bookInfoAuthorsMaxResults = 40;
 
 const tempStoragePath = path.join(os.tmpdir(), 'bookjournal');
 const bookcoversDir = env === 'development' ? 'bookcovers-dev' : 'bookcovers';
-let storagePath;
+let storagePath: string;
 
 switch(process.platform) {
     case 'darwin':
@@ -31,7 +31,6 @@ if (!fs.existsSync(storagePath)) {
 }
 
 console.log('Application data is saved at:', storagePath);
-
 
 module.exports = {
     app: {
