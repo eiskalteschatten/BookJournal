@@ -5,8 +5,8 @@ import config from './config';
 
 const { dialog } = remote;
 
-module.exports = async (showNoUpdateDialog = false) => {
-  return new Promise<boolean>((resolve, reject) => {
+export default async (showNoUpdateDialog = false): Promise<boolean | void> =>
+  new Promise<boolean>((resolve, reject) => {
     try {
       const preferencesString = localStorage.getItem('preferences');
       // TODO: write interface for preferences
@@ -57,4 +57,3 @@ module.exports = async (showNoUpdateDialog = false) => {
   }).catch(error => {
     console.log(error);
   });
-};

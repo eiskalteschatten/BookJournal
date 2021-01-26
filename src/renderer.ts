@@ -1,16 +1,14 @@
-'use strict';
+import { remote } from 'electron';
 
-const { BrowserWindow } = require('electron').remote;
+import path from 'path';
 
-const path = require('path');
+import checkForUpdates from './checkForUpdates';
+import SidebarList from './elements/list/sidebar';
+import AboutModal from './elements/modal/about';
 
-const checkForUpdates = require('./checkForUpdates');
+const { BrowserWindow } = remote;
 
-const SidebarList = require('./elements/list/sidebar');
-const AboutModal = require('./elements/modal/about');
-
-
-async function renderSidebar() {
+async function renderSidebar(): Promise<void> {
   const list = new SidebarList();
   await list.loadCategories();
 
@@ -18,7 +16,7 @@ async function renderSidebar() {
   sidebar.innerHTML = await list.render();
 }
 
-async function renderModals() {
+async function renderModals(): Promise<void> {
   let rendered = '';
 
   const aboutModal = new AboutModal();
@@ -27,7 +25,7 @@ async function renderModals() {
   document.getElementById('modalAnchor').innerHTML = rendered;
 }
 
-function createDbBackup() {
+function createDbBackup(): void {
   const windowID = BrowserWindow.getFocusedWindow().id;
   const loadDbBackupPath = 'file://' + path.join(__dirname, './html/invisible/backup-db.html');
 
@@ -47,7 +45,8 @@ function createDbBackup() {
   });
 }
 
-async function postRender() {
+async function postRender(): Promise<void> {
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
   const { loadPreferences } = require('./initialPreferences');
   const preferences = await loadPreferences();
 
@@ -58,17 +57,17 @@ async function postRender() {
   createDbBackup();
 }
 
-async function render() {
+async function render(): Promise<void> {
   require('./events.js');
 
   const sortBy = localStorage.getItem('sortBy');
-  if (sortBy) document.getElementById('bookSort').value = sortBy;
+  if (sortBy) (document.getElementById('bookSort') as HTMLInputElement).value = sortBy;
 
   const sortOrder = localStorage.getItem('sortOrder');
   if (sortOrder === 'DESC') document.getElementById('bookSortOrder').innerHTML = '&darr;';
 
   await renderSidebar();
-  const firstSidebarListItem = document.getElementsByClassName('js-sidebar-list-element')[0];
+  const firstSidebarListItem = document.getElementsByClassName('js-sidebar-list-element')[0] as HTMLElement;
   firstSidebarListItem.click();
 
   document.getElementById('defaultCss').remove();
