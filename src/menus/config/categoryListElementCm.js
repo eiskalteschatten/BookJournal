@@ -22,8 +22,9 @@ const template = [
         cancelId: 0,
       });
 
-      if (result.response === 1)
-        focusedWindow.webContents.send('delete-category');
+      if (result.response === 1) {
+        focusedWindow.webContents.send('delete-category'); 
+      }
     },
   },
 ];

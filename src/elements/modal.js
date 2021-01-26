@@ -17,7 +17,9 @@ class Modal {
       const template = path.join(__dirname, `../templates/elements/modal/${type}.njk`);
 
       fs.readFile(template, 'utf8', (error, string) => {
-        if (error) reject(error);
+        if (error) {
+          reject(error); 
+        }
         resolve(string);
       });
     }).then(async templateString => {

@@ -67,6 +67,7 @@ module.exports = {
         'object': false,
       },
     }],
+    'curly': 'error',
     'import/first': 'error',
     'import/order': ['error', { groups: [['builtin', 'external', 'internal']] }],
     '@typescript-eslint/no-angle-bracket-type-assertion': ['off'],

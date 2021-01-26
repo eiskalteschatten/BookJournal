@@ -24,7 +24,10 @@ ipcRenderer.on('switch-theme', (event, theme) => {
   localStorage.setItem('theme', theme);
 
   const $statisticsItem = $('.js-sidebar-list-element[data-query-type="statistics"]');
-  if ($statisticsItem.hasClass('selected')) $statisticsItem.trigger('click');
+
+  if ($statisticsItem.hasClass('selected')) {
+    $statisticsItem.trigger('click');
+  }
 });
 
 ipcRenderer.on('check-for-updates', async () => {

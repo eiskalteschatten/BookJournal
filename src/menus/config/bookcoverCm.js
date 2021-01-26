@@ -20,8 +20,9 @@ const template = [
         cancelId: 0,
       });
 
-      if (result.response === 1)
-        focusedWindow.webContents.send('delete-bookcover');
+      if (result.response === 1) {
+        focusedWindow.webContents.send('delete-bookcover'); 
+      }
     },
   },
 ];

@@ -19,8 +19,9 @@ async function build() {
       const scssFiles = [];
 
       for (const file of files) {
-        if (file.charAt(0) !== '_' && path.extname(file) === '.scss')
-          scssFiles.push(file);
+        if (file.charAt(0) !== '_' && path.extname(file) === '.scss') {
+          scssFiles.push(file); 
+        }
       }
 
       await compileSass.compileSassAndSaveMultiple({

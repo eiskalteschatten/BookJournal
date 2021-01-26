@@ -93,7 +93,9 @@ async function saveBook() {
       }
 
       formData[$this.attr('id')] = value;
-      if ($this.data('color-changed')) $this.data('color-changed', false);
+      if ($this.data('color-changed')) {
+        $this.data('color-changed', false); 
+      }
     }
   });
 
@@ -167,7 +169,9 @@ ipcRenderer.on('delete-book', deleteBook);
 
 async function saveBookcover(imagePath) {
   const fileInfo = await BookForm.saveBookcover(imagePath);
-  if (fileInfo.fileName) $('#bookBookcoverFileName').val(fileInfo.fileName).trigger('change');
+  if (fileInfo.fileName) {
+    $('#bookBookcoverFileName').val(fileInfo.fileName).trigger('change'); 
+  }
 
   $('#bookcoverImage').attr('style', `background-image: url('${fileInfo.filePath}')`);
   $('#bookcoverUploadArea').addClass('has-bookcover');
@@ -273,7 +277,9 @@ $(document).on('click', '.js-delete-tag', function() {
 });
 
 $(document).on('keypress', '#bookTags', async function(e) {
-  if (e.keyCode !== 13) return;
+  if (e.keyCode !== 13) {
+    return; 
+  }
   e.preventDefault();
 
   const $this = $(this);
@@ -396,12 +402,16 @@ $(document).on('blur', '#bookIsbn', function() {
     let preferences = localStorage.getItem('preferences');
     preferences = JSON.parse(preferences);
 
-    if (!preferences.fetchBookInfoFromGoogle) return;
+    if (!preferences.fetchBookInfoFromGoogle) {
+      return; 
+    }
 
     clearTimeout(fetchingTimeout);
 
     const isbn = $(this).val().replace(/[^0-9]/g, '');
-    if (!isbn) return;
+    if (!isbn) {
+      return; 
+    }
 
     fetchingTimeout = setTimeout(async () => {
       $('#bookBookInfoFetched').addClass('hidden');
@@ -412,8 +422,9 @@ $(document).on('blur', '#bookIsbn', function() {
 
       $('#bookFetchingBookInfo').addClass('hidden');
 
-      if (typeof bookInfo === 'object' && bookInfo.totalItems > 0)
-        $('#bookBookInfoFetched').removeClass('hidden');
+      if (typeof bookInfo === 'object' && bookInfo.totalItems > 0) {
+        $('#bookBookInfoFetched').removeClass('hidden'); 
+      }
     }, 500);
   }
   catch (error) {
@@ -479,7 +490,9 @@ $(document).on('click', '#bookFillOutBookInfo', async function(e) {
 $(document).on('click', '#bookBooksByAuthorLink', async function(e) {
   e.preventDefault();
 
-  if ($('#booksByAuthorModal').length) $('#booksByAuthorModal').remove();
+  if ($('#booksByAuthorModal').length) {
+    $('#booksByAuthorModal').remove(); 
+  }
 
   const authors = $('#bookAuthor').val();
   const booksByAuthor = new BooksByAuthor(authors);

@@ -16,7 +16,9 @@ class StatisticsBox {
   async render() {
     return new Promise((resolve, reject) => {
       fs.readFile(this.template, 'utf8', (error, string) => {
-        if (error) reject(error);
+        if (error) {
+          reject(error); 
+        }
         resolve(string);
       });
     }).then(async templateString => {

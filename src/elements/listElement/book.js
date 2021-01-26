@@ -24,7 +24,9 @@ class BookListElement extends ListElement {
     return new Promise((resolve, reject) => {
       const template = path.join(__dirname, '../../templates/elements/listElement/book.njk');
       fs.readFile(template, 'utf8', (error, string) => {
-        if (error) reject(error);
+        if (error) {
+          reject(error); 
+        }
         resolve(string);
       });
     }).then(async templateString => {
@@ -39,8 +41,9 @@ class BookListElement extends ListElement {
   async getNunjucksRenderObject() {
     const object = this.book;
 
-    if (object.bookcover)
-      object.bookcoverPath = bookcoverHelper.pruneCoverPath(object.bookcover);
+    if (object.bookcover) {
+      object.bookcoverPath = bookcoverHelper.pruneCoverPath(object.bookcover); 
+    }
 
     object.classes = this.classes;
     object.subtitle = await this.determineSubtitle();
@@ -117,7 +120,9 @@ class BookListElement extends ListElement {
       const template = path.join(__dirname, '../../templates/elements/listElement/book/ratingStars.njk');
 
       fs.readFile(template, 'utf8', (error, string) => {
-        if (error) reject(error);
+        if (error) {
+          reject(error); 
+        }
         resolve(string);
       });
     }).then(templateString => {

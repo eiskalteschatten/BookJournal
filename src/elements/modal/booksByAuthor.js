@@ -39,7 +39,9 @@ class BooksByAuthor extends Modal {
 
   async fetchBooks(indexFactor = 0) {
     const { authors } = this;
-    if (authors === '') return;
+    if (authors === '') {
+      return; 
+    }
 
     const index = indexFactor > 0 ? (indexFactor * maxResults) + 1 : 0;
 
@@ -47,7 +49,9 @@ class BooksByAuthor extends Modal {
       let preferences = localStorage.getItem('preferences');
       preferences = JSON.parse(preferences);
 
-      if (!preferences.fetchBooksByAuthor) return;
+      if (!preferences.fetchBooksByAuthor) {
+        return; 
+      }
 
       sessionStorage.setItem('booksByAuthor', '');
 
@@ -56,7 +60,9 @@ class BooksByAuthor extends Modal {
 
       return new Promise((resolve, reject) => {
         request(url, (error, response, body) => {
-          if (error) reject(error);
+          if (error) {
+            reject(error); 
+          }
 
           try {
             const bodyJson = JSON.parse(body);
@@ -93,21 +99,29 @@ class BooksByAuthor extends Modal {
   sortBooksByTitle(books) {
     const { authors } = this;
 
-    if (!books.items) return [];
+    if (!books.items) {
+      return []; 
+    }
 
     return books.items.sort((a, b) => {
       if (authors.includes(',')) {
         const authorsA = a.volumeInfo.authors.join(',').toUpperCase();
         const authorsUpperCase = authors.replace(', ', ',').toUpperCase();
 
-        if (authorsA.includes(authorsUpperCase)) return -1;
+        if (authorsA.includes(authorsUpperCase)) {
+          return -1; 
+        }
       }
 
       const titleA = a.volumeInfo.title.toUpperCase();
       const titleB = b.volumeInfo.title.toUpperCase();
 
-      if (titleA < titleB) return -1;
-      if (titleA > titleB) return 1;
+      if (titleA < titleB) {
+        return -1; 
+      }
+      if (titleA > titleB) {
+        return 1; 
+      }
       return 0;
     });
   }

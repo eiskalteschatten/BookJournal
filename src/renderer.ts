@@ -61,10 +61,14 @@ async function render(): Promise<void> {
   require('./events.js');
 
   const sortBy = localStorage.getItem('sortBy');
-  if (sortBy) (document.getElementById('bookSort') as HTMLInputElement).value = sortBy;
+  if (sortBy) {
+    (document.getElementById('bookSort') as HTMLInputElement).value = sortBy; 
+  }
 
   const sortOrder = localStorage.getItem('sortOrder');
-  if (sortOrder === 'DESC') document.getElementById('bookSortOrder').innerHTML = '&darr;';
+  if (sortOrder === 'DESC') {
+    document.getElementById('bookSortOrder').innerHTML = '&darr;'; 
+  }
 
   await renderSidebar();
   const firstSidebarListItem = document.getElementsByClassName('js-sidebar-list-element')[0] as HTMLElement;

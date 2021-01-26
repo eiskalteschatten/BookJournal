@@ -98,17 +98,21 @@ class BookForm {
     if (this.id) {
       book = await Book.findByPk(this.id, { raw: true });
 
-      if (book.bookcover)
-        book.bookcoverPath = bookcoverHelper.pruneCoverPath(book.bookcover);
+      if (book.bookcover) {
+        book.bookcoverPath = bookcoverHelper.pruneCoverPath(book.bookcover); 
+      }
 
-      if (book.dateStarted)
-        book.dateStarted = this.formatDate(book.dateStarted);
+      if (book.dateStarted) {
+        book.dateStarted = this.formatDate(book.dateStarted); 
+      }
 
-      if (book.dateRead)
-        book.dateRead = this.formatDate(book.dateRead);
+      if (book.dateRead) {
+        book.dateRead = this.formatDate(book.dateRead); 
+      }
 
-      if (book.tags)
-        book.tagArray = book.tags.split(',');
+      if (book.tags) {
+        book.tagArray = book.tags.split(','); 
+      }
 
       if (book.categories) {
         const ids = book.categories.split(',');
@@ -139,7 +143,9 @@ class BookForm {
       const template = path.join(__dirname, '../templates/elements/bookForm.njk');
 
       fs.readFile(template, 'utf8', (error, string) => {
-        if (error) reject(error);
+        if (error) {
+          reject(error); 
+        }
         resolve(string);
       });
     }).then(templateString => {
@@ -161,7 +167,9 @@ class BookForm {
       const template = path.join(__dirname, '../templates/elements/bookForm/categories.njk');
 
       fs.readFile(template, 'utf8', (error, string) => {
-        if (error) reject(error);
+        if (error) {
+          reject(error); 
+        }
         resolve(string);
       });
     }).then(templateString => {
@@ -178,7 +186,9 @@ class BookForm {
       const template = path.join(__dirname, '../templates/elements/bookForm/tagCategoryBadge.njk');
 
       fs.readFile(template, 'utf8', (error, string) => {
-        if (error) reject(error);
+        if (error) {
+          reject(error); 
+        }
         resolve(string);
       });
     }).then(templateString => {
@@ -188,7 +198,9 @@ class BookForm {
         typeClass,
       };
 
-      if (typeClass === 'category') values.category = { color };
+      if (typeClass === 'category') {
+        values.category = { color }; 
+      }
 
       return nunjucks.renderString(templateString, values);
     }).catch(error => {
@@ -220,7 +232,9 @@ class BookForm {
         }
 
         fs.copyFile(imagePath, newImagePath, async error => {
-          if (error) reject(error);
+          if (error) {
+            reject(error); 
+          }
           resolve({
             fileName: newFileName,
             filePath: bookcoverHelper.pruneCoverPath(newFileName),
@@ -239,7 +253,9 @@ class BookForm {
       const imagePath = path.join(bookcoverConfig.path, fileName);
 
       fs.unlink(imagePath, error => {
-        if (error) reject(error);
+        if (error) {
+          reject(error); 
+        }
         resolve();
       });
     }).catch(error => {
@@ -305,7 +321,9 @@ class BookForm {
 
     return new Promise((resolve, reject) => {
       request(url, (error, response, body) => {
-        if (error) reject(error);
+        if (error) {
+          reject(error); 
+        }
 
         try {
           resolve(JSON.parse(body));

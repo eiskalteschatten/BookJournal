@@ -24,7 +24,9 @@ class Statistics {
       const template = path.join(__dirname, '../templates/elements/statistics.njk');
 
       fs.readFile(template, 'utf8', (error, string) => {
-        if (error) reject(error);
+        if (error) {
+          reject(error); 
+        }
         resolve(string);
       });
     }).then(async templateString => {
@@ -57,7 +59,9 @@ class Statistics {
   async calculateStatistics() {
     const allDatesRead = await this.getAllDatesRead();
 
-    if (Object.keys(allDatesRead).length === 0) return { noResults: true };
+    if (Object.keys(allDatesRead).length === 0) {
+      return { noResults: true }; 
+    }
 
     const sortedYears = this.sortedYears(allDatesRead);
     const latestYear = sortedYears[0];
@@ -89,13 +93,17 @@ class Statistics {
       const year = dateObj.getFullYear();
       const month = dateObj.getMonth();
 
-      if (isNaN(year)) continue;
+      if (isNaN(year)) {
+        continue; 
+      }
 
-      if (!Array.isArray(allDatesRead[year]))
-        allDatesRead[year] = [];
+      if (!Array.isArray(allDatesRead[year])) {
+        allDatesRead[year] = []; 
+      }
 
-      if (allDatesRead[year].indexOf(month) === -1)
-        allDatesRead[year].push(month);
+      if (allDatesRead[year].indexOf(month) === -1) {
+        allDatesRead[year].push(month); 
+      }
     }
 
     return allDatesRead;
@@ -149,8 +157,9 @@ class Statistics {
     for (const result of results) {
       const pageCountInt = parseInt(result.pageCount);
 
-      if (result.pageCount && !isNaN(pageCountInt))
-        pageCount += pageCountInt;
+      if (result.pageCount && !isNaN(pageCountInt)) {
+        pageCount += pageCountInt; 
+      }
     }
 
     return {

@@ -39,8 +39,9 @@ async function createWindow() {
     },
   };
 
-  if (process.platform === 'darwin')
-    browserWindow.titleBarStyle = 'hidden';
+  if (process.platform === 'darwin') {
+    browserWindow.titleBarStyle = 'hidden'; 
+  }
 
   if (preferences.windowX && preferences.windowY) {
     browserWindow.x = preferences.windowX;
@@ -49,8 +50,9 @@ async function createWindow() {
 
   mainWindow = new BrowserWindow(browserWindow);
 
-  if (preferences.windowIsMaximized)
-    mainWindow.maximize();
+  if (preferences.windowIsMaximized) {
+    mainWindow.maximize(); 
+  }
 
   mainWindow.setFullScreen(preferences.windowIsFullScreen || false);
 

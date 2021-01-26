@@ -41,8 +41,9 @@ ipcRenderer.on('create-new-category', async () => {
 $(document).on('blur', '.js-list-element-edit-name', function() {
   const $field = $(this);
 
-  if ($field && $field.val() === '')
-    $field.closest('.js-list-element-edit').remove();
+  if ($field && $field.val() === '') {
+    $field.closest('.js-list-element-edit').remove(); 
+  }
 });
 
 $(document).on('keyup', '.js-list-element-edit-name', async function(e) {
@@ -53,7 +54,9 @@ $(document).on('keyup', '.js-list-element-edit-name', async function(e) {
     return;
   }
 
-  if (e.keyCode !== 13) return;
+  if (e.keyCode !== 13) {
+    return; 
+  }
 
   const newCategory = new CategoryListElement($field.val());
   await newCategory.save();
@@ -139,7 +142,9 @@ $(document).on('keyup', '.js-list-element-edit-rename', async function(e) {
     return;
   }
 
-  if (e.keyCode !== 13) return;
+  if (e.keyCode !== 13) {
+    return; 
+  }
 
   const name = $field.val();
   const id = $li.data('id');

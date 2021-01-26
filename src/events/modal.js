@@ -116,5 +116,7 @@ $(document).on('click', '#booksByAuthorShowMoreResults', async function() {
   indexFactor = parseInt(indexFactor) + 1;
   await booksByAuthor.fetchBooks(indexFactor);
 
-  if (!booksByAuthor.hasMoreResults()) hideMoreResults();
+  if (!booksByAuthor.hasMoreResults()) {
+    hideMoreResults(); 
+  }
 });

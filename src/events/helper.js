@@ -42,15 +42,21 @@ async function updateBookList(selectedId) {
   await bookList.loadBooks(sortBy, sortOrder);
   await refreshBookList();
 
-  if (selectedId !== '') selectBook(selectedId);
+  if (selectedId !== '') {
+    selectBook(selectedId); 
+  }
 }
 
 async function refreshBookList() {
   const searchTerm = sessionStorage.getItem('searching');
   const isSearching = searchTerm !== 'false';
 
-  if (isSearching) await searchBooks(searchTerm);
-  else await changeFilter();
+  if (isSearching) {
+    await searchBooks(searchTerm); 
+  }
+  else {
+    await changeFilter(); 
+  }
 }
 
 function clearBooklistSelection() {
@@ -111,7 +117,9 @@ function openModal(id) {
   const $modalContainer = $('#modalContainer');
   const $modal = $(`#${id}`);
 
-  if (!$modalContainer.hasClass('hidden')) return;
+  if (!$modalContainer.hasClass('hidden')) {
+    return; 
+  }
 
   $modalContainer.removeClass('hidden');
   $modal.removeClass('hidden');
@@ -124,7 +132,9 @@ function openModal(id) {
   }, 100);
 
   $(document).keydown(function(e) {
-    if (e.keyCode === 27) closeModal(id);
+    if (e.keyCode === 27) {
+      closeModal(id); 
+    }
   });
 }
 

@@ -4,7 +4,9 @@ module.exports = {
   up: async query => {
     try {
       const books = await query.describeTable('books');
-      if (!books) return Promise.resolve();
+      if (!books) {
+        return Promise.resolve(); 
+      }
     }
     catch (error) {
       // Silently fail because the table doesn't exist and will be
