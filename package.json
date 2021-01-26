@@ -21,7 +21,7 @@
     },
     "build": {
         "productName": "BookJournal",
-        "copyright": "Copyright © 2018 - 2019 Alex Seifert",
+        "copyright": "Copyright © 2018 - 2021 Alex Seifert",
         "appId": "com.alexseifert.bookjournal",
         "buildDependenciesFromSource": true,
         "files": [
@@ -64,13 +64,23 @@
     "homepage": "https://www.alexseifert.com",
     "license": "",
     "devDependencies": {
+        "@types/mkdirp": "^1.0.1",
+        "@types/node": "^14.14.22",
+        "@typescript-eslint/eslint-plugin": "^4.14.1",
+        "@typescript-eslint/parser": "^4.14.1",
         "compile-sass": "^1.1.1",
+        "concurrently": "^5.3.0",
+        "copyfiles": "^2.4.1",
         "electron": "^11.2.1",
         "electron-builder": "^22.9.1",
         "eslint": "^7.18.0",
+        "eslint-import-resolver-typescript": "^2.3.0",
         "eslint-plugin-promise": "^4.2.1",
         "husky": "^4.3.8",
-        "node-cache": "^5.1.2"
+        "node-cache": "^5.1.2",
+        "ts-node-dev": "^1.1.1",
+        "typescript": "^4.1.3",
+        "wait-on": "^5.2.1"
     },
     "dependencies": {
         "bootstrap": "^4.6.0",
