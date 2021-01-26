@@ -1,6 +1,6 @@
 {
     "name": "bookjournal",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "A digital book journal.",
     "main": "./src/main.js",
     "scripts": {
