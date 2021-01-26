@@ -34,7 +34,8 @@ async function createWindow() {
         height: preferences.windowHeight,
         icon: path.join(__dirname, './assets/images/icon128.png'),
         webPreferences: {
-            nodeIntegration: true
+            nodeIntegration: true,
+            enableRemoteModule: true
         }
     };
 
