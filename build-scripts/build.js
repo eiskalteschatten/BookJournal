@@ -4,7 +4,7 @@ const path = require('path');
 const compileSass = require('compile-sass');
 const fs = require('fs');
 
-const pathToCss = path.resolve('./src/assets/css');
+const pathToCss = path.resolve('./dist/assets/css');
 const pathToScss = path.resolve('./src/assets/scss');
 
 
