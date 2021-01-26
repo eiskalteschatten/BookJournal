@@ -1,52 +1,52 @@
 module.exports = {
-    "env": {
-        "es6": true,
-        "node": true
+    'env': {
+        'es6': true,
+        'node': true
     },
-    "extends": "eslint:recommended",
-    "parserOptions": {
-        "ecmaVersion": 8,
-        "sourceType": "module"
+    'extends': 'eslint:recommended',
+    'parserOptions': {
+        'ecmaVersion': 8,
+        'sourceType': 'module'
     },
-    "plugins": [
-        "promise"
+    'plugins': [
+        'promise'
     ],
-    "rules": {
-        "indent": [
-            "error",
+    'rules': {
+        'indent': [
+            'error',
             4,
-            {"SwitchCase": 1}
+            {'SwitchCase': 1}
         ],
-        "linebreak-style": [
-            "error",
-            "unix"
+        'linebreak-style': [
+            'error',
+            'unix'
         ],
-        "quotes": [
-            "error",
-            "single"
+        'quotes': [
+            'error',
+            'single'
         ],
-        "semi": [
-            "error",
-            "always"
+        'semi': [
+            'error',
+            'always'
         ],
-        "no-console": [
-            "off"
+        'no-console': [
+            'off'
         ],
-        "no-case-declarations": [
-            "off"
+        'no-case-declarations': [
+            'off'
         ],
-        "prefer-const": [
-            "error"
+        'prefer-const': [
+            'error'
         ],
-        "arrow-parens": [
-            "error",
-            "as-needed"
+        'arrow-parens': [
+            'error',
+            'as-needed'
         ],
-        "no-undef": [
-            "off"
+        'no-undef': [
+            'off'
         ],
-        "promise/catch-or-return": "error",
-        "promise/param-names": "error",
-        "promise/no-return-wrap": "error"
+        'promise/catch-or-return': 'error',
+        'promise/param-names': 'error',
+        'promise/no-return-wrap': 'error'
     }
 };
