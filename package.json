@@ -2,9 +2,9 @@
     "name": "bookjournal",
     "version": "1.0.1",
     "description": "A digital book journal.",
-    "main": "./src/main.js",
+    "main": "./dist/main.js",
     "scripts": {
-        "build": "node ./build-scripts/build.js",
+        "build": "tsc && node ./build-scripts/build.js && copyfiles -u 1 \"./src/**/*.{html,njk}\" \"./dist/\"",
         "prestart": "npm run build",
         "start": "NODE_ENV=development electron .",
         "prestart:prod": "npm run build",

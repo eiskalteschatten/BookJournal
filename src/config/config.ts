@@ -1,8 +1,6 @@
-'use strict';
-
-const path = require('path');
-const os = require('os');
-const fs = require('fs');
+import path from 'path';
+import os from 'os';
+import fs from 'fs';
 
 const env = process.env.NODE_ENV;
 
