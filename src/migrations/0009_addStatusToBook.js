@@ -1,5 +1,7 @@
 'use strict';
 
+const Sequelize = require('sequelize');
+
 module.exports = {
   up: async (query, DataTypes) => {
     try {

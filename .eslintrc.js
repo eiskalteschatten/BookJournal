@@ -2,6 +2,7 @@ module.exports = {
   'env': {
     'es6': true,
     'node': true,
+    'browser': true,
   },
   'extends': [
     'eslint:recommended',
@@ -87,6 +88,7 @@ module.exports = {
         object: false,
       },
     }],
+    '@typescript-eslint/no-this-alias': ['off'],
   },
   'overrides': [{
     'files': ['*.json'],
