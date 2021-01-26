@@ -47,6 +47,7 @@ module.exports = {
         ],
         'promise/catch-or-return': 'error',
         'promise/param-names': 'error',
-        'promise/no-return-wrap': 'error'
+        'promise/no-return-wrap': 'error',
+        'no-async-promise-executor': 'off'
     }
 };
