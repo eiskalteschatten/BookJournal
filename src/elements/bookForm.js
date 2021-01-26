@@ -12,7 +12,7 @@ const moment = require('moment');
 const ColorThief = require('colorthief');
 
 const nunjucks = require('../nunjucks');
-const config = require('../config/config');
+const config = require('../config').default;
 const BooksByAuthor = require('../elements/modal/booksByAuthor');
 const bookcoverHelper = require('../lib/bookcover');
 const bookFormats = require('../lib/bookFormats');

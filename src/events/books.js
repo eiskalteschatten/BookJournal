@@ -9,7 +9,7 @@ const path = require('path');
 const allLanguages = require('iso-639-1');
 const moment = require('moment');
 
-const config = require('../config/config');
+const config = require('../config').default;
 
 const eventHelper = require('./helper');
 const BookForm = require('../elements/bookForm');

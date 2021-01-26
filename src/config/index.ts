@@ -32,7 +32,7 @@ if (!fs.existsSync(storagePath)) {
 
 console.log('Application data is saved at:', storagePath);
 
-module.exports = {
+export default {
     app: {
         name: 'BookJournal',
         version: '1.0.1',

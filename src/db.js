@@ -4,7 +4,7 @@ const Sequelize = require('sequelize');
 const fs = require('fs');
 const path = require('path');
 
-const config = require('./config/config').database;
+const config = require('./config').default.database;
 const dbPath = config.path;
 const dbFile = path.join(dbPath, config.fileName);
 

@@ -10,7 +10,7 @@ const path = require('path');
 const fs = require('fs');
 const nunjucks = require('../nunjucks');
 
-const config = require('../config/config');
+const config = require('../config').default;
 const defaultNumberOfYears = config.statistics.defaultNumberOfYears;
 
 const Book = require('../models/book');

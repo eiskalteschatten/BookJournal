@@ -5,7 +5,7 @@ const {app, BrowserWindow, Menu} = require('electron');
 const path = require('path');
 const { setupMigration, migrate } = require('sequelize-migration-wrapper');
 
-const config = require('./config/config');
+const config = require('./config').default;
 const appConfig = config.app;
 const appMenu = require('./menus/config/app');
 

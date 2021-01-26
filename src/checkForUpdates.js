@@ -4,7 +4,7 @@ const {remote, shell} = require('electron');
 const dialog = remote.dialog;
 const $ = require('jquery');
 
-const config = require('./config/config');
+const config = require('./config').default;
 
 
 module.exports = async (showNoUpdateDialog = false) => {

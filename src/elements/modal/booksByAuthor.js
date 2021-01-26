@@ -5,7 +5,7 @@ const request = require('request');
 
 const Modal = require('../modal');
 const Books = require('./booksByAuthor/books');
-const config = require('../../config/config');
+const config = require('../../config').default;
 
 const maxResults = config.bookInfo.google.authorsMaxResults;
 
