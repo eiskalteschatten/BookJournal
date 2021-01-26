@@ -10,11 +10,11 @@ const fileSystemLoader = new nunjucks.FileSystemLoader(pathToViews);
 const nunjucksEnv = new nunjucks.Environment(fileSystemLoader);
 
 nunjucksEnv.addFilter('getLanguageName', code => {
-    return allLanguages.getName(code);
+  return allLanguages.getName(code);
 });
 
 nunjucksEnv.addFilter('getLanguageNativeName', code => {
-    return allLanguages.getNativeName(code);
+  return allLanguages.getNativeName(code);
 });
 
 module.exports = nunjucksEnv;

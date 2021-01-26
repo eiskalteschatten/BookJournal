@@ -11,70 +11,70 @@ const AboutModal = require('./elements/modal/about');
 
 
 async function renderSidebar() {
-    const list = new SidebarList();
-    await list.loadCategories();
+  const list = new SidebarList();
+  await list.loadCategories();
 
-    const sidebar = document.getElementById('sidebar');
-    sidebar.innerHTML = await list.render();
+  const sidebar = document.getElementById('sidebar');
+  sidebar.innerHTML = await list.render();
 }
 
 async function renderModals() {
-    let rendered = '';
+  let rendered = '';
 
-    const aboutModal = new AboutModal();
-    rendered += await aboutModal.render();
+  const aboutModal = new AboutModal();
+  rendered += await aboutModal.render();
 
-    document.getElementById('modalAnchor').innerHTML = rendered;
+  document.getElementById('modalAnchor').innerHTML = rendered;
 }
 
 function createDbBackup() {
-    const windowID = BrowserWindow.getFocusedWindow().id;
-    const loadDbBackupPath = 'file://' + path.join(__dirname, './html/invisible/backup-db.html');
+  const windowID = BrowserWindow.getFocusedWindow().id;
+  const loadDbBackupPath = 'file://' + path.join(__dirname, './html/invisible/backup-db.html');
 
-    const loadDbBackupWindow = new BrowserWindow({
-        width: 400,
-        height: 400,
-        show: false,
-        webPreferences: {
-            nodeIntegration: true
-        }
-    });
+  const loadDbBackupWindow = new BrowserWindow({
+    width: 400,
+    height: 400,
+    show: false,
+    webPreferences: {
+      nodeIntegration: true,
+    },
+  });
 
-    loadDbBackupWindow.loadURL(loadDbBackupPath);
-    loadDbBackupWindow.webContents.on('did-finish-load', () => {
-        const input = 100;
-        loadDbBackupWindow.webContents.send('backup-db', input, windowID);
-    });
+  loadDbBackupWindow.loadURL(loadDbBackupPath);
+  loadDbBackupWindow.webContents.on('did-finish-load', () => {
+    const input = 100;
+    loadDbBackupWindow.webContents.send('backup-db', input, windowID);
+  });
 }
 
 async function postRender() {
-    const {loadPreferences} = require('./initialPreferences');
-    const preferences = await loadPreferences();
+  const { loadPreferences } = require('./initialPreferences');
+  const preferences = await loadPreferences();
 
-    localStorage.setItem('preferences', JSON.stringify(preferences));
-    localStorage.setItem('theme', preferences.theme);
+  localStorage.setItem('preferences', JSON.stringify(preferences));
+  localStorage.setItem('theme', preferences.theme);
 
-    checkForUpdates();
-    createDbBackup();
+  checkForUpdates();
+  createDbBackup();
 }
 
 async function render() {
-    require('./events.js');
+  require('./events.js');
 
-    const sortBy = localStorage.getItem('sortBy');
-    if (sortBy) document.getElementById('bookSort').value = sortBy;
+  const sortBy = localStorage.getItem('sortBy');
+  if (sortBy) document.getElementById('bookSort').value = sortBy;
 
-    const sortOrder = localStorage.getItem('sortOrder');
-    if (sortOrder === 'DESC') document.getElementById('bookSortOrder').innerHTML = '&darr;';
+  const sortOrder = localStorage.getItem('sortOrder');
+  if (sortOrder === 'DESC') document.getElementById('bookSortOrder').innerHTML = '&darr;';
 
-    await renderSidebar();
-    const firstSidebarListItem = document.getElementsByClassName('js-sidebar-list-element')[0];
-    firstSidebarListItem.click();
+  await renderSidebar();
+  const firstSidebarListItem = document.getElementsByClassName('js-sidebar-list-element')[0];
+  firstSidebarListItem.click();
 
-    document.getElementById('defaultCss').remove();
+  document.getElementById('defaultCss').remove();
 
-    await renderModals();
-    await postRender();
+  await renderModals();
+  await postRender();
 }
 
 render();

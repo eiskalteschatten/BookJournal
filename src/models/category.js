@@ -5,19 +5,19 @@ const db = require('../db').sequelize;
 
 
 const Category = db.define('category', {
-    name: Sequelize.STRING,
-    color: Sequelize.STRING
+  name: Sequelize.STRING,
+  color: Sequelize.STRING,
 });
 
 Category.getAllSorted = async function() {
-    return await this.findAll({
-        order: [
-            [
-                Sequelize.fn('lower', Sequelize.col('name')),
-                'ASC'
-            ]
-        ]
-    });
+  return await this.findAll({
+    order: [
+      [
+        Sequelize.fn('lower', Sequelize.col('name')),
+        'ASC',
+      ],
+    ],
+  });
 };
 
 Category.sync();

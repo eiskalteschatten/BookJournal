@@ -6,10 +6,10 @@ const config = require('../config').default;
 
 
 function pruneCoverPath(bookcoverPath) {
-    bookcoverPath = 'file:///' + path.join(config.bookcovers.path, bookcoverPath);
-    return bookcoverPath.replace(/\\/g, '/');
+  bookcoverPath = 'file:///' + path.join(config.bookcovers.path, bookcoverPath);
+  return bookcoverPath.replace(/\\/g, '/');
 }
 
 module.exports = {
-    pruneCoverPath
+  pruneCoverPath,
 };

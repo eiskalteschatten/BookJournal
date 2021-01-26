@@ -8,26 +8,26 @@ const changePreferences = require('../lib/preferences/change');
 let dragging = false;
 
 $('.js-dragbar').mousedown(function(e) {
-    e.preventDefault();
+  e.preventDefault();
 
-    const $draggableColumn = $(this).prev('.js-resizable-column');
+  const $draggableColumn = $(this).prev('.js-resizable-column');
 
-    dragging = true;
+  dragging = true;
 
-    $(document).mousemove(function(e) {
-        var newWidth = e.pageX - $draggableColumn.offset().left;
-        $draggableColumn.css('width', newWidth);
-    });
+  $(document).mousemove(function(e) {
+    var newWidth = e.pageX - $draggableColumn.offset().left;
+    $draggableColumn.css('width', newWidth);
+  });
 });
 
 $(document).mouseup(async function() {
-    if (dragging) {
-        $(document).unbind('mousemove');
-        dragging = false;
+  if (dragging) {
+    $(document).unbind('mousemove');
+    dragging = false;
 
-        changePreferences({
-            sidebarWidth: parseInt($('#sidebarWrapper').css('width')),
-            middleColumnWidth: parseInt($('#bookListWrapper').css('width'))
-        });
-    }
+    changePreferences({
+      sidebarWidth: parseInt($('#sidebarWrapper').css('width')),
+      middleColumnWidth: parseInt($('#bookListWrapper').css('width')),
+    });
+  }
 });

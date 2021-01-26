@@ -1,6 +1,6 @@
 'use strict';
 
-const {ipcRenderer, shell} = require('electron');
+const { ipcRenderer, shell } = require('electron');
 const $ = require('jquery');
 
 const helper = require('./events/helper');
@@ -16,27 +16,27 @@ require('./events/forms');
 
 
 $(document).on('contextmenu', 'input, textarea', function() {
-    ipcRenderer.send('show-input-context-menu');
+  ipcRenderer.send('show-input-context-menu');
 });
 
 ipcRenderer.on('switch-theme', (event, theme) => {
-    helper.switchCss(`${theme}Css`);
-    localStorage.setItem('theme', theme);
+  helper.switchCss(`${theme}Css`);
+  localStorage.setItem('theme', theme);
 
-    const $statisticsItem = $('.js-sidebar-list-element[data-query-type="statistics"]');
-    if ($statisticsItem.hasClass('selected')) $statisticsItem.trigger('click');
+  const $statisticsItem = $('.js-sidebar-list-element[data-query-type="statistics"]');
+  if ($statisticsItem.hasClass('selected')) $statisticsItem.trigger('click');
 });
 
 ipcRenderer.on('check-for-updates', async () => {
-    checkForUpdates(true);
+  checkForUpdates(true);
 });
 
 $(document).on('click', '.js-external-link', function(e) {
-    e.preventDefault();
-    const href = $(this).attr('href');
-    shell.openExternal(href);
+  e.preventDefault();
+  const href = $(this).attr('href');
+  shell.openExternal(href);
 });
 
 if (process.platform === 'darwin') {
-    require('./events/macos');
+  require('./events/macos');
 }

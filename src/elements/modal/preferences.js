@@ -1,25 +1,25 @@
 'use strict';
 
+const allLanguages = require('iso-639-1');
 const Modal = require('../modal');
 const PreferencesModel = require('../../models/preferences');
 
-const allLanguages = require('iso-639-1');
 
 
 class Preferences extends Modal {
-    constructor() {
-        super('preferences');
-    }
+  constructor() {
+    super('preferences');
+  }
 
-    async getNunjucksRenderObject() {
-        const object = super.getNunjucksRenderObject();
-        const allLanguageCodes = allLanguages.getAllCodes();
+  async getNunjucksRenderObject() {
+    const object = super.getNunjucksRenderObject();
+    const allLanguageCodes = allLanguages.getAllCodes();
 
-        object.preferences = await PreferencesModel.findByPk(1);
-        object.allLanguageCodes = allLanguageCodes;
+    object.preferences = await PreferencesModel.findByPk(1);
+    object.allLanguageCodes = allLanguageCodes;
 
-        return object;
-    }
+    return object;
+  }
 }
 
 module.exports = Preferences;
