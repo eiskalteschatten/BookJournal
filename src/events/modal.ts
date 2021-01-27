@@ -1,7 +1,7 @@
 import { ipcRenderer, remote } from 'electron';
 import $ from 'jquery';
 
-import helper from './helper';
+import { openModal, closeModal as helperCloseModal } from './helper';
 
 import { changeTheme } from '../lib/preferences/theme';
 import changePreferences from '../lib/preferences/change';
@@ -9,7 +9,7 @@ import PreferencesModal from '../elements/modal/preferences';
 import BooksByAuthor from '../elements/modal/booksByAuthor';
 
 ipcRenderer.on('open-about', (): void => {
-  helper.openModal('aboutModal');
+  openModal('aboutModal');
 });
 
 ipcRenderer.on('open-preferences', async (): Promise<void> => {
@@ -18,12 +18,12 @@ ipcRenderer.on('open-preferences', async (): Promise<void> => {
 
   $('#modalAnchor').append(rendered);
 
-  helper.openModal('preferencesModal');
+  openModal('preferencesModal');
 });
 
 function closeModal($modal: JQuery<HTMLElement>): void {
   const id = $modal.attr('id');
-  helper.closeModal(id);
+  helperCloseModal(id);
 
   if (id === 'preferencesModal') {
     setTimeout(() => {

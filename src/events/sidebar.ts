@@ -1,12 +1,12 @@
 import $ from 'jquery';
 
-import eventHelper from './helper';
+import { changeFilter, clearBooklistSelection, searchBooks } from './helper';
 
 $(document).on('click', '.js-sidebar-list-element', async (): Promise<void> => {
   $('.js-sidebar-list-element').removeClass('selected');
   $(this).addClass('selected');
-  await eventHelper.changeFilter();
-  eventHelper.clearBooklistSelection();
+  await changeFilter();
+  clearBooklistSelection();
 });
 
 
@@ -14,10 +14,10 @@ let searchTimeout: NodeJS.Timeout;
 
 $(document).on('keypress', '#sidebarSearchField', async (): Promise<void> => {
   clearTimeout(searchTimeout);
-  const term = $(this).val();
+  const term = $(this).val().toString();
 
   searchTimeout = setTimeout(async (): Promise<void> => {
-    await eventHelper.searchBooks(term);
-    eventHelper.clearBooklistSelection();
+    await searchBooks(term);
+    clearBooklistSelection();
   }, 100);
 });

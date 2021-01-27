@@ -1,24 +1,21 @@
-'use strict';
+import { ipcRenderer } from 'electron';
+import $ from 'jquery';
 
-const { ipcRenderer } = require('electron');
-const $ = require('jquery');
+import BookForm from '../elements/bookForm';
+import BooksList from '../elements/list/books';
+import filterBooks from '../lib/filters/books';
+import Statistics from '../elements/statistics';
 
-const BookForm = require('../elements/bookForm');
-const BooksList = require('../elements/list/books');
-const filterBooks = require('../lib/filters/books');
-const Statistics = require('../elements/statistics');
-
-
-async function loadBook(id) {
+export const loadBook = async (id: number): Promise<void> => {
   const bookForm = new BookForm(id);
   const rendered = await bookForm.render();
   $('#bookDetails').html(rendered);
   await bookForm.afterRender();
 
   $(window).trigger('book-form-loaded');
-}
+};
 
-function selectBook(id) {
+export const selectBook = (id: number): void => {
   const $bookList = $('#bookList');
   const $listItem = $(`.js-book-list-element[data-id="${id}"]`);
   const position = $listItem.position();
@@ -32,9 +29,9 @@ function selectBook(id) {
       scrollTop: (position.top - bookListTopToolbarHeight) + $bookList.scrollTop(),
     }, 100);
   }
-}
+};
 
-async function updateBookList(selectedId) {
+export const updateBookList = async (selectedId: number): Promise<void> => {
   const sortBy = localStorage.getItem('sortBy');
   const sortOrder = localStorage.getItem('sortOrder');
   const bookList = new BooksList();
@@ -42,44 +39,44 @@ async function updateBookList(selectedId) {
   await bookList.loadBooks(sortBy, sortOrder);
   await refreshBookList();
 
-  if (selectedId !== '') {
-    selectBook(selectedId); 
+  if (selectedId) {
+    selectBook(selectedId);
   }
-}
+};
 
-async function refreshBookList() {
+export const refreshBookList = async (): Promise<void> => {
   const searchTerm = sessionStorage.getItem('searching');
   const isSearching = searchTerm !== 'false';
 
   if (isSearching) {
-    await searchBooks(searchTerm); 
+    await searchBooks(searchTerm);
   }
   else {
-    await changeFilter(); 
+    await changeFilter();
   }
-}
+};
 
-function clearBooklistSelection() {
+export const clearBooklistSelection = (): void => {
   $('.js-book-list-element').removeClass('selected');
   $('#bookForm').removeClass('js-is-visible');
   $('#bookDetails').html('');
   $('#bookFormWrapper').removeClass('form-displayed');
   ipcRenderer.send('disable-book-items');
-}
+};
 
-function switchViewNoBooks() {
+export const switchViewNoBooks = (): void => {
   $('#bookListWrapper').addClass('hidden');
   $('#bookFormWrapper').addClass('hidden');
   $('#mainColumnAnchor').removeClass('hidden');
-}
+};
 
-function switchViewWithBooks() {
+export const switchViewWithBooks = (): void => {
   $('#bookListWrapper').removeClass('hidden');
   $('#bookFormWrapper').removeClass('hidden');
   $('#mainColumnAnchor').addClass('hidden');
-}
+};
 
-async function changeFilter() {
+export const changeFilter = async (): Promise<void> => {
   const $element = $('.js-sidebar-list-element.selected');
   const queryType = $element.data('query-type');
   let rendered;
@@ -97,28 +94,28 @@ async function changeFilter() {
     $('#bookList').html(rendered);
   }
 
-  sessionStorage.setItem('searching', false);
-}
+  sessionStorage.setItem('searching', 'false');
+};
 
-async function searchBooks(term) {
+export const searchBooks = async (term: string): Promise<void> => {
   $('.js-sidebar-list-element').removeClass('selected');
   const rendered = await filterBooks('search', term);
   switchViewWithBooks();
   $('#bookList').html(rendered);
   sessionStorage.setItem('searching', term);
-}
+};
 
-function switchCss(id) {
+export const switchCss = (id: string): void => {
   $('.js-main-css').prop('disabled', true);
   $(`#${id}`).prop('disabled', false);
-}
+};
 
-function openModal(id) {
+export const openModal = (id: string): void => {
   const $modalContainer = $('#modalContainer');
   const $modal = $(`#${id}`);
 
   if (!$modalContainer.hasClass('hidden')) {
-    return; 
+    return;
   }
 
   $modalContainer.removeClass('hidden');
@@ -131,14 +128,14 @@ function openModal(id) {
     }, 100);
   }, 100);
 
-  $(document).keydown(function(e) {
-    if (e.keyCode === 27) {
-      closeModal(id); 
+  $(document).on('keydown', (e: JQuery.TriggeredEvent): void => {
+    if (e.key === 'Escape') {
+      closeModal(id);
     }
   });
-}
+};
 
-function closeModal(id) {
+export const closeModal = (id: string): void => {
   const $modalContainer = $('#modalContainer');
   const $modal = $(`#${id}`);
   $modal.removeClass('open');
@@ -149,20 +146,5 @@ function closeModal(id) {
     $modalContainer.addClass('hidden');
   }, 400);
 
-  $(document).unbind('keydown');
-}
-
-module.exports = {
-  loadBook,
-  selectBook,
-  updateBookList,
-  refreshBookList,
-  clearBooklistSelection,
-  switchViewNoBooks,
-  switchViewWithBooks,
-  changeFilter,
-  searchBooks,
-  switchCss,
-  openModal,
-  closeModal,
+  $(document).off('keydown');
 };

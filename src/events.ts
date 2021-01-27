@@ -1,7 +1,7 @@
 import { ipcRenderer, shell, IpcRendererEvent } from 'electron';
-import $, { Event } from 'jquery';
+import $ from 'jquery';
 
-import helper from './events/helper';
+import { switchCss } from './events/helper';
 import checkForUpdates from './checkForUpdates';
 
 import './events/sidebar';
@@ -17,7 +17,7 @@ $(document).on('contextmenu', 'input, textarea', (): void =>{
 });
 
 ipcRenderer.on('switch-theme', (event: IpcRendererEvent, theme: string): void => {
-  helper.switchCss(`${theme}Css`);
+  switchCss(`${theme}Css`);
   localStorage.setItem('theme', theme);
 
   const $statisticsItem = $('.js-sidebar-list-element[data-query-type="statistics"]');
