@@ -1,28 +1,24 @@
-'use strict';
+import $ from 'jquery';
 
-const $ = require('jquery');
-
-const changePreferences = require('../lib/preferences/change');
-
+import changePreferences from '../lib/preferences/change';
 
 let dragging = false;
 
-$('.js-dragbar').mousedown(function(e) {
+$('.js-dragbar').on('mousedown', (e: JQuery.TriggeredEvent): void => {
   e.preventDefault();
 
   const $draggableColumn = $(this).prev('.js-resizable-column');
-
   dragging = true;
 
-  $(document).mousemove(function(e) {
-    var newWidth = e.pageX - $draggableColumn.offset().left;
+  $(document).mousemove((e: JQuery.TriggeredEvent): void => {
+    const newWidth = e.pageX - $draggableColumn.offset().left;
     $draggableColumn.css('width', newWidth);
   });
 });
 
-$(document).mouseup(async function() {
+$(document).on('mouseup', async (): Promise<void> => {
   if (dragging) {
-    $(document).unbind('mousemove');
+    $(document).off('mousemove');
     dragging = false;
 
     changePreferences({
