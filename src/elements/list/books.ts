@@ -1,4 +1,5 @@
 import path from 'path';
+import { FindOptions } from 'sequelize';
 
 import List from '../list';
 import Book from '../../models/book';
@@ -6,16 +7,15 @@ import BookListElement from '../../elements/listElement/book';
 
 
 export default class Books extends List {
-  private query: string;
+  private query: FindOptions;
 
-  constructor(query = '') {
+  constructor(query?: FindOptions) {
     super();
     this.template = path.join(__dirname, '../../templates/elements/list/books.njk');
     this.query = query;
   }
 
-  // TODO: create an interface for "book"
-  addBookElement(book: any): void {
+  addBookElement(book: Book): void {
     const element = new BookListElement(book);
     this.elements.push(element);
   }

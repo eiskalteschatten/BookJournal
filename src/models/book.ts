@@ -29,6 +29,7 @@ export class Book extends Model {
   summary?: string;
   commentary?: string;
   notes?: string;
+  subtitleField?: string;
   readonly createdAt: Date;
   readonly updatedAt: Date;
 

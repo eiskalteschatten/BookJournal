@@ -1,10 +1,8 @@
 import Preferences from './models/preferences';
 
-// TODO: use interface!
-export let preferences;
+export let preferences: Preferences;
 
-// TODO: use interface!
-export async function loadPreferences(): Promise<any> {
+export async function loadPreferences(): Promise<Preferences> {
   try {
     preferences = await Preferences.findByPk(1);
 
@@ -17,6 +15,5 @@ export async function loadPreferences(): Promise<any> {
   }
   catch (error) {
     console.error('An error occurred while loading preferences:', error);
-    return;
   }
 }

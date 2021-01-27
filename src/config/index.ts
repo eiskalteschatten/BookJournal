@@ -2,6 +2,38 @@ import path from 'path';
 import os from 'os';
 import fs from 'fs';
 
+export interface Config {
+  app: {
+    name: string;
+    version: string;
+    storagePath: string;
+    tempStoragePath: string;
+  },
+  updates: {
+    url: string;
+  },
+  database: {
+    path: string;
+    fileName: string;
+    backupFileName: string;
+  },
+  bookcovers: {
+    path: string;
+    tempPath: string;
+    extensions: string[];
+  },
+  bookInfo: {
+    google: {
+      urlIsbn: string;
+      urlAuthors: string;
+      authorsMaxResults: number;
+    },
+  },
+  statistics: {
+    defaultNumberOfYears: number;
+  }
+}
+
 const env = process.env.NODE_ENV;
 
 const bookInfoAuthorsMaxResults = 40;
@@ -33,8 +65,7 @@ if (!fs.existsSync(storagePath)) {
 console.log('Application data is saved at:', storagePath);
 
 
-// TODO: create a config interface
-export default {
+const config: Config = {
   app: {
     name: 'BookJournal',
     version: '1.0.1',
@@ -65,3 +96,5 @@ export default {
     defaultNumberOfYears: 7,
   },
 };
+
+export default config;

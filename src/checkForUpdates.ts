@@ -1,6 +1,7 @@
 import { remote, shell } from 'electron';
 import $ from 'jquery';
 
+import Preferences from './models/preferences';
 import config from './config';
 
 const { dialog } = remote;
@@ -9,8 +10,7 @@ export default async (showNoUpdateDialog = false): Promise<boolean | void> =>
   new Promise<boolean>((resolve, reject) => {
     try {
       const preferencesString = localStorage.getItem('preferences');
-      // TODO: write interface for preferences
-      const preferences = JSON.parse(preferencesString);
+      const preferences: Preferences = JSON.parse(preferencesString);
 
       if (!preferences.checkForUpdates || process.env.NODE_ENV === 'development') {
         console.log('Checking for updates is disabled.');

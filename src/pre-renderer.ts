@@ -1,3 +1,5 @@
+import Preferences from './models/preferences';
+
 function preRender(): void {
   try {
     const theme = localStorage.getItem('theme') || 'light';
@@ -11,8 +13,7 @@ function preRender(): void {
     const preferencesString = localStorage.getItem('preferences');
 
     if (preferencesString) {
-      // TODO: add preferences interface
-      const preferences = JSON.parse(preferencesString);
+      const preferences: Preferences = JSON.parse(preferencesString);
       document.getElementById('sidebarWrapper').style.width = `${preferences.sidebarWidth}px`;
       document.getElementById('bookListWrapper').style.width = `${preferences.middleColumnWidth}px`;
     }
