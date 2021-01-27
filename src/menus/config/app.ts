@@ -117,7 +117,7 @@ const template: MenuItemConstructorOptions[] = [
     submenu: [
       {
         label: 'Show Database Location',
-        click: () => {
+        click: (): void => {
           const dbConfig = config.database;
           const databasePath = path.join(dbConfig.path, dbConfig.fileName);
           shell.showItemInFolder(databasePath);
@@ -126,14 +126,14 @@ const template: MenuItemConstructorOptions[] = [
       { type: 'separator' },
       {
         label: 'Submit Feedback',
-        click: () => {
+        click: (): void => {
           shell.openExternal('https://www.alexseifert.com/contact');
         },
       },
       { type: 'separator' },
       {
         label: 'About Alex Seifert',
-        click: () => {
+        click: (): void => {
           shell.openExternal('https://www.alexseifert.com');
         },
       },
