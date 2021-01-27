@@ -1,9 +1,6 @@
-'use strict';
+import Preferences from '../../models/preferences';
 
-const Preferences = require('../../models/preferences');
-
-
-module.exports = async values => {
+export default async (values: Preferences): Promise<Preferences> => {
   let preferences = await Preferences.findByPk(1);
   preferences = await preferences.update(values);
 

@@ -1,15 +1,11 @@
-'use strict';
+import { Op, FindOptions } from 'sequelize';
 
-const Sequelize = require('sequelize');
-const { Op } = Sequelize;
-
-const BookList = require('../../elements/list/books');
-
-const Category = require('../../models/category');
+import BookList from '../../elements/list/books';
+import Category from '../../models/category';
 
 
-module.exports = async (type, term = '') => {
-  let query;
+export default async (type: string, term = ''): Promise<string> => {
+  let query: FindOptions;
 
   switch (type) {
     case 'all-books':

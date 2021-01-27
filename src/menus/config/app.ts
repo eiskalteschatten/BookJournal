@@ -2,7 +2,7 @@ import { app, shell, dialog, MenuItemConstructorOptions, MenuItem, BrowserWindow
 import path from 'path';
 
 import config from '../../config';
-import themePreferences from '../../lib/preferences/theme';
+import { changeTheme } from '../../lib/preferences/theme';
 
 const template: MenuItemConstructorOptions[] = [
   {
@@ -78,7 +78,7 @@ const template: MenuItemConstructorOptions[] = [
         label: 'Light Theme',
         type: 'checkbox',
         click: (item: MenuItem, focusedWindow: BrowserWindow): void => {
-          themePreferences.changeTheme('light', focusedWindow);
+          changeTheme('light', focusedWindow);
         },
       },
       {
@@ -86,7 +86,7 @@ const template: MenuItemConstructorOptions[] = [
         label: 'Dark Theme',
         type: 'checkbox',
         click: (item: MenuItem, focusedWindow: BrowserWindow): void => {
-          themePreferences.changeTheme('dark', focusedWindow);
+          changeTheme('dark', focusedWindow);
         },
       },
       { type: 'separator' },

@@ -1,12 +1,10 @@
-'use strict';
-
-const Chart = require('chart.js');
+import Chart, { ChartOptions } from 'chart.js';
 
 const fakeDiv = document.querySelector('div');
 
 Chart.defaults.global.defaultFontFamily = window.getComputedStyle(fakeDiv).fontFamily;
 
-const defaultOptions = {
+const defaultOptions: ChartOptions = {
   scales: {
     yAxes: [{
       ticks: {
@@ -26,7 +24,7 @@ const defaultOptions = {
   },
 };
 
-const doughnutOptions = {
+const doughnutOptions: ChartOptions = {
   scales: {
     yAxes: [{
       display: false,
@@ -58,8 +56,14 @@ for (let i = 0; i <= numberOfColors; i++) {
   backgroundColor = backgroundColor.concat(colors);
 }
 
+export interface IChart {
+  Chart: typeof Chart;
+  defaultOptions: ChartOptions;
+  doughnutOptions: ChartOptions;
+  backgroundColor: string[];
+}
 
-module.exports = () => {
+export default (): IChart => {
   const theme = localStorage.getItem('theme');
 
   // Values that shouldn't be cached
