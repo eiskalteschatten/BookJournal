@@ -3,7 +3,7 @@ import fs from 'fs';
 
 import nunjucks from '../../../nunjucks';
 import Book, { BookAttributes } from '../../../models/book';
-import { GoogleBooksBook } from '../../../interfaces/GoogleBooks';
+import { GoogleBooksBook } from '../../../interfaces/books';
 
 interface BooksRenderObject extends BookAttributes, GoogleBooksBook {
   hasBeenRead?: boolean;
