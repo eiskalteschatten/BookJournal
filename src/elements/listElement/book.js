@@ -22,10 +22,10 @@ class BookListElement extends ListElement {
     const self = this;
 
     return new Promise((resolve, reject) => {
-      const template = path.join(__dirname, '../../templates/elements/listElement/book.njk');
+      const template = path.join(__dirname, '../../templates/listElement/book.njk');
       fs.readFile(template, 'utf8', (error, string) => {
         if (error) {
-          reject(error); 
+          reject(error);
         }
         resolve(string);
       });
@@ -42,7 +42,7 @@ class BookListElement extends ListElement {
     const object = this.book;
 
     if (object.bookcover) {
-      object.bookcoverPath = bookcoverHelper.pruneCoverPath(object.bookcover); 
+      object.bookcoverPath = bookcoverHelper.pruneCoverPath(object.bookcover);
     }
 
     object.classes = this.classes;
@@ -117,11 +117,11 @@ class BookListElement extends ListElement {
     });
 
     return new Promise(async (resolve, reject) => {
-      const template = path.join(__dirname, '../../templates/elements/listElement/book/ratingStars.njk');
+      const template = path.join(__dirname, '../../templates/listElement/book/ratingStars.njk');
 
       fs.readFile(template, 'utf8', (error, string) => {
         if (error) {
-          reject(error); 
+          reject(error);
         }
         resolve(string);
       });

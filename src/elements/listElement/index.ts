@@ -23,7 +23,7 @@ export default class ListElement {
 
     try {
       const templateString = await new Promise<string>((resolve, reject) => {
-        const template = path.join(__dirname, '../templates/elements/listElement.njk');
+        const template = path.join(__dirname, '../templates/listElement.njk');
         fs.readFile(template, 'utf8', (error, string) => {
           if (error) {
             reject(error);

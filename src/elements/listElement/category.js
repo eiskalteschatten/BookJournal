@@ -20,7 +20,7 @@ class CategoryListElement extends SidebarListElement {
 
   renderListEditor() {
     return new Promise((resolve, reject) => {
-      const template = path.join(__dirname, '../../templates/elements/listElement/edit.njk');
+      const template = path.join(__dirname, '../../templates/listElement/edit.njk');
       fs.readFile(template, 'utf8', (error, string) => {
         if (error) {
           reject(error);

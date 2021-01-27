@@ -14,7 +14,7 @@ export default class List {
 
   constructor() {
     this.elements = [];
-    this.template = path.join(__dirname, '../../templates/elements/list.njk');
+    this.template = path.join(__dirname, '../../templates/list.njk');
   }
 
   async render(): Promise<string> {

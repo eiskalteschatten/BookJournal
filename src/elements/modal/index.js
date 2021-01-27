@@ -14,7 +14,7 @@ class Modal {
     const { type } = this;
 
     return new Promise((resolve, reject) => {
-      const template = path.join(__dirname, `../templates/elements/modal/${type}.njk`);
+      const template = path.join(__dirname, `../templates/modal/${type}.njk`);
 
       fs.readFile(template, 'utf8', (error, string) => {
         if (error) {

@@ -9,7 +9,7 @@ import CategoryListElement from '../../elements/listElement/category';
 export default class Sidebar extends List {
   constructor() {
     super();
-    this.template = path.join(__dirname, '../../templates/elements/list/sidebar.njk');
+    this.template = path.join(__dirname, '../../templates/list/sidebar.njk');
 
     this.addElement('All Books', '../assets/images/si-glyph-bookcase.svg', 'all-books');
     this.addElement('Wishlist', '../assets/images/si-glyph-bullet-checked-list.svg', 'wishlist');

@@ -11,7 +11,7 @@ export default class Books extends List {
 
   constructor(query?: FindOptions) {
     super();
-    this.template = path.join(__dirname, '../../templates/elements/list/books.njk');
+    this.template = path.join(__dirname, '../../templates/list/books.njk');
     this.query = query;
   }
 

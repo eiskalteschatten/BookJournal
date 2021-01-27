@@ -12,7 +12,7 @@ class BookPageCountYear extends StatisticsBox {
 
     this.sortedYears = Object.keys(statistics).sort((a, b) => b - a);
     this.allDatesRead = allDatesRead;
-    this.template = path.join(__dirname, '../../templates/elements/statisticsBox/bookPageCountYear.njk');
+    this.template = path.join(__dirname, '../../templates/statisticsBox/bookPageCountYear.njk');
   }
 
   async getNunjucksRenderObject() {

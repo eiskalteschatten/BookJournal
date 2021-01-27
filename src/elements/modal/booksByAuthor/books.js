@@ -16,10 +16,10 @@ class BookByAuthor {
     const books = await this.buildBooksObject();
 
     return new Promise((resolve, reject) => {
-      const template = path.join(__dirname, '../../../templates/elements/modal/booksByAuthor/book.njk');
+      const template = path.join(__dirname, '../../../templates/modal/booksByAuthor/book.njk');
       fs.readFile(template, 'utf8', (error, string) => {
         if (error) {
-          reject(error); 
+          reject(error);
         }
         resolve(string);
       });
@@ -52,12 +52,12 @@ class BookByAuthor {
       for (const id of industryIdentifiers) {
         isbns.push(id.identifier);
         if (id.type === 'ISBN_13') {
-          book.isbn = id.identifier; 
+          book.isbn = id.identifier;
         }
       }
 
       if (!book.isbn && industryIdentifiers[0]) {
-        book.isbn = industryIdentifiers[0].identifier; 
+        book.isbn = industryIdentifiers[0].identifier;
       }
 
       const bookFromDb = await Book.getHasBeenRead(volumeInfo.title, volumeInfo.authors, isbns);

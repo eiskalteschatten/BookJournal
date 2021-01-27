@@ -21,11 +21,11 @@ const sortDesc = (a, b) => b - a;
 class Statistics {
   async render() {
     return new Promise((resolve, reject) => {
-      const template = path.join(__dirname, '../templates/elements/statistics.njk');
+      const template = path.join(__dirname, '../templates/statistics.njk');
 
       fs.readFile(template, 'utf8', (error, string) => {
         if (error) {
-          reject(error); 
+          reject(error);
         }
         resolve(string);
       });
@@ -60,7 +60,7 @@ class Statistics {
     const allDatesRead = await this.getAllDatesRead();
 
     if (Object.keys(allDatesRead).length === 0) {
-      return { noResults: true }; 
+      return { noResults: true };
     }
 
     const sortedYears = this.sortedYears(allDatesRead);
@@ -94,15 +94,15 @@ class Statistics {
       const month = dateObj.getMonth();
 
       if (isNaN(year)) {
-        continue; 
+        continue;
       }
 
       if (!Array.isArray(allDatesRead[year])) {
-        allDatesRead[year] = []; 
+        allDatesRead[year] = [];
       }
 
       if (allDatesRead[year].indexOf(month) === -1) {
-        allDatesRead[year].push(month); 
+        allDatesRead[year].push(month);
       }
     }
 
@@ -158,7 +158,7 @@ class Statistics {
       const pageCountInt = parseInt(result.pageCount);
 
       if (result.pageCount && !isNaN(pageCountInt)) {
-        pageCount += pageCountInt; 
+        pageCount += pageCountInt;
       }
     }
 

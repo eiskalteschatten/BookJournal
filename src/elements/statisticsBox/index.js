@@ -8,7 +8,7 @@ const nunjucks = require('../../nunjucks');
 class StatisticsBox {
   constructor(statistics) {
     this.statistics = statistics;
-    this.template = path.join(__dirname, '../templates/elements/statisticsBox.njk');
+    this.template = path.join(__dirname, '../templates/statisticsBox.njk');
   }
 
   async render() {

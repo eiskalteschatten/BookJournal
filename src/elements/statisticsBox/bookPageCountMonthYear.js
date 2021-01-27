@@ -16,7 +16,7 @@ class BookPageCountMonthYear extends StatisticsBox {
     this.latestYear = sortedYears[0];
     this.monthStatistics = statistics[this.latestYear];
     this.allDatesRead = allDatesRead;
-    this.template = path.join(__dirname, '../../templates/elements/statisticsBox/bookPageCountMonthYear.njk');
+    this.template = path.join(__dirname, '../../templates/statisticsBox/bookPageCountMonthYear.njk');
   }
 
   async getNunjucksRenderObject() {
