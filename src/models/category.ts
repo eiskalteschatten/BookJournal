@@ -1,13 +1,34 @@
-import { Model, DataTypes, fn, col } from 'sequelize';
+import { fn, col } from 'sequelize';
+import {
+  Column,
+  Model,
+  PrimaryKey,
+  Table,
+  AutoIncrement,
+  CreatedAt,
+  UpdatedAt,
+} from 'sequelize-typescript';
 
-import { sequelize } from '../db';
-
-export class Category extends Model {
+@Table({
+  modelName: 'category',
+})
+export default class Category extends Model {
+  @PrimaryKey
+  @AutoIncrement
+  @Column
   id!: number;
+
+  @Column
   name: string;
+
+  @Column
   color: string;
-  readonly createdAt: Date;
-  readonly updatedAt: Date;
+
+  @CreatedAt
+  createdAt!: Date;
+
+  @UpdatedAt
+  updatedAt!: Date;
 
   static async getAllSorted(): Promise<Category[]> {
     return await Category.findAll({
@@ -20,19 +41,3 @@ export class Category extends Model {
     });
   }
 }
-
-Category.init({
-  name: {
-    type: DataTypes.STRING,
-  },
-  color: {
-    type: DataTypes.STRING,
-  },
-}, {
-  sequelize,
-  modelName: 'category',
-});
-
-Category.sync();
-
-export default Category;

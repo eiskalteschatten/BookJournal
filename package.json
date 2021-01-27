@@ -95,6 +95,7 @@
     "popper.js": "^1.16.1",
     "sequelize": "^6.4.0",
     "sequelize-migration-wrapper": "^1.0.0",
+    "sequelize-typescript": "^2.0.0",
     "sqlite3": "^5.0.1",
     "tiny-date-picker": "^3.2.8"
   },

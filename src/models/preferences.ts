@@ -1,82 +1,78 @@
-import { Model, DataTypes } from 'sequelize';
+import {
+  Column,
+  Model,
+  PrimaryKey,
+  Table,
+  AutoIncrement,
+  Default,
+  CreatedAt,
+  UpdatedAt,
+} from 'sequelize-typescript';
 
-import { sequelize } from '../db';
-
-export class Preferences extends Model {
-  id!: number;
-  windowWidth: number;
-  windowHeight: number;
-  windowX: number;
-  windowY: number;
-  windowIsMaximized: boolean;
-  windowIsFullScreen: boolean;
-  sidebarWidth?: number;
-  middleColumnWidth?: number;
-  theme: string;
-  fetchBookInfoFromGoogle: boolean;
-  checkForUpdates: boolean;
-  fetchBooksByAuthor: boolean;
-  fetchBooksByAuthorLanguage: string;
-  readonly createdAt: Date;
-  readonly updatedAt: Date;
-}
-
-Preferences.init({
-  windowWidth: {
-    type: DataTypes.INTEGER,
-    defaultValue: 1200,
-  },
-  windowHeight: {
-    type: DataTypes.INTEGER,
-    defaultValue: 800,
-  },
-  windowX: {
-    type: DataTypes.INTEGER,
-  },
-  windowY: {
-    type: DataTypes.INTEGER,
-  },
-  windowIsMaximized: {
-    type: DataTypes.BOOLEAN,
-    defaultValue: false,
-  },
-  windowIsFullScreen: {
-    type: DataTypes.BOOLEAN,
-    defaultValue: false,
-  },
-  sidebarWidth: {
-    type: DataTypes.INTEGER,
-    allowNull: true,
-  },
-  middleColumnWidth: {
-    type: DataTypes.INTEGER,
-    allowNull: true,
-  },
-  theme: {
-    type: DataTypes.STRING,
-    defaultValue: 'light',
-  },
-  fetchBookInfoFromGoogle: {
-    type: DataTypes.BOOLEAN,
-    defaultValue: true,
-  },
-  checkForUpdates: {
-    type: DataTypes.BOOLEAN,
-    defaultValue: true,
-  },
-  fetchBooksByAuthor: {
-    type: DataTypes.BOOLEAN,
-    defaultValue: true,
-  },
-  fetchBooksByAuthorLanguage: {
-    type: DataTypes.STRING,
-    defaultValue: 'en',
-  },
-}, {
-  sequelize,
+@Table({
   modelName: 'preferences',
-});
+})
+export default class Preferences extends Model {
+  @PrimaryKey
+  @AutoIncrement
+  @Column
+  id!: number;
 
-Preferences.sync();
+  @Column
+  @Default(1200)
+  windowWidth: number;
 
-export default Preferences;
+  @Column
+  @Default(800)
+  windowHeight: number;
+
+  @Column
+  windowX: number;
+
+  @Column
+  windowY: number;
+
+  @Column
+  @Default(false)
+  windowIsMaximized: boolean;
+
+  @Column
+  @Default(false)
+  windowIsFullScreen: boolean;
+
+  @Column({
+    allowNull: true,
+  })
+  sidebarWidth?: number;
+
+  @Column({
+    allowNull: true,
+  })
+  middleColumnWidth?: number;
+
+  @Column
+  @Default('light')
+  theme: string;
+
+  @Column
+  @Default(true)
+  fetchBookInfoFromGoogle: boolean;
+
+  @Column
+  @Default(true)
+  checkForUpdates: boolean;
+
+  @Column
+  @Default(true)
+  fetchBooksByAuthor: boolean;
+
+  @Column
+  @Default('en')
+  fetchBooksByAuthorLanguage: string;
+
+  @CreatedAt
+  createdAt!: Date;
+
+  @UpdatedAt
+  updatedAt!: Date;
+}

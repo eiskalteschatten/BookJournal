@@ -3,7 +3,6 @@ import { Op, FindOptions } from 'sequelize';
 import BookList from '../../elements/list/books';
 import Category from '../../models/category';
 
-
 export default async (type: string, term = ''): Promise<string> => {
   let query: FindOptions;
 

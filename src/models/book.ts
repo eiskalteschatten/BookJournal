@@ -1,37 +1,158 @@
-import { Model, DataTypes, Op, fn, col, FindOptions } from 'sequelize';
+import { DataTypes, Op, fn, col, FindOptions } from 'sequelize';
+
+import {
+  Column,
+  Model,
+  PrimaryKey,
+  Table,
+  AutoIncrement,
+  Default,
+  CreatedAt,
+  UpdatedAt,
+} from 'sequelize-typescript';
 
 import { sequelize } from '../db';
 
-export class Book extends Model {
+@Table({
+  modelName: 'book',
+})
+export default class Book extends Model {
+  @PrimaryKey
+  @AutoIncrement
+  @Column
   id!: number;
+
+  @Column
   title: string;
+
+  @Column({
+    allowNull: true,
+  })
   author?: string;
+
+  @Column({
+    allowNull: true,
+  })
   editor?: string;
+
+  @Column({
+    allowNull: true,
+  })
   genre?: string;
+
+  @Column({
+    allowNull: true,
+  })
   dateStarted?: Date;
+
+  @Column({
+    allowNull: true,
+  })
   dateRead?: Date;
+
+  @Column
+  @Default('notReadYet')
   status: 'notReadYet' |'currentlyReading' |'read' |'stoppedReading' |'takingABreak';
+
+  @Column
+  @Default(false)
   onWishlist: boolean;
+
+  @Column({
+    allowNull: true,
+  })
   pageCount?: number;
+
+  @Column({
+    allowNull: true,
+  })
   color?: string;
+
+  @Column({
+    allowNull: true,
+  })
   bookcover?: string;
+
+  @Column({
+    allowNull: true,
+  })
   publisher?: string;
+
+  @Column({
+    allowNull: true,
+  })
   isbn?: string;
+
+  @Column({
+    allowNull: true,
+  })
   yearPublished?: number;
+
+  @Column({
+    allowNull: true,
+  })
   bookFormat?: string;
+
+  @Column({
+    allowNull: true,
+  })
   nationality?: string;
+
+  @Column({
+    allowNull: true,
+  })
   languageReadIn?: string;
+
+  @Column({
+    allowNull: true,
+  })
   originalLanguage?: string;
+
+  @Column({
+    allowNull: true,
+  })
   translator?: string;
+
+  @Column({
+    allowNull: true,
+  })
   tags?: string;
+
+  @Column({
+    allowNull: true,
+  })
   categories?: string;
+
+  @Column({
+    allowNull: true,
+  })
   rating?: number;
+
+  @Column({
+    allowNull: true,
+  })
   summary?: string;
+
+  @Column({
+    allowNull: true,
+  })
   commentary?: string;
+
+  @Column({
+    allowNull: true,
+  })
   notes?: string;
+
+  @Column({
+    allowNull: true,
+  })
   subtitleField?: string;
-  readonly createdAt: Date;
-  readonly updatedAt: Date;
+
+  @CreatedAt
+  createdAt!: Date;
+
+  @UpdatedAt
+  updatedAt!: Date;
 
   static async getAllSorted(sortBy = 'title', sortOrder = 'ASC'): Promise<Book[]> {
     return await Book.findAll({
@@ -95,112 +216,3 @@ export class Book extends Model {
     });
   }
 }
-
-Book.init({
-  title: {
-    type: DataTypes.STRING,
-  },
-  author: {
-    type: DataTypes.STRING,
-    allowNull: true,
-  },
-  editor: {
-    type: DataTypes.STRING,
-    allowNull: true,
-  },
-  genre: {
-    type: DataTypes.STRING,
-    allowNull: true,
-  },
-  dateStarted: {
-    type: DataTypes.DATEONLY,
-    allowNull: true,
-  },
-  dateRead: {
-    type: DataTypes.DATEONLY,
-    allowNull: true,
-  },
-  status: {
-    type: DataTypes.ENUM('notReadYet', 'currentlyReading', 'read', 'stoppedReading', 'takingABreak'),
-    defaultValue: 'notReadYet',
-  },
-  onWishlist: {
-    type: DataTypes.BOOLEAN,
-    defaultValue: false,
-  },
-  pageCount: {
-    type: DataTypes.INTEGER,
-    allowNull: true,
-  },
-  color: {
-    type: DataTypes.STRING,
-    allowNull: true,
-  },
-  bookcover: {
-    type: DataTypes.STRING,
-    allowNull: true,
-  },
-  publisher: {
-    type: DataTypes.STRING,
-    allowNull: true,
-  },
-  isbn: {
-    type: DataTypes.STRING,
-    allowNull: true,
-  },
-  yearPublished: {
-    type: DataTypes.INTEGER,
-    allowNull: true,
-  },
-  bookFormat: {
-    type: DataTypes.STRING,
-    allowNull: true,
-  },
-  nationality: {
-    type: DataTypes.STRING,
-    allowNull: true,
-  },
-  languageReadIn: {
-    type: DataTypes.STRING,
-    allowNull: true,
-  },
-  originalLanguage: {
-    type: DataTypes.STRING,
-    allowNull: true,
-  },
-  translator: {
-    type: DataTypes.STRING,
-    allowNull: true,
-  },
-  tags: {
-    type: DataTypes.STRING,
-    allowNull: true,
-  },
-  categories: {
-    type: DataTypes.STRING,
-    allowNull: true,
-  },
-  rating: {
-    type: DataTypes.INTEGER,
-    allowNull: true,
-  },
-  summary: {
-    type: DataTypes.TEXT,
-    allowNull: true,
-  },
-  commentary: {
-    type: DataTypes.TEXT,
-    allowNull: true,
-  },
-  notes: {
-    type: DataTypes.TEXT,
-    allowNull: true,
-  },
-}, {
-  sequelize,
-  modelName: 'book',
-});
-
-Book.sync();
-
-export default Book;
