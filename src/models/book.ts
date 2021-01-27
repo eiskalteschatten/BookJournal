@@ -1,4 +1,4 @@
-import { DataTypes, Op, fn, col, FindOptions } from 'sequelize';
+import { Op, fn, col, FindOptions } from 'sequelize';
 
 import {
   Column,
