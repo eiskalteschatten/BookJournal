@@ -1,28 +1,24 @@
-'use strict';
+import { app, shell, dialog, MenuItemConstructorOptions, MenuItem, BrowserWindow } from 'electron';
+import path from 'path';
 
-const { app, shell, dialog } = require('electron');
+import config from '../../config';
+import themePreferences from '../../lib/preferences/theme';
 
-const path = require('path');
-
-const config = require('../../config').default;
-const themePreferences = require('../../lib/preferences/theme');
-
-
-const template = [
+const template: MenuItemConstructorOptions[] = [
   {
     label: 'File',
     submenu: [
       {
         label: 'New Book',
         accelerator: 'CmdOrCtrl+N',
-        click: async (item, focusedWindow) => {
+        click: (item: MenuItem, focusedWindow: BrowserWindow): void => {
           focusedWindow.webContents.send('create-new-book');
         },
       },
       {
         label: 'New Category',
         accelerator: 'CmdOrCtrl+Shift+N',
-        click: async (item, focusedWindow) => {
+        click: (item: MenuItem, focusedWindow: BrowserWindow): void => {
           focusedWindow.webContents.send('create-new-category');
         },
       },
@@ -32,7 +28,7 @@ const template = [
         label: 'Save Book',
         accelerator: 'CmdOrCtrl+S',
         enabled: false,
-        click: async (item, focusedWindow) => {
+        click: (item: MenuItem, focusedWindow: BrowserWindow): void => {
           focusedWindow.webContents.send('save-book');
         },
       },
@@ -41,7 +37,7 @@ const template = [
         label: 'Delete Book',
         accelerator: 'CmdOrCtrl+Shift+D',
         enabled: false,
-        click: async (item, focusedWindow) => {
+        click: async (item: MenuItem, focusedWindow: BrowserWindow): Promise<void> => {
           const result = await dialog.showMessageBox({
             message: 'Are you sure you want to delete this book?',
             detail: 'You can\'t undo this action.',
@@ -52,7 +48,7 @@ const template = [
           });
 
           if (result.response === 1) {
-            focusedWindow.webContents.send('delete-book'); 
+            focusedWindow.webContents.send('delete-book');
           }
         },
       },
@@ -69,9 +65,9 @@ const template = [
       { role: 'cut' },
       { role: 'copy' },
       { role: 'paste' },
-      { role: 'pasteandmatchstyle' },
+      { role: 'pasteAndMatchStyle' },
       { role: 'delete' },
-      { role: 'selectall' },
+      { role: 'selectAll' },
     ],
   },
   {
@@ -81,7 +77,7 @@ const template = [
         id: 'lightTheme',
         label: 'Light Theme',
         type: 'checkbox',
-        click: (item, focusedWindow) => {
+        click: (item: MenuItem, focusedWindow: BrowserWindow): void => {
           themePreferences.changeTheme('light', focusedWindow);
         },
       },
@@ -89,14 +85,14 @@ const template = [
         id: 'darkTheme',
         label: 'Dark Theme',
         type: 'checkbox',
-        click: (item, focusedWindow) => {
+        click: (item: MenuItem, focusedWindow: BrowserWindow): void => {
           themePreferences.changeTheme('dark', focusedWindow);
         },
       },
       { type: 'separator' },
-      { role: 'resetzoom' },
-      { role: 'zoomin' },
-      { role: 'zoomout' },
+      { role: 'resetZoom' },
+      { role: 'zoomIn' },
+      { role: 'zoomOut' },
       { type: 'separator' },
       { role: 'togglefullscreen' },
       { type: 'separator' },
@@ -104,8 +100,8 @@ const template = [
         label: 'Advanced',
         submenu: [
           { role: 'reload' },
-          { role: 'forcereload' },
-          { role: 'toggledevtools' },
+          { role: 'forceReload' },
+          { role: 'toggleDevTools' },
         ],
       },
     ],
@@ -131,14 +127,14 @@ const template = [
       {
         label: 'Submit Feedback',
         click: () => {
-          shell.openExternal('https://www.alexseifert.com/contact'); 
+          shell.openExternal('https://www.alexseifert.com/contact');
         },
       },
       { type: 'separator' },
       {
         label: 'About Alex Seifert',
         click: () => {
-          shell.openExternal('https://www.alexseifert.com'); 
+          shell.openExternal('https://www.alexseifert.com');
         },
       },
     ],
@@ -151,13 +147,13 @@ if (process.platform === 'darwin') {
     submenu: [
       {
         label: `About ${config.app.name}`,
-        click: (item, focusedWindow) => {
+        click: (item: MenuItem, focusedWindow: BrowserWindow): void => {
           focusedWindow.webContents.send('open-about');
         },
       },
       {
         label: 'Check for Updates...',
-        click: (item, focusedWindow) => {
+        click: (item: MenuItem, focusedWindow: BrowserWindow): void => {
           focusedWindow.webContents.send('check-for-updates');
         },
       },
@@ -165,7 +161,7 @@ if (process.platform === 'darwin') {
       {
         label: 'Preferences',
         accelerator: 'Cmd+,',
-        click: (item, focusedWindow) => {
+        click: (item: MenuItem, focusedWindow: BrowserWindow): void => {
           focusedWindow.webContents.send('open-preferences');
         },
       },
@@ -173,7 +169,7 @@ if (process.platform === 'darwin') {
       { role: 'services', submenu: [] },
       { type: 'separator' },
       { role: 'hide' },
-      { role: 'hideothers' },
+      { role: 'hideOthers' },
       { role: 'unhide' },
       { type: 'separator' },
       { role: 'quit' },
@@ -181,13 +177,13 @@ if (process.platform === 'darwin') {
   });
 
   // Edit menu
-  template[2].submenu.push(
+  (template[2].submenu as MenuItemConstructorOptions[]).push(
     { type: 'separator' },
     {
       label: 'Speech',
       submenu: [
-        { role: 'startspeaking' },
-        { role: 'stopspeaking' },
+        { role: 'startSpeaking' },
+        { role: 'stopSpeaking' },
       ],
     }
   );
@@ -202,12 +198,12 @@ if (process.platform === 'darwin') {
 }
 else {
   // Edit menu
-  template[1].submenu.push(
+  (template[1].submenu as MenuItemConstructorOptions[]).push(
     { type: 'separator' },
     {
       label: 'Preferences',
       accelerator: 'Ctrl+,',
-      click: (item, focusedWindow) => {
+      click: (item: MenuItem, focusedWindow: BrowserWindow): void => {
         focusedWindow.webContents.send('open-preferences');
       },
     }
@@ -219,7 +215,7 @@ else {
   template[4].submenu = [
     {
       label: 'Check for Updates...',
-      click: (item, focusedWindow) => {
+      click: (item: MenuItem, focusedWindow: BrowserWindow): void => {
         focusedWindow.webContents.send('check-for-updates');
       },
     },
@@ -231,11 +227,11 @@ else {
     helpMenu[4],
     {
       label: `About ${config.app.name}`,
-      click: (item, focusedWindow) => {
+      click: (item: MenuItem, focusedWindow: BrowserWindow): void => {
         focusedWindow.webContents.send('open-about');
       },
     },
   ];
 }
 
-module.exports = template;
+export default template;

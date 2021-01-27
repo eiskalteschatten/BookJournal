@@ -1,35 +1,29 @@
-'use strict';
+import { app, BrowserWindow, BrowserWindowConstructorOptions, Menu } from 'electron';
+import path from 'path';
+import { setupMigration, migrate } from 'sequelize-migration-wrapper';
 
-// Modules to control application life and create native browser window
-const { app, BrowserWindow, Menu } = require('electron');
-const path = require('path');
-const { setupMigration, migrate } = require('sequelize-migration-wrapper');
+import config from './config';
+import appMenu from './menus/config/app';
+import { loadPreferences } from './initialPreferences';
+import { sequelize } from './db';
 
-const config = require('./config').default;
-const appConfig = config.app;
-const appMenu = require('./menus/config/app');
-
-// Database
-const { sequelize } = require('./db');
 setupMigration({
   sequelize,
   path: path.join(__dirname, 'migrations'),
 });
 migrate();
 
-// Preferences
-const { loadPreferences } = require('./initialPreferences');
-
+const { app: appConfig } = config;
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
-let mainWindow;
+let mainWindow: BrowserWindow;
 
-async function createWindow() {
+async function createWindow(): Promise<void> {
   const preferences = await loadPreferences();
 
   // Create the browser window.
-  const browserWindow = {
+  const browserWindow: BrowserWindowConstructorOptions = {
     width: preferences.windowWidth,
     height: preferences.windowHeight,
     icon: path.join(__dirname, './assets/images/icon128.png'),
@@ -37,11 +31,8 @@ async function createWindow() {
       nodeIntegration: true,
       enableRemoteModule: true,
     },
+    titleBarStyle: process.platform === 'darwin' ? 'hidden': 'default',
   };
-
-  if (process.platform === 'darwin') {
-    browserWindow.titleBarStyle = 'hidden';
-  }
 
   if (preferences.windowX && preferences.windowY) {
     browserWindow.x = preferences.windowX;
@@ -55,17 +46,10 @@ async function createWindow() {
   }
 
   mainWindow.setFullScreen(preferences.windowIsFullScreen || false);
-
-
-  // and load the index.html of the app.
   mainWindow.loadFile('./dist/html/index.html');
-
-
-  // Open the DevTools.
   // mainWindow.webContents.openDevTools();
 
-
-  mainWindow.on('close', async () => {
+  mainWindow.on('close', async (): Promise<void> => {
     try {
       const windowBounds = mainWindow.getBounds();
 
@@ -86,11 +70,7 @@ async function createWindow() {
   });
 
 
-  mainWindow.on('closed', () => {
-
-    // Dereference the window object, usually you would store windows
-    // in an array if your app supports multi windows, this is the time
-    // when you should delete the corresponding element.
+  mainWindow.on('closed', (): void => {
     mainWindow = null;
   });
 
@@ -101,29 +81,17 @@ async function createWindow() {
 }
 
 app.setName(appConfig.name);
-
-// This method will be called when Electron has finished
-// initialization and is ready to create browser windows.
-// Some APIs can only be used after this event occurs.
 app.on('ready', createWindow);
-
-// Quit when all windows are closed.
-app.on('window-all-closed', function () {
-  // On OS X it is common for applications and their menu bar
-  // to stay active until the user quits explicitly with Cmd + Q
+app.on('window-all-closed', (): void => {
   if (process.platform !== 'darwin') {
     app.quit();
   }
 });
 
-app.on('activate', function () {
-  // On OS X it's common to re-create a window in the app when the
-  // dock icon is clicked and there are no other windows open.
+app.on('activate', (): void => {
   if (mainWindow === null) {
     createWindow();
   }
 });
 
-
-// Menus
 require('./menus/menus');
