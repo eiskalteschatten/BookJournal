@@ -1,42 +1,41 @@
-'use strict';
+import { ipcRenderer, remote } from 'electron';
+import $ from 'jquery';
+import request from 'request';
+import fs from 'fs';
+import path from 'path';
+import allLanguages from 'iso-639-1';
+import moment from 'moment';
 
-const { ipcRenderer, remote } = require('electron');
+import config from '../config';
+
+import { refreshBookList, updateBookList, loadBook, clearBooklistSelection, openModal } from './helper';
+import BookForm from '../elements/bookForm';
+import BooksByAuthor from '../elements/modal/booksByAuthor';
+import Preferences from '../models/preferences';
+
 const { dialog } = remote;
-const $ = require('jquery');
-const request = require('request');
-const fs = require('fs');
-const path = require('path');
-const allLanguages = require('iso-639-1');
-const moment = require('moment');
 
-const config = require('../config').default;
-
-const eventHelper = require('./helper');
-const BookForm = require('../elements/bookForm');
-const BooksByAuthor = require('../elements/modal/booksByAuthor');
-
-
-$(document).on('click', '#bookUtilityMenu', function() {
+$(document).on('click', '#bookUtilityMenu', (): void => {
   ipcRenderer.send('show-book-utility-menu');
 });
 
-$(document).on('contextmenu', '.js-book-list-element', function() {
+$(document).on('contextmenu', '.js-book-list-element', (): void => {
   $(this).trigger('click');
   ipcRenderer.send('show-book-utility-menu');
 });
 
-$(window).on('book-form-loaded', function() {
+$(window).on('book-form-loaded', (): void => {
   ipcRenderer.send('enable-book-items');
   $('#bookForm').addClass('js-is-visible');
 });
 
-$(document).on('change', '#bookSort', function() {
-  const sortBy = $(this).val();
+$(document).on('change', '#bookSort', (): void => {
+  const sortBy = $(this).val().toString();
   localStorage.setItem('sortBy', sortBy);
-  eventHelper.refreshBookList();
+  refreshBookList();
 });
 
-$(document).on('click', '#bookSortOrder', function(e) {
+$(document).on('click', '#bookSortOrder', (e: JQuery.TriggeredEvent): void => {
   e.preventDefault();
 
   const oldSortOrder = localStorage.getItem('sortOrder') || 'ASC';
@@ -45,13 +44,13 @@ $(document).on('click', '#bookSortOrder', function(e) {
 
   localStorage.setItem('sortOrder', sortOrder);
   $(this).html(newArrow);
-  eventHelper.refreshBookList();
+  refreshBookList();
 });
 
 
 // Create New Book
 
-async function createNewBook() {
+async function createNewBook(): Promise<void> {
   $('.js-book-list-element').removeClass('selected');
 
   const bookForm = new BookForm();
@@ -68,19 +67,20 @@ $(document).on('click', '.js-new-book', createNewBook);
 
 // Save Book
 
-let saveTimeout;
+let saveTimeout: NodeJS.Timeout;
 
-async function saveBook() {
+async function saveBook(): Promise<void> {
   const $bookActivityLoader = $('#bookActivityLoader');
   $bookActivityLoader.removeClass('hidden');
 
-  const formData = {};
+  // TODO: add interface from BookForm (create first)
+  const formData = {} as any;
 
-  $('#bookForm').find('input[type!="checkbox"]').each(function() {
+  $('#bookForm').find('input[type!="checkbox"]').each((): void => {
     const $this = $(this);
 
     if (!$this.is('.js-book-form-color-form') || ($this.is('.js-book-form-color-form') && $this.data('color-changed'))) {
-      let value = $this.val();
+      let value = $this.val().toString();
 
       if ($this.is('#bookIsbn')) {
         value = value.replace(/[^0-9]/g, '');
@@ -88,28 +88,28 @@ async function saveBook() {
       }
 
       if ($this.is('.js-book-form-date-field')) {
-        const date = moment(value, 'L', window.navigator.languages);
+        const date = moment(value, 'L', window.navigator.languages[0]);
         value = date.isValid() ? date.format('YYYY-MM-DD') : '';
       }
 
       formData[$this.attr('id')] = value;
       if ($this.data('color-changed')) {
-        $this.data('color-changed', false); 
+        $this.data('color-changed', false);
       }
     }
   });
 
-  $('#bookForm').find('input[type="checkbox"]').each(function() {
+  $('#bookForm').find('input[type="checkbox"]').each((): void => {
     const $this = $(this);
     formData[$this.attr('id')] = $this.prop('checked');
   });
 
-  $('#bookForm').find('textarea').each(function() {
+  $('#bookForm').find('textarea').each((): void => {
     const $this = $(this);
     formData[$this.attr('id')] = $this.val();
   });
 
-  formData.bookBookFormat = $('#bookForm').find('#bookBookFormat').val();
+  formData.bookBookFormat = $('#bookForm').find('#bookBookFormat').val().toString();
 
   const id = $('#bookBookcoverId').val();
   const bookForm = new BookForm(id);
@@ -117,19 +117,19 @@ async function saveBook() {
 
   if (newId) {
     $('#bookBookcoverId').val(newId);
-    await eventHelper.updateBookList(newId);
+    await updateBookList(newId);
   }
 
   const authors = $('#bookAuthor').val();
   const booksByAuthor = new BooksByAuthor(authors);
   booksByAuthor.fetchBooks();
 
-  setTimeout(() => {
+  setTimeout((): void => {
     $bookActivityLoader.addClass('hidden');
   }, 500);
 }
 
-async function saveBookTimeout() {
+async function saveBookTimeout(): Promise<void> {
   clearTimeout(saveTimeout);
   saveTimeout = setTimeout(saveBook, 500);
 }
@@ -141,11 +141,11 @@ $(document).on('keyup', '.js-book-form-field', saveBookTimeout);
 
 // Load Book
 
-$(document).on('click', '.js-book-list-element', async function() {
+$(document).on('click', '.js-book-list-element', async (): Promise<void> => {
   const $this = $(this);
   $('.js-book-list-element').removeClass('selected');
   $(this).addClass('selected');
-  await eventHelper.loadBook($this.data('id'));
+  await loadBook($this.data('id'));
 });
 
 
@@ -159,7 +159,7 @@ async function deleteBook() {
   await bookForm.delete();
 
   $(`.js-book-list-element[data-id="${id}"]`).remove();
-  eventHelper.clearBooklistSelection();
+  clearBooklistSelection();
 }
 
 ipcRenderer.on('delete-book', deleteBook);
@@ -167,17 +167,17 @@ ipcRenderer.on('delete-book', deleteBook);
 
 // Bookcover
 
-async function saveBookcover(imagePath) {
+async function saveBookcover(imagePath: string): Promise<void> {
   const fileInfo = await BookForm.saveBookcover(imagePath);
   if (fileInfo.fileName) {
-    $('#bookBookcoverFileName').val(fileInfo.fileName).trigger('change'); 
+    $('#bookBookcoverFileName').val(fileInfo.fileName).trigger('change');
   }
 
   $('#bookcoverImage').attr('style', `background-image: url('${fileInfo.filePath}')`);
   $('#bookcoverUploadArea').addClass('has-bookcover');
 }
 
-async function deleteBookcover() {
+async function deleteBookcover(): Promise<void> {
   if ($('#bookcoverUploadArea').hasClass('has-bookcover')) {
     const $bookcoverFileName = $('#bookBookcoverFileName');
     const fileName = $bookcoverFileName.val();
@@ -190,7 +190,7 @@ async function deleteBookcover() {
   }
 }
 
-$(document).on('click', '#bookcoverUploadArea', async function() {
+$(document).on('click', '#bookcoverUploadArea', async (): Promise<void> => {
   const result = await dialog.showOpenDialog(remote.getCurrentWindow(), {
     filters: [
       { name: 'Images', extensions: config.bookcovers.extensions },
@@ -201,30 +201,30 @@ $(document).on('click', '#bookcoverUploadArea', async function() {
   await saveBookcover(result.filePaths[0]);
 });
 
-$(document).on('dragover', '#bookcoverUploadArea', function(e) {
+$(document).on('dragover', '#bookcoverUploadArea', (e: JQuery.TriggeredEvent): void => {
   e.preventDefault();
   $('#bookcoverUploadArea').addClass('dragover');
 });
 
-$(document).on('dragleave', '#bookcoverUploadArea', function(e) {
+$(document).on('dragleave', '#bookcoverUploadArea', (e: JQuery.TriggeredEvent): void => {
   e.preventDefault();
   $('#bookcoverUploadArea').removeClass('dragover');
 });
 
-$(document).on('drop', '#bookcoverUploadArea', function(e) {
+$(document).on('drop', '#bookcoverUploadArea', (e: JQuery.DropEvent): void => {
   e.preventDefault();
   $('#bookcoverUploadArea').removeClass('dragover');
   saveBookcover(e.originalEvent.dataTransfer.files[0].path);
 });
 
-$(document).on('contextmenu', '#bookcoverUploadArea', function() {
+$(document).on('contextmenu', '#bookcoverUploadArea', (): void => {
   ipcRenderer.send('show-bookcover-context-menu');
 });
 
 ipcRenderer.on('delete-bookcover', deleteBookcover);
 
-ipcRenderer.on('get-bookcover-color', async function() {
-  const fileName = $('#bookBookcoverFileName').val();
+ipcRenderer.on('get-bookcover-color', async (): Promise<void> => {
+  const fileName = $('#bookBookcoverFileName').val().toString();
   const bookcoverPath = config.bookcovers.path;
   const filePath = path.resolve(bookcoverPath, fileName);
   const color = await BookForm.getPrimaryBookcoverColor(filePath);
@@ -235,11 +235,11 @@ ipcRenderer.on('get-bookcover-color', async function() {
 
 // Book Color
 
-$(document).on('click', '.js-book-form-color-stripe', function() {
-  $(this).siblings('.js-book-form-color-form').click();
+$(document).on('click', '.js-book-form-color-stripe', (): void => {
+  $(this).siblings('.js-book-form-color-form').trigger('click');
 });
 
-$(document).on('change', '.js-book-form-color-form', function() {
+$(document).on('change', '.js-book-form-color-form', (): void => {
   const $colorForm = $(this);
   const color = $colorForm.val();
   $colorForm.siblings('.js-book-form-color-stripe').attr('style', `background-color: ${color}`);
@@ -249,16 +249,13 @@ $(document).on('change', '.js-book-form-color-form', function() {
 
 // Tags & Categories
 
-function deleteBadge($deleteButton) {
+function deleteBadge($deleteButton: JQuery<HTMLElement>): void {
   const $badge = $deleteButton.closest('.js-tag-badge');
   const $tagCluster = $deleteButton.closest('.js-tag-cluster');
   const $tagHidden = $tagCluster.siblings('.js-tag-hidden');
   const tagText = $badge.data('delete-id');
-  const tags = $tagHidden.val().split(',');
-
-  const newTags = tags.filter(tag => {
-    return tag + '' !== tagText + '';
-  });
+  const tags = $tagHidden.val().toString().split(',');
+  const newTags = tags.filter((tag: string): boolean => tag + '' !== tagText + '');
 
   if ($tagCluster.hasClass('js-category-cluster')) {
     $tagCluster
@@ -272,19 +269,19 @@ function deleteBadge($deleteButton) {
   $badge.remove();
 }
 
-$(document).on('click', '.js-delete-tag', function() {
+$(document).on('click', '.js-delete-tag', (): void => {
   deleteBadge($(this));
 });
 
-$(document).on('keypress', '#bookTags', async function(e) {
-  if (e.keyCode !== 13) {
-    return; 
+$(document).on('keypress', '#bookTags', async (e: JQuery.TriggeredEvent): Promise<void> => {
+  if (e.key !== 'Enter') {
+    return;
   }
   e.preventDefault();
 
   const $this = $(this);
   const $wrapper = $this.closest('.js-pre-tag-cluster-wrapper');
-  const inputValue = $this.val().trim();
+  const inputValue = $this.val().toString().trim();
 
   if (inputValue !== '') {
     const $tagHidden = $wrapper.siblings('.js-tag-hidden');
@@ -309,7 +306,7 @@ $(document).on('keypress', '#bookTags', async function(e) {
   }
 });
 
-$(document).on('change', '#bookCategories', async function() {
+$(document).on('change', '#bookCategories', async (): Promise<void> => {
   const $this = $(this);
   const $wrapper = $this.closest('.js-pre-tag-cluster-wrapper');
   const $selected = $this.find('option:selected');
@@ -333,17 +330,17 @@ $(document).on('change', '#bookCategories', async function() {
 
 // Rating Stars
 
-let starRestoreTimeout;
+let starRestoreTimeout: NodeJS.Timeout;
 
-$(document).on('mouseout', '.js-rating-star', function() {
-  starRestoreTimeout = setTimeout(function() {
+$(document).on('mouseout', '.js-rating-star', (): void => {
+  starRestoreTimeout = setTimeout((): void => {
     $('.js-rating-star')
       .removeClass('temp-full')
       .removeClass('temp-empty');
   }, 100);
 });
 
-$(document).on('mouseover', '.js-rating-star', function() {
+$(document).on('mouseover', '.js-rating-star', (): void => {
   clearTimeout(starRestoreTimeout);
 
   $('.js-rating-star')
@@ -359,12 +356,12 @@ $(document).on('mouseover', '.js-rating-star', function() {
     .addClass('temp-full');
 });
 
-$(document).on('click', '.js-rating-star', function() {
+$(document).on('click', '.js-rating-star', (): void => {
   clearTimeout(starRestoreTimeout);
 
   const values = [];
 
-  $('.js-rating-star').each(function() {
+  $('.js-rating-star').each((): void => {
     const $this = $(this);
 
     $this
@@ -384,7 +381,7 @@ $(document).on('click', '.js-rating-star', function() {
   $('#bookRating').val(rating).trigger('change');
 });
 
-$(document).on('click', '.js-remove-rating', function() {
+$(document).on('click', '.js-remove-rating', (): void => {
   $('.js-rating-star')
     .removeClass('full')
     .addClass('empty');
@@ -395,25 +392,25 @@ $(document).on('click', '.js-remove-rating', function() {
 
 // Fetching Book Information
 
-let fetchingTimeout;
+let fetchingTimeout: NodeJS.Timeout;
 
-$(document).on('blur', '#bookIsbn', function() {
+$(document).on('blur', '#bookIsbn', (): void => {
   try {
-    let preferences = localStorage.getItem('preferences');
-    preferences = JSON.parse(preferences);
+    const preferencesString = localStorage.getItem('preferences');
+    const preferences: Preferences = JSON.parse(preferencesString);
 
     if (!preferences.fetchBookInfoFromGoogle) {
-      return; 
+      return;
     }
 
     clearTimeout(fetchingTimeout);
 
-    const isbn = $(this).val().replace(/[^0-9]/g, '');
+    const isbn = $(this).val().toString().replace(/[^0-9]/g, '');
     if (!isbn) {
-      return; 
+      return;
     }
 
-    fetchingTimeout = setTimeout(async () => {
+    fetchingTimeout = setTimeout(async (): Promise<void> => {
       $('#bookBookInfoFetched').addClass('hidden');
       $('#bookFetchingBookInfo').removeClass('hidden');
 
@@ -423,7 +420,7 @@ $(document).on('blur', '#bookIsbn', function() {
       $('#bookFetchingBookInfo').addClass('hidden');
 
       if (typeof bookInfo === 'object' && bookInfo.totalItems > 0) {
-        $('#bookBookInfoFetched').removeClass('hidden'); 
+        $('#bookBookInfoFetched').removeClass('hidden');
       }
     }, 500);
   }
@@ -432,12 +429,12 @@ $(document).on('blur', '#bookIsbn', function() {
   }
 });
 
-$(document).on('click', '#bookFillOutBookInfo', async function(e) {
+$(document).on('click', '#bookFillOutBookInfo', async (e: JQuery.TriggeredEvent): Promise<void> => {
   e.preventDefault();
 
   try {
-    let bookInfo = sessionStorage.getItem('bookInfo');
-    bookInfo = JSON.parse(bookInfo);
+    const bookInfoString = sessionStorage.getItem('bookInfo');
+    let bookInfo = JSON.parse(bookInfoString);
     bookInfo = bookInfo.items[0].volumeInfo;
 
     const authors = bookInfo.authors.join(', ');
@@ -456,7 +453,7 @@ $(document).on('click', '#bookFillOutBookInfo', async function(e) {
 
     if (bookInfo.imageLinks && (bookInfo.imageLinks.thumbnail || bookInfo.imageLinks.small || bookInfo.imageLinks.medium || bookInfo.imageLinks.large)) {
       let imagePath = config.bookcovers.tempPath;
-      fs.mkdir(imagePath, { recursive: true }, error => {
+      fs.mkdir(imagePath, { recursive: true }, (error: Error): void => {
         if (error) {
           console.error(error);
         }
@@ -487,11 +484,11 @@ $(document).on('click', '#bookFillOutBookInfo', async function(e) {
 
 // Books by Authors
 
-$(document).on('click', '#bookBooksByAuthorLink', async function(e) {
+$(document).on('click', '#bookBooksByAuthorLink', async (e: JQuery.TriggeredEvent): Promise<void> => {
   e.preventDefault();
 
   if ($('#booksByAuthorModal').length) {
-    $('#booksByAuthorModal').remove(); 
+    $('#booksByAuthorModal').remove();
   }
 
   const authors = $('#bookAuthor').val();
@@ -500,5 +497,5 @@ $(document).on('click', '#bookBooksByAuthorLink', async function(e) {
 
   $('#modalAnchor').append(rendered);
 
-  eventHelper.openModal('booksByAuthorModal');
+  openModal('booksByAuthorModal');
 });
