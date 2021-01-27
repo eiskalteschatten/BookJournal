@@ -1,31 +1,33 @@
-'use strict';
+import path from 'path';
+import fs from 'fs';
 
-const path = require('path');
-const fs = require('fs');
-const nunjucks = require('../nunjucks');
+import nunjucks from '../nunjucks';
+import { NunjucksRenderObject } from '../interfaces/nunjucks';
 
-const ListElement = require('./listElement');
-const TitleListElement = require('./listElement/title');
-const SpacerListElement = require('./listElement/spacer');
+import ListElement from './listElement';
+import TitleListElement from './listElement/title';
+import SpacerListElement from './listElement/spacer';
 
+export default class List {
+  private elements: ListElement[];
+  private template: string;
 
-class List {
   constructor() {
     this.elements = [];
     this.template = path.join(__dirname, '../templates/elements/list.njk');
   }
 
-  async render() {
+  async render(): Promise<string> {
     const listElements = [];
 
-    return new Promise(async (resolve, reject) => {
+    return new Promise<string>(async (resolve, reject) => {
       for (const element of this.elements) {
         listElements.push(await element.getNunjucksRenderObject());
       }
 
       fs.readFile(this.template, 'utf8', (error, string) => {
         if (error) {
-          reject(error); 
+          reject(error);
         }
         resolve(string);
       });
@@ -36,26 +38,24 @@ class List {
     });
   }
 
-  addElement(displayName, iconPath = '') {
+  addElement(displayName: string, iconPath = ''): void {
     const element = new ListElement(displayName, iconPath);
     this.elements.push(element);
   }
 
-  addElements(elements) {
+  addElements(elements: NunjucksRenderObject[]): void {
     for (const element of elements) {
       this.addElements(element.displayName, element.iconPath);
     }
   }
 
-  addTitleElement(displayName) {
+  addTitleElement(displayName: string): void {
     const element = new TitleListElement(displayName);
     this.elements.push(element);
   }
 
-  addSpacerElement() {
+  addSpacerElement(): void {
     const element = new SpacerListElement();
     this.elements.push(element);
   }
 }
-
-module.exports = List;

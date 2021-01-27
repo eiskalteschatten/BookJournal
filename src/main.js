@@ -40,7 +40,7 @@ async function createWindow() {
   };
 
   if (process.platform === 'darwin') {
-    browserWindow.titleBarStyle = 'hidden'; 
+    browserWindow.titleBarStyle = 'hidden';
   }
 
   if (preferences.windowX && preferences.windowY) {
@@ -51,14 +51,14 @@ async function createWindow() {
   mainWindow = new BrowserWindow(browserWindow);
 
   if (preferences.windowIsMaximized) {
-    mainWindow.maximize(); 
+    mainWindow.maximize();
   }
 
   mainWindow.setFullScreen(preferences.windowIsFullScreen || false);
 
 
   // and load the index.html of the app.
-  mainWindow.loadFile('./src/html/index.html');
+  mainWindow.loadFile('./dist/html/index.html');
 
 
   // Open the DevTools.
