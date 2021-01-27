@@ -1,10 +1,8 @@
 'use strict';
 
-'use strict';
-
 const path = require('path');
 const fs = require('fs');
-const nunjucks = require('../nunjucks');
+const nunjucks = require('../../nunjucks');
 
 
 class StatisticsBox {
@@ -17,7 +15,7 @@ class StatisticsBox {
     return new Promise((resolve, reject) => {
       fs.readFile(this.template, 'utf8', (error, string) => {
         if (error) {
-          reject(error); 
+          reject(error);
         }
         resolve(string);
       });

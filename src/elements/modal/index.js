@@ -2,7 +2,7 @@
 
 const path = require('path');
 const fs = require('fs');
-const nunjucks = require('../nunjucks');
+const nunjucks = require('../../nunjucks');
 
 
 class Modal {
@@ -18,7 +18,7 @@ class Modal {
 
       fs.readFile(template, 'utf8', (error, string) => {
         if (error) {
-          reject(error); 
+          reject(error);
         }
         resolve(string);
       });

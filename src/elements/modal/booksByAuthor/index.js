@@ -3,9 +3,9 @@
 const $ = require('jquery');
 const request = require('request');
 
-const Modal = require('../modal');
-const Books = require('./booksByAuthor/books');
-const config = require('../../config').default;
+const Modal = require('..');
+const Books = require('./books');
+const config = require('../../../config').default;
 
 const maxResults = config.bookInfo.google.authorsMaxResults;
 
@@ -40,7 +40,7 @@ class BooksByAuthor extends Modal {
   async fetchBooks(indexFactor = 0) {
     const { authors } = this;
     if (authors === '') {
-      return; 
+      return;
     }
 
     const index = indexFactor > 0 ? (indexFactor * maxResults) + 1 : 0;
@@ -50,7 +50,7 @@ class BooksByAuthor extends Modal {
       preferences = JSON.parse(preferences);
 
       if (!preferences.fetchBooksByAuthor) {
-        return; 
+        return;
       }
 
       sessionStorage.setItem('booksByAuthor', '');
@@ -61,7 +61,7 @@ class BooksByAuthor extends Modal {
       return new Promise((resolve, reject) => {
         request(url, (error, response, body) => {
           if (error) {
-            reject(error); 
+            reject(error);
           }
 
           try {
@@ -100,7 +100,7 @@ class BooksByAuthor extends Modal {
     const { authors } = this;
 
     if (!books.items) {
-      return []; 
+      return [];
     }
 
     return books.items.sort((a, b) => {
@@ -109,7 +109,7 @@ class BooksByAuthor extends Modal {
         const authorsUpperCase = authors.replace(', ', ',').toUpperCase();
 
         if (authorsA.includes(authorsUpperCase)) {
-          return -1; 
+          return -1;
         }
       }
 
@@ -117,10 +117,10 @@ class BooksByAuthor extends Modal {
       const titleB = b.volumeInfo.title.toUpperCase();
 
       if (titleA < titleB) {
-        return -1; 
+        return -1;
       }
       if (titleA > titleB) {
-        return 1; 
+        return 1;
       }
       return 0;
     });

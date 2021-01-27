@@ -1,12 +1,12 @@
 import path from 'path';
 import fs from 'fs';
 
-import nunjucks from '../nunjucks';
-import { NunjucksRenderObject } from '../interfaces/nunjucks';
+import nunjucks from '../../nunjucks';
+import { NunjucksRenderObject } from '../../interfaces/nunjucks';
 
-import ListElement from './listElement';
-import TitleListElement from './listElement/title';
-import SpacerListElement from './listElement/spacer';
+import ListElement from '../listElement';
+import TitleListElement from '../listElement/title';
+import SpacerListElement from '../listElement/spacer';
 
 export default class List {
   protected elements: ListElement[];
@@ -14,7 +14,7 @@ export default class List {
 
   constructor() {
     this.elements = [];
-    this.template = path.join(__dirname, '../templates/elements/list.njk');
+    this.template = path.join(__dirname, '../../templates/elements/list.njk');
   }
 
   async render(): Promise<string> {
