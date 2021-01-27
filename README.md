@@ -39,10 +39,11 @@ BookJournal runs on the [Electron](https://electronjs.org/) platform and can the
 
 ## Release Notes
 
-### 1.0.1
+### 1.1.0
 - [x] Updated Electron and other dependencies
 - [x] Security updates
 - [ ] Converted to TypeScript for better stability
+- [x] Lots of bug fixes
 
 ### 1.0.0
 - [x] Updated the app icon
