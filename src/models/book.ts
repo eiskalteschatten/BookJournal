@@ -9,14 +9,49 @@ import {
   Default,
   CreatedAt,
   UpdatedAt,
+  DataType,
 } from 'sequelize-typescript';
 
 import { sequelize } from '../db';
 
+type Status = 'notReadYet' |'currentlyReading' |'read' |'stoppedReading' |'takingABreak';
+
+export interface BookAttributes {
+  id?: number;
+  title: string;
+  author?: string;
+  editor?: string;
+  genre?: string;
+  dateStarted?: Date;
+  dateRead?: Date;
+  status?: Status;
+  onWishlist?: boolean;
+  pageCount?: number;
+  color?: string;
+  bookcover?: string;
+  publisher?: string;
+  isbn?: string;
+  yearPublished?: number;
+  bookFormat?: string;
+  nationality?: string;
+  languageReadIn?: string;
+  originalLanguage?: string;
+  translator?: string;
+  tags?: string;
+  categories?: string;
+  rating?: number;
+  summary?: string;
+  commentary?: string;
+  notes?: string;
+  subtitleField?: string;
+  readonly createdAt?: Date;
+  readonly updatedAt?: Date;
+}
+
 @Table({
   modelName: 'book',
 })
-export default class Book extends Model {
+export default class Book extends Model implements BookAttributes {
   @PrimaryKey
   @AutoIncrement
   @Column
@@ -50,9 +85,11 @@ export default class Book extends Model {
   })
   dateRead?: Date;
 
-  @Column
+  @Column({
+    type: DataType.ENUM('notReadYet', 'currentlyReading', 'read', 'stoppedReading', 'takingABreak'),
+  })
   @Default('notReadYet')
-  status: 'notReadYet' |'currentlyReading' |'read' |'stoppedReading' |'takingABreak';
+  status: Status;
 
   @Column
   @Default(false)

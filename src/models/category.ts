@@ -9,10 +9,18 @@ import {
   UpdatedAt,
 } from 'sequelize-typescript';
 
+export interface CategoryAttributes {
+  id?: number;
+  name?: string;
+  color?: string;
+  readonly createdAt?: Date;
+  readonly updatedAt?: Date;
+}
+
 @Table({
   modelName: 'category',
 })
-export default class Category extends Model {
+export default class Category extends Model implements CategoryAttributes {
   @PrimaryKey
   @AutoIncrement
   @Column

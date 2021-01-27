@@ -9,10 +9,29 @@ import {
   UpdatedAt,
 } from 'sequelize-typescript';
 
+export interface PreferencesAttributes {
+  id?: number;
+  windowWidth?: number;
+  windowHeight?: number;
+  windowX?: number;
+  windowY?: number;
+  windowIsMaximized?: boolean;
+  windowIsFullScreen?: boolean;
+  sidebarWidth?: number;
+  middleColumnWidth?: number;
+  theme?: string;
+  fetchBookInfoFromGoogle?: boolean;
+  checkForUpdates?: boolean;
+  fetchBooksByAuthor?: boolean;
+  fetchBooksByAuthorLanguage?: string;
+  readonly createdAt?: Date;
+  readonly updatedAt?: Date;
+}
+
 @Table({
   modelName: 'preferences',
 })
-export default class Preferences extends Model {
+export default class Preferences extends Model implements PreferencesAttributes {
   @PrimaryKey
   @AutoIncrement
   @Column

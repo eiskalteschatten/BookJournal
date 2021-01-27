@@ -1,6 +1,6 @@
-import Preferences from '../../models/preferences';
+import Preferences, { PreferencesAttributes } from '../../models/preferences';
 
-export default async (values: Preferences): Promise<Preferences> => {
+export default async (values: PreferencesAttributes): Promise<Preferences> => {
   let preferences = await Preferences.findByPk(1);
   preferences = await preferences.update(values);
 

@@ -66,7 +66,7 @@ $(document).on('click', '#preferencesFetchBooksByAuthor', (): void => {
 
 $(document).on('change', '#preferencesFetchBooksByAuthorLanguage', (): void => {
   changePreferences({
-    fetchBooksByAuthorLanguage: $(this).val(),
+    fetchBooksByAuthorLanguage: $(this).val().toString(),
   });
 });
 
