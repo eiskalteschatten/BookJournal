@@ -5,7 +5,6 @@ import List from '../list';
 import Book from '../../models/book';
 import BookListElement from '../../elements/listElement/book';
 
-
 export default class Books extends List {
   private query: FindOptions;
 

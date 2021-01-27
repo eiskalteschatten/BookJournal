@@ -2,11 +2,11 @@ import path from 'path';
 import fs from 'fs';
 
 import nunjucks from '../../nunjucks';
-import { NunjucksRenderObject } from '../../interfaces/nunjucks';
 
 import ListElement from '../listElement';
 import TitleListElement from '../listElement/title';
 import SpacerListElement from '../listElement/spacer';
+import { NunjucksRenderObject } from '../../interfaces/nunjucks';
 
 export default class List {
   protected elements: ListElement[];

@@ -1,64 +1,62 @@
-'use strict';
+import path from 'path';
+import fs from 'fs';
 
-const path = require('path');
-const fs = require('fs');
+import nunjucks from '../../nunjucks';
+import ListElement from '../listElement';
+import { pruneCoverPath } from '../../lib/bookcover';
+import bookFormats from '../../lib/bookFormats';
+import readingStatuses from '../../lib/readingStatuses';
+import Book, { BookAttributes } from '../../models/book';
 
-const nunjucks = require('../../nunjucks');
-const ListElement = require('../listElement');
-const bookcoverHelper = require('../../lib/bookcover');
-const bookFormats = require('../../lib/bookFormats');
-const readingStatuses = require('../../lib/readingStatuses');
+interface NunjucksRenderObject extends BookAttributes {
+  bookcoverPath?: string;
+  classes?: string;
+  subtitle?: string;
+}
 
+export default class BookListElement extends ListElement {
+  private book: Book;
 
-class BookListElement extends ListElement {
-  constructor(book) {
-    super(book.title, book.cover);
+  constructor(book: Book) {
+    super(book.title, book.bookcover);
     this.id = book.id;
     this.book = book;
     this.classes = 'list-element js-book-list-element';
   }
 
-  async render() {
-    const self = this;
-
-    return new Promise((resolve, reject) => {
+  async render(): Promise<string> {
+    return new Promise<string>((resolve, reject) => {
       const template = path.join(__dirname, '../../templates/listElement/book.njk');
-      fs.readFile(template, 'utf8', (error, string) => {
+      fs.readFile(template, 'utf8', (error: Error, string: string): void => {
         if (error) {
           reject(error);
         }
         resolve(string);
       });
-    }).then(async templateString => {
-      return nunjucks.renderString(templateString, {
-        book: await self.getNunjucksRenderObject(),
-      });
+    }).then(async (templateString: string) => {
+      const book = this.book as NunjucksRenderObject;
+
+      if (book.bookcover) {
+        book.bookcoverPath = pruneCoverPath(book.bookcover);
+      }
+
+      book.classes = this.classes;
+      book.subtitle = await this.determineSubtitle();
+
+      return nunjucks.renderString(templateString, { book });
     }).catch(error => {
       console.error(error);
     });
   }
 
-  async getNunjucksRenderObject() {
-    const object = this.book;
-
-    if (object.bookcover) {
-      object.bookcoverPath = bookcoverHelper.pruneCoverPath(object.bookcover);
-    }
-
-    object.classes = this.classes;
-    object.subtitle = await this.determineSubtitle();
-
-    return object;
+  checkForValidDate(date: Date): boolean {
+    return date.toString() !== 'Invalid date';
   }
 
-  checkForValidDate(date) {
-    return date !== 'Invalid date';
-  }
-
-  async determineSubtitle() {
+  async determineSubtitle(): Promise<string> {
     const { book } = this;
     const field = book.subtitleField;
-    let subtitle;
+    let subtitle: string;
 
     switch (field) {
       case 'title':
@@ -107,30 +105,28 @@ class BookListElement extends ListElement {
     return subtitle;
   }
 
-  async renderRatingStars() {
+  async renderRatingStars(): Promise<string> {
     const bookRating = this.book.rating;
 
     let ratingClasses = ['empty', 'empty', 'empty', 'empty', 'empty'];
-    ratingClasses = ratingClasses.map((element, index) => {
+    ratingClasses = ratingClasses.map((element: string, index: number): string => {
       const index1 = index + 1;
       return (index1 <= bookRating) ? 'full' : element;
     });
 
-    return new Promise(async (resolve, reject) => {
+    return new Promise<string>(async (resolve, reject) => {
       const template = path.join(__dirname, '../../templates/listElement/book/ratingStars.njk');
 
-      fs.readFile(template, 'utf8', (error, string) => {
+      fs.readFile(template, 'utf8', (error: Error, string: string): void => {
         if (error) {
           reject(error);
         }
         resolve(string);
       });
-    }).then(templateString => {
+    }).then((templateString: string) => {
       return nunjucks.renderString(templateString, { ratingClasses });
     }).catch(error => {
       console.error(error);
     });
   }
 }
-
-module.exports = BookListElement;

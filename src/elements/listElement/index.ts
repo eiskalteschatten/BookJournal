@@ -5,9 +5,9 @@ import nunjucks from '../../nunjucks';
 import { NunjucksRenderObject } from '../../interfaces/nunjucks';
 
 export default class ListElement {
-  private id: string;
-  private displayName: string;
-  private iconPath: string;
+  protected id: number;
+  protected displayName: string;
+  protected iconPath: string;
   protected classes: string;
   protected type: string;
 
@@ -24,7 +24,7 @@ export default class ListElement {
     try {
       const templateString = await new Promise<string>((resolve, reject) => {
         const template = path.join(__dirname, '../templates/listElement.njk');
-        fs.readFile(template, 'utf8', (error, string) => {
+        fs.readFile(template, 'utf8', (error, string): void => {
           if (error) {
             reject(error);
           }

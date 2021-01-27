@@ -1,5 +1,5 @@
 export interface NunjucksRenderObject {
-  id: string;
+  id: number;
   classes: string;
   iconPath: string;
   displayName: string;
@@ -7,4 +7,7 @@ export interface NunjucksRenderObject {
   dataFields?: {
     'query-type': string;
   };
+  subtitle?: string;
+  bookcoverPath?: string;
+  color?: string;
 }

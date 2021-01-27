@@ -54,7 +54,7 @@ $(document).on('keyup', '.js-list-element-edit-name', async (e: JQuery.Triggered
     return;
   }
 
-  const newCategory = new CategoryListElement($field.val());
+  const newCategory = new CategoryListElement($field.val().toString());
   await newCategory.save();
 
   const rendered = await newCategory.render();
@@ -79,7 +79,7 @@ $(document).on('change', '.js-list-element-color-form', async (): Promise<void> 
   clearTimeout(saveColorTimer);
 
   const $colorForm = $(this);
-  const color = $colorForm.val();
+  const color = $colorForm.val().toString();
   $colorForm.siblings('.js-list-element-color').attr('style', `background-color: ${color}`);
 
   saveColorTimer = setTimeout(async (): Promise<void> => {
@@ -142,7 +142,7 @@ $(document).on('keyup', '.js-list-element-edit-rename', async (e: JQuery.Trigger
     return;
   }
 
-  const name = $field.val();
+  const name = $field.val().toString();
   const id = $li.data('id');
   const category = new CategoryListElement(name, id, '');
   await category.saveName();
