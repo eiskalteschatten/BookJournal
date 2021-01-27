@@ -94,4 +94,4 @@ app.on('activate', (): void => {
   }
 });
 
-require('./menus/menus');
+require('./menus');
