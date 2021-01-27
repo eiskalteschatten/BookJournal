@@ -1,11 +1,8 @@
-'use strict';
+import $ from 'jquery';
 
-const $ = require('jquery');
+import eventHelper from './helper';
 
-const eventHelper = require('./helper');
-
-
-$(document).on('click', '.js-sidebar-list-element', async function() {
+$(document).on('click', '.js-sidebar-list-element', async (): Promise<void> => {
   $('.js-sidebar-list-element').removeClass('selected');
   $(this).addClass('selected');
   await eventHelper.changeFilter();
@@ -13,13 +10,13 @@ $(document).on('click', '.js-sidebar-list-element', async function() {
 });
 
 
-let searchTimeout;
+let searchTimeout: NodeJS.Timeout;
 
-$(document).on('keypress', '#sidebarSearchField', async function() {
+$(document).on('keypress', '#sidebarSearchField', async (): Promise<void> => {
   clearTimeout(searchTimeout);
   const term = $(this).val();
 
-  searchTimeout = setTimeout(async () => {
+  searchTimeout = setTimeout(async (): Promise<void> => {
     await eventHelper.searchBooks(term);
     eventHelper.clearBooklistSelection();
   }, 100);

@@ -1,21 +1,18 @@
-'use strict';
+import { ipcRenderer, remote } from 'electron';
+import $ from 'jquery';
 
-const { ipcRenderer, remote } = require('electron');
-const $ = require('jquery');
+import helper from './helper';
 
-const helper = require('./helper');
+import { changeTheme } from '../lib/preferences/theme';
+import changePreferences from '../lib/preferences/change';
+import PreferencesModal from '../elements/modal/preferences';
+import BooksByAuthor from '../elements/modal/booksByAuthor';
 
-const preferencesTheme = require('../lib/preferences/theme');
-const changePreferences = require('../lib/preferences/change');
-const PreferencesModal = require('../elements/modal/preferences');
-const BooksByAuthor = require('../elements/modal/booksByAuthor');
-
-
-ipcRenderer.on('open-about', () => {
+ipcRenderer.on('open-about', (): void => {
   helper.openModal('aboutModal');
 });
 
-ipcRenderer.on('open-preferences', async () => {
+ipcRenderer.on('open-preferences', async (): Promise<void> => {
   const preferencesModal = new PreferencesModal();
   const rendered = await preferencesModal.render();
 
@@ -24,7 +21,7 @@ ipcRenderer.on('open-preferences', async () => {
   helper.openModal('preferencesModal');
 });
 
-function closeModal($modal) {
+function closeModal($modal: JQuery<HTMLElement>): void {
   const id = $modal.attr('id');
   helper.closeModal(id);
 
@@ -35,13 +32,13 @@ function closeModal($modal) {
   }
 }
 
-$(document).on('click', '.js-modal-close', function() {
+$(document).on('click', '.js-modal-close', (): void => {
   const $modal = $(this).closest('.js-modal');
   closeModal($modal);
 });
 
-$(document).on('click', '#modalContainer', function(e) {
-  if (!$('#modalAnchor').has(e.target).length) {
+$(document).on('click', '#modalContainer', (event: JQuery.TriggeredEvent): void => {
+  if (!$('#modalAnchor').has(event.target).length) {
     const $modal = $(this).find('.js-modal:not(.hidden)');
     closeModal($modal);
   }
@@ -50,30 +47,30 @@ $(document).on('click', '#modalContainer', function(e) {
 
 // Preferences Modal
 
-$(document).on('click', '.js-preferences-theme', function() {
+$(document).on('click', '.js-preferences-theme', (): void => {
   const theme = $(this).data('theme');
-  preferencesTheme.changeTheme(theme, remote.getCurrentWindow());
+  changeTheme(theme, remote.getCurrentWindow());
 });
 
-$(document).on('click', '#preferencesFetchBookInformation', function() {
+$(document).on('click', '#preferencesFetchBookInformation', (): void => {
   changePreferences({
     fetchBookInfoFromGoogle: $(this).prop('checked'),
   });
 });
 
-$(document).on('click', '#preferencesFetchBooksByAuthor', function() {
+$(document).on('click', '#preferencesFetchBooksByAuthor', (): void => {
   changePreferences({
     fetchBooksByAuthor: $(this).prop('checked'),
   });
 });
 
-$(document).on('change', '#preferencesFetchBooksByAuthorLanguage', function() {
+$(document).on('change', '#preferencesFetchBooksByAuthorLanguage', (): void => {
   changePreferences({
     fetchBooksByAuthorLanguage: $(this).val(),
   });
 });
 
-$(document).on('click', '#preferencesCheckForUpdates', function() {
+$(document).on('click', '#preferencesCheckForUpdates', (): void => {
   changePreferences({
     checkForUpdates: $(this).prop('checked'),
   });
@@ -82,7 +79,7 @@ $(document).on('click', '#preferencesCheckForUpdates', function() {
 
 // Books By Author modal
 
-$(document).on('click', '#booksByAuthorShowMoreResults', async function() {
+$(document).on('click', '#booksByAuthorShowMoreResults', async (): Promise<void> => {
   const $loader = $('#booksByAuthorShowMoreResultsLoader');
   $loader.removeClass('invisible');
 
@@ -112,11 +109,11 @@ $(document).on('click', '#booksByAuthorShowMoreResults', async function() {
     console.error(error);
   }
 
-  let indexFactor = sessionStorage.getItem('booksByAuthorIndexFactor');
-  indexFactor = parseInt(indexFactor) + 1;
+  const indexFactorString = sessionStorage.getItem('booksByAuthorIndexFactor');
+  const indexFactor = parseInt(indexFactorString) + 1;
   await booksByAuthor.fetchBooks(indexFactor);
 
   if (!booksByAuthor.hasMoreResults()) {
-    hideMoreResults(); 
+    hideMoreResults();
   }
 });
