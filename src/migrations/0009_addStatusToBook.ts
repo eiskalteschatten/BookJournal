@@ -1,13 +1,11 @@
-'use strict';
+import { QueryInterface, DataTypes as DataTypesNamespace } from 'sequelize';
 
-const Sequelize = require('sequelize');
-
-module.exports = {
-  up: async (query, DataTypes) => {
+export default {
+  up: async (query: QueryInterface, DataTypes: typeof DataTypesNamespace): Promise<void> => {
     try {
       const booksDesc = await query.describeTable('books');
       if (booksDesc.status) {
-        return Promise.resolve(); 
+        return Promise.resolve();
       }
     }
     catch (error) {
@@ -20,7 +18,7 @@ module.exports = {
       'books',
       'status',
       {
-        type: DataTypes.ENUM(['notReadYet', 'currentlyReading', 'read', 'stoppedReading', 'takingABreak']),
+        type: DataTypes.ENUM('notReadYet', 'currentlyReading', 'read', 'stoppedReading', 'takingABreak'),
         defaultValue: 'notReadYet',
       }
     );
@@ -32,15 +30,15 @@ module.exports = {
       { raw: true });
 
     await query.removeColumn('books', 'notReadYet');
-    return query.removeColumn('books', 'currentlyReading');
+    await query.removeColumn('books', 'currentlyReading');
   },
 
-  down: async query => {
+  down: async (query: QueryInterface, DataTypes: typeof DataTypesNamespace): Promise<void> => {
     await query.addColumn(
       'books',
       'notReadYet',
       {
-        type: Sequelize.BOOLEAN,
+        type: DataTypes.BOOLEAN,
         defaultValue: false,
       }
     );
@@ -49,10 +47,11 @@ module.exports = {
       'books',
       'currentlyReading',
       {
-        type: Sequelize.BOOLEAN,
+        type: DataTypes.BOOLEAN,
         defaultValue: false,
       }
     );
-    return query.removeColumn('books', 'status');
+
+    await query.removeColumn('books', 'status');
   },
 };

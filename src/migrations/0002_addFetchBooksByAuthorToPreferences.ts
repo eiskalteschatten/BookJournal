@@ -1,11 +1,11 @@
-'use strict';
+import { QueryInterface, DataTypes as DataTypesNamespace } from 'sequelize';
 
-module.exports = {
-  up: async (query, DataTypes) => {
+export default {
+  up: async (query: QueryInterface, DataTypes: typeof DataTypesNamespace): Promise<void> => {
     try {
       const desc = await query.describeTable('preferences');
       if (desc.fetchBooksByAuthor || desc.fetchBooksByAuthorLanguage) {
-        return Promise.resolve(); 
+        return Promise.resolve();
       }
     }
     catch (error) {
@@ -15,9 +15,10 @@ module.exports = {
     }
 
     await query.addColumn(
-      'preferences', 'fetchBooksByAuthor',
-      DataTypes.BOOLEAN,
+      'preferences',
+      'fetchBooksByAuthor',
       {
+        type: DataTypes.BOOLEAN,
         allowNull: true,
       }
     );
@@ -28,21 +29,22 @@ module.exports = {
     );
 
     await query.addColumn(
-      'preferences', 'fetchBooksByAuthorLanguage',
-      DataTypes.STRING,
+      'preferences',
+      'fetchBooksByAuthorLanguage',
       {
+        type: DataTypes.STRING,
         allowNull: false,
       }
     );
 
-    return await query.sequelize.query(
+    await query.sequelize.query(
       'UPDATE "preferences" SET fetchBooksByAuthorLanguage = "en";',
       { raw: true }
     );
   },
 
-  down: query => {
-    return query.sequelize.query(
+  down: async (query: QueryInterface): Promise<void> => {
+    query.sequelize.query(
       [
         'ALTER TABLE "preferences" DROP COLUMN "fetchBooksByAuthor";',
         'ALTER TABLE "preferences" DROP COLUMN "fetchBooksByAuthorLanguage";',

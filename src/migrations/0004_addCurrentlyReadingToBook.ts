@@ -1,11 +1,11 @@
-'use strict';
+import { QueryInterface, DataTypes as DataTypesNamespace } from 'sequelize';
 
-module.exports = {
-  up: async (query, DataTypes) => {
+export default {
+  up: async (query: QueryInterface, DataTypes: typeof DataTypesNamespace): Promise<void> => {
     try {
       const booksDesc = await query.describeTable('books');
       if (booksDesc.currentlyReading) {
-        return Promise.resolve(); 
+        return Promise.resolve();
       }
     }
     catch (error) {
@@ -14,7 +14,7 @@ module.exports = {
       return Promise.resolve();
     }
 
-    return query.addColumn(
+    await query.addColumn(
       'books',
       'currentlyReading',
       {
@@ -24,8 +24,8 @@ module.exports = {
     );
   },
 
-  down: query => {
-    return query.sequelize.query(
+  down: async (query: QueryInterface): Promise<void> => {
+    await query.sequelize.query(
       [
         'ALTER TABLE "books" DROP COLUMN "currentlyReading";',
       ].join(''),
