@@ -1,15 +1,12 @@
-'use strict';
+import $ from 'jquery';
+import path from 'path';
 
-const $ = require('jquery');
-const path = require('path');
+import List from '../list';
+import ListElement from '../listElement/sidebar';
+import Category from '../../models/category';
+import CategoryListElement from '../../elements/listElement/category';
 
-const List = require('../list');
-const ListElement = require('../listElement/sidebar');
-const Category = require('../../models/category');
-const CategoryListElement = require('../../elements/listElement/category');
-
-
-class Sidebar extends List {
+export default class Sidebar extends List {
   constructor() {
     super();
     this.template = path.join(__dirname, '../../templates/elements/list/sidebar.njk');
@@ -30,17 +27,17 @@ class Sidebar extends List {
     this.addTitleElement('Categories');
   }
 
-  addElement(displayName, iconPath = '', queryType) {
+  addElement(displayName: string, iconPath = '', queryType: string): void {
     const element = new ListElement(displayName, iconPath, queryType);
     this.elements.push(element);
   }
 
-  addCategoryElement(displayName, id = '', color = 'transparent') {
+  addCategoryElement(displayName: string, id = '', color = 'transparent'): void {
     const element = new CategoryListElement(displayName, id, color);
     this.elements.push(element);
   }
 
-  async loadCategories() {
+  async loadCategories(): Promise<void> {
     const categories = await Category.getAllSorted();
 
     for (const category of categories) {
@@ -48,14 +45,11 @@ class Sidebar extends List {
     }
   }
 
-  static sortCategories() {
+  static sortCategories(): void {
     const list = $('#sidebar').find('.js-list');
-    const sort = (a, b) => {
-      return ($(b).find('.js-list-element-name').text().toLowerCase()) < ($(a).find('.js-list-element-name').text().toLowerCase()) ? 1 : -1;
-    };
+    const sort = (a: HTMLElement, b: HTMLElement): number =>
+      ($(b).find('.js-list-element-name').text().toLowerCase()) < ($(a).find('.js-list-element-name').text().toLowerCase()) ? 1 : -1;
 
-    $('.js-category-list-element').sort(sort).appendTo(list);
+    ($('.js-category-list-element') as any).sort(sort).appendTo(list);
   }
 }
-
-module.exports = Sidebar;

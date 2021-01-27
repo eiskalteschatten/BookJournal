@@ -9,8 +9,8 @@ import TitleListElement from './listElement/title';
 import SpacerListElement from './listElement/spacer';
 
 export default class List {
-  private elements: ListElement[];
-  private template: string;
+  protected elements: ListElement[];
+  protected template: string;
 
   constructor() {
     this.elements = [];
@@ -22,7 +22,7 @@ export default class List {
 
     return new Promise<string>(async (resolve, reject) => {
       for (const element of this.elements) {
-        listElements.push(await element.getNunjucksRenderObject());
+        listElements.push(element.getNunjucksRenderObject());
       }
 
       fs.readFile(this.template, 'utf8', (error, string) => {
@@ -45,7 +45,7 @@ export default class List {
 
   addElements(elements: NunjucksRenderObject[]): void {
     for (const element of elements) {
-      this.addElements(element.displayName, element.iconPath);
+      this.addElement(element.displayName, element.iconPath);
     }
   }
 

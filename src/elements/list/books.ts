@@ -1,25 +1,26 @@
-'use strict';
+import path from 'path';
 
-const path = require('path');
-
-const List = require('../list');
-const Book = require('../../models/book');
-const BookListElement = require('../../elements/listElement/book');
+import List from '../list';
+import Book from '../../models/book';
+import BookListElement from '../../elements/listElement/book';
 
 
-class Books extends List {
+export default class Books extends List {
+  private query: string;
+
   constructor(query = '') {
     super();
     this.template = path.join(__dirname, '../../templates/elements/list/books.njk');
     this.query = query;
   }
 
-  addBookElement(book) {
+  // TODO: create an interface for "book"
+  addBookElement(book: any): void {
     const element = new BookListElement(book);
     this.elements.push(element);
   }
 
-  async loadBooks(sortBy = 'title', sortOrder = 'ASC') {
+  async loadBooks(sortBy = 'title', sortOrder = 'ASC'): Promise<void> {
     sortBy = sortBy || 'title';
     sortOrder = sortOrder || 'ASC';
 
@@ -33,5 +34,3 @@ class Books extends List {
     }
   }
 }
-
-module.exports = Books;
