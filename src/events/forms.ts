@@ -1,8 +1,6 @@
-'use strict';
+import $ from 'jquery';
 
-const $ = require('jquery');
-
-$(document).on('click', '.js-selector', function() {
+$(document).on('click', '.js-selector', (): void => {
   const $inputField = $(this).parents('.js-selection-bar').find('.js-selector-input');
   $inputField.val($(this).data('value')).trigger('change');
   $(this).siblings('.selected').removeClass('selected');
