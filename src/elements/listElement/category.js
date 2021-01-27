@@ -10,7 +10,7 @@ const Category = require('../../models/category');
 
 
 class CategoryListElement extends SidebarListElement {
-  constructor(displayName, id = '', color = 'transparent') {
+  constructor(displayName, id, color = 'transparent') {
     super(displayName, '', 'category');
     this.id = id;
     this.color = color;
@@ -23,7 +23,7 @@ class CategoryListElement extends SidebarListElement {
       const template = path.join(__dirname, '../../templates/elements/listElement/edit.njk');
       fs.readFile(template, 'utf8', (error, string) => {
         if (error) {
-          reject(error); 
+          reject(error);
         }
         resolve(string);
       });

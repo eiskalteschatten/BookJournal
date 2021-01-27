@@ -32,7 +32,7 @@ export default class Sidebar extends List {
     this.elements.push(element);
   }
 
-  addCategoryElement(displayName: string, id = '', color = 'transparent'): void {
+  addCategoryElement(displayName: string, id: number, color = 'transparent'): void {
     const element = new CategoryListElement(displayName, id, color);
     this.elements.push(element);
   }
