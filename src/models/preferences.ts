@@ -10,8 +10,8 @@ export class Preferences extends Model {
   windowY: number;
   windowIsMaximized: boolean;
   windowIsFullScreen: boolean;
-  sidebarWidth: number;
-  middleColumnWidth: number;
+  sidebarWidth?: number;
+  middleColumnWidth?: number;
   theme: string;
   fetchBookInfoFromGoogle: boolean;
   checkForUpdates: boolean;
