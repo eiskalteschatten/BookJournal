@@ -1,4 +1,4 @@
-# Book Journal
+# BookJournal
 
 [![Node.js CI](https://github.com/eiskalteschatten/BookJournal/workflows/Node.js%20CI/badge.svg)](https://github.com/eiskalteschatten/BookJournal/actions?query=workflow%3A%22Node.js+CI%22)
 [![Build/release](https://github.com/eiskalteschatten/BookJournal/workflows/Build/release/badge.svg)](https://github.com/eiskalteschatten/BookJournal/actions?query=workflow%3ABuild%2Frelease)
@@ -40,9 +40,9 @@ BookJournal runs on the [Electron](https://electronjs.org/) platform and can the
 ## Release Notes
 
 ### 1.0.1
-- [x] Update Electron and other dependencies
+- [x] Updated Electron and other dependencies
 - [x] Security updates
-- [ ] Start converting to TypeScript for better stability
+- [ ] Converted to TypeScript for better stability
 
 ### 1.0.0
 - [x] Updated the app icon
