@@ -1,18 +1,15 @@
-'use strict';
+import { dialog, MenuItemConstructorOptions, MenuItem, BrowserWindow } from 'electron';
 
-const { dialog } = require('electron');
-
-
-const template = [
+const template: MenuItemConstructorOptions[] = [
   {
     label: 'New Book',
-    click: async (item, focusedWindow) => {
+    click: (item: MenuItem, focusedWindow: BrowserWindow): void => {
       focusedWindow.webContents.send('create-new-book');
     },
   },
   {
     label: 'Delete Book',
-    click: async (item, focusedWindow) => {
+    click: async (item: MenuItem, focusedWindow: BrowserWindow): Promise<void> => {
       const result = await dialog.showMessageBox({
         message: 'Are you sure you want to delete this book?',
         detail: 'You can\'t undo this action.',
@@ -23,10 +20,10 @@ const template = [
       });
 
       if (result.response === 1) {
-        focusedWindow.webContents.send('delete-book'); 
+        focusedWindow.webContents.send('delete-book');
       }
     },
   },
 ];
 
-module.exports = template;
+export default template;

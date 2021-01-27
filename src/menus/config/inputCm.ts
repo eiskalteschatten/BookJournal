@@ -1,7 +1,6 @@
-'use strict';
+import { MenuItemConstructorOptions } from 'electron';
 
-
-const template = [
+const template: MenuItemConstructorOptions[] = [
   { role: 'cut' },
   { role: 'copy' },
   { role: 'paste' },
@@ -13,11 +12,11 @@ if (process.platform === 'darwin') {
     {
       label: 'Speech',
       submenu: [
-        { role: 'startspeaking' },
-        { role: 'stopspeaking' },
+        { role: 'startSpeaking' },
+        { role: 'stopSpeaking' },
       ],
     }
   );
 }
 
-module.exports = template;
+export default template;
