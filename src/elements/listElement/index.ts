@@ -1,15 +1,15 @@
 import path from 'path';
 import fs from 'fs';
 
-import nunjucks from '../nunjucks';
-import { NunjucksRenderObject } from '../interfaces/nunjucks';
+import nunjucks from '../../nunjucks';
+import { NunjucksRenderObject } from '../../interfaces/nunjucks';
 
 export default class ListElement {
   private id: string;
   private displayName: string;
   private iconPath: string;
-  private classes: string;
-  private type: string;
+  protected classes: string;
+  protected type: string;
 
   constructor(displayName = '', iconPath = '') {
     this.displayName = displayName;

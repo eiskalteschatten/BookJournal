@@ -4,4 +4,7 @@ export interface NunjucksRenderObject {
   iconPath: string;
   displayName: string;
   type: string;
+  dataFields?: {
+    'query-type': string;
+  };
 }
