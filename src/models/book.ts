@@ -227,7 +227,7 @@ export default class Book extends Model implements BookAttributes {
     return await sequelize.query(`SELECT * FROM books where strftime('%Y-%m', dateRead) IN('${year}-${monthString}');`, { model: this });
   }
 
-  static async getHasBeenRead(title: string, authors: string, isbns: string): Promise<Book> {
+  static async getHasBeenRead(title: string, authors: string[], isbns: string[]): Promise<Book> {
     return await Book.findOne({
       where: {
         [Op.or]: [

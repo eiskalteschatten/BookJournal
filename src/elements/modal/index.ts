@@ -1,22 +1,23 @@
-'use strict';
+import path from 'path';
+import fs from 'fs';
 
-const path = require('path');
-const fs = require('fs');
-const nunjucks = require('../../nunjucks');
+import nunjucks from '../../nunjucks';
+import { NunjucksRenderObject } from '../../interfaces/nunjucks';
 
+export default class Modal {
+  protected type: string;
 
-class Modal {
-  constructor(type) {
+  constructor(type: string) {
     this.type = type;
   }
 
-  async render() {
+  async render(): Promise<string> {
     const { type } = this;
 
-    return new Promise((resolve, reject) => {
+    return new Promise<string>((resolve, reject) => {
       const template = path.join(__dirname, `../templates/modal/${type}.njk`);
 
-      fs.readFile(template, 'utf8', (error, string) => {
+      fs.readFile(template, 'utf8', (error: Error, string: string): void => {
         if (error) {
           reject(error);
         }
@@ -29,11 +30,9 @@ class Modal {
     });
   }
 
-  getNunjucksRenderObject() {
+  getNunjucksRenderObject(): NunjucksRenderObject {
     return {
       type: this.type,
     };
   }
 }
-
-module.exports = Modal;

@@ -1,29 +1,34 @@
-'use strict';
+import path from 'path';
+import fs from 'fs';
 
-const path = require('path');
-const fs = require('fs');
+import nunjucks from '../../../nunjucks';
+import Book, { BookAttributes } from '../../../models/book';
+import { GoogleBooksBook } from '../../../interfaces/GoogleBooks';
 
-const nunjucks = require('../../../nunjucks');
-const Book = require('../../../models/book');
+interface BooksRenderObject extends BookAttributes, GoogleBooksBook {
+  hasBeenRead?: boolean;
+  dateReadString?: string;
+}
 
+export default class BookByAuthor {
+  private books: BooksRenderObject[];
 
-class BookByAuthor {
-  constructor(books) {
+  constructor(books: Book[]) {
     this.books = books;
   }
 
-  async render() {
-    const books = await this.buildBooksObject();
+  async render(): Promise<string | void> {
+    const books = await this.buildBooksRenderObject();
 
-    return new Promise((resolve, reject) => {
+    return new Promise<string>((resolve, reject) => {
       const template = path.join(__dirname, '../../../templates/modal/booksByAuthor/book.njk');
-      fs.readFile(template, 'utf8', (error, string) => {
+      fs.readFile(template, 'utf8', (error: Error, string: string): void => {
         if (error) {
           reject(error);
         }
         resolve(string);
       });
-    }).then(async templateString => {
+    }).then(async (templateString: string) => {
       let bookHtml = '';
 
       for (const book of books) {
@@ -41,7 +46,7 @@ class BookByAuthor {
     });
   }
 
-  async buildBooksObject() {
+  async buildBooksRenderObject(): Promise<BooksRenderObject[]> {
     const books = [];
 
     for (const book of this.books) {
@@ -65,7 +70,7 @@ class BookByAuthor {
 
       if (bookFromDb && bookFromDb.dateRead) {
         const dateRead = new Date(bookFromDb.dateRead);
-        book.dateRead = dateRead.toLocaleDateString();
+        book.dateReadString = dateRead.toLocaleDateString();
       }
 
       books.push(book);
@@ -74,5 +79,3 @@ class BookByAuthor {
     return books;
   }
 }
-
-module.exports = BookByAuthor;
