@@ -1,11 +1,8 @@
-'use strict';
+import { remote } from 'electron';
 
-const { remote } = require('electron');
+import Modal from '../modal';
 
-const Modal = require('../modal');
-
-
-class About extends Modal {
+export default class About extends Modal {
   constructor() {
     super('about');
   }
@@ -21,5 +18,3 @@ class About extends Modal {
     return object;
   }
 }
-
-module.exports = About;

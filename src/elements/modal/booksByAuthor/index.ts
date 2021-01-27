@@ -1,17 +1,18 @@
-'use strict';
+import $ from 'jquery';
+import request from 'request';
 
-const $ = require('jquery');
-const request = require('request');
-
-const Modal = require('..');
-const Books = require('./books');
-const config = require('../../../config').default;
+import Modal from '..';
+import Books from './books';
+import config from '../../../config';
+import Preferences from '../../../models/preferences';
+import Book from '../../../models/book';
 
 const maxResults = config.bookInfo.google.authorsMaxResults;
 
+export default class BooksByAuthor extends Modal {
+  private authors: string;
 
-class BooksByAuthor extends Modal {
-  constructor(authors) {
+  constructor(authors: string) {
     super('booksByAuthor');
     this.authors = authors;
   }
@@ -37,7 +38,8 @@ class BooksByAuthor extends Modal {
     return object;
   }
 
-  async fetchBooks(indexFactor = 0) {
+  // TODO: create a real interface
+  async fetchBooks(indexFactor = 0): Promise<any> {
     const { authors } = this;
     if (authors === '') {
       return;
@@ -46,8 +48,8 @@ class BooksByAuthor extends Modal {
     const index = indexFactor > 0 ? (indexFactor * maxResults) + 1 : 0;
 
     try {
-      let preferences = localStorage.getItem('preferences');
-      preferences = JSON.parse(preferences);
+      const preferencesString = localStorage.getItem('preferences');
+      const preferences: Preferences = JSON.parse(preferencesString);
 
       if (!preferences.fetchBooksByAuthor) {
         return;
@@ -56,9 +58,11 @@ class BooksByAuthor extends Modal {
       sessionStorage.setItem('booksByAuthor', '');
 
       let url = config.bookInfo.google.urlAuthors;
-      url = url.replace('${authors}', authors).replace('${lang}', preferences.fetchBooksByAuthorLanguage).replace('${index}', index);
+      url = url.replace('${authors}', authors).replace('${lang}', preferences.fetchBooksByAuthorLanguage).replace('${index}', index.toString());
 
-      return new Promise((resolve, reject) => {
+      // TODO: create a real interface
+      return new Promise<any>((resolve, reject) => {
+        // TODO: replace with fetch
         request(url, (error, response, body) => {
           if (error) {
             reject(error);
@@ -69,7 +73,7 @@ class BooksByAuthor extends Modal {
             const { totalItems } = bodyJson;
 
             if (totalItems > 0) {
-              sessionStorage.setItem('booksByAuthorIndexFactor', indexFactor);
+              sessionStorage.setItem('booksByAuthorIndexFactor', indexFactor.toString());
 
               if (indexFactor === 0) {
                 sessionStorage.setItem('booksByAuthorInitial', body);
@@ -96,6 +100,7 @@ class BooksByAuthor extends Modal {
     }
   }
 
+  // TODO: interfaces!
   sortBooksByTitle(books) {
     const { authors } = this;
 
@@ -126,12 +131,12 @@ class BooksByAuthor extends Modal {
     });
   }
 
-  async renderBookList(oldBooks) {
+  async renderBookList(oldBooks: Book[]): Promise<string> {
     const books = new Books(oldBooks);
     return await books.render();
   }
 
-  hasMoreResults() {
+  hasMoreResults(): boolean {
     try {
       const books = sessionStorage.getItem('booksByAuthor');
       const booksJson = JSON.parse(books);
@@ -143,5 +148,3 @@ class BooksByAuthor extends Modal {
     }
   }
 }
-
-module.exports = BooksByAuthor;
