@@ -1,33 +1,35 @@
-'use strict';
+import path from 'path';
 
-const path = require('path');
-const chartModule = require('../../lib/chart');
-
-const StatisticsBox = require('../statisticsBox');
+import chartModule from '../../lib/chart';
+import StatisticsBox from '../statisticsBox';
+import { AllDatesRead, BookAndPageCounts, RenderedGraphs, Statistics } from '../../interfaces/statistics';
 
 const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
+export default class BookPageCountMonthYear extends StatisticsBox {
+  private allDatesRead: AllDatesRead;
+  private latestYear: number;
+  private monthStatistics: BookAndPageCounts;
 
-class BookPageCountMonthYear extends StatisticsBox {
-  constructor(statistics, allDatesRead) {
+  constructor(statistics: Statistics) {
     super(statistics);
 
-    const sortedYears = Object.keys(statistics).sort((a, b) => b - a);
+    const sortedYears = Object.keys(statistics).sort((a: any, b: any): any => b - a).map(Number);
     this.latestYear = sortedYears[0];
-    this.monthStatistics = statistics[this.latestYear];
-    this.allDatesRead = allDatesRead;
+    this.monthStatistics = statistics.countsMonthYear[this.latestYear];
+    this.allDatesRead = statistics.allDatesRead;
     this.template = path.join(__dirname, '../../templates/statisticsBox/bookPageCountMonthYear.njk');
   }
 
-  async getNunjucksRenderObject() {
+  async getNunjucksRenderObject(): Promise<any> {
     const object = await super.getNunjucksRenderObject();
     object.latestYear = this.latestYear;
     object.allDatesRead = this.allDatesRead;
-
     return object;
   }
 
-  async renderGraphs($booksGraph, $pagesGraph, $booksDoughnutGraph, $pagessDoughnutGraph) {
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+  async renderGraphs($booksGraph: any, $pagesGraph: any, $booksDoughnutGraph: any, $pagessDoughnutGraph: any): Promise<RenderedGraphs> {
     const chart = chartModule();
     const statistics = this.monthStatistics;
 
@@ -36,7 +38,7 @@ class BookPageCountMonthYear extends StatisticsBox {
     const pagesReadData = [];
 
     for (const month in statistics) {
-      labels.push(monthNames[month - 1]);
+      labels.push(monthNames[Number(month) - 1]);
       booksReadData.push(statistics[month].bookCount);
       pagesReadData.push(statistics[month].pageCount);
     }
@@ -103,5 +105,3 @@ class BookPageCountMonthYear extends StatisticsBox {
     };
   }
 }
-
-module.exports = BookPageCountMonthYear;
