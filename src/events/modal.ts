@@ -83,7 +83,7 @@ $(document).on('click', '#booksByAuthorShowMoreResults', async (): Promise<void>
   const $loader = $('#booksByAuthorShowMoreResultsLoader');
   $loader.removeClass('invisible');
 
-  const authors = $('#bookAuthor').val();
+  const authors = $('#bookAuthor').val().toString();
   const booksByAuthor = new BooksByAuthor(authors);
 
   const hideMoreResults = () => {

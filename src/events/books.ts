@@ -491,7 +491,7 @@ $(document).on('click', '#bookBooksByAuthorLink', async (e: JQuery.TriggeredEven
     $('#booksByAuthorModal').remove();
   }
 
-  const authors = $('#bookAuthor').val();
+  const authors = $('#bookAuthor').val().toString();
   const booksByAuthor = new BooksByAuthor(authors);
   const rendered = await booksByAuthor.render();
 
