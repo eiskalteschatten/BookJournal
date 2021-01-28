@@ -5,8 +5,8 @@ import nunjucks from '../../nunjucks';
 import { Statistics } from '../../interfaces/statistics';
 
 export default class StatisticsBox {
-  private statistics: Statistics;
-  private template: string;
+  protected statistics: Statistics;
+  protected template: string;
 
   constructor(statistics: Statistics) {
     this.statistics = statistics;

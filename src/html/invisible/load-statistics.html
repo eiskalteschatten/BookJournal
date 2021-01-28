@@ -16,8 +16,8 @@
           fromWindow.webContents.send('statistics-no-results');
         }
         else {
-          fromWindow.webContents.send('statistics-render-page-book-count-year', returnValue.countsYearObj, returnValue.allDatesRead);
-          fromWindow.webContents.send('statistics-render-page-book-count-month-year', returnValue.countsMonthYear, returnValue.allDatesRead);
+          fromWindow.webContents.send('statistics-render-page-book-count-year', returnValue);
+          fromWindow.webContents.send('statistics-render-page-book-count-month-year', returnValue);
         }
 
         window.close();
