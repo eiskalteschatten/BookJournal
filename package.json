@@ -93,6 +93,7 @@
     "moment": "^2.29.1",
     "nunjucks": "^3.2.2",
     "popper.js": "^1.16.1",
+    "reflect-metadata": "^0.1.13",
     "sequelize": "^6.4.0",
     "sequelize-migration-wrapper": "^1.0.0",
     "sequelize-typescript": "^2.0.0",
