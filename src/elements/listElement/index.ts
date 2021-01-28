@@ -23,7 +23,7 @@ export default class ListElement {
     const self = this;
 
     try {
-      const template = path.join(__dirname, '../templates/listElement.njk');
+      const template = path.join(__dirname, '../../templates/listElement.njk');
       const templateString = await fsPromises.readFile(template, 'utf8');
       return nunjucks.renderString(templateString, await self.getNunjucksRenderObject());
     }

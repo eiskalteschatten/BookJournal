@@ -12,7 +12,7 @@ export default class Modal {
 
   async render(): Promise<string> {
     const { type } = this;
-    const template = path.join(__dirname, `../templates/modal/${type}.njk`);
+    const template = path.join(__dirname, `../../templates/modal/${type}.njk`);
     const templateString = await fsPromises.readFile(template, 'utf8');
     return nunjucks.renderString(templateString, await this.getNunjucksRenderObject());
   }
