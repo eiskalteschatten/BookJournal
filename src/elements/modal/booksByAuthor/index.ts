@@ -1,5 +1,4 @@
 import $ from 'jquery';
-import request from 'request';
 
 import Modal from '..';
 import Books from './books';
@@ -60,40 +59,24 @@ export default class BooksByAuthor extends Modal {
       let url = config.bookInfo.google.urlAuthors;
       url = url.replace('${authors}', authors).replace('${lang}', preferences.fetchBooksByAuthorLanguage).replace('${index}', index.toString());
 
-      // TODO: create a real interface
-      return new Promise<any>((resolve, reject) => {
-        // TODO: replace with fetch
-        request(url, (error, response, body) => {
-          if (error) {
-            reject(error);
-          }
+      const response = await fetch(url);
+      const body = await response.json();
+      const { totalItems } = body;
 
-          try {
-            const bodyJson = JSON.parse(body);
-            const { totalItems } = bodyJson;
+      if (totalItems > 0) {
+        sessionStorage.setItem('booksByAuthorIndexFactor', indexFactor.toString());
 
-            if (totalItems > 0) {
-              sessionStorage.setItem('booksByAuthorIndexFactor', indexFactor.toString());
+        if (indexFactor === 0) {
+          sessionStorage.setItem('booksByAuthorInitial', JSON.stringify(body));
+          $('#bookAuthorInfo').removeClass('hidden');
+          this.fetchBooks(indexFactor + 1);
+        }
+        else {
+          sessionStorage.setItem('booksByAuthor', JSON.stringify(body));
+        }
+      }
 
-              if (indexFactor === 0) {
-                sessionStorage.setItem('booksByAuthorInitial', body);
-                $('#bookAuthorInfo').removeClass('hidden');
-                this.fetchBooks(indexFactor + 1);
-              }
-              else {
-                sessionStorage.setItem('booksByAuthor', body);
-              }
-            }
-
-            resolve(bodyJson);
-          }
-          catch (error) {
-            reject(error);
-          }
-        });
-      }).catch(error => {
-        console.error(error);
-      });
+      return body;
     }
     catch (error) {
       console.error(error);
