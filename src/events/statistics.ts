@@ -20,7 +20,6 @@ async function renderBookPageCountYear(statistics: IStatistics): Promise<void> {
   );
 }
 
-// TODO: Add interfaces
 async function renderBookPageCountMonthYear(statistics: IStatistics): Promise<void> {
   const bookPageCountMonthYear = new BookPageCountMonthYear(statistics);
   const rendered = await bookPageCountMonthYear.render();
