@@ -1,99 +1,99 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>BookJournal</title>
+  <head>
+    <meta charset="UTF-8">
+    <title>BookJournal</title>
 
-        <style id="defaultCss">
-            .top-toolbar, .bottom-toolbar {
-                display: none;
-            }
-        </style>
+    <style id="defaultCss">
+      .top-toolbar, .bottom-toolbar {
+        display: none;
+      }
+    </style>
 
-        <link rel="stylesheet" href="../assets/css/bootstrap.css" type="text/css">
-        <link rel="stylesheet" href="../assets/css/light.css" class="js-main-css" id="lightCss" title="Light" disabled>
-        <link rel="stylesheet" href="../assets/css/dark.css" class="js-main-css" id="darkCss"  title="Dark" disabled>
+    <link rel="stylesheet" href="../assets/css/bootstrap.css" type="text/css">
+    <link rel="stylesheet" href="../assets/css/light.css" class="js-main-css" id="lightCss" title="Light" disabled>
+    <link rel="stylesheet" href="../assets/css/dark.css" class="js-main-css" id="darkCss"  title="Dark" disabled>
 
-        <script src="../pre-renderer.js"></script>
-    </head>
-    <body>
-        <div class="title-bar js-title-bar"></div>
+    <script>var exports = {};</script>
+    <script src="../pre-renderer.js"></script>
+  </head>
+  <body>
+    <div class="title-bar js-title-bar"></div>
 
-        <main class="main-structure">
-
-            <!-- Begin Sidebar -->
-            <div class="left-column column js-resizable-column list-container" id="sidebarWrapper">
-                <div id="sidebar" class="sidebar"></div>
-                <div class="bottom-toolbar">
-                    <a href="#" class="has-icon plus js-new-category sidebar-color sidebar-button">New Category</a>
-                </div>
-            </div>
-            <!-- End Sidebar -->
-
-            <div class="dragbar sidebar js-dragbar"></div>
-
-            <!-- Begin Middle Column -->
-            <div class="middle-column column js-resizable-column list-container" id="bookListWrapper">
-                <div class="top-toolbar" id="bookListTopToolbar">
-                    <div class="book-sort-wrapper">
-                        <span class="book-sort-label">Sort by:</span>
-
-                        <select class="book-sort" id="bookSort">
-                            <option value="author">Author</option>
-                            <option value="bookFormat">Book Format</option>
-                            <option value="createdAt">Date Added</option>
-                            <option value="dateRead">Date Read</option>
-                            <option value="dateStarted">Date Started</option>
-                            <option value="updatedAt">Date Updated</option>
-                            <option value="editor">Editor</option>
-                            <option value="genre">Genre</option>
-                            <option value="isbn">ISBN</option>
-                            <option value="languageReadIn">Language Read In</option>
-                            <option value="nationality">Nationality</option>
-                            <option value="onWishlist">On Wishlist</option>
-                            <option value="originalLanguage">Original Language</option>
-                            <option value="pageCount">Page Count</option>
-                            <option value="publisher">Publisher</option>
-                            <option value="rating">Rating</option>
-                            <option value="status">Status</option>
-                            <option value="title" selected>Title</option>
-                            <option value="translator">Translator</option>
-                            <option value="yearPublished">Year Published</option>
-                        </select>
-
-                        <a href="#" class="book-sort-order desc" id="bookSortOrder" title="Change sort order">&uarr;</a>
-                    </div>
-                </div>
-                <div id="bookList" class="booklist"></div>
-                <div class="bottom-toolbar">
-                    <div class="loading book-activity-loader hidden" id="bookActivityLoader"></div>
-
-                    <a href="#" class="has-icon plus js-new-book">New Book</a>
-                </div>
-            </div>
-            <!-- End Middle Column -->
-
-            <div class="dragbar js-dragbar"></div>
-
-            <!-- Begin Left Column -->
-            <div class="right-column column" id="mainColumn">
-                <div class="hidden" id="mainColumnAnchor"></div>
-                <div class="book-form-wrapper" id="bookFormWrapper">
-                    <div id="bookDetails"></div>
-                </div>
-            </div>
-            <!-- End Left Column -->
-
-        </main>
-
-        <div id="modalContainer" class="modal-container hidden">
-            <div id="modalAnchor"></div>
+    <main class="main-structure">
+        <!-- Begin Sidebar -->
+        <div class="left-column column js-resizable-column list-container" id="sidebarWrapper">
+          <div id="sidebar" class="sidebar"></div>
+          <div class="bottom-toolbar">
+            <a href="#" class="has-icon plus js-new-category sidebar-color sidebar-button">New Category</a>
+          </div>
         </div>
+        <!-- End Sidebar -->
 
-        <script>
-            setTimeout(() => {
-                require('../renderer.js');
-            }, 50);
-        </script>
-    </body>
+        <div class="dragbar sidebar js-dragbar"></div>
+
+        <!-- Begin Middle Column -->
+        <div class="middle-column column js-resizable-column list-container" id="bookListWrapper">
+          <div class="top-toolbar" id="bookListTopToolbar">
+            <div class="book-sort-wrapper">
+                <span class="book-sort-label">Sort by:</span>
+
+                <select class="book-sort" id="bookSort">
+                  <option value="author">Author</option>
+                  <option value="bookFormat">Book Format</option>
+                  <option value="createdAt">Date Added</option>
+                  <option value="dateRead">Date Read</option>
+                  <option value="dateStarted">Date Started</option>
+                  <option value="updatedAt">Date Updated</option>
+                  <option value="editor">Editor</option>
+                  <option value="genre">Genre</option>
+                  <option value="isbn">ISBN</option>
+                  <option value="languageReadIn">Language Read In</option>
+                  <option value="nationality">Nationality</option>
+                  <option value="onWishlist">On Wishlist</option>
+                  <option value="originalLanguage">Original Language</option>
+                  <option value="pageCount">Page Count</option>
+                  <option value="publisher">Publisher</option>
+                  <option value="rating">Rating</option>
+                  <option value="status">Status</option>
+                  <option value="title" selected>Title</option>
+                  <option value="translator">Translator</option>
+                  <option value="yearPublished">Year Published</option>
+                </select>
+
+                <a href="#" class="book-sort-order desc" id="bookSortOrder" title="Change sort order">&uarr;</a>
+            </div>
+          </div>
+          <div id="bookList" class="booklist"></div>
+          <div class="bottom-toolbar">
+            <div class="loading book-activity-loader hidden" id="bookActivityLoader"></div>
+
+            <a href="#" class="has-icon plus js-new-book">New Book</a>
+          </div>
+        </div>
+        <!-- End Middle Column -->
+
+        <div class="dragbar js-dragbar"></div>
+
+        <!-- Begin Left Column -->
+        <div class="right-column column" id="mainColumn">
+          <div class="hidden" id="mainColumnAnchor"></div>
+          <div class="book-form-wrapper" id="bookFormWrapper">
+            <div id="bookDetails"></div>
+          </div>
+        </div>
+        <!-- End Left Column -->
+
+    </main>
+
+    <div id="modalContainer" class="modal-container hidden">
+      <div id="modalAnchor"></div>
+    </div>
+
+    <script>
+      setTimeout(() => {
+        require('../renderer.js');
+      }, 50);
+    </script>
+  </body>
 </html>
