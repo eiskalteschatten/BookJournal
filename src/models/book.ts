@@ -41,7 +41,6 @@ export interface BookAttributes {
   summary?: string;
   commentary?: string;
   notes?: string;
-  subtitleField?: string;
   readonly createdAt?: Date;
   readonly updatedAt?: Date;
 }
@@ -205,12 +204,6 @@ export default class Book extends Model implements BookAttributes {
     type: DataType.STRING,
   })
   notes?: string;
-
-  @Column({
-    allowNull: true,
-    type: DataType.STRING,
-  })
-  subtitleField?: string;
 
   @CreatedAt
   createdAt!: Date;

@@ -4,6 +4,7 @@ import { FindOptions } from 'sequelize';
 import List from '../list';
 import Book from '../../models/book';
 import BookListElement from '../../elements/listElement/book';
+import { BookListRenderObject } from '../../interfaces/books';
 
 export default class Books extends List {
   private query: FindOptions;
@@ -14,7 +15,7 @@ export default class Books extends List {
     this.query = query;
   }
 
-  addBookElement(book: Book): void {
+  addBookElement(book: BookListRenderObject): void {
     const element = new BookListElement(book);
     this.elements.push(element);
   }
@@ -27,7 +28,9 @@ export default class Books extends List {
       ? await Book.getSortedByQuery(this.query, sortBy, sortOrder)
       : await Book.getAllSorted(sortBy, sortOrder);
 
-    for (const book of books) {
+    const bookRenderObjects: BookListRenderObject[] = books;
+
+    for (const book of bookRenderObjects) {
       book.subtitleField = sortBy;
       this.addBookElement(book);
     }

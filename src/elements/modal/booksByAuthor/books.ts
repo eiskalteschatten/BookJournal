@@ -3,13 +3,7 @@ import { promises as fsPromises } from 'fs';
 
 import nunjucks from '../../../nunjucks';
 import Book from '../../../models/book';
-import { GoogleBooksItem } from '../../../interfaces/books';
-
-interface BooksRenderObject extends GoogleBooksItem {
-  hasBeenRead?: boolean;
-  dateReadString?: string;
-  isbn?: string;
-}
+import { GoogleBooksItem, BookByAuthorRenderObject } from '../../../interfaces/books';
 
 export default class BookByAuthor {
   private books: GoogleBooksItem[];
@@ -37,11 +31,11 @@ export default class BookByAuthor {
     return bookHtml;
   }
 
-  async buildBooksRenderObject(): Promise<BooksRenderObject[]> {
+  async buildBooksRenderObject(): Promise<BookByAuthorRenderObject[]> {
     const books = [];
 
     for (const book of this.books) {
-      const renderBook: BooksRenderObject = book;
+      const renderBook: BookByAuthorRenderObject = book;
       const { volumeInfo } = renderBook;
       const industryIdentifiers = volumeInfo.industryIdentifiers || [];
       const isbns = [];

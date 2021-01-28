@@ -1,3 +1,18 @@
+import { BookAttributes } from '../models/book';
+
+export interface BookListRenderObject extends BookAttributes {
+  subtitleField?: string;
+  bookcoverPath?: string;
+  classes?: string;
+  subtitle?: string;
+}
+
+export interface BookByAuthorRenderObject extends GoogleBooksItem {
+  hasBeenRead?: boolean;
+  dateReadString?: string;
+  isbn?: string;
+}
+
 export interface GoogleBooksBook {
   kind: string;
   totalItems: number;

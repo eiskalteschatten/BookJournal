@@ -6,18 +6,12 @@ import ListElement from '../listElement';
 import { pruneCoverPath } from '../../lib/bookcover';
 import bookFormats from '../../lib/bookFormats';
 import readingStatuses from '../../lib/readingStatuses';
-import Book, { BookAttributes } from '../../models/book';
-
-interface BooksRenderObject extends BookAttributes {
-  bookcoverPath?: string;
-  classes?: string;
-  subtitle?: string;
-}
+import { BookListRenderObject } from '../../interfaces/books';
 
 export default class BookListElement extends ListElement {
-  private book: Book;
+  private book: BookListRenderObject;
 
-  constructor(book: Book) {
+  constructor(book: BookListRenderObject) {
     super(book.title, book.bookcover);
     this.id = book.id;
     this.book = book;
@@ -28,16 +22,15 @@ export default class BookListElement extends ListElement {
     const template = path.join(__dirname, '../../templates/listElement/book.njk');
     const templateString = await fsPromises.readFile(template, 'utf8');
     const { book } = this;
-    const renderBook: BooksRenderObject = book;
 
     if (book.bookcover) {
-      renderBook.bookcoverPath = pruneCoverPath(book.bookcover);
+      book.bookcoverPath = pruneCoverPath(book.bookcover);
     }
 
-    renderBook.classes = this.classes;
-    renderBook.subtitle = await this.determineSubtitle();
+    book.classes = this.classes;
+    book.subtitle = await this.determineSubtitle();
 
-    return nunjucks.renderString(templateString, { book: renderBook });
+    return nunjucks.renderString(templateString, { book });
   }
 
   checkForValidDate(date: Date): boolean {
