@@ -28,7 +28,7 @@ export default class BookListElement extends ListElement {
         resolve(string);
       });
     }).then(async (templateString: string) => {
-      const book = this.book;
+      const { book } = this;
 
       if (book.bookcover) {
         book.bookcoverPath = pruneCoverPath(book.bookcover);
