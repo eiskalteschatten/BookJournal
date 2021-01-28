@@ -6,13 +6,7 @@ import ListElement from '../listElement';
 import { pruneCoverPath } from '../../lib/bookcover';
 import bookFormats from '../../lib/bookFormats';
 import readingStatuses from '../../lib/readingStatuses';
-import Book, { BookAttributes } from '../../models/book';
-
-interface NunjucksRenderObject extends BookAttributes {
-  bookcoverPath?: string;
-  classes?: string;
-  subtitle?: string;
-}
+import Book from '../../models/book';
 
 export default class BookListElement extends ListElement {
   private book: Book;
@@ -34,7 +28,7 @@ export default class BookListElement extends ListElement {
         resolve(string);
       });
     }).then(async (templateString: string) => {
-      const book = this.book as NunjucksRenderObject;
+      const book = this.book;
 
       if (book.bookcover) {
         book.bookcoverPath = pruneCoverPath(book.bookcover);

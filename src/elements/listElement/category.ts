@@ -5,7 +5,6 @@ import fs from 'fs';
 import nunjucks from '../../nunjucks';
 import SidebarListElement from '../listElement/sidebar';
 import Category, { CategoryAttributes } from '../../models/category';
-import { NunjucksRenderObject } from '../../interfaces/nunjucks';
 
 export default class CategoryListElement extends SidebarListElement {
   private color: string;
@@ -50,8 +49,8 @@ export default class CategoryListElement extends SidebarListElement {
     }
   }
 
-  getNunjucksRenderObject(): NunjucksRenderObject {
-    const object = super.getNunjucksRenderObject();
+  async getNunjucksRenderObject(): Promise<any> {
+    const object = await super.getNunjucksRenderObject();
     object.color = this.color;
     return object;
   }

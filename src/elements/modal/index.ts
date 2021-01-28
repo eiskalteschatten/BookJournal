@@ -2,7 +2,6 @@ import path from 'path';
 import fs from 'fs';
 
 import nunjucks from '../../nunjucks';
-import { NunjucksRenderObject } from '../../interfaces/nunjucks';
 
 export default class Modal {
   protected type: string;
@@ -30,9 +29,11 @@ export default class Modal {
     });
   }
 
-  getNunjucksRenderObject(): NunjucksRenderObject {
-    return {
+  // Use an async function here because some inheriting classes
+  // need to use an async function
+  async getNunjucksRenderObject(): Promise<any> {
+    return Promise.resolve({
       type: this.type,
-    };
+    });
   }
 }

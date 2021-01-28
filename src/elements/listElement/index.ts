@@ -2,7 +2,6 @@ import path from 'path';
 import fs from 'fs';
 
 import nunjucks from '../../nunjucks';
-import { NunjucksRenderObject } from '../../interfaces/nunjucks';
 
 export default class ListElement {
   protected id: number;
@@ -31,20 +30,22 @@ export default class ListElement {
           resolve(string);
         });
       });
-      return nunjucks.renderString(templateString, self.getNunjucksRenderObject());
+      return nunjucks.renderString(templateString, await self.getNunjucksRenderObject());
     }
     catch (error) {
       console.error(error);
     }
   }
 
-  getNunjucksRenderObject(): NunjucksRenderObject {
-    return {
+  // Use an async function here because some inheriting classes
+  // need to use an async function
+  async getNunjucksRenderObject(): Promise<any> {
+    return Promise.resolve({
       id: this.id,
       classes: this.classes,
       iconPath: this.iconPath,
       displayName: this.displayName,
       type: this.type,
-    };
+    });
   }
 }

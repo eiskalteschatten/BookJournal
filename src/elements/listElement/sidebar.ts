@@ -1,5 +1,4 @@
 import ListElement from '.';
-import { NunjucksRenderObject } from '../../interfaces/nunjucks';
 
 export default class SidebarListElement extends ListElement {
   private queryType: string;
@@ -10,8 +9,8 @@ export default class SidebarListElement extends ListElement {
     this.classes = 'list-element js-sidebar-list-element';
   }
 
-  getNunjucksRenderObject(): NunjucksRenderObject {
-    const object = super.getNunjucksRenderObject();
+  async getNunjucksRenderObject(): Promise<any> {
+    const object = await super.getNunjucksRenderObject();
 
     object.dataFields = {
       'query-type': this.queryType,

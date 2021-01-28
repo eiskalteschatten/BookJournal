@@ -17,8 +17,8 @@ export default class BooksByAuthor extends Modal {
     this.authors = authors;
   }
 
-  async getNunjucksRenderObject() {
-    const object = super.getNunjucksRenderObject();
+  async getNunjucksRenderObject(): Promise<any> {
+    const object = await super.getNunjucksRenderObject();
 
     const { authors } = this;
     object.authors = authors;

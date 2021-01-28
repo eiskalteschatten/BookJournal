@@ -6,7 +6,6 @@ import nunjucks from '../../nunjucks';
 import ListElement from '../listElement';
 import TitleListElement from '../listElement/title';
 import SpacerListElement from '../listElement/spacer';
-import { NunjucksRenderObject } from '../../interfaces/nunjucks';
 
 export default class List {
   protected elements: ListElement[];
@@ -22,7 +21,7 @@ export default class List {
 
     return new Promise<string>(async (resolve, reject) => {
       for (const element of this.elements) {
-        listElements.push(element.getNunjucksRenderObject());
+        listElements.push(await element.getNunjucksRenderObject());
       }
 
       fs.readFile(this.template, 'utf8', (error, string) => {
@@ -43,7 +42,7 @@ export default class List {
     this.elements.push(element);
   }
 
-  addElements(elements: NunjucksRenderObject[]): void {
+  addElements(elements: any[]): void {
     for (const element of elements) {
       this.addElement(element.displayName, element.iconPath);
     }

@@ -7,8 +7,8 @@ export default class About extends Modal {
     super('about');
   }
 
-  getNunjucksRenderObject() {
-    const object = super.getNunjucksRenderObject();
+  async getNunjucksRenderObject(): Promise<any> {
+    const object = await super.getNunjucksRenderObject();
 
     object.appVersion = remote.app.getVersion();
     object.nodeVersion = process.versions.node;
