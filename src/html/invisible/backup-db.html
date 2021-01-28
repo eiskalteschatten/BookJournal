@@ -1,21 +1,22 @@
 <html>
   <script>
-      const { createBackup } = require('../../db');
-      const {ipcRenderer, remote} = require('electron');
-      const BrowserWindow = remote.BrowserWindow;
+    const exports = {};
+    const { createBackup } = require('../../db');
+    const {ipcRenderer, remote} = require('electron');
+    const BrowserWindow = remote.BrowserWindow;
 
-      ipcRenderer.on('backup-db', async function(event, number, fromWindowId) {
-        try {
-          const fromWindow = BrowserWindow.fromId(fromWindowId);
+    ipcRenderer.on('backup-db', async function(event, number, fromWindowId) {
+      try {
+        const fromWindow = BrowserWindow.fromId(fromWindowId);
 
-          await createBackup();
-          fromWindow.webContents.send('db-backup-successful');
+        await createBackup();
+        fromWindow.webContents.send('db-backup-successful');
 
-          window.close();
-        }
-        catch(error) {
-          console.error(error);
-        }
-      })
+        window.close();
+      }
+      catch(error) {
+        console.error(error);
+      }
+    })
   </script>
 </html>

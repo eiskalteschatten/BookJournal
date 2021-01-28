@@ -1,29 +1,30 @@
 <html>
   <script>
-      const Statistics = require('../../elements/statistics');
-      const {ipcRenderer, remote} = require('electron');
-      const BrowserWindow = remote.BrowserWindow;
+    const exports = {};
+    const Statistics = require('../../elements/statistics');
+    const {ipcRenderer, remote} = require('electron');
+    const BrowserWindow = remote.BrowserWindow;
 
-      ipcRenderer.on('load-statistics', async function(event, number, fromWindowId) {
-        try {
-          const fromWindow = BrowserWindow.fromId(fromWindowId);
+    ipcRenderer.on('load-statistics', async function(event, number, fromWindowId) {
+      try {
+        const fromWindow = BrowserWindow.fromId(fromWindowId);
 
-          const statistics = new Statistics();
-          const returnValue = await statistics.calculateStatistics();
+        const statistics = new Statistics();
+        const returnValue = await statistics.calculateStatistics();
 
-          if (returnValue.noResults) {
-            fromWindow.webContents.send('statistics-no-results');
-          }
-          else {
-            fromWindow.webContents.send('statistics-render-page-book-count-year', returnValue.countsYearObj, returnValue.allDatesRead);
-            fromWindow.webContents.send('statistics-render-page-book-count-month-year', returnValue.countsMonthYear, returnValue.allDatesRead);
-          }
-
-          window.close();
+        if (returnValue.noResults) {
+          fromWindow.webContents.send('statistics-no-results');
         }
-        catch(error) {
-          console.error(error);
+        else {
+          fromWindow.webContents.send('statistics-render-page-book-count-year', returnValue.countsYearObj, returnValue.allDatesRead);
+          fromWindow.webContents.send('statistics-render-page-book-count-month-year', returnValue.countsMonthYear, returnValue.allDatesRead);
         }
-      })
+
+        window.close();
+      }
+      catch(error) {
+        console.error(error);
+      }
+    })
   </script>
 </html>
