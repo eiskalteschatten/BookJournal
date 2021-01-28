@@ -1,42 +1,24 @@
-'use strict';
+import { remote } from 'electron';
+import { Op } from 'sequelize';
+import path from 'path';
+import { promises as fsPromises } from 'fs';
 
-const { remote } = require('electron');
-const { BrowserWindow } = remote;
+import Book from '../models/book';
+import nunjucks from '../nunjucks';
+import config from '../config';
 
-const Sequelize = require('sequelize');
-const { Op } = Sequelize;
-
-const path = require('path');
-const fs = require('fs');
-const nunjucks = require('../nunjucks');
-
-const config = require('../config').default;
 const { defaultNumberOfYears } = config.statistics;
+const { BrowserWindow } = remote;
+const sortDesc = (a: any, b: any): any => b - a;
 
-const Book = require('../models/book');
-
-const sortDesc = (a, b) => b - a;
-
-
-class Statistics {
-  async render() {
-    return new Promise((resolve, reject) => {
-      const template = path.join(__dirname, '../templates/statistics.njk');
-
-      fs.readFile(template, 'utf8', (error, string) => {
-        if (error) {
-          reject(error);
-        }
-        resolve(string);
-      });
-    }).then(async templateString => {
-      return nunjucks.renderString(templateString);
-    }).catch(error => {
-      console.error(error);
-    });
+export default class Statistics {
+  async render(): Promise<string> {
+    const template = path.join(__dirname, '../templates/statistics.njk');
+    const templateString = await fsPromises.readFile(template, 'utf8');
+    return nunjucks.renderString(templateString);
   }
 
-  loadStatistics() {
+  loadStatistics(): void {
     const windowID = BrowserWindow.getFocusedWindow().id;
     const loadStatsPath = 'file://' + path.join(__dirname, '../html/invisible/load-statistics.html');
 
@@ -56,7 +38,8 @@ class Statistics {
     });
   }
 
-  async calculateStatistics() {
+  // TODO: add interface
+  async calculateStatistics(): Promise<any> {
     const allDatesRead = await this.getAllDatesRead();
 
     if (Object.keys(allDatesRead).length === 0) {
@@ -64,9 +47,9 @@ class Statistics {
     }
 
     const sortedYears = this.sortedYears(allDatesRead);
-    const latestYear = sortedYears[0];
+    const latestYear = Number(sortedYears[0]);
     const oldestYearIndex = defaultNumberOfYears - 1;
-    const oldestYear = sortedYears[oldestYearIndex] || sortedYears[sortedYears.length];
+    const oldestYear = Number([oldestYearIndex] || sortedYears[sortedYears.length]);
 
     return {
       allDatesRead,
@@ -75,7 +58,8 @@ class Statistics {
     };
   }
 
-  async getAllDatesRead() {
+  // TODO: add interface
+  async getAllDatesRead(): Promise<any> {
     const datesReadResults = await Book.findAll({
       attributes: ['dateRead'],
       where: {
@@ -109,15 +93,16 @@ class Statistics {
     return allDatesRead;
   }
 
-  async calculateCountsYear(allDatesRead, firstYear, secondYear) {
+  // TODO: add interface
+  async calculateCountsYear(allDatesRead, firstYear: number, secondYear: number): Promise<any> {
     const years = Object.keys(allDatesRead).slice().sort(sortDesc);
-    const firstSlice = years.indexOf(secondYear) > -1 ? years.indexOf(secondYear) : 0;
-    const lastSlice = years.indexOf(firstYear) > -1 ? years.indexOf(firstYear) + 1 : defaultNumberOfYears;
+    const firstSlice = years.includes(secondYear.toString()) ? years.indexOf(secondYear.toString()) : 0;
+    const lastSlice = years.includes(firstYear.toString()) ? years.indexOf(firstYear.toString()) + 1 : defaultNumberOfYears;
     const sortedYears = this.sortedYears(allDatesRead, firstSlice, lastSlice);
     const countsYear = {};
 
     for (const year of sortedYears) {
-      countsYear[year] = await this.calculateBookAndPageCounts(year);
+      countsYear[year] = await this.calculateBookAndPageCounts(Number(year));
     }
 
     return {
@@ -127,7 +112,8 @@ class Statistics {
     };
   }
 
-  async calculateCountsMonthYear(allDatesRead, year) {
+  // TODO: add interface
+  async calculateCountsMonthYear(allDatesRead, year: number): Promise<any> {
     const sortedMonths = allDatesRead[year].slice().sort(sortDesc);
     const countsMonthYearOnlyMonth = {};
 
@@ -142,20 +128,22 @@ class Statistics {
     return countsMonthYear;
   }
 
-  sortedYears(allDatesRead, firstSlice = 0, lastSlice = defaultNumberOfYears) {
+  // TODO: add interface
+  sortedYears(allDatesRead, firstSlice = 0, lastSlice = defaultNumberOfYears): string[] {
     const sortedYears = Object.keys(allDatesRead).slice().sort(sortDesc);
     return sortedYears.slice(firstSlice, lastSlice);
   }
 
-  async calculateBookAndPageCounts(year, month = '') {
-    const results = month === ''
+  // TODO: add interface
+  async calculateBookAndPageCounts(year: number, month?: number): Promise<any> {
+    const results = month
       ? await Book.getByYear(year)
       : await Book.getByMonthYear(month, year);
 
     let pageCount = 0;
 
     for (const result of results) {
-      const pageCountInt = parseInt(result.pageCount);
+      const pageCountInt = result.pageCount;
 
       if (result.pageCount && !isNaN(pageCountInt)) {
         pageCount += pageCountInt;
@@ -168,5 +156,3 @@ class Statistics {
     };
   }
 }
-
-module.exports = Statistics;

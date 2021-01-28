@@ -52,8 +52,8 @@ ipcRenderer.on('statistics-render-page-book-count-year', async (event: IpcRender
 });
 
 $(document).on('change', '#statisticsChangeFirstYearRange, #statisticsChangeSecondYearRange', async (): Promise<void> => {
-  const firstYear =$('#statisticsChangeFirstYearRange').val();
-  const secondYear =$('#statisticsChangeSecondYearRange').val();
+  const firstYear = Number($('#statisticsChangeFirstYearRange').val());
+  const secondYear = Number($('#statisticsChangeSecondYearRange').val());
 
   const statistics = new Statistics();
   const allDatesRead = await statistics.getAllDatesRead();
@@ -65,7 +65,7 @@ $(document).on('change', '#statisticsChangeFirstYearRange, #statisticsChangeSeco
 $(document).on('change', '#statisticsChangeMonthYear', async (): Promise<void> => {
   const statistics = new Statistics();
   const allDatesRead = await statistics.getAllDatesRead();
-  const countsYearObj = await statistics.calculateCountsMonthYear(allDatesRead, $(this).val());
+  const countsYearObj = await statistics.calculateCountsMonthYear(allDatesRead, Number($(this).val()));
 
   await renderBookPageCountMonthYear(countsYearObj, allDatesRead);
 });
