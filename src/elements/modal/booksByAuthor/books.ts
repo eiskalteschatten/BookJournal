@@ -2,18 +2,19 @@ import path from 'path';
 import fs from 'fs';
 
 import nunjucks from '../../../nunjucks';
-import Book, { BookAttributes } from '../../../models/book';
-import { GoogleBooksBook } from '../../../interfaces/books';
+import Book from '../../../models/book';
+import { GoogleBooksItem } from '../../../interfaces/books';
 
-interface BooksRenderObject extends BookAttributes, GoogleBooksBook {
+interface BooksRenderObject extends GoogleBooksItem {
   hasBeenRead?: boolean;
   dateReadString?: string;
+  isbn?: string;
 }
 
 export default class BookByAuthor {
-  private books: BooksRenderObject[];
+  private books: GoogleBooksItem[];
 
-  constructor(books: Book[]) {
+  constructor(books: GoogleBooksItem[]) {
     this.books = books;
   }
 
@@ -50,30 +51,31 @@ export default class BookByAuthor {
     const books = [];
 
     for (const book of this.books) {
-      const { volumeInfo } = book;
+      const renderBook: BooksRenderObject = book;
+      const { volumeInfo } = renderBook;
       const industryIdentifiers = volumeInfo.industryIdentifiers || [];
       const isbns = [];
 
       for (const id of industryIdentifiers) {
         isbns.push(id.identifier);
         if (id.type === 'ISBN_13') {
-          book.isbn = id.identifier;
+          renderBook.isbn = id.identifier;
         }
       }
 
-      if (!book.isbn && industryIdentifiers[0]) {
-        book.isbn = industryIdentifiers[0].identifier;
+      if (!renderBook.isbn && industryIdentifiers[0]) {
+        renderBook.isbn = industryIdentifiers[0].identifier;
       }
 
       const bookFromDb = await Book.getHasBeenRead(volumeInfo.title, volumeInfo.authors, isbns);
-      book.hasBeenRead = bookFromDb ? true : false;
+      renderBook.hasBeenRead = bookFromDb ? true : false;
 
       if (bookFromDb && bookFromDb.dateRead) {
         const dateRead = new Date(bookFromDb.dateRead);
-        book.dateReadString = dateRead.toLocaleDateString();
+        renderBook.dateReadString = dateRead.toLocaleDateString();
       }
 
-      books.push(book);
+      books.push(renderBook);
     }
 
     return books;

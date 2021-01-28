@@ -4,7 +4,7 @@ import Modal from '..';
 import Books from './books';
 import config from '../../../config';
 import Preferences from '../../../models/preferences';
-import Book from '../../../models/book';
+import { GoogleBooksBook, GoogleBooksItem } from '../../../interfaces/books';
 
 const maxResults = config.bookInfo.google.authorsMaxResults;
 
@@ -23,8 +23,8 @@ export default class BooksByAuthor extends Modal {
     object.authors = authors;
 
     try {
-      let bookJson = sessionStorage.getItem('booksByAuthorInitial');
-      bookJson = JSON.parse(bookJson);
+      const bookString = sessionStorage.getItem('booksByAuthorInitial');
+      const bookJson: GoogleBooksBook = JSON.parse(bookString);
 
       const oldBooks = this.sortBooksByTitle(bookJson);
       object.bookList = await this.renderBookList(oldBooks);
@@ -37,8 +37,7 @@ export default class BooksByAuthor extends Modal {
     return object;
   }
 
-  // TODO: create a real interface
-  async fetchBooks(indexFactor = 0): Promise<any> {
+  async fetchBooks(indexFactor = 0): Promise<GoogleBooksBook> {
     const { authors } = this;
     if (authors === '') {
       return;
@@ -60,7 +59,7 @@ export default class BooksByAuthor extends Modal {
       url = url.replace('${authors}', authors).replace('${lang}', preferences.fetchBooksByAuthorLanguage).replace('${index}', index.toString());
 
       const response = await fetch(url);
-      const body = await response.json();
+      const body: GoogleBooksBook = await response.json();
       const { totalItems } = body;
 
       if (totalItems > 0) {
@@ -69,7 +68,7 @@ export default class BooksByAuthor extends Modal {
         if (indexFactor === 0) {
           sessionStorage.setItem('booksByAuthorInitial', JSON.stringify(body));
           $('#bookAuthorInfo').removeClass('hidden');
-          this.fetchBooks(indexFactor + 1);
+          await this.fetchBooks(indexFactor + 1);
         }
         else {
           sessionStorage.setItem('booksByAuthor', JSON.stringify(body));
@@ -83,8 +82,7 @@ export default class BooksByAuthor extends Modal {
     }
   }
 
-  // TODO: interfaces!
-  sortBooksByTitle(books) {
+  sortBooksByTitle(books: GoogleBooksBook): GoogleBooksItem[] {
     const { authors } = this;
 
     if (!books.items) {
@@ -114,7 +112,7 @@ export default class BooksByAuthor extends Modal {
     });
   }
 
-  async renderBookList(oldBooks: Book[]): Promise<string> {
+  async renderBookList(oldBooks: GoogleBooksItem[]): Promise<string> {
     const books = new Books(oldBooks);
     return await books.render();
   }

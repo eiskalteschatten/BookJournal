@@ -120,9 +120,9 @@ async function saveBook(): Promise<void> {
     await updateBookList(newId);
   }
 
-  const authors = $('#bookAuthor').val();
+  const authors = $('#bookAuthor').val().toString();
   const booksByAuthor = new BooksByAuthor(authors);
-  booksByAuthor.fetchBooks();
+  await booksByAuthor.fetchBooks();
 
   setTimeout((): void => {
     $bookActivityLoader.addClass('hidden');
