@@ -1,10 +1,10 @@
 import { remote } from 'electron';
-
 import path from 'path';
 
 import checkForUpdates from './checkForUpdates';
 import SidebarList from './elements/list/sidebar';
 import AboutModal from './elements/modal/about';
+import { setupSequelize } from './db';
 
 const { BrowserWindow } = remote;
 
@@ -58,16 +58,18 @@ async function postRender(): Promise<void> {
 }
 
 async function render(): Promise<void> {
+  await setupSequelize();
+
   require('./events.js');
 
   const sortBy = localStorage.getItem('sortBy');
   if (sortBy) {
-    (document.getElementById('bookSort') as HTMLInputElement).value = sortBy; 
+    (document.getElementById('bookSort') as HTMLInputElement).value = sortBy;
   }
 
   const sortOrder = localStorage.getItem('sortOrder');
   if (sortOrder === 'DESC') {
-    document.getElementById('bookSortOrder').innerHTML = '&darr;'; 
+    document.getElementById('bookSortOrder').innerHTML = '&darr;';
   }
 
   await renderSidebar();

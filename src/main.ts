@@ -1,17 +1,10 @@
 import { app, BrowserWindow, BrowserWindowConstructorOptions, Menu } from 'electron';
 import path from 'path';
-import { setupMigration, migrate } from 'sequelize-migration-wrapper';
 
 import config from './config';
 import appMenu from './menus/config/app';
 import { loadPreferences } from './initialPreferences';
-import { sequelize } from './db';
-
-setupMigration({
-  sequelize,
-  path: path.join(__dirname, 'migrations'),
-});
-migrate();
+import { setupSequelize } from './db';
 
 const { app: appConfig } = config;
 
@@ -20,6 +13,8 @@ const { app: appConfig } = config;
 let mainWindow: BrowserWindow;
 
 async function createWindow(): Promise<void> {
+  await setupSequelize();
+
   const preferences = await loadPreferences();
 
   // Create the browser window.
@@ -68,7 +63,6 @@ async function createWindow(): Promise<void> {
       console.error(error);
     }
   });
-
 
   mainWindow.on('closed', (): void => {
     mainWindow = null;
