@@ -1,4 +1,4 @@
-import { Op, fn, col, FindOptions } from 'sequelize';
+import { Op, fn, col, FindOptions, where } from 'sequelize';
 
 import {
   Column,
@@ -11,8 +11,6 @@ import {
   UpdatedAt,
   DataType,
 } from 'sequelize-typescript';
-
-import { sequelize } from '../db';
 
 type Status = 'notReadYet' |'currentlyReading' |'read' |'stoppedReading' |'takingABreak';
 
@@ -243,7 +241,10 @@ export default class Book extends Model implements BookAttributes {
   }
 
   static async getByYear(year: number): Promise<Book[]> {
-    return await sequelize.query(`SELECT * FROM books where strftime('%Y', dateRead) IN('${year}');`, { model: this });
+    return await Book.findAll({
+      where: where(fn('strftime', col('dateRead'), '%Y'), { [Op.in]: [year] }),
+    });
+    // return await sequelize.query(`SELECT * FROM books where strftime('%Y', dateRead) IN('${year}');`, { model: this });
   }
 
   static async getByMonthYear(month: number, year: number): Promise<Book[]> {
@@ -253,7 +254,10 @@ export default class Book extends Model implements BookAttributes {
       monthString = `0${month}`;
     }
 
-    return await sequelize.query(`SELECT * FROM books where strftime('%Y-%m', dateRead) IN('${year}-${monthString}');`, { model: this });
+    return await Book.findAll({
+      where: where(fn('strftime', col('dateRead'), '%Y-%m'), { [Op.in]: [`${year}-${monthString}`] }),
+    });
+    // return await sequelize.query(`SELECT * FROM books where strftime('%Y-%m', dateRead) IN('${year}-${monthString}');`, { model: this });
   }
 
   static async getHasBeenRead(title: string, authors: string[], isbns: string[]): Promise<Book> {
