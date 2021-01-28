@@ -10,25 +10,19 @@ const pathToScss = path.resolve('./src/assets/scss');
 
 async function build() {
   try {
-    fs.readdir(pathToScss, async (error, files) => {
-      if (error) {
-        console.error(error);
-        return;
+    const files = await fs.promises.readdir(pathToScss);
+    const scssFiles = [];
+
+    for (const file of files) {
+      if (file.charAt(0) !== '_' && path.extname(file) === '.scss') {
+        scssFiles.push(file);
       }
+    }
 
-      const scssFiles = [];
-
-      for (const file of files) {
-        if (file.charAt(0) !== '_' && path.extname(file) === '.scss') {
-          scssFiles.push(file); 
-        }
-      }
-
-      await compileSass.compileSassAndSaveMultiple({
-        sassPath: pathToScss,
-        cssPath: pathToCss,
-        files: scssFiles,
-      });
+    await compileSass.compileSassAndSaveMultiple({
+      sassPath: pathToScss,
+      cssPath: pathToCss,
+      files: scssFiles,
     });
   }
   catch (error) {
