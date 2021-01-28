@@ -1,4 +1,4 @@
-{% import "elements/selectionBar.njk" as selectionBar %}
+{% import "selectionBar.njk" as selectionBar %}
 
 <div class="book-utility-menu" id="bookUtilityMenu"></div>
 
@@ -160,12 +160,12 @@
 
         <div class="form-group">
             <label for="bookTags">Tags</label>
-            {% include "elements/bookForm/tags.njk" %}
+            {% include "bookForm/tags.njk" %}
         </div>
         <div class="form-group">
             <label for="bookCategories">Categories</label>
             <div id="bookCategoriesWrapper">
-                {% include "elements/bookForm/categories.njk" %}
+                {% include "bookForm/categories.njk" %}
             </div>
         </div>
     </div>
@@ -178,7 +178,7 @@
                 <div class="form-group">
                     <label for="bookRatingStars">Rating</label>
                     <div id="ratingStarsAnchor">
-                        {% include "elements/bookForm/ratingStars.njk" %}
+                        {% include "bookForm/ratingStars.njk" %}
                     </div>
                 </div>
             </div>
