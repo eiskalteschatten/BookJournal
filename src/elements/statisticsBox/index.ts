@@ -1,14 +1,14 @@
 import path from 'path';
 import { promises as fsPromises } from 'fs';
+
 import nunjucks from '../../nunjucks';
+import { Statistics } from '../../interfaces/statistics';
 
 export default class StatisticsBox {
-  // TODO: add interface!
-  private statistics;
+  private statistics: Statistics;
   private template: string;
 
-  // TODO: add interface!
-  constructor(statistics) {
+  constructor(statistics: Statistics) {
     this.statistics = statistics;
     this.template = path.join(__dirname, '../templates/statisticsBox.njk');
   }
