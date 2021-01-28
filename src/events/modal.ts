@@ -33,7 +33,7 @@ function closeModal($modal: JQuery<HTMLElement>): void {
 }
 
 $(document).on('click', '.js-modal-close', (): void => {
-  const $modal = $(this).closest('.js-modal');
+  const $modal = $('.js-modal.open');
   closeModal($modal);
 });
 
