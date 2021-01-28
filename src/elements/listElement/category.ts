@@ -1,6 +1,6 @@
 import $ from 'jquery';
 import path from 'path';
-import fs from 'fs';
+import { promises as fsPromises } from 'fs';
 
 import nunjucks from '../../nunjucks';
 import SidebarListElement from '../listElement/sidebar';
@@ -19,15 +19,9 @@ export default class CategoryListElement extends SidebarListElement {
 
   async renderListEditor(): Promise<string> {
     try {
-      const templateString = await new Promise<string>((resolve, reject) => {
-        const template = path.join(__dirname, '../../templates/listElement/edit.njk');
-        fs.readFile(template, 'utf8', (error: Error, string: string): void => {
-          if (error) {
-            reject(error);
-          }
-          resolve(string);
-        });
-      });
+      const template = path.join(__dirname, '../../templates/listElement/edit.njk');
+      const templateString = await fsPromises.readFile(template, 'utf8');
+
       return nunjucks.renderString(templateString, {
         id: this.id,
         displayName: this.displayName,

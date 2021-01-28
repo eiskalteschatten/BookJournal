@@ -1,5 +1,5 @@
 import path from 'path';
-import fs from 'fs';
+import { promises as fsPromises } from 'fs';
 
 import nunjucks from '../../nunjucks';
 
@@ -12,21 +12,9 @@ export default class Modal {
 
   async render(): Promise<string> {
     const { type } = this;
-
-    return new Promise<string>((resolve, reject) => {
-      const template = path.join(__dirname, `../templates/modal/${type}.njk`);
-
-      fs.readFile(template, 'utf8', (error: Error, string: string): void => {
-        if (error) {
-          reject(error);
-        }
-        resolve(string);
-      });
-    }).then(async templateString => {
-      return nunjucks.renderString(templateString, await this.getNunjucksRenderObject());
-    }).catch(error => {
-      console.error(error);
-    });
+    const template = path.join(__dirname, `../templates/modal/${type}.njk`);
+    const templateString = await fsPromises.readFile(template, 'utf8');
+    return nunjucks.renderString(templateString, await this.getNunjucksRenderObject());
   }
 
   // Use an async function here because some inheriting classes

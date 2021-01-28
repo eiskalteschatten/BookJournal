@@ -1,5 +1,5 @@
 import path from 'path';
-import fs from 'fs';
+import { promises as fsPromises } from 'fs';
 
 import nunjucks from '../../../nunjucks';
 import Book from '../../../models/book';
@@ -18,33 +18,23 @@ export default class BookByAuthor {
     this.books = books;
   }
 
-  async render(): Promise<string | void> {
+  async render(): Promise<string> {
     const books = await this.buildBooksRenderObject();
 
-    return new Promise<string>((resolve, reject) => {
-      const template = path.join(__dirname, '../../../templates/modal/booksByAuthor/book.njk');
-      fs.readFile(template, 'utf8', (error: Error, string: string): void => {
-        if (error) {
-          reject(error);
-        }
-        resolve(string);
+    const template = path.join(__dirname, '../../../templates/modal/booksByAuthor/book.njk');
+    const templateString = await fsPromises.readFile(template, 'utf8');
+    let bookHtml = '';
+
+    for (const book of books) {
+      const authors = book.volumeInfo.authors ? book.volumeInfo.authors.join(', ') : '';
+
+      bookHtml += nunjucks.renderString(templateString, {
+        book,
+        authors,
       });
-    }).then(async (templateString: string) => {
-      let bookHtml = '';
+    }
 
-      for (const book of books) {
-        const authors = book.volumeInfo.authors ? book.volumeInfo.authors.join(', ') : '';
-
-        bookHtml += nunjucks.renderString(templateString, {
-          book,
-          authors,
-        });
-      }
-
-      return bookHtml;
-    }).catch(error => {
-      console.error(error);
-    });
+    return bookHtml;
   }
 
   async buildBooksRenderObject(): Promise<BooksRenderObject[]> {

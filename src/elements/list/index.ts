@@ -1,5 +1,5 @@
 import path from 'path';
-import fs from 'fs';
+import { promises as fsPromises } from 'fs';
 
 import nunjucks from '../../nunjucks';
 
@@ -19,22 +19,12 @@ export default class List {
   async render(): Promise<string> {
     const listElements = [];
 
-    return new Promise<string>(async (resolve, reject) => {
-      for (const element of this.elements) {
-        listElements.push(await element.getNunjucksRenderObject());
-      }
+    for (const element of this.elements) {
+      listElements.push(await element.getNunjucksRenderObject());
+    }
 
-      fs.readFile(this.template, 'utf8', (error, string) => {
-        if (error) {
-          reject(error);
-        }
-        resolve(string);
-      });
-    }).then(templateString => {
-      return nunjucks.renderString(templateString, { listElements });
-    }).catch(error => {
-      console.error(error);
-    });
+    const templateString = await fsPromises.readFile(this.template, 'utf8');
+    return nunjucks.renderString(templateString, { listElements });
   }
 
   addElement(displayName: string, iconPath = '', queryType?: string): void {

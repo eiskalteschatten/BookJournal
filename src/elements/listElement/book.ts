@@ -1,5 +1,5 @@
 import path from 'path';
-import fs from 'fs';
+import { promises as fsPromises } from 'fs';
 
 import nunjucks from '../../nunjucks';
 import ListElement from '../listElement';
@@ -25,29 +25,19 @@ export default class BookListElement extends ListElement {
   }
 
   async render(): Promise<string> {
-    return new Promise<string>((resolve, reject) => {
-      const template = path.join(__dirname, '../../templates/listElement/book.njk');
-      fs.readFile(template, 'utf8', (error: Error, string: string): void => {
-        if (error) {
-          reject(error);
-        }
-        resolve(string);
-      });
-    }).then(async (templateString: string) => {
-      const { book } = this;
-      const renderBook: BooksRenderObject = book;
+    const template = path.join(__dirname, '../../templates/listElement/book.njk');
+    const templateString = await fsPromises.readFile(template, 'utf8');
+    const { book } = this;
+    const renderBook: BooksRenderObject = book;
 
-      if (book.bookcover) {
-        renderBook.bookcoverPath = pruneCoverPath(book.bookcover);
-      }
+    if (book.bookcover) {
+      renderBook.bookcoverPath = pruneCoverPath(book.bookcover);
+    }
 
-      renderBook.classes = this.classes;
-      renderBook.subtitle = await this.determineSubtitle();
+    renderBook.classes = this.classes;
+    renderBook.subtitle = await this.determineSubtitle();
 
-      return nunjucks.renderString(templateString, { book: renderBook });
-    }).catch(error => {
-      console.error(error);
-    });
+    return nunjucks.renderString(templateString, { book: renderBook });
   }
 
   checkForValidDate(date: Date): boolean {
@@ -115,19 +105,9 @@ export default class BookListElement extends ListElement {
       return (index1 <= bookRating) ? 'full' : element;
     });
 
-    return new Promise<string>(async (resolve, reject) => {
-      const template = path.join(__dirname, '../../templates/listElement/book/ratingStars.njk');
+    const template = path.join(__dirname, '../../templates/listElement/book/ratingStars.njk');
+    const templateString = await fsPromises.readFile(template, 'utf8');
 
-      fs.readFile(template, 'utf8', (error: Error, string: string): void => {
-        if (error) {
-          reject(error);
-        }
-        resolve(string);
-      });
-    }).then((templateString: string) => {
-      return nunjucks.renderString(templateString, { ratingClasses });
-    }).catch(error => {
-      console.error(error);
-    });
+    return nunjucks.renderString(templateString, { ratingClasses });
   }
 }
