@@ -1,11 +1,8 @@
 import ListElement from '.';
 
 export default class SidebarListElement extends ListElement {
-  private queryType: string;
-
   constructor(displayName: string, iconPath = '', queryType: string) {
-    super(displayName, iconPath);
-    this.queryType = queryType;
+    super(displayName, iconPath, queryType);
     this.classes = 'list-element js-sidebar-list-element';
   }
 

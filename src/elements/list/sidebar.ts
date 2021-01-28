@@ -2,7 +2,7 @@ import $ from 'jquery';
 import path from 'path';
 
 import List from '../list';
-import ListElement from '../listElement/sidebar';
+import SidebarListElement from '../listElement/sidebar';
 import Category from '../../models/category';
 import CategoryListElement from '../../elements/listElement/category';
 
@@ -28,7 +28,7 @@ export default class Sidebar extends List {
   }
 
   addElement(displayName: string, iconPath = '', queryType: string): void {
-    const element = new ListElement(displayName, iconPath, queryType);
+    const element = new SidebarListElement(displayName, iconPath, queryType);
     this.elements.push(element);
   }
 

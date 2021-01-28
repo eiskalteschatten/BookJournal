@@ -37,8 +37,8 @@ export default class List {
     });
   }
 
-  addElement(displayName: string, iconPath = ''): void {
-    const element = new ListElement(displayName, iconPath);
+  addElement(displayName: string, iconPath = '', queryType?: string): void {
+    const element = new ListElement(displayName, iconPath, queryType);
     this.elements.push(element);
   }
 

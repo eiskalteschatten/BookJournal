@@ -9,12 +9,14 @@ export default class ListElement {
   protected iconPath: string;
   protected classes: string;
   protected type: string;
+  protected queryType: string;
 
-  constructor(displayName = '', iconPath = '') {
+  constructor(displayName = '', iconPath = '', queryType?: string) {
     this.displayName = displayName;
     this.iconPath = iconPath;
     this.classes = 'list-element js-list-element';
     this.type = 'clickable';
+    this.queryType = queryType;
   }
 
   async render(): Promise<string> {
