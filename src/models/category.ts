@@ -7,6 +7,7 @@ import {
   AutoIncrement,
   CreatedAt,
   UpdatedAt,
+  DataType,
 } from 'sequelize-typescript';
 
 export interface CategoryAttributes {
@@ -23,13 +24,19 @@ export interface CategoryAttributes {
 export default class Category extends Model implements CategoryAttributes {
   @PrimaryKey
   @AutoIncrement
-  @Column
+  @Column({
+    type: DataType.INTEGER,
+  })
   id!: number;
 
-  @Column
+  @Column({
+    type: DataType.STRING,
+  })
   name: string;
 
-  @Column
+  @Column({
+    type: DataType.STRING,
+  })
   color: string;
 
   @CreatedAt

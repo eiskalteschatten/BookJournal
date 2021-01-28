@@ -7,6 +7,7 @@ import {
   Default,
   CreatedAt,
   UpdatedAt,
+  DataType,
 } from 'sequelize-typescript';
 
 export interface PreferencesAttributes {
@@ -34,59 +35,85 @@ export interface PreferencesAttributes {
 export default class Preferences extends Model implements PreferencesAttributes {
   @PrimaryKey
   @AutoIncrement
-  @Column
+  @Column({
+    type: DataType.INTEGER,
+  })
   id!: number;
 
-  @Column
   @Default(1200)
+  @Column({
+    type: DataType.INTEGER,
+  })
   windowWidth: number;
 
-  @Column
   @Default(800)
+  @Column({
+    type: DataType.INTEGER,
+  })
   windowHeight: number;
 
-  @Column
+  @Column({
+    type: DataType.INTEGER,
+  })
   windowX: number;
 
-  @Column
+  @Column({
+    type: DataType.INTEGER,
+  })
   windowY: number;
 
-  @Column
   @Default(false)
+  @Column({
+    type: DataType.BOOLEAN,
+  })
   windowIsMaximized: boolean;
 
-  @Column
   @Default(false)
+  @Column({
+    type: DataType.BOOLEAN,
+  })
   windowIsFullScreen: boolean;
 
   @Column({
     allowNull: true,
+    type: DataType.INTEGER,
   })
   sidebarWidth?: number;
 
   @Column({
     allowNull: true,
+    type: DataType.INTEGER,
   })
   middleColumnWidth?: number;
 
-  @Column
   @Default('light')
+  @Column({
+    type: DataType.STRING,
+  })
   theme: string;
 
-  @Column
   @Default(true)
+  @Column({
+    type: DataType.BOOLEAN,
+  })
   fetchBookInfoFromGoogle: boolean;
 
-  @Column
   @Default(true)
+  @Column({
+    type: DataType.BOOLEAN,
+  })
   checkForUpdates: boolean;
 
-  @Column
   @Default(true)
+  @Column({
+    type: DataType.BOOLEAN,
+  })
   fetchBooksByAuthor: boolean;
 
-  @Column
   @Default('en')
+  @Column({
+    type: DataType.STRING,
+  })
   fetchBooksByAuthorLanguage: string;
 
   @CreatedAt

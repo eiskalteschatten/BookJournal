@@ -1,5 +1,5 @@
-import { Sequelize } from 'sequelize';
-import fs from 'fs';
+import { Sequelize } from 'sequelize-typescript';
+import fs, { promises as fsPromises } from 'fs';
 import path from 'path';
 
 import config from './config';
@@ -15,6 +15,7 @@ if (!fs.existsSync(dbPath)) {
 export const sequelize = new Sequelize({
   dialect: 'sqlite',
   storage: dbFile,
+  models: [__dirname + '/models'],
 });
 
 sequelize.authenticate()
@@ -25,16 +26,9 @@ sequelize.authenticate()
     console.error('Unable to connect to the database:', error);
   });
 
-export const createBackup = (): Promise<void> =>
-  new Promise<void>((resolve, reject) => {
-    if (fs.existsSync(dbFile)) {
-      const dbBackupFile = path.join(dbPath, dbConfig.backupFileName);
-      fs.copyFile(dbFile, dbBackupFile, error => {
-        if (error) {
-          reject(error);
-        }
-
-        resolve();
-      });
-    }
-  });
+export const createBackup = async (): Promise<void> => {
+  if (fs.existsSync(dbFile)) {
+    const dbBackupFile = path.join(dbPath, dbConfig.backupFileName);
+    await fsPromises.copyFile(dbFile, dbBackupFile);
+  }
+};

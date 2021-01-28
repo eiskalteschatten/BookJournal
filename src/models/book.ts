@@ -54,134 +54,163 @@ export interface BookAttributes {
 export default class Book extends Model implements BookAttributes {
   @PrimaryKey
   @AutoIncrement
-  @Column
+  @Column({
+    type: DataType.INTEGER,
+  })
   id!: number;
 
-  @Column
+  @Column({
+    type: DataType.STRING,
+  })
   title: string;
 
   @Column({
     allowNull: true,
+    type: DataType.STRING,
   })
   author?: string;
 
   @Column({
     allowNull: true,
+    type: DataType.STRING,
   })
   editor?: string;
 
   @Column({
     allowNull: true,
+    type: DataType.STRING,
   })
   genre?: string;
 
   @Column({
     allowNull: true,
+    type: DataType.DATEONLY,
   })
   dateStarted?: Date;
 
   @Column({
     allowNull: true,
+    type: DataType.DATEONLY,
   })
   dateRead?: Date;
 
+  @Default('notReadYet')
   @Column({
     type: DataType.ENUM('notReadYet', 'currentlyReading', 'read', 'stoppedReading', 'takingABreak'),
   })
-  @Default('notReadYet')
   status: Status;
 
-  @Column
   @Default(false)
+  @Column({
+    type: DataType.BOOLEAN,
+  })
   onWishlist: boolean;
 
   @Column({
     allowNull: true,
+    type: DataType.INTEGER,
   })
   pageCount?: number;
 
   @Column({
     allowNull: true,
+    type: DataType.STRING,
   })
   color?: string;
 
   @Column({
     allowNull: true,
+    type: DataType.STRING,
   })
   bookcover?: string;
 
   @Column({
     allowNull: true,
+    type: DataType.STRING,
   })
   publisher?: string;
 
   @Column({
     allowNull: true,
+    type: DataType.STRING,
   })
   isbn?: string;
 
   @Column({
     allowNull: true,
+    type: DataType.INTEGER,
   })
   yearPublished?: number;
 
   @Column({
     allowNull: true,
+    type: DataType.STRING,
   })
   bookFormat?: string;
 
   @Column({
     allowNull: true,
+    type: DataType.STRING,
   })
   nationality?: string;
 
   @Column({
     allowNull: true,
+    type: DataType.STRING,
   })
   languageReadIn?: string;
 
   @Column({
     allowNull: true,
+    type: DataType.STRING,
   })
   originalLanguage?: string;
 
   @Column({
     allowNull: true,
+    type: DataType.STRING,
   })
   translator?: string;
 
   @Column({
     allowNull: true,
+    type: DataType.STRING,
   })
   tags?: string;
 
   @Column({
     allowNull: true,
+    type: DataType.STRING,
   })
   categories?: string;
 
   @Column({
     allowNull: true,
+    type: DataType.INTEGER,
   })
   rating?: number;
 
   @Column({
     allowNull: true,
+    type: DataType.STRING,
   })
   summary?: string;
 
   @Column({
     allowNull: true,
+    type: DataType.STRING,
   })
   commentary?: string;
 
   @Column({
     allowNull: true,
+    type: DataType.STRING,
   })
   notes?: string;
 
   @Column({
     allowNull: true,
+    type: DataType.STRING,
   })
   subtitleField?: string;
 
