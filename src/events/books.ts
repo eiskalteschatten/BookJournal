@@ -74,7 +74,7 @@ async function saveBook(): Promise<void> {
   const $bookActivityLoader = $('#bookActivityLoader');
   $bookActivityLoader.removeClass('hidden');
 
-  let formData: BookFormData;
+  const formData: BookFormData = {};
 
   $('#bookForm').find('input[type!="checkbox"]').each(function(): void {
     const $this = $(this);

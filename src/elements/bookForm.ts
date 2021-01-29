@@ -65,8 +65,7 @@ export default class BookForm {
 
   async save(oldFormData: BookFormData): Promise<number> {
     const { id } = this;
-    let formData: BookAttributes;
-    let book: Book;
+    const formData = {};
 
     for (const formId in oldFormData) {
       const newKey = bookFormMap[formId];
@@ -79,7 +78,7 @@ export default class BookForm {
 
     try {
       if (!id) {
-        book = await Book.create(formData);
+        const book = await Book.create(formData);
         this.id = book.id;
       }
       else {
