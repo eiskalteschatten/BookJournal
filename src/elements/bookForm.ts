@@ -142,9 +142,9 @@ export default class BookForm {
           return (index1 <= book.rating) ? 'full' : element;
         });
       }
-    }
 
-    book.ratingClasses = ratingClasses;
+      book.ratingClasses = ratingClasses;
+    }
 
     const template = path.join(__dirname, '../templates/bookForm.njk');
     const templateString = await fsPromises.readFile(template, 'utf8');
