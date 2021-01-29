@@ -125,7 +125,7 @@ export default class BookForm {
 
       if (book.categories) {
         const ids = book.categories.split(',');
-        let categoryBadges: BookFormCategoryBadge;
+        const categoryBadges: BookFormCategoryBadge = {};
 
         for (const id of ids) {
           const category = await Category.findByPk(id);
