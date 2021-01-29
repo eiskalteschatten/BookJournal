@@ -13,7 +13,13 @@ import BooksByAuthor from './modal/booksByAuthor';
 import { pruneCoverPath } from '../lib/bookcover';
 import bookFormats from '../lib/bookFormats';
 import readingStatuses from '../lib/readingStatuses';
-import { BookFormCategoryBadge, BookFormRenderObject, GoogleBooksBook } from '../interfaces/books';
+
+import {
+  BookFormCategoryBadge,
+  BookFormRenderObject,
+  GoogleBooksBook,
+  SavedBookCover,
+} from '../interfaces/books';
 
 import Book from '../models/book';
 import Category from '../models/category';
@@ -58,7 +64,8 @@ export default class BookForm {
 
   // TODO: add interface
   async save(oldFormData): Promise<number> {
-    const formData = {};
+    // TODO: add interface
+    const formData: any = {};
     const { id } = this;
     let book: Book;
 
@@ -174,8 +181,7 @@ export default class BookForm {
     return nunjucks.renderString(templateString, values);
   }
 
-  // TODO: return interface
-  static async saveBookcover(imagePath: string) {
+  static async saveBookcover(imagePath: string): Promise<SavedBookCover> {
     const bookcoverConfig = config.bookcovers;
     const bookcoverExtensions = bookcoverConfig.extensions;
     const extension = path.extname(imagePath).replace('.', '').toLowerCase();

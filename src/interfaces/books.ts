@@ -28,6 +28,12 @@ export interface BookFormRenderObject extends BookAttributes {
   categoryBadges?: BookFormCategoryBadge;
   ratingClasses?: string[];
 }
+
+export interface SavedBookCover {
+  fileName: string;
+  filePath: string;
+}
+
 export interface GoogleBooksBook {
   kind: string;
   totalItems: number;
