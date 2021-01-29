@@ -12,6 +12,7 @@ import { refreshBookList, updateBookList, loadBook, clearBooklistSelection, open
 import BookForm from '../elements/bookForm';
 import BooksByAuthor from '../elements/modal/booksByAuthor';
 import Preferences from '../models/preferences';
+import { BookFormData } from '../interfaces/books';
 
 const { dialog } = remote;
 
@@ -73,8 +74,7 @@ async function saveBook(): Promise<void> {
   const $bookActivityLoader = $('#bookActivityLoader');
   $bookActivityLoader.removeClass('hidden');
 
-  // TODO: add interface from BookForm (create first)
-  const formData = {} as any;
+  let formData: BookFormData;
 
   $('#bookForm').find('input[type!="checkbox"]').each((): void => {
     const $this = $(this);

@@ -16,12 +16,13 @@ import readingStatuses from '../lib/readingStatuses';
 
 import {
   BookFormCategoryBadge,
+  BookFormData,
   BookFormRenderObject,
   GoogleBooksBook,
   SavedBookCover,
 } from '../interfaces/books';
 
-import Book from '../models/book';
+import Book, { BookAttributes } from '../models/book';
 import Category from '../models/category';
 
 const { dialog } = remote;
@@ -62,11 +63,9 @@ export default class BookForm {
     this.id = id;
   }
 
-  // TODO: add interface
-  async save(oldFormData): Promise<number> {
-    // TODO: add interface
-    const formData: any = {};
+  async save(oldFormData: BookFormData): Promise<number> {
     const { id } = this;
+    let formData: BookAttributes;
     let book: Book;
 
     for (const formId in oldFormData) {

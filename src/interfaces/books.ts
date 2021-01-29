@@ -29,6 +29,35 @@ export interface BookFormRenderObject extends BookAttributes {
   ratingClasses?: string[];
 }
 
+export interface BookFormData {
+  bookBookcoverId: string;
+  bookTitle: string;
+  bookAuthor: string;
+  bookEditor: string;
+  bookGenre: string;
+  bookDateStarted: string;
+  bookDateRead: string;
+  bookReadingStatus: string;
+  bookOnWishlist: string;
+  bookNumberOfPages: string;
+  bookColor: string;
+  bookBookcoverFileName: string;
+  bookPublisher: string;
+  bookIsbn: string;
+  bookYearPublished: string;
+  bookBookFormat: string;
+  bookNationality: string;
+  bookLanguageReadIn: string;
+  bookOriginalLanguage: string;
+  bookTranslator: string;
+  bookTagsHidden: string;
+  bookCategoriesHidden: string;
+  bookRating: string;
+  bookSummary: string;
+  bookCommentary: string;
+  bookNotes: string;
+}
+
 export interface SavedBookCover {
   fileName: string;
   filePath: string;
