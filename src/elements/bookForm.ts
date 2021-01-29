@@ -110,11 +110,13 @@ export default class BookForm {
       }
 
       if (book.dateStarted) {
-        book.dateStartedString = this.formatDate(book.dateStarted.toISOString());
+        const dateString = typeof book.dateStarted === 'string' ? book.dateStarted : book.dateStarted.toISOString();
+        book.dateStartedString = this.formatDate(dateString);
       }
 
       if (book.dateRead) {
-        book.dateReadString = this.formatDate(book.dateRead.toISOString());
+        const dateString = typeof book.dateRead === 'string' ? book.dateRead : book.dateRead.toISOString();
+        book.dateReadString = this.formatDate(dateString);
       }
 
       if (book.tags) {
