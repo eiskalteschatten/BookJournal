@@ -4,7 +4,7 @@
   "description": "A digital book journal.",
   "main": "./dist/main.js",
   "scripts": {
-    "build": "tsc && node ./build-scripts/build.js && copyfiles -u 1 \"./src/**/*.{html,njk,svg,png}\" \"./dist/\"",
+    "build": "tsc && node ./build-scripts/build.js",
     "prestart": "rm -rf ./dist && npm run build",
     "start": "NODE_ENV=development electron .",
     "prestart:prod": "npm run build",
