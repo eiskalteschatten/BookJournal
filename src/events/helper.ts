@@ -128,7 +128,7 @@ export const openModal = (id: string): void => {
     }, 100);
   }, 100);
 
-  $(document).on('keydown', (e: JQuery.TriggeredEvent): void => {
+  $(document).on('keydown', function(e: JQuery.TriggeredEvent): void {
     if (e.key === 'Escape') {
       closeModal(id);
     }

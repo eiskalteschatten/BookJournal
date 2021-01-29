@@ -7,7 +7,7 @@ import BookForm from '../elements/bookForm';
 
 let $elementWithContextMenu: JQuery<HTMLElement>;
 
-$(document).on('contextmenu', '.js-category-list-element', (): void => {
+$(document).on('contextmenu', '.js-category-list-element', function(): void {
   $elementWithContextMenu = $(this);
   ipcRenderer.send('show-category-list-element-context-menu');
 });
@@ -25,16 +25,16 @@ async function createNewCategory(): Promise<void> {
   await newCategory.showListEditor();
 }
 
-$('.js-new-category').on('click', async (e: JQuery.TriggeredEvent): Promise<void> => {
+$('.js-new-category').on('click', async function(e: JQuery.TriggeredEvent): Promise<void> {
   e.preventDefault();
   createNewCategory();
 });
 
-ipcRenderer.on('create-new-category', async (): Promise<void> => {
+ipcRenderer.on('create-new-category', async function(): Promise<void> {
   createNewCategory();
 });
 
-$(document).on('blur', '.js-list-element-edit-name', (): void => {
+$(document).on('blur', '.js-list-element-edit-name', function(): void {
   const $field = $(this);
 
   if ($field && $field.val() === '') {
@@ -42,7 +42,7 @@ $(document).on('blur', '.js-list-element-edit-name', (): void => {
   }
 });
 
-$(document).on('keyup', '.js-list-element-edit-name', async (e: JQuery.TriggeredEvent): Promise<void> => {
+$(document).on('keyup', '.js-list-element-edit-name', async function(e: JQuery.TriggeredEvent): Promise<void> {
   const $field = $(this);
 
   if (e.key === 'Escape') { // esc should close the field
@@ -68,14 +68,14 @@ $(document).on('keyup', '.js-list-element-edit-name', async (e: JQuery.Triggered
 
 // Category Colors
 
-$(document).on('click', '.js-list-element-color', (): void => {
+$(document).on('click', '.js-list-element-color', function(): void {
   $(this).siblings('.js-list-element-color-form').trigger('click');
 });
 
 
 let saveColorTimer;
 
-$(document).on('change', '.js-list-element-color-form', async (): Promise<void> => {
+$(document).on('change', '.js-list-element-color-form', async function(): Promise<void> {
   clearTimeout(saveColorTimer);
 
   const $colorForm = $(this);
@@ -101,15 +101,15 @@ function openCategoryRenameMode($element: JQuery<HTMLElement>): void {
   $edit.find('.js-list-element-edit-rename').trigger('focus');
 }
 
-ipcRenderer.on('rename-category', (): void => {
+ipcRenderer.on('rename-category', function(): void {
   openCategoryRenameMode($elementWithContextMenu);
 });
 
-$(document).on('dblclick', '.js-category-list-element', (): void => {
+$(document).on('dblclick', '.js-category-list-element', function(): void {
   openCategoryRenameMode($(this));
 });
 
-$(document).on('blur', '.js-list-element-edit-rename', (): void => {
+$(document).on('blur', '.js-list-element-edit-rename', function(): void {
   const $field = $(this);
   const $li = $field.closest('.js-category-list-element');
   const $edit = $li.find('.js-list-element-edit');
@@ -121,7 +121,7 @@ $(document).on('blur', '.js-list-element-edit-rename', (): void => {
   $name.removeClass('hidden');
 });
 
-$(document).on('keyup', '.js-list-element-edit-rename', async (e: JQuery.TriggeredEvent): Promise<void> => {
+$(document).on('keyup', '.js-list-element-edit-rename', async function(e: JQuery.TriggeredEvent): Promise<void> {
   const $field = $(this);
   const $li = $field.closest('.js-category-list-element');
   const $edit = $li.find('.js-list-element-edit');
@@ -153,7 +153,7 @@ $(document).on('keyup', '.js-list-element-edit-rename', async (e: JQuery.Trigger
   doneEditingCategories();
 });
 
-ipcRenderer.on('delete-category', async () => {
+ipcRenderer.on('delete-category', async function() {
   const id = $elementWithContextMenu.data('id');
   const category = new CategoryListElement('', id, '');
   await category.delete();

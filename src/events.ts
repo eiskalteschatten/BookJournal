@@ -12,11 +12,11 @@ import './events/statistics';
 import './events/modal';
 import './events/forms';
 
-$(document).on('contextmenu', 'input, textarea', (): void =>{
+$(document).on('contextmenu', 'input, textarea', function(): void {
   ipcRenderer.send('show-input-context-menu');
 });
 
-ipcRenderer.on('switch-theme', (event: IpcRendererEvent, theme: string): void => {
+ipcRenderer.on('switch-theme', function(event: IpcRendererEvent, theme: string): void {
   switchCss(`${theme}Css`);
   localStorage.setItem('theme', theme);
 
@@ -27,11 +27,11 @@ ipcRenderer.on('switch-theme', (event: IpcRendererEvent, theme: string): void =>
   }
 });
 
-ipcRenderer.on('check-for-updates', async (): Promise<void> => {
+ipcRenderer.on('check-for-updates', async function(): Promise<void> {
   checkForUpdates(true);
 });
 
-$(document).on('click', '.js-external-link', (e: Event): void => {
+$(document).on('click', '.js-external-link', function(e: JQuery.TriggeredEvent): void {
   e.preventDefault();
   const href = $(this).attr('href');
   shell.openExternal(href);

@@ -16,27 +16,27 @@ import { BookFormData } from '../interfaces/books';
 
 const { dialog } = remote;
 
-$(document).on('click', '#bookUtilityMenu', (): void => {
+$(document).on('click', '#bookUtilityMenu', function(): void {
   ipcRenderer.send('show-book-utility-menu');
 });
 
-$(document).on('contextmenu', '.js-book-list-element', (): void => {
+$(document).on('contextmenu', '.js-book-list-element', function(): void {
   $(this).trigger('click');
   ipcRenderer.send('show-book-utility-menu');
 });
 
-$(window).on('book-form-loaded', (): void => {
+$(window).on('book-form-loaded', function(): void {
   ipcRenderer.send('enable-book-items');
   $('#bookForm').addClass('js-is-visible');
 });
 
-$(document).on('change', '#bookSort', (): void => {
+$(document).on('change', '#bookSort', function(): void {
   const sortBy = $(this).val().toString();
   localStorage.setItem('sortBy', sortBy);
   refreshBookList();
 });
 
-$(document).on('click', '#bookSortOrder', (e: JQuery.TriggeredEvent): void => {
+$(document).on('click', '#bookSortOrder', function(e: JQuery.TriggeredEvent): void {
   e.preventDefault();
 
   const oldSortOrder = localStorage.getItem('sortOrder') || 'ASC';
@@ -76,7 +76,7 @@ async function saveBook(): Promise<void> {
 
   let formData: BookFormData;
 
-  $('#bookForm').find('input[type!="checkbox"]').each((): void => {
+  $('#bookForm').find('input[type!="checkbox"]').each(function(): void {
     const $this = $(this);
 
     if (!$this.is('.js-book-form-color-form') || ($this.is('.js-book-form-color-form') && $this.data('color-changed'))) {
@@ -99,12 +99,12 @@ async function saveBook(): Promise<void> {
     }
   });
 
-  $('#bookForm').find('input[type="checkbox"]').each((): void => {
+  $('#bookForm').find('input[type="checkbox"]').each(function(): void {
     const $this = $(this);
     formData[$this.attr('id')] = $this.prop('checked');
   });
 
-  $('#bookForm').find('textarea').each((): void => {
+  $('#bookForm').find('textarea').each(function(): void {
     const $this = $(this);
     formData[$this.attr('id')] = $this.val();
   });
@@ -141,7 +141,7 @@ $(document).on('keyup', '.js-book-form-field', saveBookTimeout);
 
 // Load Book
 
-$(document).on('click', '.js-book-list-element', async (): Promise<void> => {
+$(document).on('click', '.js-book-list-element', async function(): Promise<void> {
   const $this = $(this);
   $('.js-book-list-element').removeClass('selected');
   $(this).addClass('selected');
@@ -190,7 +190,7 @@ async function deleteBookcover(): Promise<void> {
   }
 }
 
-$(document).on('click', '#bookcoverUploadArea', async (): Promise<void> => {
+$(document).on('click', '#bookcoverUploadArea', async function(): Promise<void> {
   const result = await dialog.showOpenDialog(remote.getCurrentWindow(), {
     filters: [
       { name: 'Images', extensions: config.bookcovers.extensions },
@@ -201,29 +201,29 @@ $(document).on('click', '#bookcoverUploadArea', async (): Promise<void> => {
   await saveBookcover(result.filePaths[0]);
 });
 
-$(document).on('dragover', '#bookcoverUploadArea', (e: JQuery.TriggeredEvent): void => {
+$(document).on('dragover', '#bookcoverUploadArea', function(e: JQuery.TriggeredEvent): void {
   e.preventDefault();
   $('#bookcoverUploadArea').addClass('dragover');
 });
 
-$(document).on('dragleave', '#bookcoverUploadArea', (e: JQuery.TriggeredEvent): void => {
+$(document).on('dragleave', '#bookcoverUploadArea', function(e: JQuery.TriggeredEvent): void {
   e.preventDefault();
   $('#bookcoverUploadArea').removeClass('dragover');
 });
 
-$(document).on('drop', '#bookcoverUploadArea', (e: JQuery.DropEvent): void => {
+$(document).on('drop', '#bookcoverUploadArea', function(e: JQuery.DropEvent): void {
   e.preventDefault();
   $('#bookcoverUploadArea').removeClass('dragover');
   saveBookcover(e.originalEvent.dataTransfer.files[0].path);
 });
 
-$(document).on('contextmenu', '#bookcoverUploadArea', (): void => {
+$(document).on('contextmenu', '#bookcoverUploadArea', function(): void {
   ipcRenderer.send('show-bookcover-context-menu');
 });
 
 ipcRenderer.on('delete-bookcover', deleteBookcover);
 
-ipcRenderer.on('get-bookcover-color', async (): Promise<void> => {
+ipcRenderer.on('get-bookcover-color', async function(): Promise<void> {
   const fileName = $('#bookBookcoverFileName').val().toString();
   const bookcoverPath = config.bookcovers.path;
   const filePath = path.resolve(bookcoverPath, fileName);
@@ -235,11 +235,11 @@ ipcRenderer.on('get-bookcover-color', async (): Promise<void> => {
 
 // Book Color
 
-$(document).on('click', '.js-book-form-color-stripe', (): void => {
+$(document).on('click', '.js-book-form-color-stripe', function(): void {
   $(this).siblings('.js-book-form-color-form').trigger('click');
 });
 
-$(document).on('change', '.js-book-form-color-form', (): void => {
+$(document).on('change', '.js-book-form-color-form', function(): void {
   const $colorForm = $(this);
   const color = $colorForm.val();
   $colorForm.siblings('.js-book-form-color-stripe').attr('style', `background-color: ${color}`);
@@ -269,11 +269,11 @@ function deleteBadge($deleteButton: JQuery<HTMLElement>): void {
   $badge.remove();
 }
 
-$(document).on('click', '.js-delete-tag', (): void => {
+$(document).on('click', '.js-delete-tag', function(): void {
   deleteBadge($(this));
 });
 
-$(document).on('keypress', '#bookTags', async (e: JQuery.TriggeredEvent): Promise<void> => {
+$(document).on('keypress', '#bookTags', async function(e: JQuery.TriggeredEvent): Promise<void> {
   if (e.key !== 'Enter') {
     return;
   }
@@ -306,7 +306,7 @@ $(document).on('keypress', '#bookTags', async (e: JQuery.TriggeredEvent): Promis
   }
 });
 
-$(document).on('change', '#bookCategories', async (): Promise<void> => {
+$(document).on('change', '#bookCategories', async function(): Promise<void> {
   const $this = $(this);
   const $wrapper = $this.closest('.js-pre-tag-cluster-wrapper');
   const $selected = $this.find('option:selected');
@@ -332,7 +332,7 @@ $(document).on('change', '#bookCategories', async (): Promise<void> => {
 
 let starRestoreTimeout: NodeJS.Timeout;
 
-$(document).on('mouseout', '.js-rating-star', (): void => {
+$(document).on('mouseout', '.js-rating-star', function(): void {
   starRestoreTimeout = setTimeout((): void => {
     $('.js-rating-star')
       .removeClass('temp-full')
@@ -340,7 +340,7 @@ $(document).on('mouseout', '.js-rating-star', (): void => {
   }, 100);
 });
 
-$(document).on('mouseover', '.js-rating-star', (): void => {
+$(document).on('mouseover', '.js-rating-star', function(): void {
   clearTimeout(starRestoreTimeout);
 
   $('.js-rating-star')
@@ -356,12 +356,12 @@ $(document).on('mouseover', '.js-rating-star', (): void => {
     .addClass('temp-full');
 });
 
-$(document).on('click', '.js-rating-star', (): void => {
+$(document).on('click', '.js-rating-star', function(): void {
   clearTimeout(starRestoreTimeout);
 
   const values = [];
 
-  $('.js-rating-star').each((): void => {
+  $('.js-rating-star').each(function(): void {
     const $this = $(this);
 
     $this
@@ -381,7 +381,7 @@ $(document).on('click', '.js-rating-star', (): void => {
   $('#bookRating').val(rating).trigger('change');
 });
 
-$(document).on('click', '.js-remove-rating', (): void => {
+$(document).on('click', '.js-remove-rating', function(): void {
   $('.js-rating-star')
     .removeClass('full')
     .addClass('empty');
@@ -394,7 +394,7 @@ $(document).on('click', '.js-remove-rating', (): void => {
 
 let fetchingTimeout: NodeJS.Timeout;
 
-$(document).on('blur', '#bookIsbn', (): void => {
+$(document).on('blur', '#bookIsbn', function(): void {
   try {
     const preferencesString = localStorage.getItem('preferences');
     const preferences: Preferences = JSON.parse(preferencesString);
@@ -429,7 +429,7 @@ $(document).on('blur', '#bookIsbn', (): void => {
   }
 });
 
-$(document).on('click', '#bookFillOutBookInfo', async (e: JQuery.TriggeredEvent): Promise<void> => {
+$(document).on('click', '#bookFillOutBookInfo', async function(e: JQuery.TriggeredEvent): Promise<void> {
   e.preventDefault();
 
   try {
@@ -484,7 +484,7 @@ $(document).on('click', '#bookFillOutBookInfo', async (e: JQuery.TriggeredEvent)
 
 // Books by Authors
 
-$(document).on('click', '#bookBooksByAuthorLink', async (e: JQuery.TriggeredEvent): Promise<void> => {
+$(document).on('click', '#bookBooksByAuthorLink', async function(e: JQuery.TriggeredEvent): Promise<void> {
   e.preventDefault();
 
   if ($('#booksByAuthorModal').length) {

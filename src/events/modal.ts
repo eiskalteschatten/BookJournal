@@ -8,11 +8,11 @@ import changePreferences from '../lib/preferences/change';
 import PreferencesModal from '../elements/modal/preferences';
 import BooksByAuthor from '../elements/modal/booksByAuthor';
 
-ipcRenderer.on('open-about', (): void => {
+ipcRenderer.on('open-about', function(): void {
   openModal('aboutModal');
 });
 
-ipcRenderer.on('open-preferences', async (): Promise<void> => {
+ipcRenderer.on('open-preferences', async function(): Promise<void> {
   const preferencesModal = new PreferencesModal();
   const rendered = await preferencesModal.render();
 
@@ -32,12 +32,12 @@ function closeModal($modal: JQuery<HTMLElement>): void {
   }
 }
 
-$(document).on('click', '.js-modal-close', (): void => {
+$(document).on('click', '.js-modal-close', function(): void {
   const $modal = $('.js-modal.open');
   closeModal($modal);
 });
 
-$(document).on('click', '#modalContainer', (event: JQuery.TriggeredEvent): void => {
+$(document).on('click', '#modalContainer', function(event: JQuery.TriggeredEvent): void {
   if (!$('#modalAnchor').has(event.target).length) {
     const $modal = $(this).find('.js-modal:not(.hidden)');
     closeModal($modal);
@@ -47,30 +47,30 @@ $(document).on('click', '#modalContainer', (event: JQuery.TriggeredEvent): void 
 
 // Preferences Modal
 
-$(document).on('click', '.js-preferences-theme', (): void => {
+$(document).on('click', '.js-preferences-theme', function(): void {
   const theme = $(this).data('theme');
   changeTheme(theme, remote.getCurrentWindow());
 });
 
-$(document).on('click', '#preferencesFetchBookInformation', (): void => {
+$(document).on('click', '#preferencesFetchBookInformation', function(): void {
   changePreferences({
     fetchBookInfoFromGoogle: $(this).prop('checked'),
   });
 });
 
-$(document).on('click', '#preferencesFetchBooksByAuthor', (): void => {
+$(document).on('click', '#preferencesFetchBooksByAuthor', function(): void {
   changePreferences({
     fetchBooksByAuthor: $(this).prop('checked'),
   });
 });
 
-$(document).on('change', '#preferencesFetchBooksByAuthorLanguage', (): void => {
+$(document).on('change', '#preferencesFetchBooksByAuthorLanguage', function(): void {
   changePreferences({
     fetchBooksByAuthorLanguage: $(this).val().toString(),
   });
 });
 
-$(document).on('click', '#preferencesCheckForUpdates', (): void => {
+$(document).on('click', '#preferencesCheckForUpdates', function(): void {
   changePreferences({
     checkForUpdates: $(this).prop('checked'),
   });
@@ -79,7 +79,7 @@ $(document).on('click', '#preferencesCheckForUpdates', (): void => {
 
 // Books By Author modal
 
-$(document).on('click', '#booksByAuthorShowMoreResults', async (): Promise<void> => {
+$(document).on('click', '#booksByAuthorShowMoreResults', async function(): Promise<void> {
   const $loader = $('#booksByAuthorShowMoreResultsLoader');
   $loader.removeClass('invisible');
 

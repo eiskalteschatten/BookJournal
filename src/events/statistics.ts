@@ -40,15 +40,15 @@ ipcRenderer.on('statistics-no-results', async (): Promise<void> => {
   $('#statisticsNoResults').removeClass('hidden');
 });
 
-ipcRenderer.on('statistics-render-page-book-count-month-year', async (event: IpcRendererEvent, statistics: IStatistics): Promise<void> => {
+ipcRenderer.on('statistics-render-page-book-count-month-year', async function(event: IpcRendererEvent, statistics: IStatistics): Promise<void> {
   await renderBookPageCountMonthYear(statistics);
 });
 
-ipcRenderer.on('statistics-render-page-book-count-year', async (event: IpcRendererEvent, statistics: IStatistics): Promise<void> => {
+ipcRenderer.on('statistics-render-page-book-count-year', async function(event: IpcRendererEvent, statistics: IStatistics): Promise<void> {
   await renderBookPageCountYear(statistics);
 });
 
-$(document).on('change', '#statisticsChangeFirstYearRange, #statisticsChangeSecondYearRange', async (): Promise<void> => {
+$(document).on('change', '#statisticsChangeFirstYearRange, #statisticsChangeSecondYearRange', async function(): Promise<void> {
   const firstYear = Number($('#statisticsChangeFirstYearRange').val());
   const secondYear = Number($('#statisticsChangeSecondYearRange').val());
 
@@ -62,7 +62,7 @@ $(document).on('change', '#statisticsChangeFirstYearRange, #statisticsChangeSeco
   });
 });
 
-$(document).on('change', '#statisticsChangeMonthYear', async (): Promise<void> => {
+$(document).on('change', '#statisticsChangeMonthYear', async function(): Promise<void> {
   const statistics = new Statistics();
   const allDatesRead = await statistics.getAllDatesRead();
   const countsMonthYear = await statistics.calculateCountsMonthYear(allDatesRead, Number($(this).val()));

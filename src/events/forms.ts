@@ -1,6 +1,6 @@
 import $ from 'jquery';
 
-$(document).on('click', '.js-selector', (): void => {
+$(document).on('click', '.js-selector', function(): void {
   const $inputField = $(this).parents('.js-selection-bar').find('.js-selector-input');
   $inputField.val($(this).data('value')).trigger('change');
   $(this).siblings('.selected').removeClass('selected');
