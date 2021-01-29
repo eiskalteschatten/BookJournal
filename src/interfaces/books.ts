@@ -13,6 +13,21 @@ export interface BookByAuthorRenderObject extends GoogleBooksItem {
   isbn?: string;
 }
 
+export interface BookFormCategoryBadge {
+  [id: number]: {
+    name: string;
+    color: string;
+  };
+}
+
+export interface BookFormRenderObject extends BookAttributes {
+  bookcoverPath?: string;
+  dateStartedString?: string;
+  dateReadString?: string;
+  tagArray?: string[];
+  categoryBadges?: BookFormCategoryBadge;
+  ratingClasses?: string[];
+}
 export interface GoogleBooksBook {
   kind: string;
   totalItems: number;

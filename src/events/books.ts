@@ -111,7 +111,7 @@ async function saveBook(): Promise<void> {
 
   formData.bookBookFormat = $('#bookForm').find('#bookBookFormat').val().toString();
 
-  const id = $('#bookBookcoverId').val();
+  const id = Number($('#bookBookcoverId').val());
   const bookForm = new BookForm(id);
   const newId = await bookForm.save(formData);
 
@@ -180,7 +180,7 @@ async function saveBookcover(imagePath: string): Promise<void> {
 async function deleteBookcover(): Promise<void> {
   if ($('#bookcoverUploadArea').hasClass('has-bookcover')) {
     const $bookcoverFileName = $('#bookBookcoverFileName');
-    const fileName = $bookcoverFileName.val();
+    const fileName = $bookcoverFileName.val().toString();
 
     await BookForm.deleteBookcover(fileName);
 
@@ -312,7 +312,7 @@ $(document).on('change', '#bookCategories', async (): Promise<void> => {
   const $selected = $this.find('option:selected');
   const $tagHidden = $wrapper.siblings('.js-tag-hidden');
   const $tagCluster = $wrapper.siblings('.js-tag-cluster');
-  const categoryId = $this.val();
+  const categoryId = $this.val().toString();
   const color = $selected.data('color');
 
   const badge = await BookForm.renderTagCategoryBadge($selected.text(), categoryId, 'category', color);
