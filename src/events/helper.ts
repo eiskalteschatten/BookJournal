@@ -79,7 +79,7 @@ export const switchViewWithBooks = (): void => {
 export const changeFilter = async (): Promise<void> => {
   const $element = $('.js-sidebar-list-element.selected');
   const queryType = $element.data('query-type');
-  let rendered;
+  let rendered: string;
 
   if (queryType === 'statistics') {
     const stats = new Statistics();
