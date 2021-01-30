@@ -35,6 +35,7 @@ function createDbBackup(): void {
     show: false,
     webPreferences: {
       nodeIntegration: true,
+      enableRemoteModule: true,
     },
   });
 
