@@ -8,6 +8,10 @@
     opacity: 0.7;
     -webkit-user-select: none;
   }
+
+  &:last-child {
+    padding-bottom: 50px;
+  }
 }
 
 .form-control {
