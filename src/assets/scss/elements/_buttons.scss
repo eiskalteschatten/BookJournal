@@ -22,7 +22,7 @@
     opacity: 1;
 
     &::before {
-      background: $buttonBgHover;
+      background: $buttonHoverBg;
       transform: scale(1);
     }
   }
@@ -31,7 +31,7 @@
     opacity: 1;
 
     &::before {
-      background: $buttonBgActive;
+      background: $buttonActiveBg;
       transform: scale(1);
     }
   }
@@ -61,7 +61,7 @@
     opacity: 1;
 
     &::before {
-      background: $buttonBgHover;
+      background: $buttonHoverBg;
       transform: scale(1);
     }
   }
@@ -70,7 +70,7 @@
     opacity: 1;
 
     &::before {
-      background: $buttonBgActive;
+      background: $buttonActiveBg;
       transform: scale(1);
     }
   }
@@ -80,7 +80,7 @@
       opacity: 1;
 
       &::before {
-        background: $sidebarButtonBgHover;
+        background: $sidebarButtonHoverBg;
         transform: scale(1);
       }
     }
@@ -89,7 +89,7 @@
       opacity: 1;
 
       &::before {
-        background: $sidebarButtonBgActive;
+        background: $sidebarButtonActiveBg;
         transform: scale(1);
       }
     }

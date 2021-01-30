@@ -25,10 +25,12 @@ $formBg: lighten($mainBg, 7%);
 $formColor: $mainFontColor;
 $buttonBg: lighten($mainBg, 7%);
 $buttonColor: $mainFontColor;
-$buttonHoverBg: darken($buttonBg, 2%);
-$buttonActiveBg: darken($buttonBg, 10%);
+$buttonHoverBg: darken($mainBg, 6%);
+$buttonActiveBg: darken($mainBg, 10%);
 $buttonSelectedBg: darken($buttonBg, 7%);
 $selectionBarSelectorBorderColor: darken($buttonBg, 10%);
+$sidebarButtonHoverBg: lighten($sidebarBg, 5%);
+$sidebarButtonActiveBg: lighten($sidebarBg, 9%);
 
 $toolbarButtonColor: $mainFontColor;
 $toolbarIconPlus: '../images/light/si-glyph-button-plus.svg';
@@ -94,8 +96,3 @@ $toggleSwitchKnobBg: #ffffff;
 $toggleSwitchBorder: darken($selectionBarSelectorBorderColor, 15%);
 $toggleSwitchCheckedBg: #019CEE;
 $toggleSwitchCheckedBorder: #98bbd4;
-
-$buttonBgHover: darken($mainBg, 6%);
-$buttonBgActive: darken($mainBg, 10%);
-$sidebarButtonBgHover: lighten($sidebarBg, 5%);
-$sidebarButtonBgActive: lighten($sidebarBg, 9%);
