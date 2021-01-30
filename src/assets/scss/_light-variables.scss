@@ -97,3 +97,5 @@ $toggleSwitchCheckedBorder: #98bbd4;
 
 $buttonBgHover: darken($mainBg, 6%);
 $buttonBgActive: darken($mainBg, 10%);
+$sidebarButtonBgHover: lighten($sidebarBg, 5%);
+$sidebarButtonBgActive: lighten($sidebarBg, 9%);

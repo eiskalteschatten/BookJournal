@@ -74,4 +74,24 @@
       transform: scale(1);
     }
   }
+
+  &.sidebar-button {
+    &:hover {
+      opacity: 1;
+
+      &::before {
+        background: $sidebarButtonBgHover;
+        transform: scale(1);
+      }
+    }
+
+    &:active {
+      opacity: 1;
+
+      &::before {
+        background: $sidebarButtonBgActive;
+        transform: scale(1);
+      }
+    }
+  }
 }
