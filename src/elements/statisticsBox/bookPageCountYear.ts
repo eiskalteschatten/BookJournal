@@ -34,10 +34,10 @@ export default class BookPageCountYear extends StatisticsBox {
     const booksReadData = [];
     const pagesReadData = [];
 
-    for (const year in this.countsYearObj) {
+    for (const year in this.countsYearObj.countsYear) {
       labels.push(year);
-      booksReadData.push(this.countsYearObj[year].bookCount);
-      pagesReadData.push(this.countsYearObj[year].pageCount);
+      booksReadData.push(this.countsYearObj.countsYear[year].bookCount);
+      pagesReadData.push(this.countsYearObj.countsYear[year].pageCount);
     }
 
     const booksReadGraph = new chart.Chart($booksGraph, {
