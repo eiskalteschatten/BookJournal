@@ -59,7 +59,7 @@ export default class Statistics {
     const sortedYears = this.sortedYears(allDatesRead);
     const latestYear = Number(sortedYears[0]);
     const oldestYearIndex = defaultNumberOfYears - 1;
-    const oldestYear = Number([oldestYearIndex] || sortedYears[sortedYears.length]);
+    const oldestYear = Number(sortedYears[oldestYearIndex] || sortedYears[sortedYears.length]);
 
     return {
       allDatesRead,
