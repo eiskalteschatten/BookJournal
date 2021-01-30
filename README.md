@@ -45,7 +45,7 @@ BookJournal runs on the [Electron](https://electronjs.org/) platform and can the
 - [x] Converted to TypeScript for better stability
 - [x] Lots of bug fixes
 - [x] New icon to fit with macOS Big Sur
-- [ ] Visual tweaks
+- [x] Visual tweaks
 
 ### 1.0.0
 - [x] Updated the app icon
