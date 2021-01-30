@@ -32,3 +32,38 @@
     }
   }
 }
+
+.rounded-button {
+  position: relative;
+  opacity: 0.8;
+  padding: 0.4em;
+  cursor: pointer;
+  z-index: 0;
+
+  &::before {
+    content: '';
+    border-radius: 5px;
+    z-index: -1;
+    position: absolute;
+    top: -1px;
+    right: -2px;
+    bottom: -1px;
+    left: -2px;
+  }
+
+  &:hover {
+    opacity: 1;
+
+    &::before {
+      background: $buttonBgHover;
+    }
+  }
+
+  &:active {
+    opacity: 1;
+
+    &::before {
+      background: $buttonBgActive;
+    }
+  }
+}
