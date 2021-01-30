@@ -54,6 +54,7 @@ $sortColor: $mainFontColor;
 
 $bookcoverListPlaceholder: '../images/dark/bookcover.svg';
 $bookListHoverBg: lighten($middleColumnBg, 1%);
+$bookListActiveBg: darken($middleColumnBg, 1%);
 
 $bookcoverUploadArea: $bookcoverListPlaceholder;
 $uploadAreaBorderColor: #333333;

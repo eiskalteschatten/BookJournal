@@ -53,7 +53,8 @@ $noBookSelected: '../images/light/icon-monotone.svg';
 $gear: '../images/light/gear.svg';
 
 $bookcoverListPlaceholder: '../images/light/bookcover.svg';
-$bookListHoverBg: lighten($middleColumnBg, 1%);
+$bookListHoverBg: darken($middleColumnBg, 1%);
+$bookListActiveBg: darken($middleColumnBg, 3%);
 
 $bookcoverUploadArea: $bookcoverListPlaceholder;
 $uploadAreaBorderColor: #333333;
