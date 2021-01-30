@@ -1,9 +1,10 @@
 .round-button {
   position: relative;
   opacity: 0.8;
+  cursor: pointer;
 
   &::before {
-    $size: 35px;
+    $size: 38px;
     width: $size;
     height: $size;
     content: '';
@@ -13,7 +14,6 @@
     top: 50%;
     left: 50%;
     transform: translateX(-50%) translateY(-50%);
-    opacity: .5;
   }
 
   &:hover {
@@ -32,4 +32,3 @@
     }
   }
 }
-
