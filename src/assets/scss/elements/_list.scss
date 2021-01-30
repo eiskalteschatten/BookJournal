@@ -3,84 +3,84 @@
 $listIconWidth: 15px;
 
 .list-container {
-    overflow: auto;
+  overflow: auto;
 
-    .list {
-        padding: 0;
+  .list {
+    padding: 0;
 
-        .list-element {
-            clear: both;
-            cursor: default;
-            font-size: .9em;
-            list-style: none;
-            padding: 5px 10px;
-            -webkit-user-select: none;
+    .list-element {
+      clear: both;
+      cursor: default;
+      font-size: 0.9em;
+      list-style: none;
+      padding: 5px 10px;
+      -webkit-user-select: none;
 
-            &:hover {
-                background: $listHoverBg;
-            }
+      &:hover {
+        background: $listHoverBg;
+      }
 
-            &.selected {
-                background: $listSelectedBg;
-            }
+      &.selected {
+        background: $listSelectedBg;
+      }
 
-            .list-element-icon {
-                display: inline-block;
-                margin-right: 3px;
-                width: $listIconWidth;
+      .list-element-icon {
+        display: inline-block;
+        margin-right: 3px;
+        width: $listIconWidth;
 
-                img {
-                    vertical-align: text-top;
-                    width: 100%;
-                }
-            }
-
-            .list-element-color-wrapper {
-                cursor: pointer;
-                display: inline-block;
-                padding-top: 3px;
-                margin-right: 3px;
-                width: $listIconWidth;
-
-                .list-element-color {
-                    $size: 12px;
-                    border: 1px solid $colorCircleBorderColor;
-                    border-radius: 50%;
-                    height: $size;
-                    width: $size;
-                }
-            }
+        img {
+          vertical-align: text-top;
+          width: 100%;
         }
+      }
 
-        .list-element-edit {
-            clear: both;
-            list-style: none;
-            padding: 5px 10px;
-        }
+      .list-element-color-wrapper {
+        cursor: pointer;
+        display: inline-block;
+        padding-top: 3px;
+        margin-right: 3px;
+        width: $listIconWidth;
 
-        .list-element-edit-name {
-            background: $formBg;
-            border: none;
-            color: $formColor;
-            font-size: .8em;
-            padding: 4px;
-            width: 100%;
+        .list-element-color {
+          $size: 12px;
+          border: 1px solid $colorCircleBorderColor;
+          border-radius: 50%;
+          height: $size;
+          width: $size;
         }
-
-        .list-element-edit-inline {
-            &:not(.hidden) {
-                display: inline-block;
-            }
-        }
-
-        .list-element-title {
-            font-size: .7em;
-            margin-bottom: 15px;
-            margin-top: 20px;
-            opacity: .7;
-            padding-left: 10px;
-            text-transform: uppercase;
-            -webkit-user-select: none;
-        }
+      }
     }
+
+    .list-element-edit {
+      clear: both;
+      list-style: none;
+      padding: 5px 10px;
+    }
+
+    .list-element-edit-name {
+      background: $formBg;
+      border: none;
+      color: $formColor;
+      font-size: 0.8em;
+      padding: 4px;
+      width: 100%;
+    }
+
+    .list-element-edit-inline {
+      &:not(.hidden) {
+        display: inline-block;
+      }
+    }
+
+    .list-element-title {
+      font-size: 0.7em;
+      margin-bottom: 15px;
+      margin-top: 20px;
+      opacity: 0.7;
+      padding-left: 10px;
+      text-transform: uppercase;
+      -webkit-user-select: none;
+    }
+  }
 }

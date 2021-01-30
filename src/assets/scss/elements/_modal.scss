@@ -3,70 +3,70 @@
 @import "modal/booksByAuthor";
 
 .modal-container {
-    background: $modalContainerBg;
-    height: 100%;
-    left: 0;
-    opacity: 0;
-    position: fixed;
-    top: 0;
+  background: $modalContainerBg;
+  height: 100%;
+  left: 0;
+  opacity: 0;
+  position: fixed;
+  top: 0;
+  transition: all 400ms;
+  width: 100%;
+  z-index: 100;
+
+  &.open {
+    opacity: 1;
+  }
+
+  .modal {
+    background: $mainBg;
+    border-radius: 5px;
+    box-shadow: 0 0 25px $boxShadowColor;
+    display: flex;
+    flex: 0 0 auto;
+    flex-direction: column;
+    left: 50%;
+    max-height: 90%;
+    overflow: hidden;
+    padding: 25px;
+    position: absolute;
+    top: 150%;
+    transform: translate(-50%, -50%);
     transition: all 400ms;
-    width: 100%;
-    z-index: 100;
+    z-index: 1000;
 
     &.open {
-        opacity: 1;
+      top: 50%;
     }
 
-    .modal {
-        background: $mainBg;
-        border-radius: 5px;
-        box-shadow: 0 0 25px $boxShadowColor;
-        display: flex;
-        flex: 0 0 auto;
-        flex-direction: column;
-        left: 50%;
-        max-height: 90%;
-        overflow: hidden;
-        padding: 25px;
-        position: absolute;
-        top: 150%;
-        transform: translate(-50%, -50%);
-        transition: all 400ms;
-        z-index: 1000;
-
-        &.open {
-            top: 50%;
-        }
-
-        .modal-title {
-            flex: 0 0 auto;
-            margin-top: 0;
-        }
-
-        .modal-close {
-            $size: 15px;
-
-            background: url($modalCloseX) no-repeat center;
-            background-size: $size;
-            cursor: pointer;
-            height: $size;
-            position: absolute;
-            right: 10px;
-            top: 10px;
-            width: $size;
-        }
-
-        .modal-scroll {
-            flex: 1 1 auto;
-            overflow: auto;
-        }
-
-        .modal-header {
-            border-bottom: 1px solid $modalHeaderBorderColor;
-            display: block;
-            margin-bottom: 25px;
-            padding-bottom: 5px;
-            width: 100%;
-        }
+    .modal-title {
+      flex: 0 0 auto;
+      margin-top: 0;
     }
+
+    .modal-close {
+      $size: 15px;
+
+      background: url($modalCloseX) no-repeat center;
+      background-size: $size;
+      cursor: pointer;
+      height: $size;
+      position: absolute;
+      right: 10px;
+      top: 10px;
+      width: $size;
+    }
+
+    .modal-scroll {
+      flex: 1 1 auto;
+      overflow: auto;
+    }
+
+    .modal-header {
+      border-bottom: 1px solid $modalHeaderBorderColor;
+      display: block;
+      margin-bottom: 25px;
+      padding-bottom: 5px;
+      width: 100%;
+    }
+  }
 }

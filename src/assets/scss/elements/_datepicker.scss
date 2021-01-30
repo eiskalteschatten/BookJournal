@@ -1,69 +1,88 @@
 .dp-modal {
-    background: $datepickerModalBg;
-    border-radius: 5px;
+  background: $datepickerModalBg;
+  border-radius: 5px;
 }
 
 .dp {
-    background: $datepickerBg;
+  background: $datepickerBg;
 
-    &:before {
-        background: $datepickerBeforeBg;
-    }
+  &:before {
+    background: $datepickerBeforeBg;
+  }
 }
 
 .dp-cal-header {
-    background: $datepickerHeaderBg;
+  background: $datepickerHeaderBg;
 
-    .dp-cal-month, .dp-cal-year {
-        height: 30px;
-        padding: 0 8px;
-        margin-top: 16px;
-    }
+  .dp-cal-month,
+  .dp-cal-year {
+    height: 30px;
+    padding: 0 8px;
+    margin-top: 16px;
+  }
 
-    .dp-cal-month, .dp-cal-year, .dp-next, .dp-prev {
-        &:hover {
-            background: $datepickerButtonHoverBg;
-        }
-
-        &:focus {
-            background: $datepickerButtonHoverBg;
-        }
-    }
-}
-
-.dp-cal-month, .dp-cal-year, .dp-day, .dp-month, .dp-year {
-    color: $mainFontColor;
-}
-
-.dp-day, .dp-month, .dp-year, .dp-close, .dp-clear, .dp-today {
+  .dp-cal-month,
+  .dp-cal-year,
+  .dp-next,
+  .dp-prev {
     &:hover {
-        background: $datepickerButtonHoverBg;
-        color: $datepickerButtonHoverColor;
+      background: $datepickerButtonHoverBg;
     }
+
+    &:focus {
+      background: $datepickerButtonHoverBg;
+    }
+  }
 }
 
-.dp-current, .dp-day, .dp-month, .dp-year, .dp-close, .dp-clear, .dp-today  {
-    &:focus {
-        background: $datepickerButtonHoverBg;
-        color: $datepickerButtonHoverColor;
-    }
+.dp-cal-month,
+.dp-cal-year,
+.dp-day,
+.dp-month,
+.dp-year {
+  color: $mainFontColor;
+}
+
+.dp-day,
+.dp-month,
+.dp-year,
+.dp-close,
+.dp-clear,
+.dp-today {
+  &:hover {
+    background: $datepickerButtonHoverBg;
+    color: $datepickerButtonHoverColor;
+  }
+}
+
+.dp-current,
+.dp-day,
+.dp-month,
+.dp-year,
+.dp-close,
+.dp-clear,
+.dp-today {
+  &:focus {
+    background: $datepickerButtonHoverBg;
+    color: $datepickerButtonHoverColor;
+  }
 }
 
 .dp-selected {
+  background: $datepickerSelectedBg;
+  color: $datepickerSelectedColor;
+
+  &:hover {
     background: $datepickerSelectedBg;
     color: $datepickerSelectedColor;
+  }
 
-    &:hover {
-        background: $datepickerSelectedBg;
-        color: $datepickerSelectedColor;
-    }
-
-    &:focus {
-        background: $datepickerSelectedBg;
-        color: $datepickerSelectedColor;
-    }
+  &:focus {
+    background: $datepickerSelectedBg;
+    color: $datepickerSelectedColor;
+  }
 }
 
 .dp-cal-footer {
-    background: $datepickerFooterBg;
+  background: $datepickerFooterBg;
 }

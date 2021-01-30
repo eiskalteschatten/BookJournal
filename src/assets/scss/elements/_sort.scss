@@ -1,29 +1,29 @@
 .book-sort-wrapper {
-    font-size: .8em;
-    padding: 8px 10px;
-    text-align: right;
+  font-size: 0.8em;
+  padding: 8px 10px;
+  text-align: right;
 
-    .book-sort {
-        background: $sortBg;
-        border: none;
-        color: $sortColor;
-    }
+  .book-sort {
+    background: $sortBg;
+    border: none;
+    color: $sortColor;
+  }
 
-    .book-sort-order {
-        color: $mainFontColor;
-        text-decoration: none;
-    }
+  .book-sort-order {
+    color: $mainFontColor;
+    text-decoration: none;
+  }
 }
 
 .darwin {
-    .book-sort-wrapper {
-        margin-top: 22px;
-    }
+  .book-sort-wrapper {
+    margin-top: 22px;
+  }
 }
 
 .linux {
-    .book-sort-order {
-        font-size: 1.5em;
-        font-weight: bold;
-    }
+  .book-sort-order {
+    font-size: 1.5em;
+    font-weight: bold;
+  }
 }

@@ -1,60 +1,60 @@
 .booksByAuthor-modal {
-    min-width: 800px;
+  min-width: 800px;
 
-    .bookcover-wrapper {
-        min-height: 100px;
-        min-width: 75px;
+  .bookcover-wrapper {
+    min-height: 100px;
+    min-width: 75px;
 
-        .bookcover {
-            max-width: 75px;
-        }
+    .bookcover {
+      max-width: 75px;
+    }
+  }
+
+  .book-row {
+    border-bottom: 1px solid $listBorderColor;
+    padding: 10px;
+    margin: 0;
+
+    &:hover {
+      background: $booksByAuthorHoverBg;
     }
 
-    .book-row {
-        border-bottom: 1px solid $listBorderColor;
-        padding: 10px;
-        margin: 0;
+    .book-info {
+      margin: 0 20px;
 
-        &:hover {
-            background: $booksByAuthorHoverBg;
-        }
+      .title {
+        margin-bottom: 2px;
+        margin-top: 0;
+      }
 
-        .book-info {
-            margin: 0 20px;
+      .authors {
+        font-size: 0.8em;
+        font-style: italic;
+        margin-bottom: 10px;
+      }
 
-            .title {
-                margin-bottom: 2px;
-                margin-top: 0;
-            }
+      .description {
+        margin-bottom: 10px;
+      }
 
-            .authors {
-                font-size: .8em;
-                font-style: italic;
-                margin-bottom: 10px;
-            }
+      .isbn {
+        font-size: 0.8em;
+        margin-bottom: 10px;
+      }
 
-            .description {
-                margin-bottom: 10px;
-            }
+      .info-link {
+        font-size: 0.8em;
+      }
 
-            .isbn {
-                font-size: .8em;
-                margin-bottom: 10px;
-            }
-
-            .info-link {
-                font-size: .8em;
-            }
-
-            .read-status {
-                color: $booksByAuthorReadStatusColor;
-                font-size: .8em;
-                font-weight: bold;
-            }
-        }
+      .read-status {
+        color: $booksByAuthorReadStatusColor;
+        font-size: 0.8em;
+        font-weight: bold;
+      }
     }
+  }
 
-    .show-more-results {
-        margin-top: 25px;
-    }
+  .show-more-results {
+    margin-top: 25px;
+  }
 }
