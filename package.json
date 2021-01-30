@@ -2,10 +2,10 @@
   "name": "bookjournal",
   "version": "1.1.0",
   "description": "A digital book journal.",
-  "main": "./dist/main.js",
+  "main": "./dist/ts/main.js",
   "scripts": {
     "build": "tsc && node ./build-scripts/build.js",
-    "prestart": "rm -rf ./dist && npm run build",
+    "prestart": "rm -rf ./dist/ts && npm run build",
     "start": "NODE_ENV=development electron .",
     "prestart:prod": "npm run build",
     "start:prod": "electron .",
@@ -24,6 +24,9 @@
     "copyright": "Copyright © 2018 - 2021 Alex Seifert",
     "appId": "com.alexseifert.bookjournal",
     "buildDependenciesFromSource": true,
+    "directories": {
+      "output": "./dist/electron"
+    },
     "files": [
       "!*.code-workspace",
       "!build-scripts",

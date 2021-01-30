@@ -41,7 +41,7 @@ async function createWindow(): Promise<void> {
   }
 
   mainWindow.setFullScreen(preferences.windowIsFullScreen || false);
-  mainWindow.loadFile('./dist/html/index.html');
+  mainWindow.loadFile('./dist/ts/html/index.html');
   // mainWindow.webContents.openDevTools();
 
   mainWindow.on('close', async (): Promise<void> => {

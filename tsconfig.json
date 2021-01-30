@@ -9,7 +9,7 @@
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "allowJs": true,
-    "outDir": "./dist",
+    "outDir": "./dist/ts",
     "baseUrl": "./src",
     "strictPropertyInitialization": false
   },

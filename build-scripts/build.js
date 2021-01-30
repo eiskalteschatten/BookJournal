@@ -5,10 +5,10 @@ const compileSass = require('compile-sass');
 const fs = require('fs');
 const copyfiles = require('copyfiles');
 
-const pathToCss = path.resolve('./dist/assets/css');
+const pathToCss = path.resolve('./dist/ts/assets/css');
 const pathToScss = path.resolve('./src/assets/scss');
 
-copyfiles(['./src/**/*.{html,njk,svg,png}', './dist'], { up: 1 }, async () => {
+copyfiles(['./src/**/*.{html,njk,svg,png}', './dist/ts'], { up: 1 }, async () => {
   try {
     const files = await fs.promises.readdir(pathToScss);
     const scssFiles = [];
