@@ -42,6 +42,7 @@ export default class Statistics {
     });
 
     loadStatsWindow.loadURL(loadStatsPath);
+    // loadStatsWindow.webContents.openDevTools();
     loadStatsWindow.webContents.on('did-finish-load', () => {
       const input = 100;
       loadStatsWindow.webContents.send('load-statistics', input, windowID);

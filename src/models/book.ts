@@ -235,7 +235,7 @@ export default class Book extends Model implements BookAttributes {
 
   static async getByYear(year: number): Promise<Book[]> {
     return await Book.findAll({
-      where: where(fn('strftime', col('dateRead'), '%Y'), { [Op.in]: [year] }),
+      where: where(fn('strftime', '%Y', col('dateRead')), { [Op.in]: [year.toString()] }),
     });
     // return await sequelize.query(`SELECT * FROM books where strftime('%Y', dateRead) IN('${year}');`, { model: this });
   }
@@ -248,7 +248,7 @@ export default class Book extends Model implements BookAttributes {
     }
 
     return await Book.findAll({
-      where: where(fn('strftime', col('dateRead'), '%Y-%m'), { [Op.in]: [`${year}-${monthString}`] }),
+      where: where(fn('strftime', '%Y-%m', col('dateRead')), { [Op.in]: [`${year}-${monthString}`] }),
     });
     // return await sequelize.query(`SELECT * FROM books where strftime('%Y-%m', dateRead) IN('${year}-${monthString}');`, { model: this });
   }

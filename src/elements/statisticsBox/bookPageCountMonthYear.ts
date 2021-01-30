@@ -14,7 +14,7 @@ export default class BookPageCountMonthYear extends StatisticsBox {
   constructor(statistics: Statistics) {
     super(statistics);
 
-    const sortedYears = Object.keys(statistics).sort((a: any, b: any): any => b - a).map(Number);
+    const sortedYears = Object.keys(statistics.countsMonthYear).sort((a: any, b: any): any => b - a).map(Number);
     this.latestYear = sortedYears[0];
     this.monthStatistics = statistics.countsMonthYear[this.latestYear];
     this.allDatesRead = statistics.allDatesRead;
