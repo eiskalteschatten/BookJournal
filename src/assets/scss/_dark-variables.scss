@@ -6,7 +6,7 @@ $boxShadowColor: darken($mainBg, 50%);
 
 $sidebarBg: #000000;
 $sidebarColor: $mainFontColor;
-$middleColumnBg: darken($mainBg, 1%);
+$middleColumnBg: lighten($mainBg, 1%);
 
 $listHoverBg: lighten($sidebarBg, 5%);
 $listActiveBg: lighten($sidebarBg, 2%);
@@ -53,9 +53,8 @@ $sortBg: $middleColumnBg;
 $sortColor: $mainFontColor;
 
 $bookcoverListPlaceholder: '../images/dark/bookcover.svg';
-$bookListBg: lighten($mainBg, 1%);
-$bookListHoverBg: lighten($bookListBg, 1%);
-$bookListActiveBg: darken($bookListBg, 1%);
+$bookListHoverBg: lighten($middleColumnBg, 1%);
+$bookListActiveBg: darken($middleColumnBg, 1%);
 
 $bookcoverUploadArea: $bookcoverListPlaceholder;
 $uploadAreaBorderColor: #333333;

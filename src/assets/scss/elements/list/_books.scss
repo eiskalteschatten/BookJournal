@@ -1,13 +1,15 @@
 .book-list {
   margin-top: 0;
+  padding: 0 !important;
 
   .list-element {
+    border-bottom: 1px solid $listBorderColor;
+    border-radius: 0 !important;
     display: flex;
     flex-direction: row;
     padding: 0 !important;
+    margin: 0 !important;
     height: 70px;
-    margin: 3px 0 !important;
-    background-color: $bookListBg !important;
 
     &:first-child {
       border-top: 1px solid $listBorderColor;

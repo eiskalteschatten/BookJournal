@@ -6,7 +6,7 @@ $boxShadowColor: darken($mainBg, 50%);
 
 $sidebarBg: #000000;
 $sidebarColor: #e0e0e0;
-$middleColumnBg: darken($mainBg, 1%);
+$middleColumnBg: lighten($mainBg, 1%);
 
 $listHoverBg: lighten($sidebarBg, 5%);
 $listActiveBg: lighten($sidebarBg, 2%);
@@ -53,9 +53,8 @@ $noBookSelected: '../images/light/icon-monotone.svg';
 $gear: '../images/light/gear.svg';
 
 $bookcoverListPlaceholder: '../images/light/bookcover.svg';
-$bookListBg: lighten($mainBg, 1%);
-$bookListHoverBg: darken($bookListBg, 1%);
-$bookListActiveBg: darken($bookListBg, 3%);
+$bookListHoverBg: darken($middleColumnBg, 1%);
+$bookListActiveBg: darken($middleColumnBg, 3%);
 
 $bookcoverUploadArea: $bookcoverListPlaceholder;
 $uploadAreaBorderColor: #333333;
