@@ -1,23 +1,29 @@
 @import "list/books";
 
-$listIconWidth: 15px;
+$listIconWidth: 18px;
 
 .list-container {
   overflow: auto;
 
   .list {
-    padding: 0;
+    padding: 0 5px;
 
     .list-element {
+      border-radius: 5px;
       clear: both;
       cursor: default;
-      font-size: 0.9em;
+      font-size: 1em;
       list-style: none;
-      padding: 5px 10px;
+      padding: 6px 10px;
+      margin: 3px 0;
       -webkit-user-select: none;
 
       &:hover {
         background: $listHoverBg;
+      }
+
+      &:active {
+        background: $listActiveBg;
       }
 
       &.selected {
@@ -26,7 +32,7 @@ $listIconWidth: 15px;
 
       .list-element-icon {
         display: inline-block;
-        margin-right: 3px;
+        margin-right: 5px;
         width: $listIconWidth;
 
         img {

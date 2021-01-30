@@ -9,6 +9,7 @@ $sidebarColor: $mainFontColor;
 $middleColumnBg: lighten($mainBg, 1%);
 
 $listHoverBg: lighten($sidebarBg, 5%);
+$listActiveBg: lighten($sidebarBg, 2%);
 $listSelectedBg: #063353;
 $listSelectedDarkBg: $listSelectedBg;
 $listBorderColor: darken($mainBg, 3%);
