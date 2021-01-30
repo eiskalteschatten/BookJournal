@@ -99,7 +99,7 @@ export default class BookForm {
   async render(): Promise<string> {
     const categories = await Category.getAllSorted();
     let ratingClasses = ['empty', 'empty', 'empty', 'empty', 'empty'];
-    let book: BookFormRenderObject;
+    let book: BookFormRenderObject = { title: '' };
 
     if (this.id) {
       book = await Book.findByPk(this.id, { raw: true });
@@ -138,14 +138,14 @@ export default class BookForm {
       }
 
       if (book.rating) {
-        ratingClasses = ratingClasses.map((element, index) => {
+        ratingClasses = ratingClasses.map((element: string, index: number) => {
           const index1 = index + 1;
           return (index1 <= book.rating) ? 'full' : element;
         });
       }
-
-      book.ratingClasses = ratingClasses;
     }
+
+    book.ratingClasses = ratingClasses;
 
     const template = path.join(__dirname, '../templates/bookForm.njk');
     const templateString = await fsPromises.readFile(template, 'utf8');
