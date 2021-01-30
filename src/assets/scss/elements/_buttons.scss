@@ -1,19 +1,19 @@
 .round-button {
   position: relative;
   opacity: 0.8;
+  padding: 0.4em;
   cursor: pointer;
 
   &::before {
-    $size: 38px;
-    width: $size;
-    height: $size;
     content: '';
     border-radius: 50%;
     z-index: -1;
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translateX(-50%) translateY(-50%);
+    $position: -6px;
+    top: $position;
+    right: $position;
+    bottom: $position;
+    left: $position;
   }
 
   &:hover {
