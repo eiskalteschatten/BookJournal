@@ -17,15 +17,9 @@
 .book-utility-menu {
   $size: 24px;
   background: url($gear) no-repeat center;
-  cursor: pointer;
   float: right;
   height: $size;
-  opacity: 0.8;
   width: $size;
-
-  &:hover {
-    opacity: 1;
-  }
 }
 
 .book-form {
@@ -281,4 +275,10 @@
   float: right;
   height: 15px;
   width: 15px;
+}
+
+.darwin {
+  .book-utility-menu {
+    margin-right: 12px;
+  }
 }
