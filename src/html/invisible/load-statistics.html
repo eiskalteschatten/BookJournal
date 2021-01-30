@@ -1,13 +1,18 @@
 <html>
   <script>
+    const { ipcRenderer, remote } = require('electron');
+
+    const { setupSequelize } = require('../../db');
+    const Statistics = require('../../elements/statistics').default;
+
     const exports = {};
-    const Statistics = require('../../statistics');
-    const {ipcRenderer, remote} = require('electron');
     const BrowserWindow = remote.BrowserWindow;
 
     ipcRenderer.on('load-statistics', async function(event, number, fromWindowId) {
       try {
         const fromWindow = BrowserWindow.fromId(fromWindowId);
+
+        await setupSequelize();
 
         const statistics = new Statistics();
         const returnValue = await statistics.calculateStatistics();

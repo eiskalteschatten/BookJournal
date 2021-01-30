@@ -37,6 +37,7 @@ export default class Statistics {
       show: false,
       webPreferences: {
         nodeIntegration: true,
+        enableRemoteModule: true,
       },
     });
 
@@ -77,7 +78,7 @@ export default class Statistics {
       },
     });
 
-    let allDatesRead: AllDatesRead;
+    const allDatesRead: AllDatesRead = {};
 
     for (const book of datesReadResults) {
       const dateObj = new Date(book.dateRead);
@@ -140,8 +141,8 @@ export default class Statistics {
 
   async calculateBookAndPageCounts(year: number, month?: number): Promise<BookAndPageCounts> {
     const results = month
-      ? await Book.getByYear(year)
-      : await Book.getByMonthYear(month, year);
+      ? await Book.getByMonthYear(month, year)
+      : await Book.getByYear(year);
 
     let pageCount = 0;
 

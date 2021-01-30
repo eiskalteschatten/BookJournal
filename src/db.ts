@@ -5,8 +5,8 @@ import path from 'path';
 
 import models from './models';
 import config from './config';
-const { database: dbConfig } = config;
 
+const { database: dbConfig } = config;
 const dbPath = dbConfig.path;
 const dbFile = path.join(dbPath, dbConfig.fileName);
 

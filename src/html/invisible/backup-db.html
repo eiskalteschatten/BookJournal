@@ -1,8 +1,10 @@
 <html>
   <script>
-    const exports = {};
+    const { ipcRenderer, remote } = require('electron');
+
     const { createBackup } = require('../../db');
-    const {ipcRenderer, remote} = require('electron');
+
+    const exports = {};
     const BrowserWindow = remote.BrowserWindow;
 
     ipcRenderer.on('backup-db', async function(event, number, fromWindowId) {
