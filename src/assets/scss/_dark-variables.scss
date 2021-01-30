@@ -8,8 +8,8 @@ $sidebarBg: #000000;
 $sidebarColor: $mainFontColor;
 $middleColumnBg: lighten($mainBg, 1%);
 
-$listHoverBg: lighten($sidebarBg, 5%);
-$listActiveBg: lighten($sidebarBg, 2%);
+$listHoverBg: lighten($sidebarBg, 2%);
+$listActiveBg: lighten($sidebarBg, 5%);
 $listSelectedBg: #063353;
 $listSelectedDarkBg: $listSelectedBg;
 $listBorderColor: darken($mainBg, 3%);
@@ -53,8 +53,8 @@ $sortBg: $middleColumnBg;
 $sortColor: $mainFontColor;
 
 $bookcoverListPlaceholder: '../images/dark/bookcover.svg';
-$bookListHoverBg: lighten($middleColumnBg, 1%);
-$bookListActiveBg: darken($middleColumnBg, 1%);
+$bookListHoverBg: darken($middleColumnBg, 1%);
+$bookListActiveBg: lighten($middleColumnBg, 1%);
 
 $bookcoverUploadArea: $bookcoverListPlaceholder;
 $uploadAreaBorderColor: #333333;

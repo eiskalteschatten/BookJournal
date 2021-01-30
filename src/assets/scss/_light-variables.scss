@@ -8,8 +8,8 @@ $sidebarBg: #000000;
 $sidebarColor: #e0e0e0;
 $middleColumnBg: lighten($mainBg, 1%);
 
-$listHoverBg: lighten($sidebarBg, 5%);
-$listActiveBg: lighten($sidebarBg, 2%);
+$listHoverBg: lighten($sidebarBg, 2%);
+$listActiveBg: lighten($sidebarBg, 5%);
 $listSelectedBg: #98bbd4;
 $listSelectedDarkBg: #063353;
 $listBorderColor: darken($mainBg, 3%);
