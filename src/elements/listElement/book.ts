@@ -103,4 +103,17 @@ export default class BookListElement extends ListElement {
 
     return nunjucks.renderString(templateString, { ratingClasses });
   }
+
+  async getNunjucksRenderObject(): Promise<any> {
+    const { book } = this;
+
+    if (book.bookcover) {
+      book.bookcoverPath = pruneCoverPath(book.bookcover);
+    }
+
+    book.classes = this.classes;
+    book.subtitle = await this.determineSubtitle();
+
+    return book;
+  }
 }
