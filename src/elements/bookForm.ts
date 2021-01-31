@@ -22,7 +22,7 @@ import {
   SavedBookCover,
 } from '../interfaces/books';
 
-import Book, { BookAttributes } from '../models/book';
+import Book from '../models/book';
 import Category from '../models/category';
 
 const { dialog } = remote;
