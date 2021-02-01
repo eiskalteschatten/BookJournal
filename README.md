@@ -39,6 +39,9 @@ BookJournal runs on the [Electron](https://electronjs.org/) platform and can the
 
 ## Release Notes
 
+### 1.1.2
+- [x] Fix a white flash that occurred when loading the application in dark mode
+
 ### 1.1.1
 - [x] Fix a critical bug that prevented the app from starting when no database exists
 - [x] Fix a bug that prevented the date picker from working
