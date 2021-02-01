@@ -27,6 +27,7 @@ async function createWindow(): Promise<void> {
       enableRemoteModule: true,
     },
     titleBarStyle: process.platform === 'darwin' ? 'hidden': 'default',
+    backgroundColor: preferences.theme === 'dark' ? '#222222' : '#f0f0f0',
   };
 
   if (preferences?.windowX && preferences?.windowY) {

@@ -68,7 +68,7 @@ console.log('Application data is saved at:', storagePath);
 export default {
   app: {
     name: 'BookJournal',
-    version: '1.1.1',
+    version: '1.1.2',
     storagePath,
     tempStoragePath,
   },
