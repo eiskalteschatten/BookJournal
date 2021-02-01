@@ -19,8 +19,8 @@ async function createWindow(): Promise<void> {
 
   // Create the browser window.
   const browserWindow: BrowserWindowConstructorOptions = {
-    width: preferences.windowWidth,
-    height: preferences.windowHeight,
+    width: preferences?.windowWidth,
+    height: preferences?.windowHeight,
     icon: path.join(__dirname, './assets/images/icon128.png'),
     webPreferences: {
       nodeIntegration: true,
@@ -29,18 +29,18 @@ async function createWindow(): Promise<void> {
     titleBarStyle: process.platform === 'darwin' ? 'hidden': 'default',
   };
 
-  if (preferences.windowX && preferences.windowY) {
-    browserWindow.x = preferences.windowX;
-    browserWindow.y = preferences.windowY;
+  if (preferences?.windowX && preferences?.windowY) {
+    browserWindow.x = preferences?.windowX;
+    browserWindow.y = preferences?.windowY;
   }
 
   mainWindow = new BrowserWindow(browserWindow);
 
-  if (preferences.windowIsMaximized) {
+  if (preferences?.windowIsMaximized) {
     mainWindow.maximize();
   }
 
-  mainWindow.setFullScreen(preferences.windowIsFullScreen || false);
+  mainWindow.setFullScreen(preferences?.windowIsFullScreen || false);
   mainWindow.loadFile('./dist/ts/html/index.html');
   // mainWindow.webContents.openDevTools();
 
