@@ -32,6 +32,14 @@ export async function setupSequelize(): Promise<Sequelize> {
     await sequelize.authenticate();
     console.log('Connection has been established successfully.');
 
+    console.log('Syncing the models.');
+
+    for (const model of models) {
+      await model.sync();
+    }
+
+    console.log('Models successfully synced.');
+
     if (process.env.NODE_ENV !== 'test' && process.env.DISABLE_DB_MIGRATION !== 'true') {
       await migrate();
     }
