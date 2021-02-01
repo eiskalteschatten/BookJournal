@@ -41,6 +41,7 @@ BookJournal runs on the [Electron](https://electronjs.org/) platform and can the
 
 ### 1.1.1
 - [x] Fix a critical bug that prevented the app from starting when no database exists
+- [x] Fix a bug that prevented the date picker from working
 
 ### 1.1.0
 - [x] Updated Electron and other dependencies
