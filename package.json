@@ -79,7 +79,7 @@
     "copyfiles": "^2.4.1",
     "electron": "^11.2.1",
     "electron-builder": "^22.9.1",
-    "eslint": "^7.18.0",
+    "eslint": "^7.19.0",
     "eslint-import-resolver-typescript": "^2.3.0",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-promise": "^4.2.1",
