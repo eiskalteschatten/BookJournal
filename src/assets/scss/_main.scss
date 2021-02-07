@@ -18,6 +18,10 @@ a {
   color: $linkColor;
 }
 
+*:focus {
+  outline: none;
+}
+
 .float-left {
   float: left;
 }
