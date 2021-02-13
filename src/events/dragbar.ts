@@ -10,7 +10,7 @@ $('.js-dragbar').on('mousedown', function(e: JQuery.TriggeredEvent): void {
   const $draggableColumn = $(this).prev('.js-resizable-column');
   dragging = true;
 
-  $(document).on ('mousemove', function(e: JQuery.TriggeredEvent): void {
+  $(document).on('mousemove', function(e: JQuery.TriggeredEvent): void {
     const newWidth = e.pageX - $draggableColumn.offset().left;
     $draggableColumn.css('width', newWidth);
   });
