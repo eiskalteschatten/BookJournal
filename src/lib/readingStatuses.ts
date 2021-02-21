@@ -6,10 +6,12 @@ export interface ReadingStatuses {
   takingABreak: string;
 }
 
-export default {
+const readingStatuses: ReadingStatuses = {
   notReadYet: 'Not Read Yet',
   currentlyReading: 'Currently Reading',
   read: 'Read',
   stoppedReading: 'Stopped Reading',
   takingABreak: 'Taking a Break',
-} as ReadingStatuses;
+};
+
+export default readingStatuses;

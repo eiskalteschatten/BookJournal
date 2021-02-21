@@ -64,8 +64,7 @@ if (!fs.existsSync(storagePath)) {
 
 console.log('Application data is saved at:', storagePath);
 
-
-export default {
+const config: Config = {
   app: {
     name: 'BookJournal',
     version: '1.1.2',
@@ -95,4 +94,6 @@ export default {
   statistics: {
     defaultNumberOfYears: 7,
   },
-} as Config;
+};
+
+export default config;

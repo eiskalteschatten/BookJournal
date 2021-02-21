@@ -1,3 +1,5 @@
+import Book from 'models/book';
+
 export interface BookFormats {
   paperback: string;
   hardback: string;
@@ -6,10 +8,12 @@ export interface BookFormats {
   other: string;
 }
 
-export default {
+const bookFormats: BookFormats = {
   paperback: 'Paperback',
   hardback: 'Hardback',
   ebook: 'E-Book',
   audiobook: 'Audiobook',
   other: 'Other',
-} as BookFormats;
+};
+
+export default bookFormats;
