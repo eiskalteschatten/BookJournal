@@ -39,6 +39,11 @@ BookJournal runs on the [Electron](https://electronjs.org/) platform and can the
 
 ## Release Notes
 
+### 1.1.3
+- [ ] Update to Electron 12
+- [x] Security fixes
+- [x] Resize the app icon slightly to match macOS Big Sur's better
+
 ### 1.1.2
 - [x] Fix a white flash that occurred when loading the application in dark mode
 
