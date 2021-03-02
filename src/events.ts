@@ -1,4 +1,4 @@
-import { ipcRenderer, shell, IpcRendererEvent } from 'electron';
+import { IpcRendererEvent } from 'electron';
 import $ from 'jquery';
 
 import { switchCss } from './events/helper';
@@ -13,10 +13,10 @@ import './events/modal';
 import './events/forms';
 
 $(document).on('contextmenu', 'input, textarea', function(): void {
-  ipcRenderer.send('show-input-context-menu');
+  window.api.send('show-input-context-menu');
 });
 
-ipcRenderer.on('switch-theme', function(event: IpcRendererEvent, theme: string): void {
+window.api.on('switch-theme', function(event: IpcRendererEvent, theme: string): void {
   switchCss(`${theme}Css`);
   localStorage.setItem('theme', theme);
 
@@ -27,14 +27,14 @@ ipcRenderer.on('switch-theme', function(event: IpcRendererEvent, theme: string):
   }
 });
 
-ipcRenderer.on('check-for-updates', async function(): Promise<void> {
+window.api.on('check-for-updates', async function(): Promise<void> {
   checkForUpdates(true);
 });
 
 $(document).on('click', '.js-external-link', function(e: JQuery.TriggeredEvent): void {
   e.preventDefault();
   const href = $(this).attr('href');
-  shell.openExternal(href);
+  window.shell.openExternal(href);
 });
 
 if (process.platform === 'darwin') {

@@ -1,4 +1,4 @@
-import { ipcRenderer, remote } from 'electron';
+import { remote } from 'electron';
 import $ from 'jquery';
 import request from 'request';
 import fs from 'fs';
@@ -17,16 +17,16 @@ import { BookFormData } from '../interfaces/books';
 const { dialog } = remote;
 
 $(document).on('click', '#bookUtilityMenu', function(): void {
-  ipcRenderer.send('show-book-utility-menu');
+  window.api.send('show-book-utility-menu');
 });
 
 $(document).on('contextmenu', '.js-book-list-element', function(): void {
   $(this).trigger('click');
-  ipcRenderer.send('show-book-utility-menu');
+  window.api.send('show-book-utility-menu');
 });
 
 $(window).on('book-form-loaded', function(): void {
-  ipcRenderer.send('enable-book-items');
+  window.api.send('enable-book-items');
   $('#bookForm').addClass('js-is-visible');
 });
 
@@ -62,7 +62,7 @@ async function createNewBook(): Promise<void> {
   $(window).trigger('book-form-loaded');
 }
 
-ipcRenderer.on('create-new-book', createNewBook);
+window.api.on('create-new-book', createNewBook);
 $(document).on('click', '.js-new-book', createNewBook);
 
 
@@ -134,7 +134,7 @@ async function saveBookTimeout(): Promise<void> {
   saveTimeout = setTimeout(saveBook, 500);
 }
 
-ipcRenderer.on('save-book', saveBook);
+window.api.on('save-book', saveBook);
 $(document).on('change', '.js-book-form-field', saveBookTimeout);
 $(document).on('keyup', '.js-book-form-field', saveBookTimeout);
 
@@ -162,7 +162,7 @@ async function deleteBook() {
   clearBooklistSelection();
 }
 
-ipcRenderer.on('delete-book', deleteBook);
+window.api.on('delete-book', deleteBook);
 
 
 // Bookcover
@@ -218,12 +218,12 @@ $(document).on('drop', '#bookcoverUploadArea', function(e: JQuery.DropEvent): vo
 });
 
 $(document).on('contextmenu', '#bookcoverUploadArea', function(): void {
-  ipcRenderer.send('show-bookcover-context-menu');
+  window.api.send('show-bookcover-context-menu');
 });
 
-ipcRenderer.on('delete-bookcover', deleteBookcover);
+window.api.on('delete-bookcover', deleteBookcover);
 
-ipcRenderer.on('get-bookcover-color', async function(): Promise<void> {
+window.api.on('get-bookcover-color', async function(): Promise<void> {
   const fileName = $('#bookBookcoverFileName').val().toString();
   const bookcoverPath = config.bookcovers.path;
   const filePath = path.resolve(bookcoverPath, fileName);

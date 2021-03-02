@@ -16,6 +16,7 @@
 
     <script>const exports = {};</script>
     <script src="../pre-renderer.js"></script>
+    <script async src="../renderer.js"></script>
   </head>
   <body>
     <div class="title-bar js-title-bar"></div>
@@ -89,11 +90,5 @@
     <div id="modalContainer" class="modal-container hidden">
       <div id="modalAnchor"></div>
     </div>
-
-    <script>
-      setTimeout(() => {
-        require('../renderer.js');
-      }, 50);
-    </script>
   </body>
 </html>

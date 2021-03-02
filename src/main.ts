@@ -23,8 +23,8 @@ async function createWindow(): Promise<void> {
     height: preferences?.windowHeight,
     icon: path.join(__dirname, './assets/images/icon128.png'),
     webPreferences: {
-      nodeIntegration: true,
-      enableRemoteModule: true,
+      contextIsolation: true,
+      preload: path.join(__dirname, 'preload.js'),
     },
     titleBarStyle: process.platform === 'darwin' ? 'hidden': 'default',
     backgroundColor: preferences.theme === 'dark' ? '#222222' : '#f0f0f0',

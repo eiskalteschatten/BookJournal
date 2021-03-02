@@ -1,4 +1,3 @@
-import { ipcRenderer } from 'electron';
 import $ from 'jquery';
 
 import CategoryListElement from '../elements/listElement/category';
@@ -9,7 +8,7 @@ let $elementWithContextMenu: JQuery<HTMLElement>;
 
 $(document).on('contextmenu', '.js-category-list-element', function(): void {
   $elementWithContextMenu = $(this);
-  ipcRenderer.send('show-category-list-element-context-menu');
+  window.api.send('show-category-list-element-context-menu');
 });
 
 async function doneEditingCategories(): Promise<void> {
@@ -30,7 +29,7 @@ $('.js-new-category').on('click', async function(e: JQuery.TriggeredEvent): Prom
   createNewCategory();
 });
 
-ipcRenderer.on('create-new-category', async function(): Promise<void> {
+window.api.on('create-new-category', async function(): Promise<void> {
   createNewCategory();
 });
 
@@ -101,7 +100,7 @@ function openCategoryRenameMode($element: JQuery<HTMLElement>): void {
   $edit.find('.js-list-element-edit-rename').trigger('focus');
 }
 
-ipcRenderer.on('rename-category', function(): void {
+window.api.on('rename-category', function(): void {
   openCategoryRenameMode($elementWithContextMenu);
 });
 
@@ -153,7 +152,7 @@ $(document).on('keyup', '.js-list-element-edit-rename', async function(e: JQuery
   doneEditingCategories();
 });
 
-ipcRenderer.on('delete-category', async function() {
+window.api.on('delete-category', async function() {
   const id = $elementWithContextMenu.data('id');
   const category = new CategoryListElement('', id, '');
   await category.delete();

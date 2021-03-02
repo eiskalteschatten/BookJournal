@@ -1,4 +1,4 @@
-import { ipcRenderer, remote } from 'electron';
+import { remote } from 'electron';
 import $ from 'jquery';
 
 import { openModal, closeModal as helperCloseModal } from './helper';
@@ -8,11 +8,11 @@ import changePreferences from '../lib/preferences/change';
 import PreferencesModal from '../elements/modal/preferences';
 import BooksByAuthor from '../elements/modal/booksByAuthor';
 
-ipcRenderer.on('open-about', function(): void {
+window.api.on('open-about', function(): void {
   openModal('aboutModal');
 });
 
-ipcRenderer.on('open-preferences', async function(): Promise<void> {
+window.api.on('open-preferences', async function(): Promise<void> {
   const preferencesModal = new PreferencesModal();
   const rendered = await preferencesModal.render();
 

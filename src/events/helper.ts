@@ -1,4 +1,3 @@
-import { ipcRenderer } from 'electron';
 import $ from 'jquery';
 
 import BookForm from '../elements/bookForm';
@@ -61,7 +60,7 @@ export const clearBooklistSelection = (): void => {
   $('#bookForm').removeClass('js-is-visible');
   $('#bookDetails').html('');
   $('#bookFormWrapper').removeClass('form-displayed');
-  ipcRenderer.send('disable-book-items');
+  window.api.send('disable-book-items');
 };
 
 export const switchViewNoBooks = (): void => {

@@ -1,4 +1,4 @@
-import { ipcRenderer, IpcRendererEvent } from 'electron';
+import { IpcRendererEvent } from 'electron';
 import $ from 'jquery';
 
 import BookPageCountYear from '../elements/statisticsBox/bookPageCountYear';
@@ -35,16 +35,16 @@ async function renderBookPageCountMonthYear(statistics: IStatistics): Promise<vo
   );
 }
 
-ipcRenderer.on('statistics-no-results', async (): Promise<void> => {
+window.api.on('statistics-no-results', async (): Promise<void> => {
   $('.js-statistics-hide-no-results').addClass('hidden');
   $('#statisticsNoResults').removeClass('hidden');
 });
 
-ipcRenderer.on('statistics-render-page-book-count-month-year', async function(event: IpcRendererEvent, statistics: IStatistics): Promise<void> {
+window.api.on('statistics-render-page-book-count-month-year', async function(event: IpcRendererEvent, statistics: IStatistics): Promise<void> {
   await renderBookPageCountMonthYear(statistics);
 });
 
-ipcRenderer.on('statistics-render-page-book-count-year', async function(event: IpcRendererEvent, statistics: IStatistics): Promise<void> {
+window.api.on('statistics-render-page-book-count-year', async function(event: IpcRendererEvent, statistics: IStatistics): Promise<void> {
   await renderBookPageCountYear(statistics);
 });
 

@@ -7,7 +7,7 @@
     const exports = {};
     const BrowserWindow = remote.BrowserWindow;
 
-    ipcRenderer.on('backup-db', async function(event, number, fromWindowId) {
+    window.api.on('backup-db', async function(event, number, fromWindowId) {
       try {
         const fromWindow = BrowserWindow.fromId(fromWindowId);
 

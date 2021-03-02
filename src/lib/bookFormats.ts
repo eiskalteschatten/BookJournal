@@ -1,5 +1,3 @@
-import Book from 'models/book';
-
 export interface BookFormats {
   paperback: string;
   hardback: string;

@@ -8,7 +8,7 @@ function preRender(): void {
     (document.getElementById(themeCss) as any).disabled = false;
 
     const body = document.getElementsByTagName('body')[0];
-    body.classList.add(process.platform);
+    body.classList.add(window.process.platform);
 
     const preferencesString = localStorage.getItem('preferences');
 
