@@ -94,7 +94,7 @@
     "iso-639-1": "^2.1.8",
     "jquery": "^3.6.0",
     "mkdirp": "^1.0.4",
-    "moment": "^2.29.1",
+    "moment": "^2.29.2",
     "nunjucks": "^3.2.3",
     "popper.js": "^1.16.1",
     "reflect-metadata": "^0.1.13",
