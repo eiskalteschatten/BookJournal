@@ -98,7 +98,7 @@
     "nunjucks": "^3.2.3",
     "popper.js": "^1.16.1",
     "reflect-metadata": "^0.1.13",
-    "sequelize": "^6.5.1",
+    "sequelize": "^6.28.2",
     "sequelize-migration-wrapper": "^1.0.0",
     "sequelize-typescript": "^2.1.0",
     "sqlite3": "^5.0.2",
